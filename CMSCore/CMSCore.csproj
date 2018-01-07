@@ -18,4 +18,12 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CMSCore.Application\CMSCore.Application.csproj" />
+    <ProjectReference Include="..\CMSCore.Data.EF\CMSCore.Data.EF.csproj" />
+    <ProjectReference Include="..\CMSCore.Data\CMSCore.Data.csproj" />
+    <ProjectReference Include="..\CMSCore.Infrastructure\CMSCore.Infrastructure.csproj" />
+    <ProjectReference Include="..\CMSCore.Utilities\CMSCore.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>

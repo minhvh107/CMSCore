@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="IRepositories\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CMSCore.Data.EF\CMSCore.Data.EF.csproj" />
+    <ProjectReference Include="..\CMSCore.Infrastructure\CMSCore.Infrastructure.csproj" />
+    <ProjectReference Include="..\CMSCore.Utilities\CMSCore.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>
