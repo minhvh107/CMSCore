@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using CMSCore.Application.Implementation;
+using CMSCore.Application.Interfaces;
+using CMSCore.Data.EF;
+using CMSCore.Data.EF.Repositories;
+using CMSCore.Data.Entities;
+using CMSCore.Data.IRepositories;
+using CMSCore.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CMSCore.Data;
-using CMSCore.Models;
-using CMSCore.Services;
-using CMSCore.Data.EF;
-using CMSCore.Data.Entities;
 
 namespace CMSCore
 {
@@ -40,8 +39,15 @@ namespace CMSCore
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
 
+            services.AddSingleton(Mapper.Configuration);
+            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(),
+                sp.GetService));
+
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<DbInitializer>();
+
+            services.AddTransient<IProductCategoryRepository, ProductCategporyRepository>();
+            services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddMvc();
         }
 

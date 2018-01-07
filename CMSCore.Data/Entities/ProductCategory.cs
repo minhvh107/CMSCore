@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using CMSCore.Data.Enums;
+﻿using CMSCore.Data.Enums;
 using CMSCore.Data.Interfaces;
 using CMSCore.Infrastructure.SharedKernel;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMSCore.Data.Entities
 {
@@ -16,6 +15,23 @@ namespace CMSCore.Data.Entities
         {
             Products = new List<Product>();
         }
+
+        public ProductCategory(string name, string description, int? parentId, int? homeOrder, string image, bool? homeFlag, int sortOrder, Status status, string seoPageTitle, string seoAlias, string seoKeywords, string seoDescription)
+        {
+            Name = name;
+            Description = description;
+            ParentId = parentId;
+            HomeOrder = homeOrder;
+            Image = image;
+            HomeFlag = homeFlag;
+            SortOrder = sortOrder;
+            Status = status;
+            SeoPageTitle = seoPageTitle;
+            SeoAlias = seoAlias;
+            SeoKeywords = seoKeywords;
+            SeoDescription = seoDescription;
+        }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
