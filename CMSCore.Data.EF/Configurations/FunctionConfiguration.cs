@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using CMSCore.Data.EF.Extensions;
+﻿using CMSCore.Data.EF.Extensions;
 using CMSCore.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CMSCore.Data.EF.Configurations
 {
@@ -14,6 +11,7 @@ namespace CMSCore.Data.EF.Configurations
         {
             entity.HasKey(c => c.Id);
             entity.Property(c => c.Id).IsRequired()
+                .HasMaxLength(128)
             .HasColumnType("varchar(128)");
             // etc.
         }

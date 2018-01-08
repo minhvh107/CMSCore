@@ -13,8 +13,8 @@ namespace CMSCore.Data.EF.Configurations
         public override void Configure(EntityTypeBuilder<Footer> entity)
         {
             entity.HasKey(c => c.Id);
-            entity.Property(c => c.Id).HasMaxLength(255)
-                .HasColumnType("varchar(255)").IsRequired();
+            entity.Property(c => c.Id).HasMaxLength(50)
+                .HasColumnType("varchar(50)").IsRequired();
             // etc.
         }
     }
