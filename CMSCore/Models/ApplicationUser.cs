@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CMSCore.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
+    // Add profile data for application users by adding properties to the AppUser class
     public class ApplicationUser : IdentityUser
     {
     }
