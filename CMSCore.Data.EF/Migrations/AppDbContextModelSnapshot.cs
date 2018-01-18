@@ -620,9 +620,11 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.Property<string>("Image");
 
+                    b.Property<int?>("LevelCate");
+
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ParentId");
+                    b.Property<int>("ParentId");
 
                     b.Property<string>("SeoAlias");
 

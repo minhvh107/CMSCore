@@ -11,13 +11,15 @@ namespace CMSCore.Application.ViewModels
 
         public string Description { get; set; }
 
-        public int? ParentId { get; set; }
+        public int ParentId { get; set; }
 
         public int? HomeOrder { get; set; }
 
         public string Image { get; set; }
 
         public bool? HomeFlag { get; set; }
+
+        public int? LevelCate { get; set; }
 
         public DateTime DateCreated { set; get; }
         public DateTime DateModified { set; get; }

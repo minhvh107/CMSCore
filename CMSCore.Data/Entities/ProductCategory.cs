@@ -16,7 +16,7 @@ namespace CMSCore.Data.Entities
             Products = new List<Product>();
         }
 
-        public ProductCategory(string name, string description, int? parentId, int? homeOrder, string image, bool? homeFlag, int sortOrder, Status status, string seoPageTitle, string seoAlias, string seoKeywords, string seoDescription)
+        public ProductCategory(string name, string description, int parentId, int? homeOrder, string image, bool? homeFlag, int? levelCate, int sortOrder, Status status, string seoPageTitle, string seoAlias, string seoKeywords, string seoDescription)
         {
             Name = name;
             Description = description;
@@ -24,6 +24,7 @@ namespace CMSCore.Data.Entities
             HomeOrder = homeOrder;
             Image = image;
             HomeFlag = homeFlag;
+            LevelCate = levelCate;
             SortOrder = sortOrder;
             Status = status;
             SeoPageTitle = seoPageTitle;
@@ -36,13 +37,15 @@ namespace CMSCore.Data.Entities
 
         public string Description { get; set; }
 
-        public int? ParentId { get; set; }
+        public int ParentId { get; set; }
 
         public int? HomeOrder { get; set; }
 
         public string Image { get; set; }
 
         public bool? HomeFlag { get; set; }
+
+        public int? LevelCate { get; set; }
 
         public DateTime DateCreated { set; get; }
         public DateTime DateModified { set; get; }

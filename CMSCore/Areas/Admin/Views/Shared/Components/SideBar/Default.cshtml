@@ -1,0 +1,21 @@
+﻿@model List<FunctionViewModel>
+<div class="menu_section">
+    <h3>Functions</h3>
+    <ul class="nav side-menu">
+        @foreach (var item in Model.Where(m => string.IsNullOrEmpty(m.ParentId)))
+        {
+            <li>
+                <a><i class="fa @item.IconCss"></i> @item.Name <span class="fa fa-chevron-down"></span></a>
+                @if (Model.Any(m => m.ParentId == item.Id))
+                {
+                    <ul class="nav child_menu">
+                        @foreach (var jItem in Model.Where(m => m.ParentId == item.Id))
+                        {
+                            <li><a href="@jItem.URL">@jItem.Name</a></li>
+                        }
+                    </ul>
+                }
+            </li>
+        }
+    </ul>
+</div>

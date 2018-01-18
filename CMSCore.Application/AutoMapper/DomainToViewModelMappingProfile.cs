@@ -8,7 +8,17 @@ namespace CMSCore.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
+            #region Product
             CreateMap<ProductCategory, ProductCategoryViewModel>();
+            CreateMap<Product, ProductViewModel>();
+
+            #endregion
+
+            #region System
+            CreateMap<Function, FunctionViewModel>();
+
+
+            #endregion
         }
     }
 }

@@ -5,6 +5,7 @@ using CMSCore.Data.EF;
 using CMSCore.Data.EF.Repositories;
 using CMSCore.Data.Entities;
 using CMSCore.Data.IRepositories;
+using CMSCore.Helpers;
 using CMSCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using System;
+using CMSCore.Infrastructure.Interfaces;
 
 namespace CMSCore
 {
@@ -65,15 +69,29 @@ namespace CMSCore
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<DbInitializer>();
+            services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
+            services.AddMvc().AddJsonOptions(option => option.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
-            services.AddTransient<IProductCategoryRepository, ProductCategporyRepository>();
+            services.AddTransient(typeof(IUnitOfWork), typeof(EFUnitOfWork));
+            services.AddTransient(typeof(IRepository<,>), typeof(EFRepository<,>));
+            // Repository
+            services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
+            services.AddTransient<IFunctionRepository, FunctionRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ITagRepository, TagRepository>();
+            services.AddTransient<IProductTagRepository, ProductTagRepository>();
+
+            // Service
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
-            services.AddMvc();
+            services.AddTransient<IFunctionService, FunctionService>();
+            services.AddTransient<IProductService, ProductService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddFile("Logs/cms-{Date}.txt");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -94,6 +112,9 @@ namespace CMSCore
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(name: "areaRoute",
+                    template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
