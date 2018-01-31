@@ -144,6 +144,40 @@
             }
         });
 
+        $("body").on("keypress", "#txtKeyword", function (e) {
+            if (e.which === 13) {
+                loadData();
+            }
+        });
+
+        $("body").on("click", "#btnSelectImg", function () {
+            $('#fileInputImage').click();
+        });
+
+        $("#fileInputImage").on('change', function () {
+            var fileUpload = $(this).get(0);
+            var files = fileUpload.files;
+            var data = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                data.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Upload/UploadImage",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (path) {
+                    $('#txtImage').val(path);
+                    tedu.notify('Upload image succesful!', 'success');
+
+                },
+                error: function () {
+                    tedu.notify('There was error uploading files!', 'error');
+                }
+            });
+        });
+
         $("body").on("click", "#btnCreate", function (e) {
             e.preventDefault();
             initTreeDropDownCategory();
@@ -192,7 +226,32 @@
             });
         });
 
-        $("body").on("click", "#btnSave", function (e){
+        $("body").on("click", "#btnDelete", function (e) {
+            e.preventDefault();
+            var that = $("#hidIdM").val();
+            cms.confirm("Are you sure to delete?", function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/ProductCategory/Delete",
+                    data: { id: that },
+                    dataType: "json",
+                    beforeSend: function () {
+                        cms.startLoading();
+                    },
+                    success: function (response) {
+                        cms.notify("Deleted success", "success");
+                        cms.stopLoading();
+                        loadData();
+                    },
+                    error: function (status) {
+                        cms.notify("Has an error in deleting progress", "error");
+                        cms.stopLoading();
+                    }
+                });
+            });
+        });
+
+        $("body").on("click", "#btnSave", function (e) {
             if ($("#frmMaintainance").valid()) {
                 e.preventDefault();
                 var id = parseInt($("#hidIdM").val());
@@ -255,31 +314,6 @@
             }
             return false;
 
-        });
-
-        $("body").on("click", "#btnDelete", function (e) {
-            e.preventDefault();
-            var that = $("#hidIdM").val();
-            cms.confirm("Are you sure to delete?", function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/ProductCategory/Delete",
-                    data: { id: that },
-                    dataType: "json",
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        cms.notify("Deleted success", "success");
-                        cms.stopLoading();
-                        loadData();
-                    },
-                    error: function (status) {
-                        cms.notify("Has an error in deleting progress", "error");
-                        cms.stopLoading();
-                    }
-                });
-            });
         });
 
     }

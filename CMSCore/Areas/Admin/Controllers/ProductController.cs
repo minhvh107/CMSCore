@@ -1,5 +1,5 @@
 ﻿using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels;
+using CMSCore.Application.ViewModels.Product;
 using CMSCore.Utilities.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;

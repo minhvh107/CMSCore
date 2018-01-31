@@ -60,10 +60,10 @@
                     render += Mustache.render(template, {
                         Id: item.Id,
                         Name: item.Name,
-                        Image: item.Image == null ? "<img src='/admin-side/images/user.png' width=25" : "<img src='" + item.Image + "' width=25 />",
+                        Image: item.Image == null ? "<img src='/admin-side/images/user.png' width='50'" : "<img src='" + item.Image + "' width='50' />",
                         CategoryName: item.ProductCategory.Name,
                         Price: cms.formatNumber(item.Price, 0),
-                        DateCreated: cms.dateTimeFormatJson(item.DateCreated),
+                        DateCreated: cms.dateFormatJson(item.DateCreated),
                         Status: cms.getStatus(item.Status)
                     });
                 });
@@ -131,7 +131,7 @@
         $("#txtSeoPageTitleM").val("");
         $("#txtSeoAliasM").val("");
 
-        //CKEDITOR.instances.txtContentM.setData("");
+        CKEDITOR.instances.txtContentM.setData("");
         $("#ckStatusM").prop("checked", true);
         $("#ckHotM").prop("checked", false);
         $("#ckShowHomeM").prop("checked", false);
@@ -149,83 +149,45 @@
             loadData();
         });
 
+        $("body").on("keypress", "#txtKeyword", function (e) {
+            if (e.which === 13) {
+                loadData();
+            }
+        });
+
+        $("body").on("click", "#btnSelectImg", function () {
+            $('#fileInputImage').click();
+        });
+
+        $("#fileInputImage").on('change', function () {
+            var fileUpload = $(this).get(0);
+            var files = fileUpload.files;
+            var data = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                data.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Upload/UploadImage",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (path) {
+                    $('#txtImage').val(path);
+                    tedu.notify('Upload image succesful!', 'success');
+
+                },
+                error: function () {
+                    tedu.notify('There was error uploading files!', 'error');
+                }
+            });
+        });
+
         $("body").on("click", "#btnCreate", function (e) {
             e.preventDefault();
             resetFormMaintainance();
             initTreeDropDownCategory();
             $("#modal-add-edit").modal("show");
-        });
-
-        $("body").on("click", "#btnSave", function (e) {
-            if ($("#frmMaintainance").valid()) {
-                e.preventDefault();
-                var id = $("#hidIdM").val();
-                var name = $("#txtNameM").val();
-                var categoryId = $("#ddlCategoryIdM").combotree("getValue");
-
-                var description = $("#txtDescM").val();
-                var unit = $("#txtUnitM").val();
-
-                var price = $("#txtPriceM").val();
-                var originalPrice = $("#txtOriginalPriceM").val();
-                var promotionPrice = $("#txtPromotionPriceM").val();
-
-                //var image = $("#txtImageM").val();
-
-                var tags = $("#txtTagM").val();
-                var seoKeyword = $("#txtMetakeywordM").val();
-                var seoMetaDescription = $("#txtMetaDescriptionM").val();
-                var seoPageTitle = $("#txtSeoPageTitleM").val();
-                var seoAlias = $("#txtSeoAliasM").val();
-
-                //var content = CKEDITOR.instances.txtContentM.getData();
-                var status = $("#ckStatusM").prop("checked") == true ? 1 : 0;
-                var hot = $("#ckHotM").prop("checked");
-                var showHome = $("#ckShowHomeM").prop("checked");
-
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/Product/SaveEntity",
-                    data: {
-                        Id: id,
-                        Name: name,
-                        CategoryId: categoryId,
-                        Image: "",
-                        Price: price,
-                        OriginalPrice: originalPrice,
-                        PromotionPrice: promotionPrice,
-                        Description: description,
-                        Content: "",
-                        HomeFlag: showHome,
-                        HotFlag: hot,
-                        Tags: tags,
-                        Unit: unit,
-                        Status: status,
-                        SeoPageTitle: seoPageTitle,
-                        SeoAlias: seoAlias,
-                        SeoKeywords: seoKeyword,
-                        SeoDescription: seoMetaDescription
-                    },
-                    dataType: "json",
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        cms.notify("Update product successful", "success");
-                        $("#modal-add-edit").modal("hide");
-                        resetFormMaintainance();
-
-                        cms.stopLoading();
-                        loadData(true);
-                    },
-                    error: function () {
-                        cms.notify("Has an error in save product progress", "error");
-                        cms.stopLoading();
-                    }
-                });
-                return false;
-            }
-            return false;
         });
 
         $("body").on("click", ".btnEdit", function (e) {
@@ -252,7 +214,7 @@
                     $("#txtOriginalPriceM").val(data.OriginalPrice);
                     $("#txtPromotionPriceM").val(data.PromotionPrice);
 
-                    // $("#txtImageM").val(data.ThumbnailImage);
+                    $("#txtImageM").val(data.ThumbnailImage);
 
                     $("#txtTagM").val(data.Tags);
                     $("#txtMetakeywordM").val(data.SeoKeywords);
@@ -260,7 +222,7 @@
                     $("#txtSeoPageTitleM").val(data.SeoPageTitle);
                     $("#txtSeoAliasM").val(data.SeoAlias);
 
-                    //CKEDITOR.instances.txtContentM.setData(data.Content);
+                    CKEDITOR.instances.txtContent.setData(data.Content);
                     $("#ckStatusM").prop("checked", data.Status == 1);
                     $("#ckHotM").prop("checked", data.HotFlag);
                     $("#ckShowHomeM").prop("checked", data.HomeFlag);
@@ -300,11 +262,105 @@
                 });
             });
         });
+
+        $("body").on("click", "#btnSave", function (e) {
+            if ($("#frmMaintainance").valid()) {
+                e.preventDefault();
+                var id = $("#hidIdM").val();
+                var name = $("#txtNameM").val();
+                var categoryId = $("#ddlCategoryIdM").combotree("getValue");
+
+                var description = $("#txtDescM").val();
+                var unit = $("#txtUnitM").val();
+
+                var price = $("#txtPriceM").val();
+                var originalPrice = $("#txtOriginalPriceM").val();
+                var promotionPrice = $("#txtPromotionPriceM").val();
+
+                var image = $("#txtImage").val();
+
+                var tags = $("#txtTagM").val();
+                var seoKeyword = $("#txtMetakeywordM").val();
+                var seoMetaDescription = $("#txtMetaDescriptionM").val();
+                var seoPageTitle = $("#txtSeoPageTitleM").val();
+                var seoAlias = $("#txtSeoAliasM").val();
+
+                var content = CKEDITOR.instances.txtContent.getData();
+                var status = $("#ckStatusM").prop("checked") == true ? 1 : 0;
+                var hot = $("#ckHotM").prop("checked");
+                var showHome = $("#ckShowHomeM").prop("checked");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Product/SaveEntity",
+                    data: {
+                        Id: id,
+                        Name: name,
+                        CategoryId: categoryId,
+                        Image: image,
+                        Price: price,
+                        OriginalPrice: originalPrice,
+                        PromotionPrice: promotionPrice,
+                        Description: description,
+                        Content: content,
+                        HomeFlag: showHome,
+                        HotFlag: hot,
+                        Tags: tags,
+                        Unit: unit,
+                        Status: status,
+                        SeoPageTitle: seoPageTitle,
+                        SeoAlias: seoAlias,
+                        SeoKeywords: seoKeyword,
+                        SeoDescription: seoMetaDescription
+                    },
+                    dataType: "json",
+                    beforeSend: function () {
+                        cms.startLoading();
+                    },
+                    success: function (response) {
+                        cms.notify("Update product successful", "success");
+                        $("#modal-add-edit").modal("hide");
+                        resetFormMaintainance();
+
+                        cms.stopLoading();
+                        loadData(true);
+                    },
+                    error: function () {
+                        cms.notify("Has an error in save product progress", "error");
+                        cms.stopLoading();
+                    }
+                });
+                return false;
+            }
+            return false;
+        });
+    }
+
+    function registerControls() {
+        CKEDITOR.replace('txtContent', {});
+
+        //Fix: cannot click on element ck in modal
+        $.fn.modal.Constructor.prototype.enforceFocus = function () {
+            $(document)
+                .off('focusin.bs.modal') // guard against infinite focus loop
+                .on('focusin.bs.modal', $.proxy(function (e) {
+                    if (
+                        this.$element[0] !== e.target && !this.$element.has(e.target).length
+                        // CKEditor compatibility fix start.
+                        && !$(e.target).closest('.cke_dialog, .cke').length
+                        // CKEditor compatibility fix end.
+                    ) {
+                        this.$element.trigger('focus');
+                    }
+                }, this));
+        };
+
     }
 
     this.initialize = function () {
         loadCategories();
         loadData();
         registerEvents();
+        registerControls();
     }
 }

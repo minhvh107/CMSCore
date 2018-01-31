@@ -1,5 +1,5 @@
 ﻿using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels;
+using CMSCore.Application.ViewModels.System;
 using CMSCore.Extensions;
 using CMSCore.Utilities.Constants;
 using Microsoft.AspNetCore.Mvc;

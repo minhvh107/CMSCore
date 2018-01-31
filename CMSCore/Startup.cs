@@ -80,12 +80,15 @@ namespace CMSCore
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IProductTagRepository, ProductTagRepository>();
+            services.AddTransient<IPermissionRepository, PermissionRepository>();
 
             // Service
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddTransient<IFunctionService, FunctionService>();
             services.AddTransient<IProductService, ProductService>();
-            
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

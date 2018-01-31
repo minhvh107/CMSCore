@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using CMSCore.Application.ViewModels;
+using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels.Product;
 using CMSCore.Data.Entities;
 
 namespace CMSCore.Application.AutoMapper
@@ -16,7 +17,8 @@ namespace CMSCore.Application.AutoMapper
 
             #region System
             CreateMap<Function, FunctionViewModel>();
-
+            CreateMap<AppUser, AppUserViewModel>();
+            CreateMap<AppRole, AppRoleViewModel>();
 
             #endregion
         }

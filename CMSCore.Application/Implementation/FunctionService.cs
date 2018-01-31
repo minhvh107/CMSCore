@@ -1,6 +1,6 @@
 ﻿using AutoMapper.QueryableExtensions;
 using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels;
+using CMSCore.Application.ViewModels.System;
 using CMSCore.Data.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System;

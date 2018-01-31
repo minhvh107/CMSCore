@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CMSCore.Application.ViewModels;
+using CMSCore.Application.ViewModels.Product;
 
 namespace CMSCore.Application.Interfaces
 {
