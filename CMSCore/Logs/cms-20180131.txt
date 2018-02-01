@@ -8444,3 +8444,812 @@ OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
 2018-01-31T18:24:36.7764084+07:00 0HLB8JKHV2181:00000008 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
 2018-01-31T18:24:36.7866888+07:00 0HLB8JKHV2181:00000008 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" in 49.9512ms (afa2e885)
 2018-01-31T18:24:36.7970699+07:00 0HLB8JKHV2181:00000008 [INF] Request finished in 81.1405ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:48:44.2932408+07:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:48:59.7524112+07:00  [ERR] An error occurred using the connection to database '"CMSCore"' on server '"VHMINH"'. (5fc3407c)
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The network path was not found
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.GetResult[TResult](IEnumerable`1 valueBuffers, Boolean throwOnNullResult)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+2018-01-31T23:48:59.8461559+07:00  [ERR] An exception occurred in the database while iterating the results of a query for context type '"CMSCore.Data.EF.AppDbContext"'."
+""System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The network path was not found
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.GetResult[TResult](IEnumerable`1 valueBuffers, Boolean throwOnNullResult)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20" (64e2593c)
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The network path was not found
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.GetResult[TResult](IEnumerable`1 valueBuffers, Boolean throwOnNullResult)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+2018-01-31T23:48:59.9992335+07:00  [ERR] An error occurred while seeding the database (90f98c9f)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.) ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.System.IObserver<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.OnNext(KeyValuePair`2 keyValuePair)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.EntityFrameworkCore.Internal.CoreLoggerExtensions.QueryIterationFailed(IDiagnosticsLogger`1 diagnostics, Type contextType, Exception exception)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at System.Linq.Queryable.Any[TSource](IQueryable`1 source)
+   at CMSCore.Data.EF.DbInitializer.<Seed>d__4.MoveNext() in D:\Project\CMSCore\CMSCore.Data.EF\DbInitializer.cs:line 27
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at CMSCore.Program.Main(String[] args) in D:\Project\CMSCore\CMSCore\Program.cs:line 27
+---> (Inner Exception #0) System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.System.IObserver<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.OnNext(KeyValuePair`2 keyValuePair)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.EntityFrameworkCore.Internal.CoreLoggerExtensions.QueryIterationFailed(IDiagnosticsLogger`1 diagnostics, Type contextType, Exception exception)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at System.Linq.Queryable.Any[TSource](IQueryable`1 source)
+   at CMSCore.Data.EF.DbInitializer.<Seed>d__4.MoveNext() in D:\Project\CMSCore\CMSCore.Data.EF\DbInitializer.cs:line 27<---
+
+2018-01-31T23:49:00.6091899+07:00 0HLB8PA3JI4DT:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/   (ca22a1cb)
+2018-01-31T23:49:00.9351498+07:00 0HLB8PA3JI4DT:00000001 [INF] Executing action method "CMSCore.Controllers.HomeController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:49:04.5960343+07:00 0HLB8PA3JI4DT:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2018-01-31T23:49:05.4957374+07:00 0HLB8PA3JI4DT:00000001 [INF] Executed action "CMSCore.Controllers.HomeController.Index (CMSCore)" in 4564.2043ms (afa2e885)
+2018-01-31T23:49:05.5121450+07:00 0HLB8PA3JI4DV:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2018-01-31T23:49:05.5608700+07:00 0HLB8PA3JI4E1:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/images/banner3.svg   (ca22a1cb)
+2018-01-31T23:49:05.5633645+07:00 0HLB8PA3JI4E2:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/images/banner2.svg   (ca22a1cb)
+2018-01-31T23:49:05.5687399+07:00 0HLB8PA3JI4E0:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/css/site.css   (ca22a1cb)
+2018-01-31T23:49:05.5761760+07:00 0HLB8PA3JI4DT:00000001 [INF] Request finished in 4936.4258ms 200 text/html; charset=utf-8 (791a596a)
+2018-01-31T23:49:05.5764369+07:00 0HLB8PA3JI4E2:00000001 [INF] Sending file. Request path: '"/images/banner2.svg"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\images\banner2.svg"' (27b0a520)
+2018-01-31T23:49:05.5831394+07:00 0HLB8PA3JI4E0:00000001 [INF] Sending file. Request path: '"/css/site.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\css\site.css"' (27b0a520)
+2018-01-31T23:49:05.5981963+07:00 0HLB8PA3JI4E1:00000001 [INF] Sending file. Request path: '"/images/banner3.svg"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\images\banner3.svg"' (27b0a520)
+2018-01-31T23:49:05.6085271+07:00 0HLB8PA3JI4DV:00000001 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2018-01-31T23:49:05.6856292+07:00 0HLB8PA3JI4DT:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/images/banner1.svg   (ca22a1cb)
+2018-01-31T23:49:05.6927530+07:00 0HLB8PA3JI4E3:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/images/banner4.svg   (ca22a1cb)
+2018-01-31T23:49:05.7060079+07:00 0HLB8PA3JI4DT:00000002 [INF] Sending file. Request path: '"/images/banner1.svg"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\images\banner1.svg"' (27b0a520)
+2018-01-31T23:49:05.7124763+07:00 0HLB8PA3JI4E1:00000001 [INF] Request finished in 102.2513ms 200 image/svg+xml (791a596a)
+2018-01-31T23:49:05.7343395+07:00 0HLB8PA3JI4E2:00000001 [INF] Request finished in 96.3062ms 200 image/svg+xml (791a596a)
+2018-01-31T23:49:05.7358610+07:00 0HLB8PA3JI4E3:00000001 [INF] Sending file. Request path: '"/images/banner4.svg"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\images\banner4.svg"' (27b0a520)
+2018-01-31T23:49:05.7674637+07:00 0HLB8PA3JI4E0:00000001 [INF] Request finished in 111.639ms 200 text/css (791a596a)
+2018-01-31T23:49:05.7721641+07:00 0HLB8PA3JI4DT:00000002 [INF] Request finished in 129.7399ms 200 image/svg+xml (791a596a)
+2018-01-31T23:49:05.7828205+07:00 0HLB8PA3JI4E4:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery/dist/jquery.js   (ca22a1cb)
+2018-01-31T23:49:05.7958145+07:00 0HLB8PA3JI4E5:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2018-01-31T23:49:05.8040393+07:00 0HLB8PA3JI4E6:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/js/site.js?v=ji3-IxbEzYWjzzLCGkF1KDjrT2jLbbrSYXw-AhMPNIA   (ca22a1cb)
+2018-01-31T23:49:05.8199937+07:00 0HLB8PA3JI4E6:00000001 [INF] Sending file. Request path: '"/js/site.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\js\site.js"' (27b0a520)
+2018-01-31T23:49:05.8257355+07:00 0HLB8PA3JI4E4:00000001 [INF] Sending file. Request path: '"/lib/jquery/dist/jquery.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery\dist\jquery.js"' (27b0a520)
+2018-01-31T23:49:05.8686749+07:00 0HLB8PA3JI4E3:00000001 [INF] Request finished in 92.3085ms 200 image/svg+xml (791a596a)
+2018-01-31T23:49:05.9159380+07:00 0HLB8PA3JI4E6:00000001 [INF] Request finished in 71.4215ms 200 application/javascript (791a596a)
+2018-01-31T23:49:05.9390930+07:00 0HLB8PA3JI4E4:00000001 [INF] Request finished in 172.7053ms 200 application/javascript (791a596a)
+2018-01-31T23:49:05.9493120+07:00 0HLB8PA3JI4DV:00000001 [INF] Request finished in 375.8678ms 200 text/css (791a596a)
+2018-01-31T23:49:05.9657435+07:00 0HLB8PA3JI4E5:00000001 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2018-01-31T23:49:05.9873256+07:00 0HLB8PA3JI4E5:00000001 [INF] Request finished in 190.3999ms 200 application/javascript (791a596a)
+2018-01-31T23:49:06.2896694+07:00 0HLB8PA3JI4E1:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2   (ca22a1cb)
+2018-01-31T23:49:06.2956035+07:00 0HLB8PA3JI4E1:00000002 [INF] Sending file. Request path: '"/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2"' (27b0a520)
+2018-01-31T23:49:06.3139542+07:00 0HLB8PA3JI4E1:00000002 [INF] Request finished in 20.9647ms 200 font/woff2 (791a596a)
+2018-01-31T23:49:06.3697930+07:00 0HLB8PA3JI4E2:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/favicon.ico   (ca22a1cb)
+2018-01-31T23:49:06.3742636+07:00 0HLB8PA3JI4E2:00000002 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-01-31T23:49:06.3886621+07:00 0HLB8PA3JI4E2:00000002 [INF] Request finished in 15.9884ms 200 image/x-icon (791a596a)
+2018-01-31T23:49:10.6310611+07:00 0HLB8PA3JI4E0:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin   (ca22a1cb)
+2018-01-31T23:49:10.6521119+07:00 0HLB8PA3JI4E0:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.LoginController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:49:10.9990444+07:00 0HLB8PA3JI4E0:00000002 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Login/Index.cshtml". (9707eebe)
+2018-01-31T23:49:11.0595130+07:00 0HLB8PA3JI4E0:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.LoginController.Index (CMSCore)" in 410.3045ms (afa2e885)
+2018-01-31T23:49:11.1024749+07:00 0HLB8PA3JI4E0:00000002 [INF] Request finished in 434.3405ms 200 text/html; charset=utf-8 (791a596a)
+2018-01-31T23:49:11.1358631+07:00 0HLB8PA3JI4E0:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-validation/dist/additional-methods.js   (ca22a1cb)
+2018-01-31T23:49:11.1462015+07:00 0HLB8PA3JI4E3:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/font-awesome/css/font-awesome.css   (ca22a1cb)
+2018-01-31T23:49:11.1520146+07:00 0HLB8PA3JI4E6:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/animate.css/animate.css   (ca22a1cb)
+2018-01-31T23:49:11.1630722+07:00 0HLB8PA3JI4E6:00000002 [INF] Sending file. Request path: '"/lib/animate.css/animate.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\animate.css\animate.css"' (27b0a520)
+2018-01-31T23:49:11.1669543+07:00 0HLB8PA3JI4DT:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/nprogress/nprogress.css   (ca22a1cb)
+2018-01-31T23:49:11.1807593+07:00 0HLB8PA3JI4E3:00000002 [INF] Sending file. Request path: '"/lib/font-awesome/css/font-awesome.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\font-awesome\css\font-awesome.css"' (27b0a520)
+2018-01-31T23:49:11.2118619+07:00 0HLB8PA3JI4E0:00000003 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/additional-methods.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\additional-methods.js"' (27b0a520)
+2018-01-31T23:49:11.2190828+07:00 0HLB8PA3JI4E3:00000002 [INF] Request finished in 82.8493ms 200 text/css (791a596a)
+2018-01-31T23:49:11.2329068+07:00 0HLB8PA3JI4E0:00000003 [INF] Request finished in 93.6787ms 200 application/javascript (791a596a)
+2018-01-31T23:49:11.2464261+07:00 0HLB8PA3JI4E5:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/notifyjs/dist/styles/metro/notify-metro.js   (ca22a1cb)
+2018-01-31T23:49:11.2932704+07:00 0HLB8PA3JI4DV:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/notifyjs/dist/notify.js   (ca22a1cb)
+2018-01-31T23:49:11.2968777+07:00 0HLB8PA3JI4DT:00000003 [INF] Sending file. Request path: '"/lib/nprogress/nprogress.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.css"' (27b0a520)
+2018-01-31T23:49:11.3150397+07:00 0HLB8PA3JI4E5:00000002 [INF] Sending file. Request path: '"/lib/notifyjs/dist/styles/metro/notify-metro.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.js"' (27b0a520)
+2018-01-31T23:49:11.3246458+07:00 0HLB8PA3JI4E4:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin-side/css/custom.css   (ca22a1cb)
+2018-01-31T23:49:11.3302908+07:00 0HLB8PA3JI4DV:00000002 [INF] Sending file. Request path: '"/lib/notifyjs/dist/notify.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\notify.js"' (27b0a520)
+2018-01-31T23:49:11.3333135+07:00 0HLB8PA3JI4E5:00000002 [INF] Request finished in 92.2829ms 200 application/javascript (791a596a)
+2018-01-31T23:49:11.3404373+07:00 0HLB8PA3JI4DV:00000002 [INF] Request finished in 164.5287ms 200 application/javascript (791a596a)
+2018-01-31T23:49:11.4136924+07:00 0HLB8PA3JI4DT:00000003 [INF] Request finished in 199.5812ms 200 text/css (791a596a)
+2018-01-31T23:49:11.4179425+07:00 0HLB8PA3JI4E1:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/notifyjs/dist/styles/metro/notify-metro.css   (ca22a1cb)
+2018-01-31T23:49:11.4274151+07:00 0HLB8PA3JI4E1:00000003 [INF] Sending file. Request path: '"/lib/notifyjs/dist/styles/metro/notify-metro.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.css"' (27b0a520)
+2018-01-31T23:49:11.4300196+07:00 0HLB8PA3JI4E2:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2018-01-31T23:49:11.4531876+07:00 0HLB8PA3JI4E8:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2018-01-31T23:49:11.4550599+07:00 0HLB8PA3JI4E4:00000002 [INF] Sending file. Request path: '"/admin-side/css/custom.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\admin-side\css\custom.css"' (27b0a520)
+2018-01-31T23:49:11.4633573+07:00 0HLB8PA3JI4E8:00000001 [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2018-01-31T23:49:11.4656493+07:00 0HLB8PA3JI4E1:00000003 [INF] Request finished in 85.5203ms 200 text/css (791a596a)
+2018-01-31T23:49:11.4853781+07:00 0HLB8PA3JI4E7:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/app/controllers/login/index.js   (ca22a1cb)
+2018-01-31T23:49:11.4896415+07:00 0HLB8PA3JI4E2:00000003 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2018-01-31T23:49:11.5040135+07:00 0HLB8PA3JI4E8:00000001 [INF] Request finished in 41.7436ms 200 application/javascript (791a596a)
+2018-01-31T23:49:11.5462691+07:00 0HLB8PA3JI4E2:00000003 [INF] Request finished in 145.3458ms 200 application/javascript (791a596a)
+2018-01-31T23:49:11.5508945+07:00 0HLB8PA3JI4E7:00000001 [INF] Sending file. Request path: '"/app/controllers/login/index.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\app\controllers\login\index.js"' (27b0a520)
+2018-01-31T23:49:11.5786649+07:00 0HLB8PA3JI4E7:00000001 [INF] Request finished in 95.3375ms 200 application/javascript (791a596a)
+2018-01-31T23:49:11.5830827+07:00 0HLB8PA3JI4E9:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/app/shared/cms.js   (ca22a1cb)
+2018-01-31T23:49:11.5985709+07:00 0HLB8PA3JI4E6:00000002 [INF] Request finished in 398.9939ms 200 text/css (791a596a)
+2018-01-31T23:49:11.6102416+07:00 0HLB8PA3JI4E4:00000002 [INF] Request finished in 319.1837ms 200 text/css (791a596a)
+2018-01-31T23:49:11.6201240+07:00 0HLB8PA3JI4E9:00000001 [INF] Sending file. Request path: '"/app/shared/cms.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\app\shared\cms.js"' (27b0a520)
+2018-01-31T23:49:11.6538335+07:00 0HLB8PA3JI4E9:00000001 [INF] Request finished in 149.0676ms 200 application/javascript (791a596a)
+2018-01-31T23:49:11.6906885+07:00 0HLB8PA3JI4E3:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0   (ca22a1cb)
+2018-01-31T23:49:11.6970969+07:00 0HLB8PA3JI4E3:00000003 [INF] Sending file. Request path: '"/lib/font-awesome/fonts/fontawesome-webfont.woff2"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2"' (27b0a520)
+2018-01-31T23:49:11.7382560+07:00 0HLB8PA3JI4E3:00000003 [INF] Request finished in 23.2054ms 200 font/woff2 (791a596a)
+2018-01-31T23:49:19.2974166+07:00 0HLB8PA3JI4E0:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44364/admin/login/authen application/x-www-form-urlencoded; charset=UTF-8 33 (ca22a1cb)
+2018-01-31T23:49:19.3958194+07:00 0HLB8PA3JI4E0:00000004 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.LoginController.Authen (CMSCore)" with arguments (["CMSCore.Models.AccountViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:49:19.4139917+07:00 0HLB8PA3JI4E0:00000004 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:07.9242986+07:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:08.1709227+07:00  [INF] Executed DbCommand ("31"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AppRoles] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:50:08.2056970+07:00  [INF] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AppUsers] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:50:08.2506090+07:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Functions] AS [f]" (0723d8ff)
+2018-01-31T23:50:08.2980644+07:00  [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Footers] AS [x]
+WHERE [x].[Id] = 'DefaultFooterId'" (0723d8ff)
+2018-01-31T23:50:08.3055852+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Colors] AS [c]" (0723d8ff)
+2018-01-31T23:50:08.3132278+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [AdvertistmentPages] AS [a]" (0723d8ff)
+2018-01-31T23:50:08.3214060+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Slides] AS [s]" (0723d8ff)
+2018-01-31T23:50:08.3294180+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Sizes] AS [s]" (0723d8ff)
+2018-01-31T23:50:08.3370092+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ProductCategories] AS [p]" (0723d8ff)
+2018-01-31T23:50:08.3503614+07:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeTitle')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:50:08.3589123+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaKeyword')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:50:08.3668635+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaDescription')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:50:08.7852807+07:00 0HLB8PANUB079:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/   (ca22a1cb)
+2018-01-31T23:50:09.0121938+07:00 0HLB8PANUB079:00000001 [INF] Executing action method "CMSCore.Controllers.HomeController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:50:12.8717958+07:00 0HLB8PANUB079:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2018-01-31T23:50:13.9352745+07:00 0HLB8PANUB079:00000001 [INF] Executed action "CMSCore.Controllers.HomeController.Index (CMSCore)" in 4920.7136ms (afa2e885)
+2018-01-31T23:50:13.9521401+07:00 0HLB8PANUB079:00000001 [INF] Request finished in 5175.8823ms 200 text/html; charset=utf-8 (791a596a)
+2018-01-31T23:50:17.0652366+07:00 0HLB8PANUB079:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44364/admin/login/authen application/x-www-form-urlencoded; charset=UTF-8 33 (ca22a1cb)
+2018-01-31T23:50:17.2201890+07:00 0HLB8PANUB079:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.LoginController.Authen (CMSCore)" with arguments (["CMSCore.Models.AccountViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:50:17.2357293+07:00 0HLB8PANUB079:00000002 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:17.3886072+07:00 0HLB8PANUB079:00000002 [INF] Executed DbCommand ("99"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Avatar], [u].[Balance], [u].[BirthDay], [u].[ConcurrencyStamp], [u].[DateCreated], [u].[DateModified], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[Status], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AppUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-01-31T23:50:17.6562158+07:00 0HLB8PANUB079:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AppUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-01-31T23:50:17.7643289+07:00 0HLB8PANUB079:00000002 [INF] Executed DbCommand ("14"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AppUserRoles] AS [userRole]
+INNER JOIN [AppRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-01-31T23:50:17.7962980+07:00 0HLB8PANUB079:00000002 [INF] Executed DbCommand ("9"ms) [Parameters=["@__normalizedName_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AppRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-01-31T23:50:17.8814725+07:00 0HLB8PANUB079:00000002 [INF] Executed DbCommand ("13"ms) [Parameters=["@__role_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AppRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2018-01-31T23:50:17.9179671+07:00 0HLB8PANUB079:00000002 [INF] Executed DbCommand ("12"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AppUserRoles] AS [userRole]
+INNER JOIN [AppRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-01-31T23:50:17.9348482+07:00 0HLB8PANUB079:00000002 [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2018-01-31T23:50:17.9435427+07:00 0HLB8PANUB079:00000002 [INF] User logged in. (fdce0db4)
+2018-01-31T23:50:17.9601663+07:00 0HLB8PANUB079:00000002 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:50:18.0524784+07:00 0HLB8PANUB079:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.LoginController.Authen (CMSCore)" in 916.4984ms (afa2e885)
+2018-01-31T23:50:18.0988826+07:00 0HLB8PANUB079:00000002 [INF] Request finished in 994.7809ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:50:18.1341060+07:00 0HLB8PANUB079:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/Admin/Home/Index   (ca22a1cb)
+2018-01-31T23:50:18.1466534+07:00 0HLB8PANUB079:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:50:18.1672389+07:00 0HLB8PANUB079:00000003 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:50:18.1746622+07:00 0HLB8PANUB079:00000003 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.HomeController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:50:18.8497463+07:00 0HLB8PANUB079:00000003 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Home/Index.cshtml". (9707eebe)
+2018-01-31T23:50:19.3401301+07:00 0HLB8PANUB079:00000003 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:19.4926862+07:00 0HLB8PANUB079:00000003 [INF] Executed DbCommand ("47"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-01-31T23:50:20.3030186+07:00 0HLB8PANUB079:00000003 [INF] Executed action "CMSCore.Areas.Admin.Controllers.HomeController.Index (CMSCore)" in 2144.113ms (afa2e885)
+2018-01-31T23:50:20.3999873+07:00 0HLB8PANUB079:00000003 [INF] Request finished in 2182.8174ms 200 text/html; charset=utf-8 (791a596a)
+2018-01-31T23:50:20.4609039+07:00 0HLB8PANUB07E:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/ckeditor/skins/moono/editor.css   (ca22a1cb)
+2018-01-31T23:50:20.4681837+07:00 0HLB8PANUB07C:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap-daterangepicker/daterangepicker.css   (ca22a1cb)
+2018-01-31T23:50:20.4927048+07:00 0HLB8PANUB07B:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jQuery-EasyUI/themes/icon.css   (ca22a1cb)
+2018-01-31T23:50:20.5091031+07:00 0HLB8PANUB07I:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/nprogress/nprogress.js   (ca22a1cb)
+2018-01-31T23:50:20.5199115+07:00 0HLB8PANUB07G:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin-side/images/img.jpg   (ca22a1cb)
+2018-01-31T23:50:20.5386301+07:00 0HLB8PANUB07K:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/mustache/mustache.js   (ca22a1cb)
+2018-01-31T23:50:20.5609686+07:00 0HLB8PANUB07E:00000001 [INF] Sending file. Request path: '"/lib/ckeditor/skins/moono/editor.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\ckeditor\skins\moono\editor.css"' (27b0a520)
+2018-01-31T23:50:20.5740522+07:00 0HLB8PANUB07I:00000001 [INF] Sending file. Request path: '"/lib/nprogress/nprogress.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.js"' (27b0a520)
+2018-01-31T23:50:20.5840403+07:00 0HLB8PANUB07O:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap-daterangepicker/daterangepicker.js   (ca22a1cb)
+2018-01-31T23:50:20.6009020+07:00 0HLB8PANUB07M:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jQuery-EasyUI/jquery.easyui.min.js   (ca22a1cb)
+2018-01-31T23:50:20.6056794+07:00 0HLB8PANUB07G:00000001 [INF] Sending file. Request path: '"/admin-side/images/img.jpg"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\admin-side\images\img.jpg"' (27b0a520)
+2018-01-31T23:50:20.6117534+07:00 0HLB8PANUB07B:00000001 [INF] Sending file. Request path: '"/lib/jQuery-EasyUI/themes/icon.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jQuery-EasyUI\themes\icon.css"' (27b0a520)
+2018-01-31T23:50:20.6207946+07:00 0HLB8PANUB07C:00000001 [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.css"' (27b0a520)
+2018-01-31T23:50:20.6378245+07:00 0HLB8PANUB07K:00000001 [INF] Sending file. Request path: '"/lib/mustache/mustache.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\mustache\mustache.js"' (27b0a520)
+2018-01-31T23:50:20.6561069+07:00 0HLB8PANUB079:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jQuery-EasyUI/themes/bootstrap/easyui.css   (ca22a1cb)
+2018-01-31T23:50:20.6738994+07:00 0HLB8PANUB07E:00000001 [INF] Request finished in 188.8011ms 200 text/css (791a596a)
+2018-01-31T23:50:20.6788974+07:00 0HLB8PANUB07O:00000001 [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.js"' (27b0a520)
+2018-01-31T23:50:20.6865471+07:00 0HLB8PANUB07G:00000001 [INF] Request finished in 233.2209ms 200 image/jpeg (791a596a)
+2018-01-31T23:50:20.6907074+07:00 0HLB8PANUB07M:00000001 [INF] Sending file. Request path: '"/lib/jQuery-EasyUI/jquery.easyui.min.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jQuery-EasyUI\jquery.easyui.min.js"' (27b0a520)
+2018-01-31T23:50:20.6982133+07:00 0HLB8PANUB07Q:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootbox/bootbox.js   (ca22a1cb)
+2018-01-31T23:50:20.7477953+07:00 0HLB8PANUB07B:00000001 [INF] Request finished in 240.2223ms 200 text/css (791a596a)
+2018-01-31T23:50:20.7615996+07:00 0HLB8PANUB07K:00000001 [INF] Request finished in 265.0395ms 200 application/javascript (791a596a)
+2018-01-31T23:50:20.7647746+07:00 0HLB8PANUB07Q:00000001 [INF] Sending file. Request path: '"/lib/bootbox/bootbox.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootbox\bootbox.js"' (27b0a520)
+2018-01-31T23:50:20.7715767+07:00 0HLB8PANUB07D:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/fastclick/lib/fastclick.js   (ca22a1cb)
+2018-01-31T23:50:20.7744793+07:00 0HLB8PANUB07C:00000001 [INF] Request finished in 276.075ms 200 text/css (791a596a)
+2018-01-31T23:50:20.7792772+07:00 0HLB8PANUB07J:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/twbs-pagination/jquery.twbsPagination.js   (ca22a1cb)
+2018-01-31T23:50:20.7823157+07:00 0HLB8PANUB07F:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/Chart.js/dist/Chart.js   (ca22a1cb)
+2018-01-31T23:50:20.7870528+07:00 0HLB8PANUB079:00000004 [INF] Sending file. Request path: '"/lib/jQuery-EasyUI/themes/bootstrap/easyui.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jQuery-EasyUI\themes\bootstrap\easyui.css"' (27b0a520)
+2018-01-31T23:50:20.7941904+07:00 0HLB8PANUB07H:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-sparkline/dist/jquery.sparkline.js   (ca22a1cb)
+2018-01-31T23:50:20.8328708+07:00 0HLB8PANUB07D:00000001 [INF] Sending file. Request path: '"/lib/fastclick/lib/fastclick.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\fastclick\lib\fastclick.js"' (27b0a520)
+2018-01-31T23:50:20.8354225+07:00 0HLB8PANUB07J:00000001 [INF] Sending file. Request path: '"/lib/twbs-pagination/jquery.twbsPagination.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\twbs-pagination\jquery.twbsPagination.js"' (27b0a520)
+2018-01-31T23:50:20.8464058+07:00 0HLB8PANUB07F:00000001 [INF] Sending file. Request path: '"/lib/Chart.js/dist/Chart.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\Chart.js\dist\Chart.js"' (27b0a520)
+2018-01-31T23:50:20.8978341+07:00 0HLB8PANUB07Q:00000001 [INF] Request finished in 175.5811ms 200 application/javascript (791a596a)
+2018-01-31T23:50:20.9127302+07:00 0HLB8PANUB07I:00000001 [INF] Request finished in 469.2011ms 200 application/javascript (791a596a)
+2018-01-31T23:50:20.9176308+07:00 0HLB8PANUB07N:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/moment/moment.js   (ca22a1cb)
+2018-01-31T23:50:20.9271018+07:00 0HLB8PANUB07L:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/ckeditor/ckeditor.js   (ca22a1cb)
+2018-01-31T23:50:20.9415361+07:00 0HLB8PANUB07D:00000001 [INF] Request finished in 127.1435ms 200 application/javascript (791a596a)
+2018-01-31T23:50:20.9483089+07:00 0HLB8PANUB07J:00000001 [INF] Request finished in 122.995ms 200 application/javascript (791a596a)
+2018-01-31T23:50:20.9630614+07:00 0HLB8PANUB07P:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin-side/js/custom.js   (ca22a1cb)
+2018-01-31T23:50:20.9889852+07:00 0HLB8PANUB07H:00000001 [INF] Sending file. Request path: '"/lib/jquery-sparkline/dist/jquery.sparkline.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-sparkline\dist\jquery.sparkline.js"' (27b0a520)
+2018-01-31T23:50:21.0914607+07:00 0HLB8PANUB07O:00000001 [INF] Request finished in 443.4981ms 200 application/javascript (791a596a)
+2018-01-31T23:50:21.1052753+07:00 0HLB8PANUB07N:00000001 [INF] Sending file. Request path: '"/lib/moment/moment.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\moment\moment.js"' (27b0a520)
+2018-01-31T23:50:21.2540943+07:00 0HLB8PANUB07L:00000001 [INF] Sending file. Request path: '"/lib/ckeditor/ckeditor.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\ckeditor\ckeditor.js"' (27b0a520)
+2018-01-31T23:50:21.3095956+07:00 0HLB8PANUB07M:00000001 [INF] Request finished in 611.6538ms 200 application/javascript (791a596a)
+2018-01-31T23:50:21.3228377+07:00 0HLB8PANUB079:00000004 [INF] Request finished in 499.2537ms 200 text/css (791a596a)
+2018-01-31T23:50:21.3337757+07:00 0HLB8PANUB07F:00000001 [INF] Request finished in 329.4893ms 200 application/javascript (791a596a)
+2018-01-31T23:50:21.3416042+07:00 0HLB8PANUB07H:00000001 [INF] Request finished in 278.5892ms 200 application/javascript (791a596a)
+2018-01-31T23:50:21.4274130+07:00 0HLB8PANUB07P:00000001 [INF] Sending file. Request path: '"/admin-side/js/custom.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\admin-side\js\custom.js"' (27b0a520)
+2018-01-31T23:50:21.4472631+07:00 0HLB8PANUB07N:00000001 [INF] Request finished in 426.5452ms 200 application/javascript (791a596a)
+2018-01-31T23:50:21.5095132+07:00 0HLB8PANUB07P:00000001 [INF] Request finished in 637.8788ms 200 application/javascript (791a596a)
+2018-01-31T23:50:21.5767409+07:00 0HLB8PANUB07L:00000001 [INF] Request finished in 742.2567ms 200 application/javascript (791a596a)
+2018-01-31T23:50:31.0850585+07:00 0HLB8PANUB07E:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/role/index   (ca22a1cb)
+2018-01-31T23:50:31.0922807+07:00 0HLB8PANUB07E:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:50:31.0983011+07:00 0HLB8PANUB07E:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:50:31.1034421+07:00 0HLB8PANUB07E:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:50:31.2444073+07:00 0HLB8PANUB07E:00000002 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Role/Index.cshtml". (9707eebe)
+2018-01-31T23:50:31.6553336+07:00 0HLB8PANUB07E:00000002 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:31.6682769+07:00 0HLB8PANUB07E:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-01-31T23:50:31.6914021+07:00 0HLB8PANUB07E:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.Index (CMSCore)" in 585.5852ms (afa2e885)
+2018-01-31T23:50:31.7508823+07:00 0HLB8PANUB07E:00000002 [INF] Request finished in 613.842ms 200 text/html; charset=utf-8 (791a596a)
+2018-01-31T23:50:31.7795722+07:00 0HLB8PANUB07B:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/app/controllers/role/index.js?v=ZUTZT9kKFUVOlEbP7Pt86E9MZ5bOAcWMn9divoTdm98   (ca22a1cb)
+2018-01-31T23:50:31.7884471+07:00 0HLB8PANUB07B:00000002 [INF] Sending file. Request path: '"/app/controllers/role/index.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\app\controllers\role\index.js"' (27b0a520)
+2018-01-31T23:50:31.8022320+07:00 0HLB8PANUB07B:00000002 [INF] Request finished in 39.7205ms 200 application/javascript (791a596a)
+2018-01-31T23:50:32.0917434+07:00 0HLB8PANUB07G:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/role/GetAllPaging?keyword=&page=1&pageSize=10   (ca22a1cb)
+2018-01-31T23:50:32.0974208+07:00 0HLB8PANUB07G:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:50:32.1065903+07:00 0HLB8PANUB07G:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:50:32.1145296+07:00 0HLB8PANUB07G:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" with arguments (["", "1", "10"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:50:32.1238120+07:00 0HLB8PANUB07G:00000002 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:32.1350499+07:00 0HLB8PANUB07G:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [AppRoles] AS [a]" (0723d8ff)
+2018-01-31T23:50:32.1543382+07:00 0HLB8PANUB07G:00000002 [WRN] Query: '"(from AppRole dto in DbSet<AppRole> select new AppRoleViewModel{ { 
+    Id = (Nullable<Guid>)[dto]...."' uses a row limiting operation (Skip/Take) without OrderBy which may lead to unpredictable results. (32148ccc)
+2018-01-31T23:50:32.1759417+07:00 0HLB8PANUB07G:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [dto].[Id], [dto].[Name], [dto].[Description]
+FROM [AppRoles] AS [dto]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-01-31T23:50:32.1844708+07:00 0HLB8PANUB07G:00000002 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:50:32.2086008+07:00 0HLB8PANUB07G:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" in 99.4454ms (afa2e885)
+2018-01-31T23:50:32.2314960+07:00 0HLB8PANUB07G:00000002 [INF] Request finished in 124.2531ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:50:32.2501487+07:00 0HLB8PANUB07C:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/role/GetAllPaging?keyword=&page=1&pageSize=10   (ca22a1cb)
+2018-01-31T23:50:32.2622089+07:00 0HLB8PANUB07C:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:50:32.2670968+07:00 0HLB8PANUB07C:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:50:32.2741207+07:00 0HLB8PANUB07C:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" with arguments (["", "1", "10"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:50:32.2830592+07:00 0HLB8PANUB07C:00000002 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:32.2929727+07:00 0HLB8PANUB07C:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [AppRoles] AS [a]" (0723d8ff)
+2018-01-31T23:50:32.3030016+07:00 0HLB8PANUB07C:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [dto].[Id], [dto].[Name], [dto].[Description]
+FROM [AppRoles] AS [dto]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-01-31T23:50:32.3155170+07:00 0HLB8PANUB07C:00000002 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:50:32.3260673+07:00 0HLB8PANUB07C:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" in 53.353ms (afa2e885)
+2018-01-31T23:50:32.3346044+07:00 0HLB8PANUB07C:00000002 [INF] Request finished in 81.1089ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:50:35.6215123+07:00 0HLB8PANUB07Q:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/Function/GetAll   (ca22a1cb)
+2018-01-31T23:50:35.6232256+07:00 0HLB8PANUB07K:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44364/Admin/Role/ListAllFunction application/x-www-form-urlencoded; charset=UTF-8 43 (ca22a1cb)
+2018-01-31T23:50:35.6694422+07:00 0HLB8PANUB07Q:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:50:35.6911700+07:00 0HLB8PANUB07K:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:50:35.7217953+07:00 0HLB8PANUB07K:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:50:35.7521167+07:00 0HLB8PANUB07Q:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:50:35.7756095+07:00 0HLB8PANUB07K:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.ListAllFunction (CMSCore)" with arguments (["01c95cac-4f25-47b3-939a-08d55b377de8"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:50:35.7793373+07:00 0HLB8PANUB07Q:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.FunctionController.GetAll (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:50:35.7870757+07:00 0HLB8PANUB07Q:00000002 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:35.7944126+07:00 0HLB8PANUB07Q:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-01-31T23:50:35.8008409+07:00 0HLB8PANUB07K:00000002 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:50:35.8257644+07:00 0HLB8PANUB07Q:00000002 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:50:35.8359124+07:00 0HLB8PANUB07Q:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.FunctionController.GetAll (CMSCore)" in 107.7593ms (afa2e885)
+2018-01-31T23:50:35.8427484+07:00 0HLB8PANUB07Q:00000002 [INF] Request finished in 265.7185ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:50:35.8813150+07:00 0HLB8PANUB07K:00000002 [INF] Executed DbCommand ("9"ms) [Parameters=["@__roleId_1='?', @__roleId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT @__roleId_1 AS [RoleId], [f].[Id] AS [FunctionId], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanCreate] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanCreate], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanDelete] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanDelete], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanRead] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanRead], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanUpdate] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanUpdate]
+FROM [Functions] AS [f]
+LEFT JOIN [Permissions] AS [p] ON [f].[Id] = [p].[FunctionId]
+WHERE [p].[Id] IS NOT NULL AND ([p].[RoleId] = @__roleId_0)" (0723d8ff)
+2018-01-31T23:50:35.8904813+07:00 0HLB8PANUB07K:00000002 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:50:35.8991356+07:00 0HLB8PANUB07K:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.ListAllFunction (CMSCore)" in 199.4754ms (afa2e885)
+2018-01-31T23:50:35.9056084+07:00 0HLB8PANUB07K:00000002 [INF] Request finished in 328.9295ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:52:45.9112104+07:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:52:46.1115891+07:00  [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AppRoles] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:52:46.1326585+07:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AppUsers] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:52:46.1496315+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Functions] AS [f]" (0723d8ff)
+2018-01-31T23:52:46.1849694+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Footers] AS [x]
+WHERE [x].[Id] = 'DefaultFooterId'" (0723d8ff)
+2018-01-31T23:52:46.1896813+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Colors] AS [c]" (0723d8ff)
+2018-01-31T23:52:46.1945071+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [AdvertistmentPages] AS [a]" (0723d8ff)
+2018-01-31T23:52:46.1994492+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Slides] AS [s]" (0723d8ff)
+2018-01-31T23:52:46.2040342+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Sizes] AS [s]" (0723d8ff)
+2018-01-31T23:52:46.2090011+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ProductCategories] AS [p]" (0723d8ff)
+2018-01-31T23:52:46.2156338+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeTitle')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:52:46.2196232+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaKeyword')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:52:46.2245459+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaDescription')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-01-31T23:52:46.6086420+07:00 0HLB8PC6VU59S:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/role/index   (ca22a1cb)
+2018-01-31T23:52:46.6539965+07:00 0HLB8PC6VU59S:00000001 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:52:46.8113189+07:00 0HLB8PC6VU59S:00000001 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:52:46.8279533+07:00 0HLB8PC6VU59S:00000001 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:52:50.3428682+07:00 0HLB8PC6VU59S:00000001 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Role/Index.cshtml". (9707eebe)
+2018-01-31T23:52:51.2352596+07:00 0HLB8PC6VU59S:00000001 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:52:51.3487560+07:00 0HLB8PC6VU59S:00000001 [INF] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-01-31T23:52:52.0606215+07:00 0HLB8PC6VU59S:00000001 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.Index (CMSCore)" in 5246.8301ms (afa2e885)
+2018-01-31T23:52:52.0743950+07:00 0HLB8PC6VU59S:00000001 [INF] Request finished in 5475.9065ms 200 text/html; charset=utf-8 (791a596a)
+2018-01-31T23:52:52.0931803+07:00 0HLB8PC6VU59S:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/font-awesome/css/font-awesome.css   (ca22a1cb)
+2018-01-31T23:52:52.0974504+07:00 0HLB8PC6VU59S:00000002 [INF] Sending file. Request path: '"/lib/font-awesome/css/font-awesome.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\font-awesome\css\font-awesome.css"' (27b0a520)
+2018-01-31T23:52:52.1023301+07:00 0HLB8PC6VU59S:00000002 [INF] Request finished in 9.2933ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1072120+07:00 0HLB8PC6VU5A0:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/nprogress/nprogress.css   (ca22a1cb)
+2018-01-31T23:52:52.1072120+07:00 0HLB8PC6VU59T:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2018-01-31T23:52:52.1073277+07:00 0HLB8PC6VU59U:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap-daterangepicker/daterangepicker.css   (ca22a1cb)
+2018-01-31T23:52:52.1075740+07:00 0HLB8PC6VU59U:00000001 [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.css"' (27b0a520)
+2018-01-31T23:52:52.1075748+07:00 0HLB8PC6VU59T:00000001 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2018-01-31T23:52:52.1088546+07:00 0HLB8PC6VU5A1:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jQuery-EasyUI/themes/bootstrap/easyui.css   (ca22a1cb)
+2018-01-31T23:52:52.1101644+07:00 0HLB8PC6VU5A1:00000001 [INF] Sending file. Request path: '"/lib/jQuery-EasyUI/themes/bootstrap/easyui.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jQuery-EasyUI\themes\bootstrap\easyui.css"' (27b0a520)
+2018-01-31T23:52:52.1119463+07:00 0HLB8PC6VU59U:00000001 [INF] Request finished in 4.5831ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1202316+07:00 0HLB8PC6VU59T:00000001 [INF] Request finished in 12.9883ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1207412+07:00 0HLB8PC6VU5A1:00000001 [INF] Request finished in 12.0926ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1292809+07:00 0HLB8PC6VU5A0:00000001 [INF] Sending file. Request path: '"/lib/nprogress/nprogress.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.css"' (27b0a520)
+2018-01-31T23:52:52.1299105+07:00 0HLB8PC6VU59V:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/notifyjs/dist/styles/metro/notify-metro.css   (ca22a1cb)
+2018-01-31T23:52:52.1301273+07:00 0HLB8PC6VU5A0:00000001 [INF] Request finished in 22.8884ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1301767+07:00 0HLB8PC6VU59V:00000001 [INF] Sending file. Request path: '"/lib/notifyjs/dist/styles/metro/notify-metro.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.css"' (27b0a520)
+2018-01-31T23:52:52.1304664+07:00 0HLB8PC6VU59V:00000001 [INF] Request finished in 0.6308ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1336099+07:00 0HLB8PC6VU5A2:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jQuery-EasyUI/themes/icon.css   (ca22a1cb)
+2018-01-31T23:52:52.1338826+07:00 0HLB8PC6VU5A2:00000001 [INF] Sending file. Request path: '"/lib/jQuery-EasyUI/themes/icon.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jQuery-EasyUI\themes\icon.css"' (27b0a520)
+2018-01-31T23:52:52.1346358+07:00 0HLB8PC6VU5A2:00000001 [INF] Request finished in 0.9336ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1477493+07:00 0HLB8PC6VU5A3:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin-side/css/custom.css   (ca22a1cb)
+2018-01-31T23:52:52.1625152+07:00 0HLB8PC6VU5A3:00000001 [INF] Sending file. Request path: '"/admin-side/css/custom.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\admin-side\css\custom.css"' (27b0a520)
+2018-01-31T23:52:52.1643650+07:00 0HLB8PC6VU5A3:00000001 [INF] Request finished in 16.6836ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1712350+07:00 0HLB8PC6VU5A0:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-treegrid/css/jquery.treegrid.css   (ca22a1cb)
+2018-01-31T23:52:52.1715382+07:00 0HLB8PC6VU5A0:00000002 [INF] Sending file. Request path: '"/lib/jquery-treegrid/css/jquery.treegrid.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-treegrid\css\jquery.treegrid.css"' (27b0a520)
+2018-01-31T23:52:52.1777130+07:00 0HLB8PC6VU59V:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/ckeditor/skins/moono/editor.css   (ca22a1cb)
+2018-01-31T23:52:52.1781487+07:00 0HLB8PC6VU59V:00000002 [INF] Sending file. Request path: '"/lib/ckeditor/skins/moono/editor.css"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\ckeditor\skins\moono\editor.css"' (27b0a520)
+2018-01-31T23:52:52.1787074+07:00 0HLB8PC6VU59V:00000002 [INF] Request finished in 1.1222ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1814900+07:00 0HLB8PC6VU5A0:00000002 [INF] Request finished in 8.3195ms 200 text/css (791a596a)
+2018-01-31T23:52:52.1881389+07:00 0HLB8PC6VU59U:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin-side/images/img.jpg   (ca22a1cb)
+2018-01-31T23:52:52.1888507+07:00 0HLB8PC6VU59U:00000002 [INF] Sending file. Request path: '"/admin-side/images/img.jpg"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\admin-side\images\img.jpg"' (27b0a520)
+2018-01-31T23:52:52.1893102+07:00 0HLB8PC6VU59U:00000002 [INF] Request finished in 1.459ms 200 image/jpeg (791a596a)
+2018-01-31T23:52:52.1972519+07:00 0HLB8PC6VU5A2:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2018-01-31T23:52:52.1977584+07:00 0HLB8PC6VU5A2:00000002 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2018-01-31T23:52:52.2027129+07:00 0HLB8PC6VU5A2:00000002 [INF] Request finished in 5.5001ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2033813+07:00 0HLB8PC6VU59S:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery/dist/jquery.js   (ca22a1cb)
+2018-01-31T23:52:52.2051190+07:00 0HLB8PC6VU59S:00000003 [INF] Sending file. Request path: '"/lib/jquery/dist/jquery.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery\dist\jquery.js"' (27b0a520)
+2018-01-31T23:52:52.2070676+07:00 0HLB8PC6VU59S:00000003 [INF] Request finished in 3.7067ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2182767+07:00 0HLB8PC6VU5A0:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/fastclick/lib/fastclick.js   (ca22a1cb)
+2018-01-31T23:52:52.2185502+07:00 0HLB8PC6VU5A0:00000003 [INF] Sending file. Request path: '"/lib/fastclick/lib/fastclick.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\fastclick\lib\fastclick.js"' (27b0a520)
+2018-01-31T23:52:52.2189099+07:00 0HLB8PC6VU5A0:00000003 [INF] Request finished in 0.7681ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2238254+07:00 0HLB8PC6VU59U:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/nprogress/nprogress.js   (ca22a1cb)
+2018-01-31T23:52:52.2241045+07:00 0HLB8PC6VU59U:00000003 [INF] Sending file. Request path: '"/lib/nprogress/nprogress.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.js"' (27b0a520)
+2018-01-31T23:52:52.2244294+07:00 0HLB8PC6VU59U:00000003 [INF] Request finished in 0.7638ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2275354+07:00 0HLB8PC6VU5A3:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/Chart.js/dist/Chart.js   (ca22a1cb)
+2018-01-31T23:52:52.2280683+07:00 0HLB8PC6VU5A3:00000002 [INF] Sending file. Request path: '"/lib/Chart.js/dist/Chart.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\Chart.js\dist\Chart.js"' (27b0a520)
+2018-01-31T23:52:52.2348210+07:00 0HLB8PC6VU5A1:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-sparkline/dist/jquery.sparkline.js   (ca22a1cb)
+2018-01-31T23:52:52.2351108+07:00 0HLB8PC6VU5A1:00000002 [INF] Sending file. Request path: '"/lib/jquery-sparkline/dist/jquery.sparkline.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-sparkline\dist\jquery.sparkline.js"' (27b0a520)
+2018-01-31T23:52:52.2399067+07:00 0HLB8PC6VU5A3:00000002 [INF] Request finished in 11.125ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2407985+07:00 0HLB8PC6VU5A1:00000002 [INF] Request finished in 5.6683ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2461952+07:00 0HLB8PC6VU59V:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/twbs-pagination/jquery.twbsPagination.js   (ca22a1cb)
+2018-01-31T23:52:52.2464719+07:00 0HLB8PC6VU59V:00000003 [INF] Sending file. Request path: '"/lib/twbs-pagination/jquery.twbsPagination.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\twbs-pagination\jquery.twbsPagination.js"' (27b0a520)
+2018-01-31T23:52:52.2468863+07:00 0HLB8PC6VU5A4:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/mustache/mustache.js   (ca22a1cb)
+2018-01-31T23:52:52.2473052+07:00 0HLB8PC6VU5A4:00000001 [INF] Sending file. Request path: '"/lib/mustache/mustache.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\mustache\mustache.js"' (27b0a520)
+2018-01-31T23:52:52.2477536+07:00 0HLB8PC6VU5A4:00000001 [INF] Request finished in 0.8029ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2480260+07:00 0HLB8PC6VU59V:00000003 [INF] Request finished in 1.9457ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2637133+07:00 0HLB8PC6VU5A5:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2018-01-31T23:52:52.2639675+07:00 0HLB8PC6VU5A5:00000001 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2018-01-31T23:52:52.2642960+07:00 0HLB8PC6VU5A5:00000001 [INF] Request finished in 0.7089ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2741626+07:00 0HLB8PC6VU59T:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jQuery-EasyUI/jquery.easyui.min.js   (ca22a1cb)
+2018-01-31T23:52:52.2746587+07:00 0HLB8PC6VU59T:00000002 [INF] Sending file. Request path: '"/lib/jQuery-EasyUI/jquery.easyui.min.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jQuery-EasyUI\jquery.easyui.min.js"' (27b0a520)
+2018-01-31T23:52:52.2752312+07:00 0HLB8PC6VU59U:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-validation/dist/additional-methods.js   (ca22a1cb)
+2018-01-31T23:52:52.2756619+07:00 0HLB8PC6VU59U:00000004 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/additional-methods.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\additional-methods.js"' (27b0a520)
+2018-01-31T23:52:52.2762804+07:00 0HLB8PC6VU5A6:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2018-01-31T23:52:52.2767139+07:00 0HLB8PC6VU5A6:00000001 [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2018-01-31T23:52:52.2768955+07:00 0HLB8PC6VU59U:00000004 [INF] Request finished in 1.6556ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2773640+07:00 0HLB8PC6VU5A6:00000001 [INF] Request finished in 1.3303ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2859260+07:00 0HLB8PC6VU59T:00000002 [INF] Request finished in 11.776ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.2960057+07:00 0HLB8PC6VU59V:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/ckeditor/ckeditor.js   (ca22a1cb)
+2018-01-31T23:52:52.2962840+07:00 0HLB8PC6VU59V:00000004 [INF] Sending file. Request path: '"/lib/ckeditor/ckeditor.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\ckeditor\ckeditor.js"' (27b0a520)
+2018-01-31T23:52:52.3031433+07:00 0HLB8PC6VU5A4:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/moment/moment.js   (ca22a1cb)
+2018-01-31T23:52:52.3034181+07:00 0HLB8PC6VU5A4:00000002 [INF] Sending file. Request path: '"/lib/moment/moment.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\moment\moment.js"' (27b0a520)
+2018-01-31T23:52:52.3133071+07:00 0HLB8PC6VU5A4:00000002 [INF] Request finished in 10.3426ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.3137481+07:00 0HLB8PC6VU5A0:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap-daterangepicker/daterangepicker.js   (ca22a1cb)
+2018-01-31T23:52:52.3140039+07:00 0HLB8PC6VU5A0:00000004 [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.js"' (27b0a520)
+2018-01-31T23:52:52.3150974+07:00 0HLB8PC6VU5A0:00000004 [INF] Request finished in 1.3295ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.3155055+07:00 0HLB8PC6VU59V:00000004 [INF] Request finished in 19.7086ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.3281658+07:00 0HLB8PC6VU5A6:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/notifyjs/dist/notify.js   (ca22a1cb)
+2018-01-31T23:52:52.3284362+07:00 0HLB8PC6VU5A6:00000002 [INF] Sending file. Request path: '"/lib/notifyjs/dist/notify.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\notify.js"' (27b0a520)
+2018-01-31T23:52:52.3289419+07:00 0HLB8PC6VU5A6:00000002 [INF] Request finished in 0.7709ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.3420214+07:00 0HLB8PC6VU59U:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/notifyjs/dist/styles/metro/notify-metro.js   (ca22a1cb)
+2018-01-31T23:52:52.3422867+07:00 0HLB8PC6VU59U:00000005 [INF] Sending file. Request path: '"/lib/notifyjs/dist/styles/metro/notify-metro.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.js"' (27b0a520)
+2018-01-31T23:52:52.3426523+07:00 0HLB8PC6VU59U:00000005 [INF] Request finished in 0.7081ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.3468852+07:00 0HLB8PC6VU5A2:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootbox/bootbox.js   (ca22a1cb)
+2018-01-31T23:52:52.3473897+07:00 0HLB8PC6VU5A2:00000003 [INF] Sending file. Request path: '"/lib/bootbox/bootbox.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootbox\bootbox.js"' (27b0a520)
+2018-01-31T23:52:52.3482408+07:00 0HLB8PC6VU5A2:00000003 [INF] Request finished in 1.2099ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.3561099+07:00 0HLB8PC6VU5A5:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44364/app/shared/cms.js   (ca22a1cb)
+2018-01-31T23:52:52.3564909+07:00 0HLB8PC6VU5A5:00000002 [INF] Sending file. Request path: '"/app/shared/cms.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\app\shared\cms.js"' (27b0a520)
+2018-01-31T23:52:52.3568469+07:00 0HLB8PC6VU5A5:00000002 [INF] Request finished in 0.8309ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.3610764+07:00 0HLB8PC6VU59U:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin-side/js/custom.js   (ca22a1cb)
+2018-01-31T23:52:52.3613949+07:00 0HLB8PC6VU59U:00000006 [INF] Sending file. Request path: '"/admin-side/js/custom.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\admin-side\js\custom.js"' (27b0a520)
+2018-01-31T23:52:52.3641989+07:00 0HLB8PC6VU59U:00000006 [INF] Request finished in 3.0498ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.3754969+07:00 0HLB8PC6VU5A6:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/app/controllers/role/index.js?v=ZUTZT9kKFUVOlEbP7Pt86E9MZ5bOAcWMn9divoTdm98   (ca22a1cb)
+2018-01-31T23:52:52.3759809+07:00 0HLB8PC6VU5A6:00000003 [INF] Sending file. Request path: '"/app/controllers/role/index.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\app\controllers\role\index.js"' (27b0a520)
+2018-01-31T23:52:52.3798894+07:00 0HLB8PC6VU5A6:00000003 [INF] Request finished in 4.2507ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.4022788+07:00 0HLB8PC6VU5A5:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-treegrid/js/jquery.treegrid.js   (ca22a1cb)
+2018-01-31T23:52:52.4030971+07:00 0HLB8PC6VU5A5:00000003 [INF] Sending file. Request path: '"/lib/jquery-treegrid/js/jquery.treegrid.js"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-treegrid\js\jquery.treegrid.js"' (27b0a520)
+2018-01-31T23:52:52.4040505+07:00 0HLB8PC6VU5A5:00000003 [INF] Request finished in 2.1297ms 200 application/javascript (791a596a)
+2018-01-31T23:52:52.4342044+07:00 0HLB8PC6VU5A2:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0   (ca22a1cb)
+2018-01-31T23:52:52.4350954+07:00 0HLB8PC6VU5A2:00000004 [INF] Sending file. Request path: '"/lib/font-awesome/fonts/fontawesome-webfont.woff2"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2"' (27b0a520)
+2018-01-31T23:52:52.4462920+07:00 0HLB8PC6VU5A0:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2   (ca22a1cb)
+2018-01-31T23:52:52.4465107+07:00 0HLB8PC6VU5A2:00000004 [INF] Request finished in 12.8347ms 200 font/woff2 (791a596a)
+2018-01-31T23:52:52.4465849+07:00 0HLB8PC6VU5A0:00000005 [INF] Sending file. Request path: '"/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2"' (27b0a520)
+2018-01-31T23:52:52.4470159+07:00 0HLB8PC6VU5A0:00000005 [INF] Request finished in 0.7417ms 200 font/woff2 (791a596a)
+2018-01-31T23:52:52.8376537+07:00 0HLB8PC6VU5A1:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/role/GetAllPaging?keyword=&page=1&pageSize=10   (ca22a1cb)
+2018-01-31T23:52:52.8392943+07:00 0HLB8PC6VU5A1:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:52:52.8676904+07:00 0HLB8PC6VU5A1:00000003 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:52:52.9189160+07:00 0HLB8PC6VU5A1:00000003 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" with arguments (["", "1", "10"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:52:52.9228479+07:00 0HLB8PC6VU5A1:00000003 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:52:52.9284096+07:00 0HLB8PC6VU5A1:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [AppRoles] AS [a]" (0723d8ff)
+2018-01-31T23:52:52.9394834+07:00 0HLB8PC6VU5A1:00000003 [WRN] Query: '"(from AppRole dto in DbSet<AppRole> select new AppRoleViewModel{ { 
+    Id = (Nullable<Guid>)[dto]...."' uses a row limiting operation (Skip/Take) without OrderBy which may lead to unpredictable results. (32148ccc)
+2018-01-31T23:52:52.9596539+07:00 0HLB8PC6VU5A6:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44364/favicon.ico   (ca22a1cb)
+2018-01-31T23:52:52.9600100+07:00 0HLB8PC6VU5A6:00000004 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-01-31T23:52:52.9605701+07:00 0HLB8PC6VU5A6:00000004 [INF] Request finished in 0.9264ms 200 image/x-icon (791a596a)
+2018-01-31T23:52:53.0237622+07:00 0HLB8PC6VU5A1:00000003 [INF] Executed DbCommand ("54"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [dto].[Id], [dto].[Name], [dto].[Description]
+FROM [AppRoles] AS [dto]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-01-31T23:52:53.0387070+07:00 0HLB8PC6VU5A1:00000003 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:52:53.1401688+07:00 0HLB8PC6VU5A1:00000003 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" in 272.894ms (afa2e885)
+2018-01-31T23:52:53.1407854+07:00 0HLB8PC6VU5A1:00000003 [INF] Request finished in 302.9738ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:52:53.1624461+07:00 0HLB8PC6VU59U:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/role/GetAllPaging?keyword=&page=1&pageSize=10   (ca22a1cb)
+2018-01-31T23:52:53.1631488+07:00 0HLB8PC6VU59U:00000007 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:52:53.1636375+07:00 0HLB8PC6VU59U:00000007 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:52:53.1642288+07:00 0HLB8PC6VU59U:00000007 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" with arguments (["", "1", "10"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:52:53.1646859+07:00 0HLB8PC6VU59U:00000007 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:52:53.1670790+07:00 0HLB8PC6VU59U:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [AppRoles] AS [a]" (0723d8ff)
+2018-01-31T23:52:53.1702260+07:00 0HLB8PC6VU59U:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [dto].[Id], [dto].[Name], [dto].[Description]
+FROM [AppRoles] AS [dto]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-01-31T23:52:53.1710163+07:00 0HLB8PC6VU59U:00000007 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:52:53.1717821+07:00 0HLB8PC6VU59U:00000007 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.GetAllPaging (CMSCore)" in 8.0534ms (afa2e885)
+2018-01-31T23:52:53.1719740+07:00 0HLB8PC6VU59U:00000007 [INF] Request finished in 9.7161ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:52:56.5684288+07:00 0HLB8PC6VU59S:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/Function/GetAll   (ca22a1cb)
+2018-01-31T23:52:56.5691244+07:00 0HLB8PC6VU59S:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:52:56.5692014+07:00 0HLB8PC6VU5A5:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44364/Admin/Role/ListAllFunction application/x-www-form-urlencoded; charset=UTF-8 43 (ca22a1cb)
+2018-01-31T23:52:56.5697840+07:00 0HLB8PC6VU5A5:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:52:56.5722579+07:00 0HLB8PC6VU5A5:00000004 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:52:56.5781446+07:00 0HLB8PC6VU59S:00000004 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:52:56.5787320+07:00 0HLB8PC6VU59S:00000004 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.FunctionController.GetAll (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:52:56.5825569+07:00 0HLB8PC6VU59S:00000004 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:52:56.6100841+07:00 0HLB8PC6VU59S:00000004 [INF] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-01-31T23:52:56.6166410+07:00 0HLB8PC6VU59S:00000004 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:52:56.6193952+07:00 0HLB8PC6VU5A5:00000004 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.ListAllFunction (CMSCore)" with arguments (["7b03c957-94d2-400c-9399-08d55b377de8"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:52:56.6318913+07:00 0HLB8PC6VU59S:00000004 [INF] Executed action "CMSCore.Areas.Admin.Controllers.FunctionController.GetAll (CMSCore)" in 53.8248ms (afa2e885)
+2018-01-31T23:52:56.6323401+07:00 0HLB8PC6VU59S:00000004 [INF] Request finished in 63.9393ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:52:56.6341414+07:00 0HLB8PC6VU5A5:00000004 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:52:56.6972528+07:00 0HLB8PC6VU5A5:00000004 [INF] Executed DbCommand ("7"ms) [Parameters=["@__roleId_1='?', @__roleId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT @__roleId_1 AS [RoleId], [f].[Id] AS [FunctionId], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanCreate] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanCreate], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanDelete] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanDelete], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanRead] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanRead], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanUpdate] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanUpdate]
+FROM [Functions] AS [f]
+LEFT JOIN [Permissions] AS [p] ON [f].[Id] = [p].[FunctionId]
+WHERE [p].[Id] IS NOT NULL AND ([p].[RoleId] = @__roleId_0)" (0723d8ff)
+2018-01-31T23:52:56.6979358+07:00 0HLB8PC6VU5A5:00000004 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:52:56.7022608+07:00 0HLB8PC6VU5A5:00000004 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.ListAllFunction (CMSCore)" in 130.0091ms (afa2e885)
+2018-01-31T23:52:56.7037281+07:00 0HLB8PC6VU5A5:00000004 [INF] Request finished in 134.5318ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:52:56.7529611+07:00 0HLB8PC6VU5A4:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/lib/jquery-treegrid/img/collapse.png   (ca22a1cb)
+2018-01-31T23:52:56.7532513+07:00 0HLB8PC6VU5A4:00000003 [INF] Sending file. Request path: '"/lib/jquery-treegrid/img/collapse.png"'. Physical path: '"D:\Project\CMSCore\CMSCore\wwwroot\lib\jquery-treegrid\img\collapse.png"' (27b0a520)
+2018-01-31T23:52:56.7552882+07:00 0HLB8PC6VU5A4:00000003 [INF] Request finished in 2.3436ms 200 image/png (791a596a)
+2018-01-31T23:53:16.0576805+07:00 0HLB8PC6VU59T:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44364/admin/role/SavePermission application/x-www-form-urlencoded; charset=UTF-8 7142 (ca22a1cb)
+2018-01-31T23:53:16.0583473+07:00 0HLB8PC6VU59T:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:53:16.0743677+07:00 0HLB8PC6VU59T:00000003 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:53:16.0926774+07:00 0HLB8PC6VU59T:00000003 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.SavePermission (CMSCore)" with arguments (["System.Collections.Generic.List`1[CMSCore.Application.ViewModels.System.PermissionViewModel]", "7b03c957-94d2-400c-9399-08d55b377de8"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:53:16.1367182+07:00 0HLB8PC6VU59T:00000003 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:53:16.1470016+07:00 0HLB8PC6VU59T:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__roleId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[CanCreate], [x].[CanDelete], [x].[CanRead], [x].[CanUpdate], [x].[FunctionId], [x].[RoleId]
+FROM [Permissions] AS [x]
+WHERE [x].[RoleId] = @__roleId_0" (0723d8ff)
+2018-01-31T23:53:16.3148202+07:00 0HLB8PC6VU59T:00000003 [INF] Executed DbCommand ("55"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?' (Size = 128), @p5='?', @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (Size = 128), @p11='?', @p12='?', @p13='?', @p14='?', @p15='?', @p16='?' (Size = 128), @p17='?', @p18='?', @p19='?', @p20='?', @p21='?', @p22='?' (Size = 128), @p23='?', @p24='?', @p25='?', @p26='?', @p27='?', @p28='?' (Size = 128), @p29='?', @p30='?', @p31='?', @p32='?', @p33='?', @p34='?' (Size = 128), @p35='?', @p36='?', @p37='?', @p38='?', @p39='?', @p40='?' (Size = 128), @p41='?', @p42='?', @p43='?', @p44='?', @p45='?', @p46='?' (Size = 128), @p47='?', @p48='?', @p49='?', @p50='?', @p51='?', @p52='?' (Size = 128), @p53='?', @p54='?', @p55='?', @p56='?', @p57='?', @p58='?' (Size = 128), @p59='?', @p60='?', @p61='?', @p62='?', @p63='?', @p64='?' (Size = 128), @p65='?', @p66='?', @p67='?', @p68='?', @p69='?', @p70='?' (Size = 128), @p71='?', @p72='?', @p73='?', @p74='?', @p75='?', @p76='?' (Size = 128), @p77='?', @p78='?', @p79='?', @p80='?', @p81='?', @p82='?' (Size = 128), @p83='?', @p84='?', @p85='?', @p86='?', @p87='?', @p88='?' (Size = 128), @p89='?', @p90='?', @p91='?', @p92='?', @p93='?', @p94='?' (Size = 128), @p95='?', @p96='?', @p97='?', @p98='?', @p99='?', @p100='?' (Size = 128), @p101='?', @p102='?', @p103='?', @p104='?', @p105='?', @p106='?' (Size = 128), @p107='?', @p108='?', @p109='?', @p110='?', @p111='?', @p112='?' (Size = 128), @p113='?', @p114='?', @p115='?', @p116='?', @p117='?', @p118='?' (Size = 128), @p119='?', @p120='?', @p121='?', @p122='?', @p123='?', @p124='?' (Size = 128), @p125='?', @p126='?', @p127='?', @p128='?', @p129='?', @p130='?' (Size = 128), @p131='?', @p132='?', @p133='?', @p134='?', @p135='?', @p136='?' (Size = 128), @p137='?', @p138='?', @p139='?', @p140='?', @p141='?', @p142='?' (Size = 128), @p143='?'"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Permissions] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, 0),
+(@p6, @p7, @p8, @p9, @p10, @p11, 1),
+(@p12, @p13, @p14, @p15, @p16, @p17, 2),
+(@p18, @p19, @p20, @p21, @p22, @p23, 3),
+(@p24, @p25, @p26, @p27, @p28, @p29, 4),
+(@p30, @p31, @p32, @p33, @p34, @p35, 5),
+(@p36, @p37, @p38, @p39, @p40, @p41, 6),
+(@p42, @p43, @p44, @p45, @p46, @p47, 7),
+(@p48, @p49, @p50, @p51, @p52, @p53, 8),
+(@p54, @p55, @p56, @p57, @p58, @p59, 9),
+(@p60, @p61, @p62, @p63, @p64, @p65, 10),
+(@p66, @p67, @p68, @p69, @p70, @p71, 11),
+(@p72, @p73, @p74, @p75, @p76, @p77, 12),
+(@p78, @p79, @p80, @p81, @p82, @p83, 13),
+(@p84, @p85, @p86, @p87, @p88, @p89, 14),
+(@p90, @p91, @p92, @p93, @p94, @p95, 15),
+(@p96, @p97, @p98, @p99, @p100, @p101, 16),
+(@p102, @p103, @p104, @p105, @p106, @p107, 17),
+(@p108, @p109, @p110, @p111, @p112, @p113, 18),
+(@p114, @p115, @p116, @p117, @p118, @p119, 19),
+(@p120, @p121, @p122, @p123, @p124, @p125, 20),
+(@p126, @p127, @p128, @p129, @p130, @p131, 21),
+(@p132, @p133, @p134, @p135, @p136, @p137, 22),
+(@p138, @p139, @p140, @p141, @p142, @p143, 23)) AS i ([CanCreate], [CanDelete], [CanRead], [CanUpdate], [FunctionId], [RoleId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([CanCreate], [CanDelete], [CanRead], [CanUpdate], [FunctionId], [RoleId])
+VALUES (i.[CanCreate], i.[CanDelete], i.[CanRead], i.[CanUpdate], i.[FunctionId], i.[RoleId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Permissions] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];" (0723d8ff)
+2018-01-31T23:53:16.3313318+07:00 0HLB8PC6VU59T:00000003 [INF] Executing HttpStatusCodeResult, setting HTTP status code 200 (e28ccfae)
+2018-01-31T23:53:16.3315513+07:00 0HLB8PC6VU59T:00000003 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.SavePermission (CMSCore)" in 257.2849ms (afa2e885)
+2018-01-31T23:53:16.3325365+07:00 0HLB8PC6VU59T:00000003 [INF] Request finished in 274.9787ms 200  (791a596a)
+2018-01-31T23:53:19.9603518+07:00 0HLB8PC6VU5A2:00000005 [INF] Request starting HTTP/1.1 POST http://localhost:44364/Admin/Role/ListAllFunction application/x-www-form-urlencoded; charset=UTF-8 43 (ca22a1cb)
+2018-01-31T23:53:19.9604430+07:00 0HLB8PC6VU5A0:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/Function/GetAll   (ca22a1cb)
+2018-01-31T23:53:19.9610103+07:00 0HLB8PC6VU5A2:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:53:19.9610118+07:00 0HLB8PC6VU5A0:00000006 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:53:19.9612597+07:00 0HLB8PC6VU5A0:00000006 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:53:19.9612609+07:00 0HLB8PC6VU5A2:00000005 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:53:19.9614113+07:00 0HLB8PC6VU5A0:00000006 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.FunctionController.GetAll (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:53:19.9622720+07:00 0HLB8PC6VU5A0:00000006 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:53:19.9630343+07:00 0HLB8PC6VU5A2:00000005 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.ListAllFunction (CMSCore)" with arguments (["01c95cac-4f25-47b3-939a-08d55b377de8"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:53:19.9634172+07:00 0HLB8PC6VU5A2:00000005 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:53:19.9649011+07:00 0HLB8PC6VU5A0:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-01-31T23:53:19.9659570+07:00 0HLB8PC6VU5A0:00000006 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:53:19.9662973+07:00 0HLB8PC6VU5A0:00000006 [INF] Executed action "CMSCore.Areas.Admin.Controllers.FunctionController.GetAll (CMSCore)" in 5.0276ms (afa2e885)
+2018-01-31T23:53:19.9666012+07:00 0HLB8PC6VU5A0:00000006 [INF] Request finished in 6.3086ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:53:20.0119297+07:00 0HLB8PC6VU5A2:00000005 [INF] Executed DbCommand ("10"ms) [Parameters=["@__roleId_1='?', @__roleId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT @__roleId_1 AS [RoleId], [f].[Id] AS [FunctionId], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanCreate] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanCreate], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanDelete] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanDelete], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanRead] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanRead], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanUpdate] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanUpdate]
+FROM [Functions] AS [f]
+LEFT JOIN [Permissions] AS [p] ON [f].[Id] = [p].[FunctionId]
+WHERE [p].[Id] IS NOT NULL AND ([p].[RoleId] = @__roleId_0)" (0723d8ff)
+2018-01-31T23:53:20.0121551+07:00 0HLB8PC6VU5A2:00000005 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:53:20.0123229+07:00 0HLB8PC6VU5A2:00000005 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.ListAllFunction (CMSCore)" in 51.0867ms (afa2e885)
+2018-01-31T23:53:20.0124768+07:00 0HLB8PC6VU5A2:00000005 [INF] Request finished in 52.2142ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:53:23.0430926+07:00 0HLB8PC6VU59V:00000005 [INF] Request starting HTTP/1.1 POST http://localhost:44364/Admin/Role/ListAllFunction application/x-www-form-urlencoded; charset=UTF-8 43 (ca22a1cb)
+2018-01-31T23:53:23.0430926+07:00 0HLB8PC6VU5A3:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44364/admin/Function/GetAll   (ca22a1cb)
+2018-01-31T23:53:23.0437128+07:00 0HLB8PC6VU59V:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:53:23.0437136+07:00 0HLB8PC6VU5A3:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-01-31T23:53:23.0439362+07:00 0HLB8PC6VU59V:00000005 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:53:23.0439374+07:00 0HLB8PC6VU5A3:00000003 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-01-31T23:53:23.0440736+07:00 0HLB8PC6VU5A3:00000003 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.FunctionController.GetAll (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:53:23.0441999+07:00 0HLB8PC6VU59V:00000005 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.RoleController.ListAllFunction (CMSCore)" with arguments (["7b03c957-94d2-400c-9399-08d55b377de8"]) - ModelState is Valid (ba7f4ac2)
+2018-01-31T23:53:23.0444957+07:00 0HLB8PC6VU59V:00000005 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:53:23.0444992+07:00 0HLB8PC6VU5A3:00000003 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-01-31T23:53:23.0468768+07:00 0HLB8PC6VU5A3:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-01-31T23:53:23.0473959+07:00 0HLB8PC6VU5A3:00000003 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:53:23.0478874+07:00 0HLB8PC6VU5A3:00000003 [INF] Executed action "CMSCore.Areas.Admin.Controllers.FunctionController.GetAll (CMSCore)" in 3.8563ms (afa2e885)
+2018-01-31T23:53:23.0482482+07:00 0HLB8PC6VU5A3:00000003 [INF] Request finished in 5.2214ms 200 application/json; charset=utf-8 (791a596a)
+2018-01-31T23:53:23.0524161+07:00 0HLB8PC6VU59V:00000005 [INF] Executed DbCommand ("6"ms) [Parameters=["@__roleId_1='?', @__roleId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT @__roleId_1 AS [RoleId], [f].[Id] AS [FunctionId], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanCreate] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanCreate], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanDelete] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanDelete], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanRead] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanRead], CASE
+    WHEN [p].[Id] IS NOT NULL AND ([p].[CanUpdate] = 1)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END AS [CanUpdate]
+FROM [Functions] AS [f]
+LEFT JOIN [Permissions] AS [p] ON [f].[Id] = [p].[FunctionId]
+WHERE [p].[Id] IS NOT NULL AND ([p].[RoleId] = @__roleId_0)" (0723d8ff)
+2018-01-31T23:53:23.0561019+07:00 0HLB8PC6VU59V:00000005 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-01-31T23:53:23.0637666+07:00 0HLB8PC6VU59V:00000005 [INF] Executed action "CMSCore.Areas.Admin.Controllers.RoleController.ListAllFunction (CMSCore)" in 19.7678ms (afa2e885)
+2018-01-31T23:53:23.0641538+07:00 0HLB8PC6VU59V:00000005 [INF] Request finished in 21.1258ms 200 application/json; charset=utf-8 (791a596a)
