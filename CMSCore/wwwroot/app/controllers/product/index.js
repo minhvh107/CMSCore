@@ -75,7 +75,7 @@
                     render = "<td colspan='7'>Không có dữ liệu</td>";
                 }
                 $("#tbl-content").html(render);
-
+debugger 
                 wrapPaging(response.RowCount, function () {
                     loadData();
                 }, isPageChanged);
