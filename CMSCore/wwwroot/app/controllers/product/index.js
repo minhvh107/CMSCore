@@ -55,12 +55,15 @@
             },
             async: true,
             dataType: "json",
+            beforeSend: function () {
+                cms.startLoading();
+            },
             success: function (response) {
                 $.each(response.Results, function (i, item) {
                     render += Mustache.render(template, {
                         Id: item.Id,
                         Name: item.Name,
-                        Image: item.Image == null ? "<img src='/admin-side/images/user.png' width='50'" : "<img src='" + item.Image + "' width='50' />",
+                        Image: item.Image == null ? "<img src='/admin-side/images/user.png' width='25'" : "<img src='" + item.Image + "' width='25' />",
                         CategoryName: item.ProductCategory.Name,
                         Price: cms.formatNumber(item.Price, 0),
                         DateCreated: cms.dateFormatJson(item.DateCreated),
@@ -76,6 +79,9 @@
                 wrapPaging(response.RowCount, function () {
                     loadData();
                 }, isPageChanged);
+
+                $('#listContent').find('tbody tr:first').addClass('selected');
+                cms.stopLoading();
             },
             error: function (status) {
                 console.log(status);
@@ -123,7 +129,7 @@
         $("#txtOriginalPriceM").val("");
         $("#txtPromotionPriceM").val("");
 
-        //$("#txtImageM").val("");
+        $("#txtImageM").val("");
 
         $("#txtTagM").val("");
         $("#txtMetakeywordM").val("");
@@ -131,7 +137,7 @@
         $("#txtSeoPageTitleM").val("");
         $("#txtSeoAliasM").val("");
 
-        CKEDITOR.instances.txtContentM.setData("");
+        CKEDITOR.instances.txtContent.setData("");
         $("#ckStatusM").prop("checked", true);
         $("#ckHotM").prop("checked", false);
         $("#ckShowHomeM").prop("checked", false);
@@ -174,16 +180,16 @@
                 data: data,
                 success: function (path) {
                     $('#txtImage').val(path);
-                    tedu.notify('Upload image succesful!', 'success');
+                    cms.notify('Upload image succesful!', 'success');
 
                 },
                 error: function () {
-                    tedu.notify('There was error uploading files!', 'error');
+                    cms.notify('There was error uploading files!', 'error');
                 }
             });
         });
 
-        $("body").on("click", "#btnCreate", function (e) {
+        $("body").on("click", ".btnAdd", function (e) {
             e.preventDefault();
             resetFormMaintainance();
             initTreeDropDownCategory();
@@ -192,50 +198,60 @@
 
         $("body").on("click", ".btnEdit", function (e) {
             e.preventDefault();
-            var that = $(this).data("id");
-            $.ajax({
-                type: "GET",
-                url: "/Admin/Product/GetById",
-                data: { id: that },
-                dataType: "json",
-                beforeSend: function () {
-                    cms.startLoading();
-                },
-                success: function (response) {
-                    var data = response;
-                    $("#hidIdM").val(data.Id);
-                    $("#txtNameM").val(data.Name);
-                    initTreeDropDownCategory(data.CategoryId);
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
+            var table = $(this).parent().parent().find('table.bulk_action');
+            if ($(table).find("tr.selected").length <= 0) {
+                cms.notify("Không có dòng nào được chọn.", "warning");
+            } else if ($(table).find("tr.selected").length == 1) {
+                var itemId = $(table).find("tr.selected").attr("item-id");
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/Product/GetById",
+                    data: { id: itemId },
+                    dataType: "json",
+                    beforeSend: function () {
+                        cms.startLoading();
+                    },
+                    success: function (response) {
+                        var data = response;
+                        $("#hidIdM").val(data.Id);
+                        $("#txtNameM").val(data.Name);
+                        initTreeDropDownCategory(data.CategoryId);
 
-                    $("#txtDescM").val(data.Description);
-                    $("#txtUnitM").val(data.Unit);
+                        $("#txtDescM").val(data.Description);
+                        $("#txtUnitM").val(data.Unit);
 
-                    $("#txtPriceM").val(data.Price);
-                    $("#txtOriginalPriceM").val(data.OriginalPrice);
-                    $("#txtPromotionPriceM").val(data.PromotionPrice);
+                        $("#txtPriceM").val(data.Price);
+                        $("#txtOriginalPriceM").val(data.OriginalPrice);
+                        $("#txtPromotionPriceM").val(data.PromotionPrice);
 
-                    $("#txtImageM").val(data.ThumbnailImage);
+                        $("#txtImageM").val(data.ThumbnailImage);
 
-                    $("#txtTagM").val(data.Tags);
-                    $("#txtMetakeywordM").val(data.SeoKeywords);
-                    $("#txtMetaDescriptionM").val(data.SeoDescription);
-                    $("#txtSeoPageTitleM").val(data.SeoPageTitle);
-                    $("#txtSeoAliasM").val(data.SeoAlias);
+                        $("#txtTagM").val(data.Tags);
+                        $("#txtMetakeywordM").val(data.SeoKeywords);
+                        $("#txtMetaDescriptionM").val(data.SeoDescription);
+                        $("#txtSeoPageTitleM").val(data.SeoPageTitle);
+                        $("#txtSeoAliasM").val(data.SeoAlias);
 
-                    CKEDITOR.instances.txtContent.setData(data.Content);
-                    $("#ckStatusM").prop("checked", data.Status == 1);
-                    $("#ckHotM").prop("checked", data.HotFlag);
-                    $("#ckShowHomeM").prop("checked", data.HomeFlag);
+                        CKEDITOR.instances.txtContent.setData(data.Content);
+                        $("#ckStatusM").prop("checked", data.Status == 1);
+                        $("#ckHotM").prop("checked", data.HotFlag);
+                        $("#ckShowHomeM").prop("checked", data.HomeFlag);
 
-                    $("#modal-add-edit").modal("show");
-                    cms.stopLoading();
+                        $("#modal-add-edit").modal("show");
+                        cms.stopLoading();
 
-                },
-                error: function (status) {
-                    cms.notify("Có lỗi xảy ra", "error");
-                    cms.stopLoading();
-                }
-            });
+                    },
+                    error: function (status) {
+                        cms.notify("Có lỗi xảy ra", "error");
+                        cms.stopLoading();
+                    }
+                });
+            } else {
+                console.log("error");
+            }
         });
 
         $("body").on("click", ".btnDelete", function (e) {

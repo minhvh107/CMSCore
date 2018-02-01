@@ -98,19 +98,28 @@
         return day + "/" + month + "/" + year + " " + hh + ":" + mm + ":" + ss;
     },
     startLoading: function () {
-        if ($('.dv-loading').length > 0)
-            $('.dv-loading').removeClass('hide');
+        //if ($('.dv-loading').length > 0)
+        //    $('.dv-loading').removeClass('hide');
+        spinner = new Spinner().spin();
+        $('body').append("<div class='overlay'></div>");
+        $(".overlay").append(spinner.el);
+        $("body").addClass("body-overflow");
     },
     stopLoading: function () {
-        if ($('.dv-loading').length > 0)
-            $('.dv-loading')
-                .addClass('hide');
+        //if ($('.dv-loading').length > 0)
+        //    $('.dv-loading')
+        //        .addClass('hide');
+        $("body").removeClass("body-overflow");
+        setTimeout(function () {
+            spinner.stop();
+            $(".overlay").remove();
+        }, 1000);
     },
     getStatus: function (status) {
         if (status == 1)
-            return '<span class="badge bg-green">Kích hoạt</span>';
+            return '<span class="badge bg-green">Active</span>';
         else
-            return '<span class="badge bg-red">Khoá</span>';
+            return '<span class="badge bg-red">InActive</span>';
     },
     formatNumber: function (number, precision) {
         if (!isFinite(number)) {

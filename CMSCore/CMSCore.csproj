@@ -9,6 +9,10 @@
     <DefineConstants>NETCOREAPP2_0</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Areas\Admin\Components\PaginationViewComponent.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
