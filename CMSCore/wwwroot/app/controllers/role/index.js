@@ -1,12 +1,7 @@
 ﻿var RoleController = function () {
     var self = this;
 
-    this.initialize = function () {
-        loadData();
-        registerEvents();
-    }
-
-    function registerEvents() {
+    var registerEvents = function () {
         //Init validation
         $('#frmMaintainance').validate({
             errorClass: 'red',
@@ -17,31 +12,33 @@
             }
         });
 
-        $('#txt-search-keyword').keypress(function (e) {
+        $('body').off('keypress').on('keypress', '#txt-search-keyword', function (e) {
             if (e.which == 13) {
                 e.preventDefault();
                 loadData();
             }
         });
-        $("#btn-search").on('click', function () {
+
+        $('body').off('click').on('click', '#btn-search', function (e) {
+            e.preventDefault();
             loadData();
         });
 
-        $("#ddl-show-page").on('change', function () {
+        $('body').off('change').on('change', '#ddlShowPage', function (e) {
+            e.preventDefault();
             cms.configs.pageSize = $(this).val();
             cms.configs.pageIndex = 1;
             loadData(true);
         });
 
-        //Grant permission
-        $('body').on('click', '.btn-grant', function () {
+        $('body').off('click').on('click', '.btnGrant', function () {
             $('#hidRoleId').val($(this).data('id'));
             $.when(loadFunctionList())
                 .done(fillPermission($('#hidRoleId').val()));
             $('#modal-grantpermission').modal('show');
         });
 
-        $("#btnSavePermission").off('click').on('click', function () {
+        $('body').off('click').on('click', '#btnSavePermission', function (){
             var listPermmission = [];
             $.each($('#tblFunction tbody tr'), function (i, item) {
                 listPermmission.push({
@@ -75,40 +72,75 @@
             });
         });
 
-        $("#btn-create").on('click', function () {
+        $('body').off('click').on('click', '.btnAdd', function () {
             resetFormMaintainance();
             $('#modal-add-edit').modal('show');
 
         });
 
-        $('body').on('click', '.btn-edit', function (e) {
+        $('body').on('click', '.btnEdit', function (e) {
+            debugger;
+            e.preventDefault();
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
+            var table = $(this).parent().parent().find('table.bulk_action');
+            if ($(table).find("tr.selected").length <= 0) {
+                cms.notify("Không có dòng nào được chọn.", "warning");
+            } else if ($(table).find("tr.selected").length == 1) {
+                var itemId = $(table).find("tr.selected").attr("item-id");
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/Role/GetById",
+                    data: { id: itemId },
+                    dataType: "json",
+                    beforeSend: function () {
+                        cms.startLoading();
+                    },
+                    success: function (response) {
+                        var data = response;
+                        $('#hidId').val(data.Id);
+                        $('#txtName').val(data.Name);
+                        $('#txtDescription').val(data.Description);
+                        $('#modal-add-edit').modal('show');
+                        cms.stopLoading();
+
+                    },
+                    error: function (status) {
+                        cms.notify('Có lỗi xảy ra', 'error');
+                        cms.stopLoading();
+                    }
+                });
+            } else {
+                console.log("error");
+            }
+        });
+
+        $('body').off('click').on('click', '.btnDelete', function (e) {
             e.preventDefault();
             var that = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                url: "/Admin/Role/GetById",
-                data: { id: that },
-                dataType: "json",
-                beforeSend: function () {
-                    cms.startLoading();
-                },
-                success: function (response) {
-                    var data = response;
-                    $('#hidId').val(data.Id);
-                    $('#txtName').val(data.Name);
-                    $('#txtDescription').val(data.Description);
-                    $('#modal-add-edit').modal('show');
-                    cms.stopLoading();
-
-                },
-                error: function (status) {
-                    cms.notify('Có lỗi xảy ra', 'error');
-                    cms.stopLoading();
-                }
+            cms.confirm('Are you sure to delete?', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Role/Delete",
+                    data: { id: that },
+                    beforeSend: function () {
+                        cms.startLoading();
+                    },
+                    success: function (response) {
+                        cms.notify('Delete successful', 'success');
+                        cms.stopLoading();
+                        loadData();
+                    },
+                    error: function (status) {
+                        cms.notify('Has an error in deleting progress', 'error');
+                        cms.stopLoading();
+                    }
+                });
             });
         });
 
-        $('#btnSave').on('click', function (e) {
+        $('body').off('click').on('click', '#btnSave', function (e) {
             if ($('#frmMaintainance').valid()) {
                 e.preventDefault();
                 var id = $('#hidId').val();
@@ -142,30 +174,6 @@
                 return false;
             }
 
-        });
-
-        $('body').on('click', '.btn-delete', function (e) {
-            e.preventDefault();
-            var that = $(this).data('id');
-            cms.confirm('Are you sure to delete?', function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/Role/Delete",
-                    data: { id: that },
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        cms.notify('Delete successful', 'success');
-                        cms.stopLoading();
-                        loadData();
-                    },
-                    error: function (status) {
-                        cms.notify('Has an error in deleting progress', 'error');
-                        cms.stopLoading();
-                    }
-                });
-            });
         });
     };
 
@@ -334,20 +342,17 @@
                             Description: item.Description
                         });
                     });
-                    $("#lbl-total-records").text(response.RowCount);
-                    if (render != undefined) {
-                        $('#tbl-content').html(render);
-
-                    }
-                    wrapPaging(response.RowCount, function () {
-                        loadData();
-                    }, isPageChanged);
-
-
                 }
                 else {
-                    $('#tbl-content').html('');
+                    render = "<td colspan='2'>Không có dữ liệu</td>";
                 }
+                
+                $('#tbl-content').html(render);
+                $('#listContent').find('tbody tr:first').addClass('selected');
+                $("#lbl-total-records").text(response.RowCount);
+                wrapPaging(response.RowCount, function () {
+                    loadData();
+                }, isPageChanged);
                 cms.stopLoading();
             },
             error: function (status) {
@@ -377,5 +382,10 @@
                 setTimeout(callBack(), 200);
             }
         });
+    }
+
+    this.initialize = function () {
+        loadData();
+        registerEvents();
     }
 }

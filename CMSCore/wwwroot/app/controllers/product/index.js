@@ -1,6 +1,7 @@
 ﻿var productController = function () {
-    function wrapPaging(recordCount, callBack, changePageSize) {
+    var wrapPaging = function (recordCount, callBack, changePageSize) {
         var totalsize = Math.ceil(recordCount / cms.configs.pageSize);
+        var countPage = (totalsize + 4) < 7 ? (totalsize + 4) : 7;
         //Unbind pagination if it existed or click change pagesize
         if ($("#paginationUL a").length === 0 || changePageSize === true) {
             $("#paginationUL").empty();
@@ -10,7 +11,7 @@
         //Bind Pagination Event
         $("#paginationUL").twbsPagination({
             totalPages: totalsize,
-            visiblePages: 7,
+            visiblePages: countPage,
             first: "Đầu",
             prev: "Trước",
             next: "Tiếp",
@@ -59,23 +60,24 @@
                 cms.startLoading();
             },
             success: function (response) {
-                $.each(response.Results, function (i, item) {
-                    render += Mustache.render(template, {
-                        Id: item.Id,
-                        Name: item.Name,
-                        Image: item.Image == null ? "<img src='/admin-side/images/user.png' width='25'" : "<img src='" + item.Image + "' width='25' />",
-                        CategoryName: item.ProductCategory.Name,
-                        Price: cms.formatNumber(item.Price, 0),
-                        DateCreated: cms.dateFormatJson(item.DateCreated),
-                        Status: cms.getStatus(item.Status)
+                if (response.RowCount > 0) {
+                    $.each(response.Results, function (i, item) {
+                        render += Mustache.render(template, {
+                            Id: item.Id,
+                            Name: item.Name,
+                            Image: item.Image == null ? "<img src='/admin-side/images/user.png' width='25'" : "<img src='" + item.Image + "' width='25' />",
+                            CategoryName: item.ProductCategory.Name,
+                            Price: cms.formatNumber(item.Price, 0),
+                            DateCreated: cms.dateFormatJson(item.DateCreated),
+                            Status: cms.getStatus(item.Status)
+                        });
                     });
-                });
-                $("#lblTotalRecords").text(response.RowCount);
-                if (render == "") {
+                } else {
                     render = "<td colspan='7'>Không có dữ liệu</td>";
                 }
                 $("#tbl-content").html(render);
-debugger 
+                $("#lblTotalRecords").text(response.RowCount);
+
                 wrapPaging(response.RowCount, function () {
                     loadData();
                 }, isPageChanged);
@@ -90,7 +92,7 @@ debugger
         });
     }
 
-    function initTreeDropDownCategory(selectedId) {
+    var initTreeDropDownCategory = function (selectedId) {
         $.ajax({
             url: "/Admin/ProductCategory/GetAll",
             type: "GET",
@@ -117,7 +119,7 @@ debugger
         });
     }
 
-    function resetFormMaintainance() {
+    var resetFormMaintainance = function () {
         $("#hidIdM").val(0);
         $("#txtNameM").val("");
         initTreeDropDownCategory("");
@@ -217,6 +219,7 @@ debugger
                     success: function (response) {
                         var data = response;
                         $("#hidIdM").val(data.Id);
+                        $("#hidDateCreated").val(data.DateCreated);
                         $("#txtNameM").val(data.Name);
                         initTreeDropDownCategory(data.CategoryId);
 
@@ -283,6 +286,8 @@ debugger
             if ($("#frmMaintainance").valid()) {
                 e.preventDefault();
                 var id = $("#hidIdM").val();
+                var dateCreated = $("#hidDateCreated").val();
+
                 var name = $("#txtNameM").val();
                 var categoryId = $("#ddlCategoryIdM").combotree("getValue");
 
@@ -311,6 +316,7 @@ debugger
                     url: "/Admin/Product/SaveEntity",
                     data: {
                         Id: id,
+                        DateCreated: dateCreated,
                         Name: name,
                         CategoryId: categoryId,
                         Image: image,
@@ -352,7 +358,7 @@ debugger
         });
     }
 
-    function registerControls() {
+    var registerControls = function () {
         CKEDITOR.replace('txtContent', {});
 
         //Fix: cannot click on element ck in modal

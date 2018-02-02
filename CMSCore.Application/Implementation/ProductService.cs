@@ -67,7 +67,8 @@ namespace CMSCore.Application.Implementation
         public ProductViewModel Add(ProductViewModel productVm)
         {
             List<ProductTag> productTags = new List<ProductTag>();
-            if (!string.IsNullOrEmpty(productVm.Tags))
+            
+            if (!string.IsNullOrEmpty(productVm.Tags)) 
             {
                 string[] tags = productVm.Tags.Split(',');
                 foreach (string t in tags)
@@ -90,13 +91,13 @@ namespace CMSCore.Application.Implementation
                     };
                     productTags.Add(productTag);
                 }
-                var product = Mapper.Map<ProductViewModel, Product>(productVm);
-                foreach (var productTag in productTags)
-                {
-                    product.ProductTags.Add(productTag);
-                }
-                _productRepository.Add(product);
             }
+            var product = Mapper.Map<ProductViewModel, Product>(productVm);
+            foreach (var productTag in productTags)
+            {
+                product.ProductTags.Add(productTag);
+            }
+            _productRepository.Add(product);
             return productVm;
         }
 

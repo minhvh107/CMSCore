@@ -47,7 +47,7 @@ $(document).ready(function () {
         var nav_menuHeight = $NAV_MENU.outerHeight(),
             page_titleHeight = $(".page-title").outerHeight(),
             x_titleHeight = $(".x_title").outerHeight();
-        var x_contentHeight = bodyHeight - nav_menuHeight - page_titleHeight - x_titleHeight -40;
+        var x_contentHeight = bodyHeight - nav_menuHeight - page_titleHeight - x_titleHeight -80;
 
         $X_CONTENT.css('height', x_contentHeight);
 
