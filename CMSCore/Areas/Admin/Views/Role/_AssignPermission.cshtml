@@ -5,6 +5,7 @@
                 <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">Assign permission</h4>
             </div>
+
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
@@ -14,25 +15,25 @@
                             <tr>
                                 <th>Function name</th>
                                 <th>
-                                    <label>
+                                    <label class="m-b-0">
                                         <input type="checkbox" id="ckCheckAllView" value="{{Id}}">
                                         <span class="text">View</span>
                                     </label>
                                 </th>
                                 <th>
-                                    <label>
+                                    <label class="m-b-0">
                                         <input type="checkbox" id="ckCheckAllCreate" value="{{Id}}">
                                         <span class="text">Create</span>
                                     </label>
                                 </th>
                                 <th>
-                                    <label>
+                                    <label class="m-b-0">
                                         <input type="checkbox" id="ckCheckAllEdit" value="{{Id}}">
                                         <span class="text">Update</span>
                                     </label>
                                 </th>
                                 <th>
-                                    <label>
+                                    <label class="m-b-0">
                                         <input type="checkbox" id="ckCheckAllDelete" value="{{Id}}">
                                         <span class="text">Delete</span>
                                     </label>
@@ -75,13 +76,10 @@
 
 
             </div>
+
             <div class="modal-footer">
-                <div class="row">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" id="btnSavePermission" class="btn btn-success">Save</button>
-                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-                    </div>
-                </div>
+                <button type="button" class="btn btn-primary" id="btnSavePermission"><i class="fa fa-save fa-lg"></i> Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Cancel</button>
             </div>
         </div>
     </div>

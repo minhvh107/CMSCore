@@ -185,7 +185,7 @@ input.error {
 
 @media (min-width: 1300px) {
     .modal-lg {
-        width: 1300px;
+        width: 980px;
     }
 
     .right_col {
@@ -737,8 +737,8 @@ ul.select2-results__options {
     overflow: hidden;
 }
 
-#modal-add-edit .modal-body {
-    height: 450px;
+#modal-add-edit .modal-lg .modal-body, #modal-grantpermission .modal-lg .modal-body {
+    max-height: 450px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -761,4 +761,11 @@ label {
     height: 26px;
     line-height:13px;
     font-size:13px;
+}
+.table.tree th{
+    text-align: left;
+    line-height: 26px;
+}
+.m-b-0 {
+    margin-bottom: 0;
 }

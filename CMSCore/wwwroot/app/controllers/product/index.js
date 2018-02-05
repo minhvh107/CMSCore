@@ -255,31 +255,43 @@
             } else {
                 console.log("error");
             }
+            return false;
         });
 
         $("body").on("click", ".btnDelete", function (e) {
             e.preventDefault();
-            var that = $(this).data("id");
-            cms.confirm("Are you sure to delete?", function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/Product/Delete",
-                    data: { id: that },
-                    dataType: "json",
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        cms.notify("Delete successful", "success");
-                        cms.stopLoading();
-                        loadData();
-                    },
-                    error: function (status) {
-                        cms.notify("Has an error in delete progress", "error");
-                        cms.stopLoading();
-                    }
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
+            var table = $(this).parent().parent().find('table.bulk_action');
+            if ($(table).find("tr.selected").length <= 0) {
+                cms.notify("Không có dòng nào được chọn.", "warning");
+            } else if ($(table).find("tr.selected").length == 1) {
+                var itemId = $(table).find("tr.selected").attr("item-id");
+                cms.confirm("Are you sure to delete?", function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/Product/Delete",
+                        data: { id: itemId },
+                        dataType: "json",
+                        beforeSend: function () {
+                            cms.startLoading();
+                        },
+                        success: function (response) {
+                            cms.notify("Delete successful", "success");
+                            cms.stopLoading();
+                            loadData();
+                        },
+                        error: function (status) {
+                            cms.notify("Has an error in delete progress", "error");
+                            cms.stopLoading();
+                        }
+                    });
                 });
-            });
+            } else {
+                console.log("error");
+            }
+            return false;
         });
 
         $("body").on("click", "#btnSave", function (e) {

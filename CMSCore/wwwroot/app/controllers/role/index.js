@@ -1,5 +1,4 @@
 ﻿var RoleController = function () {
-    var self = this;
 
     var registerEvents = function () {
         //Init validation
@@ -12,33 +11,46 @@
             }
         });
 
-        $('body').off('keypress').on('keypress', '#txt-search-keyword', function (e) {
+        $('body').on('keypress', '#txtKeyword', function (e) {
             if (e.which == 13) {
                 e.preventDefault();
                 loadData();
             }
         });
 
-        $('body').off('click').on('click', '#btn-search', function (e) {
+        $('body').on('click', '#btn-search', function (e) {
             e.preventDefault();
             loadData();
         });
 
-        $('body').off('change').on('change', '#ddlShowPage', function (e) {
+        $('body').on('change', '#ddlShowPage', function (e) {
             e.preventDefault();
             cms.configs.pageSize = $(this).val();
             cms.configs.pageIndex = 1;
             loadData(true);
         });
 
-        $('body').off('click').on('click', '.btnGrant', function () {
-            $('#hidRoleId').val($(this).data('id'));
-            $.when(loadFunctionList())
-                .done(fillPermission($('#hidRoleId').val()));
-            $('#modal-grantpermission').modal('show');
+        $('body').on('click', '.btnGrant', function (e) {
+            e.preventDefault();
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
+            var table = $(this).parent().parent().find('table.bulk_action');
+            if ($(table).find("tr.selected").length <= 0) {
+                cms.notify("Không có dòng nào được chọn.", "warning");
+            } else if ($(table).find("tr.selected").length == 1) {
+                var itemId = $(table).find("tr.selected").attr("item-id");
+                $('#hidRoleId').val(itemId);
+                $.when(loadFunctionList())
+                    .done(fillPermission($('#hidRoleId').val()));
+                $('#modal-grantpermission').modal('show');
+            } else {
+                console.log("error");
+            }
+            return false;
         });
 
-        $('body').off('click').on('click', '#btnSavePermission', function (){
+        $('body').on('click', '#btnSavePermission', function (){
             var listPermmission = [];
             $.each($('#tblFunction tbody tr'), function (i, item) {
                 listPermmission.push({
@@ -72,14 +84,13 @@
             });
         });
 
-        $('body').off('click').on('click', '.btnAdd', function () {
+        $('body').on('click', '.btnAdd', function () {
             resetFormMaintainance();
             $('#modal-add-edit').modal('show');
 
         });
 
         $('body').on('click', '.btnEdit', function (e) {
-            debugger;
             e.preventDefault();
             if ($(this).hasClass('disabled')) {
                 return false;
@@ -114,33 +125,45 @@
             } else {
                 console.log("error");
             }
+            return false;
         });
 
-        $('body').off('click').on('click', '.btnDelete', function (e) {
+        $('body').on('click', '.btnDelete', function (e) {
             e.preventDefault();
-            var that = $(this).data('id');
-            cms.confirm('Are you sure to delete?', function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/Role/Delete",
-                    data: { id: that },
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        cms.notify('Delete successful', 'success');
-                        cms.stopLoading();
-                        loadData();
-                    },
-                    error: function (status) {
-                        cms.notify('Has an error in deleting progress', 'error');
-                        cms.stopLoading();
-                    }
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
+            var table = $(this).parent().parent().find('table.bulk_action');
+            if ($(table).find("tr.selected").length <= 0) {
+                cms.notify("Không có dòng nào được chọn.", "warning");
+            } else if ($(table).find("tr.selected").length == 1) {
+                var itemId = $(table).find("tr.selected").attr("item-id");
+                cms.confirm('Are you sure to delete?', function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/Role/Delete",
+                        data: { id: itemId },
+                        beforeSend: function () {
+                            cms.startLoading();
+                        },
+                        success: function (response) {
+                            cms.notify('Delete successful', 'success');
+                            cms.stopLoading();
+                            loadData();
+                        },
+                        error: function (status) {
+                            cms.notify('Has an error in deleting progress', 'error');
+                            cms.stopLoading();
+                        }
+                    });
                 });
-            });
+            } else {
+                console.log("error");
+            }
+            return true;
         });
 
-        $('body').off('click').on('click', '#btnSave', function (e) {
+        $('body').on('click', '#btnSave', function (e) {
             if ($('#frmMaintainance').valid()) {
                 e.preventDefault();
                 var id = $('#hidId').val();
@@ -171,9 +194,9 @@
                         cms.stopLoading();
                     }
                 });
-                return false;
+                return true;
             }
-
+            return false;
         });
     };
 
@@ -323,7 +346,7 @@
             type: "GET",
             url: "/admin/role/GetAllPaging",
             data: {
-                keyword: $('#txt-search-keyword').val(),
+                keyword: $('#txtKeyword').val(),
                 page: cms.configs.pageIndex,
                 pageSize: cms.configs.pageSize
             },
@@ -347,9 +370,9 @@
                     render = "<td colspan='2'>Không có dữ liệu</td>";
                 }
                 
-                $('#tbl-content').html(render);
+                $('#tblContent').html(render);
                 $('#listContent').find('tbody tr:first').addClass('selected');
-                $("#lbl-total-records").text(response.RowCount);
+                $("#lblTotalRecords").text(response.RowCount);
                 wrapPaging(response.RowCount, function () {
                     loadData();
                 }, isPageChanged);
@@ -363,7 +386,7 @@
 
     function wrapPaging(recordCount, callBack, changePageSize) {
         var totalsize = Math.ceil(recordCount / cms.configs.pageSize);
-        //Unbind pagination if it existed or click change pagesize
+        var countPage = (totalsize + 4) < 7 ? (totalsize + 4) : 7;
         if ($('#paginationUL a').length === 0 || changePageSize === true) {
             $('#paginationUL').empty();
             $('#paginationUL').removeData("twbs-pagination");
@@ -372,7 +395,7 @@
         //Bind Pagination Event
         $('#paginationUL').twbsPagination({
             totalPages: totalsize,
-            visiblePages: 7,
+            visiblePages: countPage,
             first: 'Đầu',
             prev: 'Trước',
             next: 'Tiếp',

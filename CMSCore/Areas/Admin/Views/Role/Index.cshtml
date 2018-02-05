@@ -49,7 +49,7 @@
                             <th class="column-title column-20">Description</th>
                         </tr>
                     </thead>
-                    <tbody id="tbl-content"></tbody>
+                    <tbody id="tblContent"></tbody>
                 </table>
             </div>
         </div>
@@ -59,7 +59,7 @@
     </div>
 </div>
 <script id="table-template" type="x-tmpl-mustache">
-    <tr>
+    <tr item-id="{{Id}}">
         <td>{{Name}}</td>
         <td>{{Description}}</td>
     </tr>

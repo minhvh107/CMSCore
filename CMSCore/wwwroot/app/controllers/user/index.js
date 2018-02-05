@@ -1,9 +1,4 @@
 ﻿var UserController = function () {
-    this.initialize = function () {
-        loadData();
-        registerEvents();
-    }
-
     function registerEvents() {
         //Init validation
         $('#frmMaintainance').validate({
@@ -33,7 +28,7 @@
             loadData(true);
         });
 
-        $('body').on('keypress', '#txt-search-keyword', function (e){
+        $('body').on('keypress', '#txtKeyword', function (e){
             if (e.which === 13) {
                 e.preventDefault();
                 loadData();
@@ -45,7 +40,7 @@
             loadData();
         });
 
-        $('body').on('click', '#btn-create', function (e) {
+        $('body').on('click', '.btnAdd', function (e) {
             e.preventDefault();
             resetFormMaintainance();
             initRoleList();
@@ -53,62 +48,85 @@
 
         });
 
-        $('body').on('click', '.btn-edit', function (e) {
+        $('body').on('click', '.btnEdit', function (e) {
             e.preventDefault();
-            var that = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                url: "/Admin/User/GetById",
-                data: { id: that },
-                dataType: "json",
-                beforeSend: function () {
-                    cms.startLoading();
-                },
-                success: function (response) {
-                    var data = response;
-                    $('#hidId').val(data.Id);
-                    $('#txtFullName').val(data.FullName);
-                    $('#txtUserName').val(data.UserName);
-                    $('#txtEmail').val(data.Email);
-                    $('#txtPhoneNumber').val(data.PhoneNumber);
-                    $('#ckStatus').prop('checked', data.Status === 1);
-
-                    initRoleList(data.Roles);
-
-                    disableFieldEdit(true);
-                    $('#modal-add-edit').modal('show');
-                    cms.stopLoading();
-
-                },
-                error: function () {
-                    cms.notify('Có lỗi xảy ra', 'error');
-                    cms.stopLoading();
-                }
-            });
-        });
-
-        $('body').on('click', '.btn-delete', function (e) {
-            e.preventDefault();
-            var that = $(this).data('id');
-            cms.confirm('Are you sure to delete?', function () {
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
+            var table = $(this).parent().parent().find('table.bulk_action');
+            if ($(table).find("tr.selected").length <= 0) {
+                cms.notify("Không có dòng nào được chọn.", "warning");
+            } else if ($(table).find("tr.selected").length == 1) {
+                var itemId = $(table).find("tr.selected").attr("item-id");
                 $.ajax({
-                    type: "POST",
-                    url: "/Admin/User/Delete",
-                    data: { id: that },
+                    type: "GET",
+                    url: "/Admin/User/GetById",
+                    data: { id: itemId },
+                    dataType: "json",
                     beforeSend: function () {
                         cms.startLoading();
                     },
-                    success: function () {
-                        cms.notify('Delete successful', 'success');
+                    success: function (response) {
+                        var data = response;
+                        $('#hidId').val(data.Id);
+                        $('#txtFullName').val(data.FullName);
+                        $('#txtUserName').val(data.UserName);
+                        $('#txtEmail').val(data.Email);
+                        $('#txtPhoneNumber').val(data.PhoneNumber);
+                        $('#ckStatus').prop('checked', data.Status === 1);
+
+                        initRoleList(data.Roles);
+
+                        disableFieldEdit(true);
+                        $('#modal-add-edit').modal('show');
                         cms.stopLoading();
-                        loadData();
+
                     },
                     error: function () {
-                        cms.notify('Has an error', 'error');
+                        cms.notify('Có lỗi xảy ra', 'error');
                         cms.stopLoading();
                     }
                 });
-            });
+            } else {
+                console.log("error");
+            }
+            return false;
+            
+        });
+
+        $('body').on('click', '.btnDelete', function (e) {
+            e.preventDefault();
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
+            var table = $(this).parent().parent().find('table.bulk_action');
+            if ($(table).find("tr.selected").length <= 0) {
+                cms.notify("Không có dòng nào được chọn.", "warning");
+            } else if ($(table).find("tr.selected").length == 1) {
+                var itemId = $(table).find("tr.selected").attr("item-id");
+                cms.confirm('Are you sure to delete?', function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/User/Delete",
+                        data: { id: that },
+                        beforeSend: function () {
+                            cms.startLoading();
+                        },
+                        success: function () {
+                            cms.notify('Delete successful', 'success');
+                            cms.stopLoading();
+                            loadData();
+                        },
+                        error: function () {
+                            cms.notify('Has an error', 'error');
+                            cms.stopLoading();
+                        }
+                    });
+                });
+            } else {
+                console.log("error");
+            }
+            return true;
         });
 
         $('body').on('click', '#btnSave', function (e){
@@ -217,8 +235,7 @@
             type: "GET",
             url: "/admin/user/GetAllPaging",
             data: {
-                categoryId: $('#ddl-category-search').val(),
-                keyword: $('#txt-search-keyword').val(),
+                keyword: $('#txtKeyword').val(),
                 page: cms.configs.pageIndex,
                 pageSize: cms.configs.pageSize
             },
@@ -236,24 +253,20 @@
                             Id: item.Id,
                             UserName: item.UserName,
                             Avatar: item.Avatar === undefined ? '<img src="/admin-side/images/user.png" width=25 />' : '<img src="' + item.Avatar + '" width=25 />',
-                            DateCreated: cms.dateTimeFormatJson(item.DateCreated),
+                            DateCreated: cms.dateFormatJson(item.DateCreated),
                             Status: cms.getStatus(item.Status)
                         });
                     });
-                    $("#lbl-total-records").text(response.RowCount);
-                    if (render !== undefined) {
-                        $('#tbl-content').html(render);
-
-                    }
-                    wrapPaging(response.RowCount, function () {
-                        loadData();
-                    }, isPageChanged);
-
-
                 }
                 else {
-                    $('#tbl-content').html('');
+                    render = "<td colspan='5'>Không có dữ liệu</td>";
                 }
+                $('#tblContent').html(render);
+                $("#lblTotalRecords").text(response.RowCount);
+                $('#listContent').find('tbody tr:first').addClass('selected');
+                wrapPaging(response.RowCount, function () {
+                    loadData();
+                }, isPageChanged);
                 cms.stopLoading();
             },
             error: function (status) {
@@ -264,7 +277,7 @@
 
     function wrapPaging(recordCount, callBack, changePageSize) {
         var totalsize = Math.ceil(recordCount / cms.configs.pageSize);
-        //Unbind pagination if it existed or click change pagesize
+        var countPage = (totalsize + 4) < 7 ? (totalsize + 4) : 7;
         if ($('#paginationUL a').length === 0 || changePageSize === true) {
             $('#paginationUL').empty();
             $('#paginationUL').removeData("twbs-pagination");
@@ -273,7 +286,7 @@
         //Bind Pagination Event
         $('#paginationUL').twbsPagination({
             totalPages: totalsize,
-            visiblePages: 7,
+            visiblePages: countPage,
             first: 'Đầu',
             prev: 'Trước',
             next: 'Tiếp',
@@ -283,5 +296,10 @@
                 setTimeout(callBack(), 200);
             }
         });
+    }
+
+    this.initialize = function () {
+        loadData();
+        registerEvents();
     }
 }
