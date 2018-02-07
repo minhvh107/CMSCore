@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSCore", "CMSCore\CMSCore.csproj", "{354CFC0B-D2DB-4163-99CB-7D400A2E95E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMSCore", "CMSCore\CMSCore.csproj", "{354CFC0B-D2DB-4163-99CB-7D400A2E95E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSCore.Infrastructure", "CMSCore.Infrastructure\CMSCore.Infrastructure.csproj", "{885BF962-7B16-4CCD-B9A2-B3C7A0C26BEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMSCore.Infrastructure", "CMSCore.Infrastructure\CMSCore.Infrastructure.csproj", "{885BF962-7B16-4CCD-B9A2-B3C7A0C26BEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSCore.Utilities", "CMSCore.Utilities\CMSCore.Utilities.csproj", "{AB1F2F30-DC6C-4E5C-8024-44720568FC74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMSCore.Utilities", "CMSCore.Utilities\CMSCore.Utilities.csproj", "{AB1F2F30-DC6C-4E5C-8024-44720568FC74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSCore.Data", "CMSCore.Data\CMSCore.Data.csproj", "{5DAB1FFE-2778-4873-8FA5-508F9988C584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMSCore.Data", "CMSCore.Data\CMSCore.Data.csproj", "{5DAB1FFE-2778-4873-8FA5-508F9988C584}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSCore.Data.EF", "CMSCore.Data.EF\CMSCore.Data.EF.csproj", "{43E5DCA4-AFF7-4073-9884-77EADB34BE72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMSCore.Data.EF", "CMSCore.Data.EF\CMSCore.Data.EF.csproj", "{43E5DCA4-AFF7-4073-9884-77EADB34BE72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSCore.Application", "CMSCore.Application\CMSCore.Application.csproj", "{3249DD11-C3F4-4910-8CA4-9198D0F87C59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMSCore.Application", "CMSCore.Application\CMSCore.Application.csproj", "{3249DD11-C3F4-4910-8CA4-9198D0F87C59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{7A3CF87C-570E-4B28-B2D2-3BD344BAE4F9}"
 EndProject

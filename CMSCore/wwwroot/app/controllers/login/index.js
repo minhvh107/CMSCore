@@ -17,6 +17,13 @@
             }
         });
     }
+    var loginSubmit = function () {
+        if ($('#frmLogin').valid()) {
+            var user = $('#txtUserName').val();
+            var password = $('#txtPassword').val();
+            login(user, password);
+        }
+    }
 
     var registerEvents = function () {
         //validate
@@ -32,15 +39,16 @@
                 }
             }
         });
+        $("body").on("keypress", "#txtPassword,#txtUserName", function (e) {
+            if (e.which === 13) {
+                loginSubmit();
+            }
+        });
 
         // Login
         $('#btnLogin').on('click', function (e) {
-            if ($('#frmLogin').valid()) {
-                e.preventDefault();
-                var user = $('#txtUserName').val();
-                var password = $('#txtPassword').val();
-                login(user, password);
-            }
+            e.preventDefault();
+            loginSubmit();
         });
     }
     this.initialize = function () {

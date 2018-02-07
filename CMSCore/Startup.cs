@@ -17,6 +17,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using System;
 using CMSCore.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using CMSCore.Authorization;
 
 namespace CMSCore
 {
@@ -71,6 +73,8 @@ namespace CMSCore
             services.AddTransient<DbInitializer>();
             services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
             services.AddMvc().AddJsonOptions(option => option.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+            services.AddTransient<IAuthorizationHandler, BaseResourceAuthorizationHandler>();
 
             services.AddTransient(typeof(IUnitOfWork), typeof(EFUnitOfWork));
             services.AddTransient(typeof(IRepository<,>), typeof(EFRepository<,>));

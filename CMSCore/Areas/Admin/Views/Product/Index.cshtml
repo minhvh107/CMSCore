@@ -43,6 +43,9 @@
                 <a href="javascript:void(0);" class="margin-right-20 btnAdd"><i class="fa fa-plus fa-lg"></i> Add</a>
                 <a href="javascript:void(0);" class="margin-right-20 btnEdit"><i class="fa fa-edit fa-lg"></i> Edit</a>
                 <a href="javascript:void(0);" class="margin-right-20 btnDelete"><i class="fa fa-remove fa-lg"></i> Delete</a>
+                <a href="javascript:void(0);" class="margin-right-20 btnImport"><i class="fa fa-upload fa-lg"></i> Tải lên</a>
+                <a href="javascript:void(0);" class="margin-right-20 btnExport"><i class="fa fa-download fa-lg"></i> Tải xuống</a>
+                <a class="margin-right-20 pull-right" href="~/templates/ProductImportTemplate.xlsx"><i class="fa fa-hand-o-down fa-lg"></i>  Mẫu Template</a>
             </div>
             <div class="table-responsive table-fixed">
                 <table class="table table-striped table-bordered jambo_table bulk_action fixed_headers">
@@ -78,3 +81,4 @@
 </script>
 
 @Html.Partial("_AddEditModal")
+@Html.Partial("_ImportExcelModal")

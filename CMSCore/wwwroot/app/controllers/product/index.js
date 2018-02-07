@@ -109,11 +109,11 @@
                     });
                 });
                 var arr = cms.unflattern(data);
-                $("#ddlCategoryIdM").combotree({
+                $("#ddlCategoryIdM,#ddlCategoryIdImportExcel").combotree({
                     data: arr
                 });
                 if (selectedId != undefined) {
-                    $("#ddlCategoryIdM").combotree("setValue", selectedId);
+                    $("#ddlCategoryIdM,#ddlCategoryIdImportExcel").combotree("setValue", selectedId);
                 }
             }
         });
@@ -208,50 +208,7 @@
                 cms.notify("Không có dòng nào được chọn.", "warning");
             } else if ($(table).find("tr.selected").length == 1) {
                 var itemId = $(table).find("tr.selected").attr("item-id");
-                $.ajax({
-                    type: "GET",
-                    url: "/Admin/Product/GetById",
-                    data: { id: itemId },
-                    dataType: "json",
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        var data = response;
-                        $("#hidIdM").val(data.Id);
-                        $("#hidDateCreated").val(data.DateCreated);
-                        $("#txtNameM").val(data.Name);
-                        initTreeDropDownCategory(data.CategoryId);
-
-                        $("#txtDescM").val(data.Description);
-                        $("#txtUnitM").val(data.Unit);
-
-                        $("#txtPriceM").val(data.Price);
-                        $("#txtOriginalPriceM").val(data.OriginalPrice);
-                        $("#txtPromotionPriceM").val(data.PromotionPrice);
-
-                        $("#txtImageM").val(data.ThumbnailImage);
-
-                        $("#txtTagM").val(data.Tags);
-                        $("#txtMetakeywordM").val(data.SeoKeywords);
-                        $("#txtMetaDescriptionM").val(data.SeoDescription);
-                        $("#txtSeoPageTitleM").val(data.SeoPageTitle);
-                        $("#txtSeoAliasM").val(data.SeoAlias);
-
-                        CKEDITOR.instances.txtContent.setData(data.Content);
-                        $("#ckStatusM").prop("checked", data.Status == 1);
-                        $("#ckHotM").prop("checked", data.HotFlag);
-                        $("#ckShowHomeM").prop("checked", data.HomeFlag);
-
-                        $("#modal-add-edit").modal("show");
-                        cms.stopLoading();
-
-                    },
-                    error: function (status) {
-                        cms.notify("Có lỗi xảy ra", "error");
-                        cms.stopLoading();
-                    }
-                });
+                editProduct(itemId);
             } else {
                 console.log("error");
             }
@@ -268,105 +225,219 @@
                 cms.notify("Không có dòng nào được chọn.", "warning");
             } else if ($(table).find("tr.selected").length == 1) {
                 var itemId = $(table).find("tr.selected").attr("item-id");
-                cms.confirm("Are you sure to delete?", function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Admin/Product/Delete",
-                        data: { id: itemId },
-                        dataType: "json",
-                        beforeSend: function () {
-                            cms.startLoading();
-                        },
-                        success: function (response) {
-                            cms.notify("Delete successful", "success");
-                            cms.stopLoading();
-                            loadData();
-                        },
-                        error: function (status) {
-                            cms.notify("Has an error in delete progress", "error");
-                            cms.stopLoading();
-                        }
-                    });
-                });
+                deleteProduct(itemId);
             } else {
                 console.log("error");
             }
             return false;
         });
 
+        $("body").on("click", ".btnImport", function (e) {
+            e.preventDefault();
+            $('#modal-import-excel').modal('show');
+            initTreeDropDownCategory();
+        });
+
+        $("body").on("click", ".btnExport", function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Product/ExportExcel",
+                beforeSend: function () {
+                    cms.startLoading();
+                },
+                success: function (response) {
+                    window.location.href = response;
+                    cms.stopLoading();
+                },
+                error: function () {
+                    cms.notify('Has an error in progress', 'error');
+                    cms.stopLoading();
+                }
+            });
+        });
+
+        $("body").on("click", "#btnImportExcel", function (e) {
+            var fileUpload = $("#fileInputExcel").get(0);
+            var files = fileUpload.files;
+
+            // Create FormData object  
+            var fileData = new FormData();
+            // Looping over all files and add it to FormData object  
+            for (var i = 0; i < files.length; i++) {
+                fileData.append("files", files[i]);
+            }
+            // Adding one more key to FormData object  
+            fileData.append('categoryId', $('#ddlCategoryIdImportExcel').combotree('getValue'));
+            $.ajax({
+                url: '/Admin/Product/ImportExcel',
+                type: 'POST',
+                data: fileData,
+                beforeSend: function () {
+                    cms.startLoading();
+                },
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,  // tell jQuery not to set contentType
+                success: function (data) {
+                    $('#modal-import-excel').modal('hide');
+                    loadData();
+                    cms.stopLoading();
+                },
+                error: function () {
+                    cms.notify('Has an error in progress', 'error');
+                    cms.stopLoading();
+                }
+            });
+            return false;
+        });
+
         $("body").on("click", "#btnSave", function (e) {
             if ($("#frmMaintainance").valid()) {
                 e.preventDefault();
-                var id = $("#hidIdM").val();
-                var dateCreated = $("#hidDateCreated").val();
-
-                var name = $("#txtNameM").val();
-                var categoryId = $("#ddlCategoryIdM").combotree("getValue");
-
-                var description = $("#txtDescM").val();
-                var unit = $("#txtUnitM").val();
-
-                var price = $("#txtPriceM").val();
-                var originalPrice = $("#txtOriginalPriceM").val();
-                var promotionPrice = $("#txtPromotionPriceM").val();
-
-                var image = $("#txtImage").val();
-
-                var tags = $("#txtTagM").val();
-                var seoKeyword = $("#txtMetakeywordM").val();
-                var seoMetaDescription = $("#txtMetaDescriptionM").val();
-                var seoPageTitle = $("#txtSeoPageTitleM").val();
-                var seoAlias = $("#txtSeoAliasM").val();
-
-                var content = CKEDITOR.instances.txtContent.getData();
-                var status = $("#ckStatusM").prop("checked") == true ? 1 : 0;
-                var hot = $("#ckHotM").prop("checked");
-                var showHome = $("#ckShowHomeM").prop("checked");
-
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/Product/SaveEntity",
-                    data: {
-                        Id: id,
-                        DateCreated: dateCreated,
-                        Name: name,
-                        CategoryId: categoryId,
-                        Image: image,
-                        Price: price,
-                        OriginalPrice: originalPrice,
-                        PromotionPrice: promotionPrice,
-                        Description: description,
-                        Content: content,
-                        HomeFlag: showHome,
-                        HotFlag: hot,
-                        Tags: tags,
-                        Unit: unit,
-                        Status: status,
-                        SeoPageTitle: seoPageTitle,
-                        SeoAlias: seoAlias,
-                        SeoKeywords: seoKeyword,
-                        SeoDescription: seoMetaDescription
-                    },
-                    dataType: "json",
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        cms.notify("Update product successful", "success");
-                        $("#modal-add-edit").modal("hide");
-                        resetFormMaintainance();
-
-                        cms.stopLoading();
-                        loadData(true);
-                    },
-                    error: function () {
-                        cms.notify("Has an error in save product progress", "error");
-                        cms.stopLoading();
-                    }
-                });
+                saveProduct();
                 return false;
             }
             return false;
+        });
+    }
+
+    var editProduct = function (itemId) {
+        $.ajax({
+            type: "GET",
+            url: "/Admin/Product/GetById",
+            data: { id: itemId },
+            dataType: "json",
+            beforeSend: function () {
+                cms.startLoading();
+            },
+            success: function (response) {
+                var data = response;
+                $("#hidIdM").val(data.Id);
+                $("#hidDateCreated").val(data.DateCreated);
+                $("#txtNameM").val(data.Name);
+                initTreeDropDownCategory(data.CategoryId);
+
+                $("#txtDescM").val(data.Description);
+                $("#txtUnitM").val(data.Unit);
+
+                $("#txtPriceM").val(data.Price);
+                $("#txtOriginalPriceM").val(data.OriginalPrice);
+                $("#txtPromotionPriceM").val(data.PromotionPrice);
+
+                $("#txtImageM").val(data.ThumbnailImage);
+
+                $("#txtTagM").val(data.Tags);
+                $("#txtMetakeywordM").val(data.SeoKeywords);
+                $("#txtMetaDescriptionM").val(data.SeoDescription);
+                $("#txtSeoPageTitleM").val(data.SeoPageTitle);
+                $("#txtSeoAliasM").val(data.SeoAlias);
+
+                CKEDITOR.instances.txtContent.setData(data.Content);
+                $("#ckStatusM").prop("checked", data.Status == 1);
+                $("#ckHotM").prop("checked", data.HotFlag);
+                $("#ckShowHomeM").prop("checked", data.HomeFlag);
+
+                $("#modal-add-edit").modal("show");
+                cms.stopLoading();
+
+            },
+            error: function (status) {
+                cms.notify("Có lỗi xảy ra", "error");
+                cms.stopLoading();
+            }
+        });
+    }
+
+    var deleteProduct = function (itemId) {
+        cms.confirm("Are you sure to delete?", function () {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Product/Delete",
+                data: { id: itemId },
+                dataType: "json",
+                beforeSend: function () {
+                    cms.startLoading();
+                },
+                success: function (response) {
+                    cms.notify("Delete successful", "success");
+                    cms.stopLoading();
+                    loadData();
+                },
+                error: function (status) {
+                    cms.notify("Has an error in delete progress", "error");
+                    cms.stopLoading();
+                }
+            });
+        });
+    }
+
+    var saveProduct = function () {
+        var id = $("#hidIdM").val();
+        var dateCreated = $("#hidDateCreated").val();
+
+        var name = $("#txtNameM").val();
+        var categoryId = $("#ddlCategoryIdM").combotree("getValue");
+
+        var description = $("#txtDescM").val();
+        var unit = $("#txtUnitM").val();
+
+        var price = $("#txtPriceM").val();
+        var originalPrice = $("#txtOriginalPriceM").val();
+        var promotionPrice = $("#txtPromotionPriceM").val();
+
+        var image = $("#txtImage").val();
+
+        var tags = $("#txtTagM").val();
+        var seoKeyword = $("#txtMetakeywordM").val();
+        var seoMetaDescription = $("#txtMetaDescriptionM").val();
+        var seoPageTitle = $("#txtSeoPageTitleM").val();
+        var seoAlias = $("#txtSeoAliasM").val();
+
+        var content = CKEDITOR.instances.txtContent.getData();
+        var status = $("#ckStatusM").prop("checked") == true ? 1 : 0;
+        var hot = $("#ckHotM").prop("checked");
+        var showHome = $("#ckShowHomeM").prop("checked");
+
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Product/SaveEntity",
+            data: {
+                Id: id,
+                DateCreated: dateCreated,
+                Name: name,
+                CategoryId: categoryId,
+                Image: image,
+                Price: price,
+                OriginalPrice: originalPrice,
+                PromotionPrice: promotionPrice,
+                Description: description,
+                Content: content,
+                HomeFlag: showHome,
+                HotFlag: hot,
+                Tags: tags,
+                Unit: unit,
+                Status: status,
+                SeoPageTitle: seoPageTitle,
+                SeoAlias: seoAlias,
+                SeoKeywords: seoKeyword,
+                SeoDescription: seoMetaDescription
+            },
+            dataType: "json",
+            beforeSend: function () {
+                cms.startLoading();
+            },
+            success: function (response) {
+                cms.notify("Update product successful", "success");
+                $("#modal-add-edit").modal("hide");
+                resetFormMaintainance();
+
+                cms.stopLoading();
+                loadData(true);
+            },
+            error: function () {
+                cms.notify("Has an error in save product progress", "error");
+                cms.stopLoading();
+            }
         });
     }
 

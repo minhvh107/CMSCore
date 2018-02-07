@@ -27,46 +27,56 @@
     <link href="~/lib/notifyjs/dist/styles/metro/notify-metro.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
     <link href="~/admin-side/css/custom.css" rel="stylesheet" />
+    <link href="~/admin-side/css/style.css" rel="stylesheet" />
 </head>
 
-<body class="login">
-    <div>
+<body class="nav-md">
+    <div class="container body">
 
-        <div class="login_wrapper">
-            <div class="animate form login_form">
-                <section class="login_content">
-                    <form id="frmLogin">
-                        @Html.AntiForgeryToken()
-                        <h1>Đăng nhập</h1>
-                        <div>
-                            <input type="text" class="form-control" name="userName" placeholder="UserName" id="txtUserName" required="" />
-                        </div>
-                        <div>
-                            <input type="password" class="form-control" name="password" id="txtPassword" placeholder="Password" required="" />
-                        </div>
-                        <div>
-                            <a class="btn btn-default submit" href="#" id="btnLogin">Login</a>
-                            <a class="reset_pass" href="#">Forgot password?</a>
-                        </div>
-
+        <div class="row form-login">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Đăng nhập vào hệ thống</h2>
                         <div class="clearfix"></div>
-
-                        <div class="separator">
-
-                            <div class="clearfix"></div>
-                            <br />
-
-                            <div>
-                                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                    </div>
+                    <div class="">
+                        <br>
+                        <form id="frmLogin" class="form-horizontal">
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label class="col-md-3 col-sm-3 col-xs-12 required">Tên đăng nhập</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control" name="userName" placeholder="UserName" id="txtUserName" required="" />
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </section>
+                            <div class="form-group">
+                                <label class="col-md-3 col-sm-3 col-xs-12 required">Mật khẩu</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="password" class="form-control" name="password" id="txtPassword" placeholder="Password" required="" />
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    <label for="RememberMe" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3">
+                                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "flat" })
+                                        Nhớ mật khẩu
+                                    </label>
+                                </div>*@
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3">
+                                    <button type="button" class="btn btn-success" id="btnLogin">Đăng nhập</button>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <a class="reset_pass" href="#">Forgot password?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
+
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/notifyjs/dist/notify.js"></script>
     <script src="~/lib/notifyjs/dist/styles/metro/notify-metro.js"></script>
