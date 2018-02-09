@@ -42,7 +42,7 @@ namespace CMSCore.Application.Implementation
 
         public PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
         {
-            var query = _productRepository.FindAll(m => m.Status == Status.Active);
+            var query = _productRepository.FindAll(m => m.IsDelete == false);
             if (!string.IsNullOrEmpty(keyword))
                 query = query.Where(m => m.Name == keyword);
             if (categoryId.HasValue)

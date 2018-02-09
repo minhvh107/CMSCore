@@ -62,5 +62,7 @@ namespace CMSCore.Application.ViewModels.Product
         public DateTime DateModified { set; get; }
 
         public Status Status { set; get; }
+
+        public bool isDelete { set; get; }
     }
 }

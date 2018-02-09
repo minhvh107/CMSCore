@@ -1,17 +1,16 @@
-﻿using System;
+﻿using CMSCore.Data.Enums;
+using CMSCore.Data.Interfaces;
+using CMSCore.Infrastructure.SharedKernel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using CMSCore.Data.Enums;
-using CMSCore.Data.Interfaces;
-using CMSCore.Infrastructure.SharedKernel;
 
 namespace CMSCore.Data.Entities
 {
     [Table("Products")]
-    public class Product : DomainEntity<int>, ISwitchable, IDateTracking, IHasSeoMetaData
+    public class Product : DomainEntity<int>, ISwitchable, IDateTracking, IHasSeoMetaData, IHasSoftDelete
     {
         public Product()
         {
@@ -21,7 +20,7 @@ namespace CMSCore.Data.Entities
         public Product(string name, int categoryId, string thumbnailImage,
             decimal price, decimal originalPrice, decimal? promotionPrice,
             string description, string content, bool? homeFlag, bool? hotFlag,
-            string tags, string unit, Status status, string seoPageTitle,
+            string tags, string unit, Status status,bool isDelete, string seoPageTitle,
             string seoAlias, string seoMetaKeyword,
             string seoMetaDescription)
         {
@@ -38,18 +37,18 @@ namespace CMSCore.Data.Entities
             Tags = tags;
             Unit = unit;
             Status = status;
+            IsDelete = isDelete;
             SeoPageTitle = seoPageTitle;
             SeoAlias = seoAlias;
             SeoKeywords = seoMetaKeyword;
             SeoDescription = seoMetaDescription;
             ProductTags = new List<ProductTag>();
-
         }
 
         public Product(int id, string name, int categoryId, string thumbnailImage,
             decimal price, decimal originalPrice, decimal? promotionPrice,
             string description, string content, bool? homeFlag, bool? hotFlag,
-            string tags, string unit, Status status, string seoPageTitle,
+            string tags, string unit, Status status, bool isDelete, string seoPageTitle,
             string seoAlias, string seoMetaKeyword,
             string seoMetaDescription)
         {
@@ -67,13 +66,14 @@ namespace CMSCore.Data.Entities
             Tags = tags;
             Unit = unit;
             Status = status;
+            IsDelete = isDelete;
             SeoPageTitle = seoPageTitle;
             SeoAlias = seoAlias;
             SeoKeywords = seoMetaKeyword;
             SeoDescription = seoMetaDescription;
             ProductTags = new List<ProductTag>();
-
         }
+
         [StringLength(255)]
         [Required]
         public string Name { get; set; }
@@ -115,21 +115,23 @@ namespace CMSCore.Data.Entities
 
         public virtual ICollection<ProductTag> ProductTags { set; get; }
 
-        public string SeoPageTitle {set;get;}
+        public string SeoPageTitle { set; get; }
 
-        [Column(TypeName ="varchar(255)")]
+        [Column(TypeName = "varchar(255)")]
         [StringLength(255)]
-        public string SeoAlias {set;get;}
-
-        [StringLength(255)]
-        public string SeoKeywords {set;get;}
+        public string SeoAlias { set; get; }
 
         [StringLength(255)]
-        public string SeoDescription {set;get;}
+        public string SeoKeywords { set; get; }
 
-        public DateTime DateCreated {set;get;}
-        public DateTime DateModified {set;get;}
+        [StringLength(255)]
+        public string SeoDescription { set; get; }
 
-        public Status Status {set;get;}
+        public DateTime DateCreated { set; get; }
+        public DateTime DateModified { set; get; }
+
+        public Status Status { set; get; }
+
+        public bool IsDelete { set; get; }
     }
 }

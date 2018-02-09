@@ -31,7 +31,14 @@ namespace CMSCore.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var categoryId = "";
+            var keyword = "";
+            var page = 1;
+            var pageSize = 10;
+
+
+            var model = _productService.GetAllPaging(categoryId, keyword, page, pageSize);
+            return View(model);
         }
 
         #region Ajax Api
