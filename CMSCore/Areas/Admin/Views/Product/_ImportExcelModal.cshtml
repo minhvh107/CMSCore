@@ -1,42 +1,48 @@
-﻿<div id="modal-import-excel" class="bootbox modal fade modal-darkorange in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Add edit product</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" role="form" id="frmMaintainance">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Thông tin chung</h3>
+﻿@using CMSCore.Data.Enums
+@model CMSCore.Application.ViewModels.Product.ProductViewModel
+@{
+    var title = "Thêm nhiều sản phẩm";
+}
+<div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">@title</h4>
+        </div>
+        <div class="modal-body">
+            <form action="/Admin/Product/ImportExcel" method="post" id="frmSave" class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Thông tin chung</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.CategoryId, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                @Html.DropDownListFor(m => m.CategoryId, Model.ListProductCate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "error" })
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FileExcel, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                <div class="input-group">
+                                    @*@Html.TextBoxFor(m => m.FileExcel, new { @class = "form-control" })*@
+                                    <input type="file" class="fileInputExcel" value="Nhập file"/>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="row form-group">
-                                        <label for="ddlCategoryIdM" class="col-md-3 col-sm-12 col-xs-12 required">Category</label>
-                                        <div class="col-md-9 col-sm-12 col-xs-12">
-                                            <input id="ddlCategoryIdImportExcel" required class="form-control" name="ddlCategoryIdM" value="" style="width:500px;">
-                                        </div>
-                                    </div>
 
-                                    <div class="row form-group">
-                                        <label for="txtSeoPageTitleM" class="col-md-3 col-sm-12 col-xs-12 required">Chọn file</label>
-                                        <div class="col-md-9 col-sm-12 col-xs-12">
-                                            <input type="file" id="fileInputExcel" />
-                                        </div>
-                                    </div>
-                                </div>
+                                @Html.ValidationMessageFor(m => m.FileExcel, "", new { @class = "error" })
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-save" id="btnImportExcel"><i class="fa fa-save fa-lg"></i> Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Cancel</button>
-            </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-import"><i class="fa fa-save fa-lg"></i> Cập nhật</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Quay lại</button>
         </div>
     </div>
 </div>

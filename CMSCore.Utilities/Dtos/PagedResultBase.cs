@@ -4,8 +4,10 @@ namespace CMSCore.Utilities.Dtos
 {
     public abstract class PagedResultBase
     {
+        // trang hiện tại
         public int CurrentPage { get; set; }
 
+        // tổng số page
         public int PageCount
         {
             get
@@ -16,8 +18,10 @@ namespace CMSCore.Utilities.Dtos
             set { PageCount = value; }
         }
 
+        // số lượng trên 1 page
         public int PageSize { get; set; }
 
+        // tổng số
         public int RowCount { get; set; }
 
         public int FirstRowOnPage
@@ -35,5 +39,7 @@ namespace CMSCore.Utilities.Dtos
                 return Math.Min(CurrentPage * PageSize, RowCount);
             }
         }
+
+        public string Keyword { get; set; }
     }
 }

@@ -10,7 +10,7 @@
             url: '/admin/login/authen',
             success: function (res) {
                 if (res.Success) {
-                    window.location.href = "/Admin/Home/Index";
+                    window.location.href = "/Admin/Admin/Index";
                 } else {
                     cms.notify('Login Failed', 'error');
                 }

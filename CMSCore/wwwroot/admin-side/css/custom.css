@@ -1026,9 +1026,9 @@ h2 {
     display: block;
 }
 
-.accordion .panel:hover {
+/*.accordion .panel:hover {
     background: #F2F5F7;
-}
+}*/
 
 .x_panel {
     position: relative;

@@ -34,11 +34,11 @@ namespace CMSCore.Application.Implementation
                 PhoneNumber = userVm.PhoneNumber
             };
             var result = await _userManager.CreateAsync(user, userVm.Password);
-            if (result.Succeeded && userVm.Roles.Count > 0)
+            if (result.Succeeded && userVm.ListRoles.Count > 0)
             {
                 var appUser = await _userManager.FindByNameAsync(user.UserName);
                 if (appUser != null)
-                    await _userManager.AddToRolesAsync(appUser, userVm.Roles);
+                    await _userManager.AddToRolesAsync(appUser, userVm.ListRoles);
             }
             return true;
         }
@@ -94,7 +94,7 @@ namespace CMSCore.Application.Implementation
             var user = await _userManager.FindByIdAsync(id);
             var roles = await _userManager.GetRolesAsync(user);
             var userVm = Mapper.Map<AppUser, AppUserViewModel>(user);
-            userVm.Roles = roles.ToList();
+            userVm.ListRoles = roles.ToList();
             return userVm;
         }
 
@@ -105,11 +105,11 @@ namespace CMSCore.Application.Implementation
             var currentRoles = await _userManager.GetRolesAsync(user);
 
             var result = await _userManager.AddToRolesAsync(user,
-                userVm.Roles.Except(currentRoles).ToArray());
+                userVm.ListRoles.Except(currentRoles).ToArray());
 
             if (result.Succeeded)
             {
-                string[] needRemoveRoles = currentRoles.Except(userVm.Roles).ToArray();
+                string[] needRemoveRoles = currentRoles.Except(userVm.ListRoles).ToArray();
                 await _userManager.RemoveFromRolesAsync(user, needRemoveRoles);
 
                 //Update user detail

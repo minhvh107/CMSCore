@@ -1,0 +1,117 @@
+﻿@model CMSCore.Utilities.Dtos.PagedResultBase
+@{
+    var totalPage = Math.Ceiling(Model.RowCount * 1f / Model.PageSize);
+    var activePage = Model.CurrentPage;
+    var from = (activePage - 1) * Model.PageSize + 1;
+    var to = Model.PageSize * Model.PageCount;
+    if (Model.RowCount == 0)
+    {
+        from = 0;
+        to = 0;
+    }
+    else if (Model.RowCount < Model.PageSize * Model.PageCount)
+    {
+        to = Model.RowCount;
+    }
+    int[] arrayPage = new[] { 10, 20, 50, 100 };
+}
+<div class="row fixed-table-pagination">
+    <div class="col-md-8 col-sm-6 col-xs-12">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12 width-auto">
+                <ul class="pagination">
+                    @if (activePage <= 1)
+                    {
+                        <li class="page-first disabled"><a href="javascript:void(0)" class="disabled"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+                        <li class="page-pre disabled"><a href="javascript:void(0)" class="disabled"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                    }
+                    else
+                    {
+                        <li class="page-number page-first" page-number="1"><a href="javascript:void(0)" class="first-page"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+                        <li class="page-number page-pre" page-number="@(activePage - 1)"><a href="javascript:void(0)" class="pre-page"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                    }
+
+                    @for (int i = 1; i <= totalPage; i++)
+                    {
+                        if (i == (activePage - 1))
+                        {
+                            <li class="page-number page-number" page-number="@i"><a href="javascript:void(0)" class="">@i</a></li>
+                        }
+                        else if (i == activePage)
+                        {
+                            <li class="active"><a href="javascript:void(0)" class="">@i</a></li>
+                        }
+                        else if (i == (activePage + 1))
+                        {
+                            <li class="page-number page-number" page-number="@i"><a href="javascript:void(0)" class="">@i</a></li>
+                        }
+
+                    }
+
+                    @if (activePage == Convert.ToInt32(totalPage) || (int)totalPage == 0)
+                    {
+                        <li class="page-next disabled"><a href="javascript:void(0)" class="disabled"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li class="page-last disabled"><a href="javascript:void(0)" class="disabled"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                    }
+                    else
+                    {
+                        <li class="page-number page-next" page-number="@(activePage + 1)"><a href="javascript:void(0)" class="next-page"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li class="page-number page-last" page-number="@totalPage"><a href="javascript:void(0)" class="last-page"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                    }
+                </ul>
+
+            </div>
+            <label class="control-label col-md-2 col-sm-6 col-xs-6 width-auto">
+                Số dòng
+            </label>
+            <div class="col-md-3 col-sm-6 col-xs-6 width-auto" style="line-height: 30px;">
+                <select class="form-control page-size">
+                    @foreach (var i in arrayPage)
+                    {
+                        if (i == Model.PageSize)
+                        {
+                            <option value="@i" selected>@i</option>
+                        }
+                        else
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    }
+                </select>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12 text-right show-result-number">
+        <div class="pagination">
+            <span class="pagination-info">Hiển thị @from đến @to của @Model.RowCount dòng</span>
+        </div>
+    </div>
+</div>
+@*<div class="row fixed-table-pagination">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+            <div class="row">
+                <div class="col-md-5 col-sm-12 col-xs-12 width-auto">
+                    <ul class="pagination" id="paginationUL">
+
+                    </ul>
+                </div>
+                <label class="control-label col-md-2 col-sm-6 col-xs-6 width-auto">
+                    Số dòng
+                </label>
+                <div class="col-md-3 col-sm-6 col-xs-6 width-auto" style="line-height: 30px;">
+                    <select class="form-control page-size" id="ddlShowPage">
+                        <option value="10" selected="selected">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12 text-right show-result-number">
+            <div class="pagination">
+                <span class="pagination-info">Tổng số bản ghi: <strong id="lblRowCounts"></strong></span>
+            </div>
+        </div>
+    </div>*@

@@ -564,6 +564,8 @@ namespace CMSCore.Data.EF.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(255);
 
+                    b.Property<bool>("IsDelete");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255);
@@ -585,6 +587,8 @@ namespace CMSCore.Data.EF.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("SeoPageTitle");
+
+                    b.Property<int>("SortOrder");
 
                     b.Property<int>("Status");
 
@@ -1021,7 +1025,7 @@ namespace CMSCore.Data.EF.Migrations
             modelBuilder.Entity("CMSCore.Data.Entities.ProductTag", b =>
                 {
                     b.HasOne("CMSCore.Data.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductTags")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
 

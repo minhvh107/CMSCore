@@ -1,76 +1,130 @@
-﻿<div id="modal-add-edit" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Add/edit user</h4>
-            </div>
-            <div class="modal-body">
-                <div id="horizontal-form">
-                    <form class="form-horizontal" role="form" id="frmMaintainance">
+﻿@using CMSCore.Data.Enums
+@model CMSCore.Application.ViewModels.System.AppUserViewModel
+@{
+    var isEdit = Model.IsEdit;
+    var isView = Model.IsView;
 
-                        <div class="form-group">
-                            <input type="hidden" id="hidId" value="" />
-                            <label for="txtFullName" class="col-sm-2 control-label">Full name</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="txtFullName" class="form-control" id="txtFullName">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtUserName" class="col-sm-2 control-label">Username</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="txtUserName" class="form-control" id="txtUserName" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtPassword" class="col-sm-2 control-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" name="txtPassword" class="form-control" id="txtPassword" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtConfirmPassword" class="col-sm-2 control-label">Confirm password</label>
-                            <div class="col-sm-10">
-                                <input type="password" name="txtConfirmPassword" class="form-control" id="txtConfirmPassword">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtEmail" class="col-sm-2 control-label ">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" name="txtEmail" class="form-control" id="txtEmail">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtPhoneNumber" class="col-sm-2 control-label">Mobile phone</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="txtPhoneNumber" class="form-control" id="txtPhoneNumber">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Roles</label>
-                            <div class="col-sm-10" id="list-roles">
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" checked="checked" id="ckStatus">
-                                        <span class="text">Active.</span>
-                                    </label>
+    var title = isEdit ? "Sửa tài khoản" : "Thêm tài khoản";
+    title = isView ? "Thông tin tài khoản" : title;
+}
+<div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">@title</h4>
+        </div>
+        <div class="modal-body">
+            <form action="/Admin/User/SaveItem" method="post" id="frmSave" class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel">
+                        <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4 class="panel-title">Thông tin chung</h4>
+                        </a>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                @Html.HiddenFor(m => m.Id)
+                                @Html.HiddenFor(m => m.DateCreated)
+                                @Html.HiddenFor(m => m.IsEdit)
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.UserName, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "error" })
+                                    </div>
+                                </div>
+                                @if (!isView)
+                                {
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Password, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "error" })
+                                        </div>
+                                    </div>
+                                }
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ListRoles, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.DropDownListFor(m => m.ListRoles,Model.ListAppRoleViewModels, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.ListRoles, "", new { @class = "error" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Status, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="flat" id="Status" name="Status" checked="@(Model.Status == Status.Active)" />
+                                                <span class="text">Kích hoạt</span>
+                                            </label>
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="button" id="btnSave" class="btn btn-success">Save</button>
-                                <button type="button" id="btnCancel" data-dismiss="modal" class="btn btn-default">Close</button>
+                    </div>
+                    <div class="panel">
+                        <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4 class="panel-title">Chi tiết tài khoản</h4>
+                        </a>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.FullName, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "error" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.BirthDay, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.BirthDay, new { @class = "form-control datepicker" })
+                                        @Html.ValidationMessageFor(m => m.BirthDay, "", new { @class = "error" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "error" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "error" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Address, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "error" })
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            @if (!isView)
+            {
+                <button type="button" class="btn btn-primary btn-save"><i class="fa fa-save fa-lg"></i> Cập nhật</button>
+            }
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Quay lại</button>
         </div>
     </div>
 </div>

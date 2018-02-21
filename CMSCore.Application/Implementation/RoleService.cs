@@ -17,10 +17,10 @@ namespace CMSCore.Application.Implementation
 {
     public class RoleService : IRoleService
     {
-        private RoleManager<AppRole> _roleManager;
-        private IFunctionRepository _functionRepository;
-        private IPermissionRepository _permissionRepository;
-        private IUnitOfWork _unitOfWork;
+        private readonly RoleManager<AppRole> _roleManager;
+        private readonly IFunctionRepository _functionRepository;
+        private readonly IPermissionRepository _permissionRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public RoleService(RoleManager<AppRole> roleManager, IUnitOfWork unitOfWork,
          IFunctionRepository functionRepository, IPermissionRepository permissionRepository)

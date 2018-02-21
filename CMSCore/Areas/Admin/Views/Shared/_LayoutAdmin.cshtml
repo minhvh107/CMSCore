@@ -1,0 +1,129 @@
+﻿@using CMSCore.Extensions;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Trang Quản trị </title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="~/lib/icheck/skins/flat/green.css" />
+
+        <link rel="stylesheet" href="~/lib/pnotify/dist/pnotify.css" />
+        <link rel="stylesheet" href="~/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="~/css/jquery-confirm.min.css" />
+
+        <link rel="stylesheet" href="~/lib/select2/dist/css/select2.min.css" />
+
+        <link rel="stylesheet" href="~/admin-side/css/custom.css" />
+        <link rel="stylesheet" href="~/admin-side/css/style.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/admin.min.css" asp-append-version="true" />
+    </environment>
+    @RenderSection("Styles", required: false)
+</head>
+
+<body class="nav-sm footer_fixed">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="/admin/admin" class="site_title"><i class="fa fa-paw"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        @await Component.InvokeAsync("SideBar")
+
+                    </div>
+                    <!-- /sidebar menu -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+    </div>
+
+<div class="modal mainmodal" id="myModal" role="document">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-save">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<environment include="Development">
+    <script src="~/js/jquery-1.12.4.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/icheck/icheck.js"></script>
+
+    <script src="~/lib/fastclick/lib/fastclick.js"></script>
+    <script src="~/lib/nprogress/nprogress.js"></script>
+    <script src="~/lib/jquery-sparkline/dist/jquery.sparkline.js"></script>
+
+    <script src="~/lib/mustache/mustache.js"></script>
+    <script src="~/js/spin.min.js"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+
+    <script src="~/lib/select2/dist/js/select2.min.js"></script>
+    <script src="~/lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="~/js/moment.min.js"></script>
+
+    <script src="~/js/moment-with-locales.js"></script>
+    <script src="~/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/js/jquery.number.js"></script>
+    <script src="~/lib/pnotify/dist/pnotify.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/js/jquery-confirm.min.js"></script>
+
+    <script src="~/admin-side/js/custom.js"></script>
+    <script src="~/admin-side/js/mainJs.js"></script>
+
+</environment>
+    <environment exclude="Development">
+        <script src="~/js/admin.min.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

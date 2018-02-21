@@ -41,13 +41,14 @@ $(document).ready(function () {
     var setXContent = function () {
         // reset height
         $RIGHT_COL.css('min-height', $(window).height());
-        var bodyHeight = $BODY.outerHeight();
+        //var bodyHeight = $BODY.innerHeight();
+        var bodyHeight = $(window).height();
         // normalize content
         //contentHeight -= $NAV_MENU.height() + footerHeight;
-        var nav_menuHeight = $NAV_MENU.outerHeight(),
-            page_titleHeight = $(".page-title").outerHeight(),
+        var nav_menuHeight = $NAV_MENU.innerHeight(),
+            page_titleHeight = $(".page-title").innerHeight(),
             x_titleHeight = $(".x_title").outerHeight();
-        var x_contentHeight = bodyHeight - nav_menuHeight - page_titleHeight - x_titleHeight -80;
+        var x_contentHeight = bodyHeight - nav_menuHeight - page_titleHeight - x_titleHeight -50;
 
         $X_CONTENT.css('height', x_contentHeight);
 

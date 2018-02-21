@@ -1,24 +1,25 @@
 ﻿using AutoMapper;
 using CMSCore.Application.Implementation;
 using CMSCore.Application.Interfaces;
+using CMSCore.Authorization;
 using CMSCore.Data.EF;
 using CMSCore.Data.EF.Repositories;
 using CMSCore.Data.Entities;
 using CMSCore.Data.IRepositories;
 using CMSCore.Helpers;
+using CMSCore.Infrastructure.Interfaces;
 using CMSCore.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using System;
-using CMSCore.Infrastructure.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using CMSCore.Authorization;
 
 namespace CMSCore
 {
@@ -60,6 +61,15 @@ namespace CMSCore
                 options.User.RequireUniqueEmail = true;
             });
 
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.ViewLocationExpanders.Add(new ViewLocationExpander());
+            });
+            //services.AddMemoryCache();
+            //services.AddSession();
+            services.AddMvc();
+            // services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+
             // Add application services.
             services.AddAutoMapper();
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
@@ -92,7 +102,7 @@ namespace CMSCore
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
-
+            services.AddScoped<IViewRenderService, ViewRenderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,11 +127,12 @@ namespace CMSCore
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(name: "areaRoute",
-                    template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

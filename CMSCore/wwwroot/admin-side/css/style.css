@@ -737,8 +737,8 @@ ul.select2-results__options {
     overflow: hidden;
 }
 
-#modal-add-edit .modal-lg .modal-body, #modal-grantpermission .modal-lg .modal-body {
-    max-height: 450px;
+#myModal .modal-lg .modal-body, #modal-grantpermission .modal-lg .modal-body {
+    height: 450px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -771,4 +771,7 @@ label {
 }
 .form-login{
     margin-top:200px
+}
+.modal-open .modal {
+    display: block;
 }

@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CMSCore.Data.Entities
 {
     [Table("Products")]
-    public class Product : DomainEntity<int>, ISwitchable, IDateTracking, IHasSeoMetaData, IHasSoftDelete
+    public class Product : DomainEntity<int>, ISwitchable, IDateTracking, IHasSeoMetaData, IHasSoftDelete, ISortable
     {
         public Product()
         {
@@ -20,7 +20,7 @@ namespace CMSCore.Data.Entities
         public Product(string name, int categoryId, string thumbnailImage,
             decimal price, decimal originalPrice, decimal? promotionPrice,
             string description, string content, bool? homeFlag, bool? hotFlag,
-            string tags, string unit, Status status,bool isDelete, string seoPageTitle,
+            string tags, string unit, Status status,bool isDelete,int sortOrder, string seoPageTitle,
             string seoAlias, string seoMetaKeyword,
             string seoMetaDescription)
         {
@@ -38,6 +38,7 @@ namespace CMSCore.Data.Entities
             Unit = unit;
             Status = status;
             IsDelete = isDelete;
+            SortOrder = sortOrder;
             SeoPageTitle = seoPageTitle;
             SeoAlias = seoAlias;
             SeoKeywords = seoMetaKeyword;
@@ -48,7 +49,7 @@ namespace CMSCore.Data.Entities
         public Product(int id, string name, int categoryId, string thumbnailImage,
             decimal price, decimal originalPrice, decimal? promotionPrice,
             string description, string content, bool? homeFlag, bool? hotFlag,
-            string tags, string unit, Status status, bool isDelete, string seoPageTitle,
+            string tags, string unit, Status status, bool isDelete,int sortOrder, string seoPageTitle,
             string seoAlias, string seoMetaKeyword,
             string seoMetaDescription)
         {
@@ -67,6 +68,7 @@ namespace CMSCore.Data.Entities
             Unit = unit;
             Status = status;
             IsDelete = isDelete;
+            SortOrder = sortOrder;
             SeoPageTitle = seoPageTitle;
             SeoAlias = seoAlias;
             SeoKeywords = seoMetaKeyword;
@@ -133,5 +135,6 @@ namespace CMSCore.Data.Entities
         public Status Status { set; get; }
 
         public bool IsDelete { set; get; }
+        public int SortOrder { get; set; }
     }
 }

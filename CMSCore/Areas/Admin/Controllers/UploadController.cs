@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using CMSCore.Utilities.Helpers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using CMSCore.Utilities.Constants;
 
 namespace CMSCore.Areas.Admin.Controllers
 {
@@ -63,7 +65,12 @@ namespace CMSCore.Areas.Admin.Controllers
             var files = Request.Form.Files;
             if (files.Count == 0)
             {
-                return new BadRequestObjectResult(files);
+                return Json(new JsonResponse
+                {
+                    Success = true,
+                    Message = Constants.GetDataFailed,
+                    StatusCode = Utilities.Constants.StatusCode.GetDataFailed
+                });
             }
             else
             {
@@ -87,7 +94,13 @@ namespace CMSCore.Areas.Admin.Controllers
                     file.CopyTo(fs);
                     fs.Flush();
                 }
-                return new OkObjectResult(Path.Combine(imageFolder, filename).Replace(@"\", @"/"));
+                return Json(new JsonResponse
+                {
+                    Success = true,
+                    Message = Constants.GetDataSuccess,
+                    StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                    Data = Path.Combine(imageFolder, filename).Replace(@"\", @"/")
+                });
             }
         }
     }
