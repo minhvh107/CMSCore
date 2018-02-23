@@ -48,9 +48,13 @@ namespace CMSCore.Areas.Admin.Controllers
             const int pageSize = 10;
             var lstObj = _userService.GetAllPagingAsync(keyword, currentPage, pageSize);
 
+            var idFirst = lstObj.Results.First();
+            var lstRoles = _userService.GetById(idFirst.Id.ToString());
+
             var model = new PageAppUserViewModel
             {
                 ListAppUserViewModels = lstObj.Results,
+                ListAppRoleViewModels = lstRoles.Result.ListRoles
                 PagedResult = lstObj
             };
 
@@ -232,7 +236,7 @@ namespace CMSCore.Areas.Admin.Controllers
             {
                 Value = m.Name,
                 Text = m.Description,
-                //Selected = obj.Result.ListRoles.FirstOrDefault(t => t.Contains(m.Name)) != null
+                Selected = obj.Result.ListRoles.FirstOrDefault(t => t.Contains(m.Name)) != null
             }));
             obj.Result.ListAppRoleViewModels = lstSelect;
 

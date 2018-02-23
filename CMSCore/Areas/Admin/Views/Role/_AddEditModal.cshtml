@@ -1,44 +1,56 @@
-﻿<div id="modal-add-edit" class="bootbox modal fade modal-darkorange in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Add/edit role</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" role="form" id="frmMaintainance">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Thông tin chung</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <input type="hidden" id="hidId" value="0" />
-                                    <input type="hidden" id="hidDateCreated" value="@DateTime.Now" />
-                                    <div class="row form-group">
-                                        <label for="txtName" class="col-md-2 col-sm-12 col-xs-12 required">Role name</label>
-                                        <div class="col-md-10 col-sm-12 col-xs-12">
-                                            <input type="text" name="txtName" class="form-control" id="txtName">
-                                        </div>
-                                    </div>
+﻿@using CMSCore.Data.Enums
+@model CMSCore.Application.ViewModels.System.AppRoleViewModel
+@{
+    var isEdit = Model.IsEdit;
+    var isView = Model.IsView;
 
-                                    <div class="row form-group">
-                                        <label for="txtDescription" class="col-md-2 col-sm-12 col-xs-12 required">Description</label>
-                                        <div class="col-md-10 col-sm-12 col-xs-12">
-                                            <textarea rows="4" name="txtDescription" class="form-control" id="txtDescription"></textarea>
-                                        </div>
+    var title = isEdit ? "Sửa quyền" : "Thêm quyền";
+    title = isView ? "Thông tin quyền" : title;
+}
+<div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">@title</h4>
+        </div>
+        <div class="modal-body">
+            <form action="/Admin/Role/SaveItem" method="post" id="frmSave" class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel">
+                        <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4 class="panel-title">Thông tin chung</h4>
+                        </a>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                @Html.HiddenFor(m => m.Id)
+                                @Html.HiddenFor(m => m.IsEdit)
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Name, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "error" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Description, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "error" })
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnSave"><i class="fa fa-save fa-lg"></i> Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Cancel</button>
-            </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            @if (!isView)
+            {
+                <button type="button" class="btn btn-primary btn-save"><i class="fa fa-save fa-lg"></i> Cập nhật</button>
+            }
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Quay lại</button>
         </div>
     </div>
 </div>

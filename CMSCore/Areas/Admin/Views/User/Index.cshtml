@@ -35,3 +35,8 @@
         @{Html.RenderPartial("~/Areas/Admin/Views/Shared/_CommonPagination.cshtml", Model.PagedResult);}
     </div>
 </div>
+<div class="x_panel">
+    <div id="listRoles">
+        @{ Html.RenderPartial("_ListRoles", Model.ListUser.FirstOrDefault()?.ListRoles ?? new List<UserRole>());}
+    </div>
+</div>

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Admin\Components\PaginationViewComponent.cs" />
+    <Compile Remove="Helpers\AdminAuthorize.cs" />
   </ItemGroup>
 
 

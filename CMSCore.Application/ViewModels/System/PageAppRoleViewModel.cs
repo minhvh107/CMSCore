@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 namespace CMSCore.Application.ViewModels.System
 {
-    public class PageAppUserViewModel
+    public class PageAppRoleViewModel
     {
-        public PageAppUserViewModel()
+        public PageAppRoleViewModel()
         {
-            ListAppUserViewModels = new List<AppUserViewModel>();
+            ListAppRoleViewModels = new List<AppRoleViewModel>();
         }
 
         public PagedResultBase PagedResult { set; get; }
-        public IList<AppUserViewModel> ListAppUserViewModels { set; get; }
         public IList<AppRoleViewModel> ListAppRoleViewModels { set; get; }
     }
 }
