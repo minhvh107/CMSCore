@@ -54,7 +54,7 @@ namespace CMSCore.Areas.Admin.Controllers
             var model = new PageAppUserViewModel
             {
                 ListAppUserViewModels = lstObj.Results,
-                ListAppRoleViewModels = lstRoles.Result.ListRoles
+                ListAppRoleViewModels = lstRoles.Result.ListRoles,
                 PagedResult = lstObj
             };
 

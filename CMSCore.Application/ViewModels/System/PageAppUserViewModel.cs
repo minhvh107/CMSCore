@@ -1,4 +1,5 @@
-﻿using CMSCore.Utilities.Dtos;
+﻿using System;
+using CMSCore.Utilities.Dtos;
 using System.Collections.Generic;
 
 namespace CMSCore.Application.ViewModels.System
@@ -12,6 +13,6 @@ namespace CMSCore.Application.ViewModels.System
 
         public PagedResultBase PagedResult { set; get; }
         public IList<AppUserViewModel> ListAppUserViewModels { set; get; }
-        public IList<AppRoleViewModel> ListAppRoleViewModels { set; get; }
+        public IList<String> ListAppRoleViewModels { set; get; }
     }
 }
