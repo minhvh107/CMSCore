@@ -16,6 +16,7 @@ namespace CMSCore.Areas.Admin.Controllers
 {
     public class UserController : BaseController
     {
+        #region Default
         private readonly IUserService _userService;
         private readonly IAuthorizationService _authorizationService;
         private readonly IRoleService _roleService;
@@ -31,6 +32,7 @@ namespace CMSCore.Areas.Admin.Controllers
             _roleService = roleService;
             _viewRenderService = viewRenderService;
         }
+        #endregion
 
         #region Index
 
@@ -51,10 +53,20 @@ namespace CMSCore.Areas.Admin.Controllers
             var idFirst = lstObj.Results.First();
             var lstRoles = _userService.GetById(idFirst.Id.ToString());
 
+            var allRoles = _roleService.GetAllAsync();
+            var lstRolesVm = new List<AppRoleViewModel>();
+            foreach(var item in allRoles.Result)
+            {
+                if(lstRoles.Result.ListRoles.FirstOrDefault(m=>m.Contains(item.Name)) != null)
+                {
+                    lstRolesVm.Add(item);
+                }
+            }
+
             var model = new PageAppUserViewModel
             {
-                ListAppUserViewModels = lstObj.Results,
-                ListAppRoleViewModels = lstRoles.Result.ListRoles,
+                ListAppUserVm = lstObj.Results,
+                ListAppRoleVm = lstRolesVm,
                 PagedResult = lstObj
             };
 
@@ -118,7 +130,7 @@ namespace CMSCore.Areas.Admin.Controllers
                 Value = m.Name,
                 Text = m.Description
             }));
-            model.ListAppRoleViewModels = lstSelect;
+            model.ListItemRoles = lstSelect;
 
             #endregion Danh sách quyền
 
@@ -162,7 +174,7 @@ namespace CMSCore.Areas.Admin.Controllers
                 Text = m.Description,
                 Selected = obj.Result.ListRoles.FirstOrDefault(t=>t.Contains(m.Name)) != null
             }));
-            obj.Result.ListAppRoleViewModels = lstSelect;
+            obj.Result.ListItemRoles = lstSelect;
 
             #endregion Danh sách quyền
 
@@ -238,7 +250,7 @@ namespace CMSCore.Areas.Admin.Controllers
                 Text = m.Description,
                 Selected = obj.Result.ListRoles.FirstOrDefault(t => t.Contains(m.Name)) != null
             }));
-            obj.Result.ListAppRoleViewModels = lstSelect;
+            obj.Result.ListItemRoles = lstSelect;
 
             #endregion Danh sách quyền
 
@@ -293,5 +305,37 @@ namespace CMSCore.Areas.Admin.Controllers
         }
 
         #endregion Lưu tài khoản
+
+        #region List quyền
+        /// <summary>
+        /// Lấy danh sách quyền theo user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetListRoles(string id)
+        {
+            var lstRoles = _userService.GetById(id);
+
+            var allRoles = _roleService.GetAllAsync();
+            var lstRolesVm = new List<AppRoleViewModel>();
+            foreach (var item in allRoles.Result)
+            {
+                if (lstRoles.Result.ListRoles.FirstOrDefault(m => m.Contains(item.Name)) != null)
+                {
+                    lstRolesVm.Add(item);
+                }
+            }
+            var content = _viewRenderService.RenderToStringAsync("User/_ListRoles", lstRolesVm);
+
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content.Result,
+            });
+        }
+        #endregion
     }
 }

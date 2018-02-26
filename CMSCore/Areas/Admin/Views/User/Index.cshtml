@@ -26,17 +26,20 @@
         </form>
         <div class="clearfix"></div>
     </div>
-    <div class="x_content">
-        <div id="listContent">
-            @{Html.RenderPartial("_ListUser", Model.ListAppUserViewModels);}
-        </div>
+    <div id="listContent" style="height: 300px">
+        @{Html.RenderPartial("_ListUser", Model.ListAppUserVm);}
     </div>
+    <div class="clearfix"></div>
     <div class="x_paging">
         @{Html.RenderPartial("~/Areas/Admin/Views/Shared/_CommonPagination.cshtml", Model.PagedResult);}
     </div>
 </div>
 <div class="x_panel">
     <div id="listRoles">
-        @{ Html.RenderPartial("_ListRoles", Model.ListUser.FirstOrDefault()?.ListRoles ?? new List<UserRole>());}
+        @{ Html.RenderPartial("_ListRoles", Model.ListAppRoleVm);}
     </div>
 </div>
+@section scripts
+    {
+    <script src="~/app/controllers/user/index.js"></script>
+}

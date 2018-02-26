@@ -52,7 +52,9 @@ namespace CMSCore.Application.ViewModels.System
 
         public List<string> ListRoles { get; set; }
 
-        public List<SelectListItem> ListAppRoleViewModels { set; get; } 
+        public List<SelectListItem> ListItemRoles { set; get; }
+
+        public List<AppRoleViewModel> ListRolesVm { set; get; }
 
         public bool IsEdit { set; get; }
 

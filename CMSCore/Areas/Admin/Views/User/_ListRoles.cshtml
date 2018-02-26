@@ -1,7 +1,5 @@
 ﻿
-@using ISP.Common.Constants
-@using ISP.Web.WebUtils
-@model List<ISP.Model.UserRole>
+@model List<CMSCore.Application.ViewModels.System.AppRoleViewModel>
 <div class="" style="min-height: 300px;">
     <div class="table-header">
         <strong>Danh sách các nhóm quyền được cấp</strong>
@@ -40,8 +38,8 @@
             {
                 foreach (var wp in Model)
                 {
-                    <tr class="even pointer" item-id="@wp.RoleID">
-                        <td class="">@wp.RoleName</td>
+                    <tr class="even pointer" item-id="@wp.Id">
+                        <td class="">@wp.Name</td>
                         <td class="">@wp.Description</td>
                     </tr>
                 }

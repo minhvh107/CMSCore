@@ -8,11 +8,11 @@ namespace CMSCore.Application.ViewModels.System
     {
         public PageAppUserViewModel()
         {
-            ListAppUserViewModels = new List<AppUserViewModel>();
+            ListAppUserVm = new List<AppUserViewModel>();
         }
 
         public PagedResultBase PagedResult { set; get; }
-        public IList<AppUserViewModel> ListAppUserViewModels { set; get; }
-        public IList<String> ListAppRoleViewModels { set; get; }
+        public IList<AppUserViewModel> ListAppUserVm { set; get; }
+        public IList<AppRoleViewModel> ListAppRoleVm { set; get; }
     }
 }

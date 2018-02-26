@@ -47,7 +47,7 @@ namespace CMSCore.Areas.Admin.Controllers
 
             var model = new PageAppRoleViewModel
             {
-                ListAppRoleViewModels = lstObj.Results,
+                ListAppRoleVm = lstObj.Results,
                 PagedResult = lstObj
             };
 
@@ -172,7 +172,7 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <param name="id">Mã quyền</param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> ViewItem(Guid id)
+        public IActionResult ViewItem(Guid id)
         {
             var obj = _roleService.GetById(id);
 

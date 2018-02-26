@@ -7,10 +7,10 @@ namespace CMSCore.Application.ViewModels.System
     {
         public PageAppRoleViewModel()
         {
-            ListAppRoleViewModels = new List<AppRoleViewModel>();
+            ListAppRoleVm = new List<AppRoleViewModel>();
         }
 
         public PagedResultBase PagedResult { set; get; }
-        public IList<AppRoleViewModel> ListAppRoleViewModels { set; get; }
+        public IList<AppRoleViewModel> ListAppRoleVm { set; get; }
     }
 }

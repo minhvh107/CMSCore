@@ -55,7 +55,7 @@
                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                         @*@Html.DropDownListFor(m => m.ListRoles,Model.ListAppRoleViewModels, new { @class = "form-control" })*@
                                         <select id="ListRoles" multiple="multiple" name="ListRoles" class = "form-control">
-                                                @foreach (var item in Model.ListAppRoleViewModels)
+                                                @foreach (var item in Model.ListItemRoles)
                                                 {
                                                     if (item.Selected)
                                                     {
