@@ -8,6 +8,7 @@ using CMSCore.Data.IRepositories;
 using CMSCore.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using CMSCore.Utilities.Dtos;
 
 namespace CMSCore.Application.Implementation
 {
@@ -44,6 +45,26 @@ namespace CMSCore.Application.Implementation
         {
             return _productCategoryRepository.FindAll().OrderBy(m => m.LevelCate).ThenBy(m => m.ParentId).ThenBy(m=>m.SortOrder).ProjectTo<ProductCategoryViewModel>()
                 .ToList();
+        }
+
+        public PagedResult<ProductCategoryViewModel> GetAllPaging(string keyword, int page, int pageSize)
+        {
+            var query = _productCategoryRepository.FindAll(m => m.IsDelete == false);
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(m => m.Name.Contains(keyword));
+            }
+            var totalRow = query.Count();
+            query = query.OrderByDescending(m => m.DateCreated).Skip((page - 1) * pageSize).Take(pageSize);
+            var data = query.ProjectTo<ProductCategoryViewModel>().ToList();
+            var paginationSet = new PagedResult<ProductCategoryViewModel>()
+            {
+                Results = data,
+                CurrentPage = page,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+            return paginationSet;
         }
 
         public List<ProductCategoryViewModel> GetAll(string keyword)
@@ -113,5 +134,6 @@ namespace CMSCore.Application.Implementation
         {
             _unitOfWork.Commit();
         }
+
     }
 }

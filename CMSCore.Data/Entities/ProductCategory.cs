@@ -9,14 +9,16 @@ namespace CMSCore.Data.Entities
 {
     [Table("ProductCategories")]
     public class ProductCategory : DomainEntity<int>,
-        IHasSeoMetaData, ISwitchable, ISortable, IDateTracking
+        IHasSeoMetaData, ISwitchable, ISortable, IDateTracking, IHasSoftDelete
     {
-        public ProductCategory()
+        public ProductCategory(string name)
         {
             Products = new List<Product>();
         }
 
-        public ProductCategory(string name, string description, int parentId, int? homeOrder, string image, bool? homeFlag, int? levelCate, int sortOrder, Status status, string seoPageTitle, string seoAlias, string seoKeywords, string seoDescription)
+        public ProductCategory(string name, string description, int parentId, int? homeOrder, string image, bool? homeFlag, int? levelCate,
+            Status status, bool isDelete, int sortOrder,
+            string seoPageTitle, string seoAlias, string seoKeywords, string seoDescription)
         {
             Name = name;
             Description = description;
@@ -25,8 +27,11 @@ namespace CMSCore.Data.Entities
             Image = image;
             HomeFlag = homeFlag;
             LevelCate = levelCate;
-            SortOrder = sortOrder;
+
             Status = status;
+            IsDelete = isDelete;
+            SortOrder = sortOrder;
+
             SeoPageTitle = seoPageTitle;
             SeoAlias = seoAlias;
             SeoKeywords = seoKeywords;
@@ -49,8 +54,11 @@ namespace CMSCore.Data.Entities
 
         public DateTime DateCreated { set; get; }
         public DateTime DateModified { set; get; }
-        public int SortOrder { set; get; }
+
         public Status Status { set; get; }
+        public bool IsDelete { get; set; }
+        public int SortOrder { set; get; }
+
         public string SeoPageTitle { set; get; }
         public string SeoAlias { set; get; }
         public string SeoKeywords { set; get; }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CMSCore.Application.ViewModels.Product;
+using CMSCore.Utilities.Dtos;
 
 namespace CMSCore.Application.Interfaces
 {
@@ -12,6 +13,8 @@ namespace CMSCore.Application.Interfaces
         void Delete(int id);
 
         List<ProductCategoryViewModel> GetAll();
+
+        PagedResult<ProductCategoryViewModel> GetAllPaging(string keyword, int page, int pageSize);
 
         List<ProductCategoryViewModel> GetAll(string keyword);
 

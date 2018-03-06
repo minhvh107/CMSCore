@@ -12,7 +12,7 @@ using System;
 namespace CMSCore.Data.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180211114156_initDatabase")]
+    [Migration("20180306072848_initDatabase")]
     partial class initDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

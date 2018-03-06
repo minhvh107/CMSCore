@@ -1,5 +1,6 @@
 ﻿using CMSCore.Application.Interfaces;
 using CMSCore.Application.ViewModels.Product;
+using CMSCore.Utilities.Dtos;
 using CMSCore.Utilities.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -23,18 +24,28 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <returns></returns>
         public IActionResult Index()
         {
-            return View();
+            const string keyword = "";
+            const int currentPage = 1;
+            const int pageSize = 10;
+            var lstObj = _productCategoryService.GetAllPaging(keyword, currentPage, pageSize);
+            var model = new PageProductCategoryViewModel()
+            {
+                ListProductCategoryViewModels = lstObj.Results,
+                PagedResult = lstObj
+            };
+
+            return View(model);
         }
 
-        /// <summary>
-        /// Lấy tất cả nhóm sản phẩm
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult GetAll()
-        {
-            var model = _productCategoryService.GetAll();
-            return new ObjectResult(model);
-        }
+        ///// <summary>
+        ///// Lấy tất cả nhóm sản phẩm
+        ///// </summary>
+        ///// <returns></returns>
+        //public IActionResult GetAll()
+        //{
+        //    var model = _productCategoryService.GetAll();
+        //    return new ObjectResult(model);
+        //}
 
         /// <summary>
         /// Lấy dữ liệu theo ID

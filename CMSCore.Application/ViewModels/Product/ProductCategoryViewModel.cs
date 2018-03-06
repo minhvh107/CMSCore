@@ -7,6 +7,7 @@ namespace CMSCore.Application.ViewModels.Product
     public class ProductCategoryViewModel
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -23,8 +24,11 @@ namespace CMSCore.Application.ViewModels.Product
 
         public DateTime DateCreated { set; get; }
         public DateTime DateModified { set; get; }
+
         public int SortOrder { set; get; }
+        public bool IsDelete { set; get; }
         public Status Status { set; get; }
+
         public string SeoPageTitle { set; get; }
         public string SeoAlias { set; get; }
         public string SeoKeywords { set; get; }
