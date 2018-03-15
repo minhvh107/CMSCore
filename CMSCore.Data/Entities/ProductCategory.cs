@@ -11,7 +11,8 @@ namespace CMSCore.Data.Entities
     public class ProductCategory : DomainEntity<int>,
         IHasSeoMetaData, ISwitchable, ISortable, IDateTracking, IHasSoftDelete
     {
-        public ProductCategory(string name)
+       
+        public ProductCategory()
         {
             Products = new List<Product>();
         }

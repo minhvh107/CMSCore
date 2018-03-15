@@ -624,6 +624,8 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.Property<string>("Image");
 
+                    b.Property<bool>("IsDelete");
+
                     b.Property<int?>("LevelCate");
 
                     b.Property<string>("Name");

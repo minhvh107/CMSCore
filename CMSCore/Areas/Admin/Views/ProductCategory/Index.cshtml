@@ -2,7 +2,7 @@
     ViewData["Title"] = "Index";
 }
 @using CMSCore.Application.ViewModels.Product
-@model PageProductViewModel
+@model PageProductCategoryViewModel
 <div class="page-title">
     <div class="title_left">
         <h3>Danh sách sản phẩm</h3>
@@ -12,7 +12,7 @@
 
 <div class="x_panel">
     <div class="x_title">
-        <form action="/Admin/Product/Filter" id="frmFilter" class="form-inline">
+        <form action="/Admin/ProductCategory/Filter" id="frmFilter" class="form-inline">
 
             @Html.Hidden("CurrentPage", Model.PagedResult.CurrentPage)
             @Html.Hidden("PageSize", Model.PagedResult.PageSize)
@@ -32,7 +32,7 @@
     </div>
     <div class="x_content">
         <div id="listContent">
-            @{Html.RenderPartial("_ListProduct", Model.ListProductViewModels);}
+            @{Html.RenderPartial("_ListProductCategory", Model.ListProductCategoryViewModels);}
         </div>
     </div>
     <div class="x_paging">

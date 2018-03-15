@@ -1,4 +1,5 @@
 ﻿using CMSCore.Data.Enums;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 
@@ -35,5 +36,9 @@ namespace CMSCore.Application.ViewModels.Product
         public string SeoDescription { set; get; }
 
         public ICollection<ProductViewModel> Products { set; get; }
+        public List<SelectListItem> ListProductCate { set; get; }
+
+        public bool IsEdit { set; get; }
+        public bool IsView { set; get; }
     }
 }

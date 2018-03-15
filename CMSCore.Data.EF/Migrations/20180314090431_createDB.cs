@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CMSCore.Data.EF.Migrations
 {
-    public partial class initDatabase : Migration
+    public partial class createDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -289,6 +289,7 @@ namespace CMSCore.Data.EF.Migrations
                     HomeFlag = table.Column<bool>(nullable: true),
                     HomeOrder = table.Column<int>(nullable: true),
                     Image = table.Column<string>(nullable: true),
+                    IsDelete = table.Column<bool>(nullable: false),
                     LevelCate = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     ParentId = table.Column<int>(nullable: false),

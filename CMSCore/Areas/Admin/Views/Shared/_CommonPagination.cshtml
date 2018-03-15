@@ -1,15 +1,18 @@
 ﻿@model CMSCore.Utilities.Dtos.PagedResultBase
 @{
-    var totalPage = Math.Ceiling(Model.RowCount * 1f / Model.PageSize);
+    var totalPage = Math.Ceiling(Model.RowCount * 1f / Model.PageSize) + 1;
     var activePage = Model.CurrentPage;
     var from = (activePage - 1) * Model.PageSize + 1;
-    var to = Model.PageSize * Model.CurrentPage;
+    var to = Model.PageSize * activePage;
     if (Model.RowCount == 0)
     {
         from = 0;
         to = 0;
     }
-   
+    else if (Model.RowCount < Model.PageSize * activePage)
+    {
+        to = Model.RowCount;
+    }
     int[] arrayPage = new[] { 10, 20, 50, 100 };
 }
 <div class="row fixed-table-pagination">
@@ -79,7 +82,7 @@
     </div>
     <div class="col-md-4 col-sm-6 col-xs-12 text-right show-result-number">
         <div class="pagination">
-            <span class="pagination-info">Hiển thị @from đến @to của @Model.RowCount dòng</span>
+            <span class="pagination-info">Hiển thị từ @from đến @to của @Model.RowCount dòng</span>
         </div>
     </div>
 </div>

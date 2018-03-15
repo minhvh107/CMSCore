@@ -21,8 +21,7 @@ namespace CMSCore.Data.Entities
             decimal price, decimal originalPrice, decimal? promotionPrice,
             string description, string content, bool? homeFlag, bool? hotFlag,
             string tags, string unit, Status status,bool isDelete,int sortOrder, string seoPageTitle,
-            string seoAlias, string seoMetaKeyword,
-            string seoMetaDescription)
+            string seoAlias, string seoMetaKeyword, string seoMetaDescription)
         {
             Name = name;
             CategoryId = categoryId;
@@ -50,8 +49,7 @@ namespace CMSCore.Data.Entities
             decimal price, decimal originalPrice, decimal? promotionPrice,
             string description, string content, bool? homeFlag, bool? hotFlag,
             string tags, string unit, Status status, bool isDelete,int sortOrder, string seoPageTitle,
-            string seoAlias, string seoMetaKeyword,
-            string seoMetaDescription)
+            string seoAlias, string seoMetaKeyword, string seoMetaDescription)
         {
             Id = id;
             Name = name;

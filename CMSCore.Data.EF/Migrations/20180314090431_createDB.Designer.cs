@@ -12,8 +12,8 @@ using System;
 namespace CMSCore.Data.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180306072848_initDatabase")]
-    partial class initDatabase
+    [Migration("20180314090431_createDB")]
+    partial class createDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -624,6 +624,8 @@ namespace CMSCore.Data.EF.Migrations
                     b.Property<int?>("HomeOrder");
 
                     b.Property<string>("Image");
+
+                    b.Property<bool>("IsDelete");
 
                     b.Property<int?>("LevelCate");
 
