@@ -1,4 +1,4 @@
-﻿@model List<ISP.Model.UserRole>
+﻿@model List<CMSCore.Application.ViewModels.AppRoleViewModel>
 @{
     const string title = "Chọn nhóm quyền cần thêm";
 }
@@ -9,8 +9,7 @@
             <h4 class="modal-title">@title</h4>
         </div>
         <div class="modal-body form-warranty-package">
-            @using (Html.BeginForm("AssignRole", "UserManagement", FormMethod.Post, new { @class = "form-horzital", @id = "frmSave" }))
-            {
+            <form action="/Admin/User/AssignRole" method="post" id="frmSave" class="form-horizontal">
                 <div class="">
                     <div class="table-responsive table-fixed noselect">
                         @Html.ValidationSummary(true)
@@ -18,18 +17,18 @@
                             <thead>
                                 <tr>
                                     <th class="column-title">Chọn</th>
-                                    <th class="column-title">Tên vai trò</th>
+                                    <th class="column-title">Tên quyền</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr class="role-item" role-id="@item.RoleID" role-name="@item.RoleName">
+                                    <tr class="role-item" role-id="@item.Name" role-name="@item.Name">
                                         <td class="text-center">
-                                            <input type="checkbox" class="role-item-check flat"/>
+                                            <input type="checkbox" class="role-item-check flat" />
                                         </td>
                                         <td>
-                                            @item.RoleName
+                                            @item.Name
                                         </td>
                                     </tr>
                                 }
@@ -38,7 +37,7 @@
                         </table>
                     </div>
                 </div>
-            }
+            </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary btn-assign"><i class="fa fa-save fa-lg"></i> Cập nhật</button>

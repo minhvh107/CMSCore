@@ -1,6 +1,6 @@
 ﻿using CMSCore.Utilities.Dtos;
 
-namespace CMSCore.Application.ViewModels.Default
+namespace CMSCore.Application.ViewModels
 {
     public class FilterDefault : PagedResultBase
     {

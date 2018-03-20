@@ -2,7 +2,7 @@
 using CMSCore.Utilities.Dtos;
 using System.Collections.Generic;
 
-namespace CMSCore.Application.ViewModels.System
+namespace CMSCore.Application.ViewModels
 {
     public class PageAppUserViewModel
     {

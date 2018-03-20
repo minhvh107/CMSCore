@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CMSCore.Application.ViewModels.System
+namespace CMSCore.Application.ViewModels
 {
     public class PermissionViewModel
     {
@@ -10,13 +10,7 @@ namespace CMSCore.Application.ViewModels.System
 
         public string FunctionId { get; set; }
 
-        public bool CanCreate { set; get; }
-
-        public bool CanRead { set; get; }
-
-        public bool CanUpdate { set; get; }
-
-        public bool CanDelete { set; get; }
+        public string ActionId { get; set; }
 
         public AppRoleViewModel AppRole { get; set; }
 

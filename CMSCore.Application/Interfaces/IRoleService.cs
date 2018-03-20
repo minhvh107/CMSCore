@@ -1,4 +1,4 @@
-﻿using CMSCore.Application.ViewModels.System;
+﻿using CMSCore.Application.ViewModels;
 using CMSCore.Utilities.Dtos;
 using System;
 using System.Collections.Generic;
@@ -14,9 +14,9 @@ namespace CMSCore.Application.Interfaces
 
         Task<List<AppRoleViewModel>> GetAllAsync();
 
-        PagedResult<AppRoleViewModel> GetAllPagingAsync(string keyword, int page, int pageSize);
+        Task<PagedResult<AppRoleViewModel>> GetAllPagingAsync(string keyword, int page, int pageSize);
 
-        Task<AppRoleViewModel> GetById(Guid id);
+        Task<AppRoleViewModel> GetById(string id);
 
         Task UpdateAsync(AppRoleViewModel userVm);
 

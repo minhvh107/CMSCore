@@ -1,5 +1,5 @@
 ﻿using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
@@ -25,14 +25,14 @@ namespace CMSCore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAllFillter(string filter)
         {
-            var model = _functionService.GetAll(filter);
+            var model = _functionService.GetAllAsync(filter);
             return new ObjectResult(model);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var model = await _functionService.GetAll(string.Empty);
+            var model = await _functionService.GetAllAsync(string.Empty);
             var rootFunctions = model.Where(c => c.ParentId == null);
             var items = new List<FunctionViewModel>();
             foreach (var function in rootFunctions)
@@ -48,7 +48,7 @@ namespace CMSCore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetById(string id)
         {
-            var model = _functionService.GetAll(id);
+            var model = _functionService.GetAllAsync(id);
 
             return new ObjectResult(model);
         }

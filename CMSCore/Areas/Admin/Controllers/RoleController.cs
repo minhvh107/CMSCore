@@ -1,6 +1,5 @@
 ﻿using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.Default;
-using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels;
 using CMSCore.Authorization;
 using CMSCore.Services;
 using CMSCore.Utilities.Constants;
@@ -17,14 +16,17 @@ namespace CMSCore.Areas.Admin.Controllers
     public class RoleController : BaseController
     {
         private readonly IRoleService _roleService;
+        private readonly IFunctionService _functionService;
         private readonly IAuthorizationService _authorizationService;
         private readonly IViewRenderService _viewRenderService;
 
         public RoleController(IRoleService roleService,
+            IFunctionService functionService,
             IAuthorizationService authorizationService,
             IViewRenderService viewRenderService)
         {
             _roleService = roleService;
+            _functionService = functionService;
             _authorizationService = authorizationService;
             _viewRenderService = viewRenderService;
         }
@@ -43,12 +45,20 @@ namespace CMSCore.Areas.Admin.Controllers
             const string keyword = "";
             const int currentPage = 1;
             const int pageSize = 10;
-            var lstObj = _roleService.GetAllPagingAsync(keyword, currentPage, pageSize);
+
+            var lstRoles = await _roleService.GetAllPagingAsync(keyword, currentPage, pageSize);
+
+            // Lấy ra role đầu tiên
+            var idRoleFirst = lstRoles.Results.First();
+
+            // Thông tin role đầu tiên
+            var infoRoleFirst = await _roleService.GetById(idRoleFirst.Id.ToString());
 
             var model = new PageAppRoleViewModel
             {
-                ListAppRoleVm = lstObj.Results,
-                PagedResult = lstObj
+                ListAppRoleVm = lstRoles.Results,
+                ListAppUserVm = infoRoleFirst.ListViewModelUsers,
+                PagedResult = lstRoles
             };
 
             return View(model);
@@ -68,7 +78,7 @@ namespace CMSCore.Areas.Admin.Controllers
         {
             var data = _roleService.GetAllPagingAsync(filter.Keyword, filter.CurrentPage,
                 filter.PageSize);
-            var listContent = _viewRenderService.RenderToStringAsync("Role/_ListRole", data.Results);
+            var listContent = _viewRenderService.RenderToStringAsync("Role/_ListRole", data.Result);
             var pagination = _viewRenderService.RenderToStringAsync("Common/_CommonPagination", data);
             return Json(new JsonResponse()
             {
@@ -117,7 +127,7 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <param name="id">Mã quyền</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(string id)
         {
             var obj = _roleService.GetById(id);
             obj.Result.IsEdit = true;
@@ -172,7 +182,7 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <param name="id">Mã quyền</param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult ViewItem(Guid id)
+        public IActionResult ViewItem(string id)
         {
             var obj = _roleService.GetById(id);
 
@@ -230,6 +240,67 @@ namespace CMSCore.Areas.Admin.Controllers
         }
 
         #endregion Lưu quyền
+
+        /// <summary>
+        /// Lấy danh sách người dùng
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> GetListUsers(string id)
+        {
+            try
+            {
+                var lstUser = await _roleService.GetById(id);
+                var listContent = await _viewRenderService.RenderToStringAsync("Role/_ListUsers", lstUser.ListViewModelUsers);
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                    Message = Constants.GetDataSuccess,
+                    Data = listContent
+                });
+            }
+            catch (Exception e)
+            {
+                return Json(new JsonResponse()
+                {
+                    Success = false,
+                    StatusCode = Utilities.Constants.StatusCode.GetDataFailed,
+                    Message = e.Message
+                });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ManageRoleAction(string roleId)
+        {
+            try
+            {
+                var functions = await _functionService.GetAllAsync("");
+                //var role = RoleManager.FindById(roleId)?.Name;
+               // ViewBag.RoleName = role;
+               // ViewBag.RoleID = roleId;
+                var content = await _viewRenderService.RenderToStringAsync("Role/_ManageRoleAction", functions);
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                    Message = Constants.GetDataSuccess,
+                    Data = content
+                });
+            }
+            catch (Exception e)
+            {
+                return Json(new JsonResponse()
+                {
+                    Success = false,
+                    StatusCode = Utilities.Constants.StatusCode.GetDataFailed,
+                    Message = e.Message
+                });
+            }
+        }
+
 
         [HttpPost]
         public IActionResult ListAllFunction(Guid roleId)

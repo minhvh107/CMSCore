@@ -1,4 +1,4 @@
-﻿@using CMSCore.Application.ViewModels.System
+﻿@using CMSCore.Application.ViewModels
 @model PageAppRoleViewModel
 <div class="page-title">
     <div class="title_left">
@@ -26,12 +26,27 @@
         </form>
         <div class="clearfix"></div>
     </div>
-    <div class="x_content">
-        <div id="listContent">
-            @{Html.RenderPartial("_ListRole", Model.ListAppRoleVm);}
+    <div class="">
+        <div class="x_panel">
+            <div class="x_title"></div>
+            <div id="listContent" style="height: 300px">
+                @{Html.RenderPartial("_ListRole", Model.ListAppRoleVm);}
+            </div>
+            <div class="clearfix"></div>
+            <div class="x_paging">
+                @{Html.RenderPartial("~/Areas/Admin/Views/Shared/_CommonPagination.cshtml", Model.PagedResult);}
+            </div>
+        </div>
+        <div class="x_panel">
+            <div class="x_title"></div>
+            <div id="listUsers">
+                @{ Html.RenderPartial("_ListUsers", Model.ListAppUserVm ?? new List<AppUserViewModel>());}
+            </div>
         </div>
     </div>
-    <div class="x_paging">
-        @{Html.RenderPartial("~/Areas/Admin/Views/Shared/_CommonPagination.cshtml", Model.PagedResult);}
-    </div>
+    
 </div>
+@section scripts
+    {
+    <script src="~/app/controllers/role/index.js"></script>
+}

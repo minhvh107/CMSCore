@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 
-namespace CMSCore.Application.ViewModels.Product
+namespace CMSCore.Application.ViewModels
 {
     public class ProductCategoryViewModel
     {

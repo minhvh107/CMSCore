@@ -1,0 +1,87 @@
+﻿@model List<CMSCore.Application.ViewModels.FunctionViewModel>
+@{
+    var roleName = ViewBag.RoleName;
+}
+<div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Phân quyền cho nhóm @roleName</h4>
+        </div>
+        <div class="modal-body form-manage-role">
+            <input type="hidden" value="@ViewBag.RoleID" id="RoleID" name="RoleID" />
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Các chức năng trong hệ thống</h3>
+                </div>
+                <div class="panel-body" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
+                    <div class="row form-group margin-bottom-none">
+                        <div class="col-md-12 radio-horizontal">
+                            <div id="list-functions">
+                                @if (Model != null && Model.Count > 0)
+                                {
+                                    <ul>
+                                        @foreach (var parent in Model)
+                                        {
+                                            if (parent.Children != null && parent.Children.Count > 0)
+                                            {
+                                                <li fnc-id="@parent.Id" class="jstree-open">
+                                                    <a class="text-bold" href="javascript:void(0);">@parent.Name</a>
+                                                    <ul>
+                                                        @foreach (var child in parent.Children)
+                                                        {
+                                                            @*if (child.ListActions != null && child.ListActions.Count > 0)
+                                                            {
+                                                                <li fnc-id="@child.Id" class="">
+                                                                    <a class="text-bold" href="javascript:void(0);">@child.Name</a>
+                                                                    <ul>
+                                                                        @foreach (var act in child.ListActions)
+                                                                        {
+                                                                            if (act.IsSelected)
+                                                                            {
+                                                                                <li act-id="@act.ActionID" fnc-id="@act.Id">
+                                                                                    <a class="jstree-clicked" href="javascript:void(0);">@act.ActionName</a>
+                                                                                </li>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <li act-id="@act.ActionID" fnc-id="@act.Id">@act.ActionName</li>
+                                                                            }
+
+                                                                        }
+                                                                    </ul>
+                                                                </li>
+                                                            }
+                                                            else
+                                                            {
+                                                                
+                                                            }*@
+                                                            <li fnc-id="@child.Id"><a class="text-bold" href="javascript:void(0);">@child.Name</a></li>
+                                                        }
+                                                        
+                                                    </ul>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li fnc-id="@parent.Id"><a class="text-bold" href="javascript:void(0);">@parent.Name</a></li>
+                                            }
+
+
+
+                                        }
+                                    </ul>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-save-role-action"><i class="fa fa-save fa-lg"></i> Cập nhật</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Hủy bỏ</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

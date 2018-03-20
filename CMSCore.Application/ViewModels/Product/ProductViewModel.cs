@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace CMSCore.Application.ViewModels.Product
+namespace CMSCore.Application.ViewModels
 {
     public class ProductViewModel
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels;
 using CMSCore.Data.Entities;
 using CMSCore.Utilities.Dtos;
 using Microsoft.AspNetCore.Identity;
@@ -16,10 +16,13 @@ namespace CMSCore.Application.Implementation
     public class UserService : IUserService
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
 
-        public UserService(UserManager<AppUser> userManager)
+        public UserService(UserManager<AppUser> userManager,
+            RoleManager<AppRole>roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task<bool> AddAsync(AppUserViewModel userVm)
@@ -34,11 +37,11 @@ namespace CMSCore.Application.Implementation
                 PhoneNumber = userVm.PhoneNumber
             };
             var result = await _userManager.CreateAsync(user, userVm.Password);
-            if (result.Succeeded && userVm.ListRoles.Count > 0)
+            if (result.Succeeded && userVm.ListStringRoles.Count > 0)
             {
                 var appUser = await _userManager.FindByNameAsync(user.UserName);
                 if (appUser != null)
-                    await _userManager.AddToRolesAsync(appUser, userVm.ListRoles);
+                    await _userManager.AddToRolesAsync(appUser, userVm.ListStringRoles);
             }
             return true;
         }
@@ -54,7 +57,7 @@ namespace CMSCore.Application.Implementation
             return await _userManager.Users.ProjectTo<AppUserViewModel>().ToListAsync();
         }
 
-        public PagedResult<AppUserViewModel> GetAllPagingAsync(string keyword, int page, int pageSize)
+        public async Task<PagedResult<AppUserViewModel>> GetAllPagingAsync(string keyword, int page, int pageSize)
         {
             var query = _userManager.Users;
             if (!string.IsNullOrEmpty(keyword))
@@ -66,7 +69,7 @@ namespace CMSCore.Application.Implementation
             query = query.Skip((page - 1) * pageSize)
                .Take(pageSize);
 
-            var data = query.Select(x => new AppUserViewModel()
+            var data = await query.Select(x => new AppUserViewModel()
             {
                 UserName = x.UserName,
                 Avatar = x.Avatar,
@@ -77,7 +80,8 @@ namespace CMSCore.Application.Implementation
                 PhoneNumber = x.PhoneNumber,
                 Status = x.Status,
                 DateCreated = x.DateCreated
-            }).ToList();
+            }).ToListAsync();
+
             var paginationSet = new PagedResult<AppUserViewModel>()
             {
                 Results = data,
@@ -86,7 +90,7 @@ namespace CMSCore.Application.Implementation
                 PageSize = pageSize
             };
 
-            return paginationSet;
+            return  paginationSet;
         }
 
         public async Task<AppUserViewModel> GetById(string id)
@@ -94,8 +98,30 @@ namespace CMSCore.Application.Implementation
             var user = await _userManager.FindByIdAsync(id);
             var roles = await _userManager.GetRolesAsync(user);
             var userVm = Mapper.Map<AppUser, AppUserViewModel>(user);
-            userVm.ListRoles = roles.ToList();
+            // Danh sách quyền (string)
+            userVm.ListStringRoles = roles.ToList();
+            // Danh sách quyền 
+            userVm.ListViewModelRoles = new List<AppRoleViewModel>();
+            // Tất cả quyền
+            var allRoles = await _roleManager.Roles.ProjectTo<AppRoleViewModel>().ToListAsync();
+
+            foreach (var item in allRoles)
+            {
+                if (roles.ToList().FirstOrDefault(m => m.Equals(item.Name)) != null){
+                    userVm.ListViewModelRoles.Add(item);
+                }
+            }
             return userVm;
+        }
+
+        public async Task RemoveRoleInUser(string userId, string role)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var result =  await _userManager.RemoveFromRoleAsync(user, role);
+            if (!result.Succeeded)
+            {
+                var error = result.Errors;
+            }
         }
 
         public async Task UpdateAsync(AppUserViewModel userVm)
@@ -105,13 +131,16 @@ namespace CMSCore.Application.Implementation
             var currentRoles = await _userManager.GetRolesAsync(user);
 
             var result = await _userManager.AddToRolesAsync(user,
-                userVm.ListRoles.Except(currentRoles).ToArray());
+                userVm.ListStringRoles.Except(currentRoles).ToArray());
 
             if (result.Succeeded)
             {
-                string[] needRemoveRoles = currentRoles.Except(userVm.ListRoles).ToArray();
-                await _userManager.RemoveFromRolesAsync(user, needRemoveRoles);
-
+                string[] needRemoveRoles = currentRoles.Except(userVm.ListStringRoles).ToArray();
+                IdentityResult result1 = await _userManager.RemoveFromRolesAsync(user, needRemoveRoles);
+                if (!result1.Succeeded)
+                {
+                    var error = result1.Errors;
+                }
                 //Update user detail
                 user.FullName = userVm.FullName;
                 user.Status = userVm.Status;

@@ -1,414 +1,224 @@
-﻿var RoleController = function () {
-
-    var registerEvents = function () {
-        //Init validation
-        $('#frmMaintainance').validate({
-            errorClass: 'red',
-            ignore: [],
-            lang: 'vi',
-            rules: {
-                txtName: { required: true }
-            }
-        });
-
-        $('body').on('keypress', '#txtKeyword', function (e) {
-            if (e.which == 13) {
-                e.preventDefault();
-                loadData();
-            }
-        });
-
-        $('body').on('click', '#btn-search', function (e) {
-            e.preventDefault();
-            loadData();
-        });
-
-        $('body').on('change', '#ddlShowPage', function (e) {
-            e.preventDefault();
-            cms.configs.pageSize = $(this).val();
-            cms.configs.pageIndex = 1;
-            loadData(true);
-        });
-
-        $('body').on('click', '.btnGrant', function (e) {
-            e.preventDefault();
-            if ($(this).hasClass('disabled')) {
-                return false;
-            }
-            var table = $(this).parent().parent().find('table.bulk_action');
-            if ($(table).find("tr.selected").length <= 0) {
-                cms.notify("Không có dòng nào được chọn.", "warning");
-            } else if ($(table).find("tr.selected").length == 1) {
-                var itemId = $(table).find("tr.selected").attr("item-id");
-                $('#hidRoleId').val(itemId);
-                $.when(loadFunctionList())
-                    .done(fillPermission($('#hidRoleId').val()));
-                $('#modal-grantpermission').modal('show');
+﻿$(document).ready(function () {
+    setTimeout(function () {
+        $(".isactive ").prop('disabled', 'true');
+    }, 200);
+    loadTableUserEvent($("table.bulk_action tr.selected").attr('item-id'));
+    $('table.bulk_action td').on('click', function () {
+        var table = $(this).parents('table');
+        table.removeClass("bulk_action");
+        reloadListUsers();
+        table.addClass("bulk_action");
+    });
+    $(".btn-assign-role").on('click', function () {
+        var roleId = $("table.bulk_action tr.selected").attr('item-id');
+        var urlGetContent = $(this).attr('url-content') + "?roleId=" + roleId;
+        $.appendSpin();
+        $.callAjax(urlGetContent, null, enumMethod.Get, function (response) {
+            $.removeSpin();
+            if (response.Success) {
+                $("#myModal").openModal(response.Data);
+                loadSaveEvent();
             } else {
-                console.log("error");
+                $.notifyError(response);
             }
-            return false;
         });
+    });
+});
 
-        $('body').on('click', '#btnSavePermission', function (){
-            var listPermmission = [];
-            $.each($('#tblFunction tbody tr'), function (i, item) {
-                listPermmission.push({
-                    RoleId: $('#hidRoleId').val(),
-                    FunctionId: $(item).data('id'),
-                    CanRead: $(item).find('.ckView').first().prop('checked'),
-                    CanCreate: $(item).find('.ckAdd').first().prop('checked'),
-                    CanUpdate: $(item).find('.ckEdit').first().prop('checked'),
-                    CanDelete: $(item).find('.ckDelete').first().prop('checked'),
-                });
-            });
-            $.ajax({
-                type: "POST",
-                url: "/admin/role/SavePermission",
-                data: {
-                    listPermmission: listPermmission,
-                    roleId: $('#hidRoleId').val()
-                },
-                beforeSend: function () {
-                    cms.startLoading();
-                },
-                success: function (response) {
-                    cms.notify('Save permission successful', 'success');
-                    $('#modal-grantpermission').modal('hide');
-                    cms.stopLoading();
-                },
-                error: function () {
-                    cms.notify('Has an error in save permission progress', 'error');
-                    cms.stopLoading();
-                }
-            });
-        });
-
-        $('body').on('click', '.btnAdd', function () {
-            resetFormMaintainance();
-            $('#modal-add-edit').modal('show');
-
-        });
-
-        $('body').on('click', '.btnEdit', function (e) {
-            e.preventDefault();
-            if ($(this).hasClass('disabled')) {
-                return false;
-            }
-            var table = $(this).parent().parent().find('table.bulk_action');
-            if ($(table).find("tr.selected").length <= 0) {
-                cms.notify("Không có dòng nào được chọn.", "warning");
-            } else if ($(table).find("tr.selected").length == 1) {
-                var itemId = $(table).find("tr.selected").attr("item-id");
-                $.ajax({
-                    type: "GET",
-                    url: "/Admin/Role/GetById",
-                    data: { id: itemId },
-                    dataType: "json",
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        var data = response;
-                        $('#hidId').val(data.Id);
-                        $('#txtName').val(data.Name);
-                        $('#txtDescription').val(data.Description);
-                        $('#modal-add-edit').modal('show');
-                        cms.stopLoading();
-
-                    },
-                    error: function (status) {
-                        cms.notify('Có lỗi xảy ra', 'error');
-                        cms.stopLoading();
-                    }
-                });
+window.loadPageEvent = function () {
+    setTimeout(function () {
+        $(".isactive ").prop('disabled', 'true');
+    }, 200);
+    $('table.bulk_action td').on('click', function () {
+        var table = $(this).parents('table');
+        table.removeClass("bulk_action");
+        reloadListUsers();
+        table.addClass("bulk_action");
+    });
+    $(".btn-assign-role").on('click', function () {
+        var roleId = $("table.bulk_action tr.selected").attr('item-id');
+        var urlGetContent = $(this).attr('url-content') + "?roleId=" + roleId;
+        $.appendSpin();
+        $.callAjax(urlGetContent, null, enumMethod.Get, function (response) {
+            $.removeSpin();
+            if (response.Success) {
+                $("#myModal").openModal(response.Data);
+                loadSaveEvent();
             } else {
-                console.log("error");
-            }
-            return false;
-        });
-
-        $('body').on('click', '.btnDelete', function (e) {
-            e.preventDefault();
-            if ($(this).hasClass('disabled')) {
-                return false;
-            }
-            var table = $(this).parent().parent().find('table.bulk_action');
-            if ($(table).find("tr.selected").length <= 0) {
-                cms.notify("Không có dòng nào được chọn.", "warning");
-            } else if ($(table).find("tr.selected").length == 1) {
-                var itemId = $(table).find("tr.selected").attr("item-id");
-                cms.confirm('Are you sure to delete?', function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Admin/Role/Delete",
-                        data: { id: itemId },
-                        beforeSend: function () {
-                            cms.startLoading();
-                        },
-                        success: function (response) {
-                            cms.notify('Delete successful', 'success');
-                            cms.stopLoading();
-                            loadData();
-                        },
-                        error: function (status) {
-                            cms.notify('Has an error in deleting progress', 'error');
-                            cms.stopLoading();
-                        }
-                    });
-                });
-            } else {
-                console.log("error");
-            }
-            return true;
-        });
-
-        $('body').on('click', '#btnSave', function (e) {
-            if ($('#frmMaintainance').valid()) {
-                e.preventDefault();
-                var id = $('#hidId').val();
-                var name = $('#txtName').val();
-                var description = $('#txtDescription').val();
-
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/Role/SaveEntity",
-                    data: {
-                        Id: id,
-                        Name: name,
-                        Description: description,
-                    },
-                    dataType: "json",
-                    beforeSend: function () {
-                        cms.startLoading();
-                    },
-                    success: function (response) {
-                        cms.notify('Update role successful', 'success');
-                        $('#modal-add-edit').modal('hide');
-                        resetFormMaintainance();
-                        cms.stopLoading();
-                        loadData(true);
-                    },
-                    error: function () {
-                        cms.notify('Has an error', 'error');
-                        cms.stopLoading();
-                    }
-                });
-                return true;
-            }
-            return false;
-        });
-    };
-
-    function loadFunctionList(callback) {
-        var strUrl = "/admin/Function/GetAll";
-        return $.ajax({
-            type: "GET",
-            url: strUrl,
-            dataType: "json",
-            beforeSend: function () {
-                cms.startLoading();
-            },
-            success: function (response) {
-                var template = $('#result-data-function').html();
-                var render = "";
-                $.each(response, function (i, item) {
-                    render += Mustache.render(template, {
-                        Name: item.Name,
-                        treegridparent: item.ParentId != null ? "treegrid-parent-" + item.ParentId : "",
-                        Id: item.Id,
-                        AllowCreate: item.AllowCreate ? "checked" : "",
-                        AllowEdit: item.AllowEdit ? "checked" : "",
-                        AllowView: item.AllowView ? "checked" : "",
-                        AllowDelete: item.AllowDelete ? "checked" : "",
-                        Status: cms.getStatus(item.Status),
-                    });
-                });
-                if (render != undefined) {
-                    $('#lst-data-function').html(render);
-                }
-                $('.tree').treegrid();
-
-                $('#ckCheckAllView').on('click', function () {
-                    $('.ckView').prop('checked', $(this).prop('checked'));
-                });
-
-                $('#ckCheckAllCreate').on('click', function () {
-                    $('.ckAdd').prop('checked', $(this).prop('checked'));
-                });
-                $('#ckCheckAllEdit').on('click', function () {
-                    $('.ckEdit').prop('checked', $(this).prop('checked'));
-                });
-                $('#ckCheckAllDelete').on('click', function () {
-                    $('.ckDelete').prop('checked', $(this).prop('checked'));
-                });
-
-                $('.ckView').on('click', function () {
-                    if ($('.ckView:checked').length == response.length) {
-                        $('#ckCheckAllView').prop('checked', true);
-                    } else {
-                        $('#ckCheckAllView').prop('checked', false);
-                    }
-                });
-                $('.ckAdd').on('click', function () {
-                    if ($('.ckAdd:checked').length == response.length) {
-                        $('#ckCheckAllCreate').prop('checked', true);
-                    } else {
-                        $('#ckCheckAllCreate').prop('checked', false);
-                    }
-                });
-                $('.ckEdit').on('click', function () {
-                    if ($('.ckEdit:checked').length == response.length) {
-                        $('#ckCheckAllEdit').prop('checked', true);
-                    } else {
-                        $('#ckCheckAllEdit').prop('checked', false);
-                    }
-                });
-                $('.ckDelete').on('click', function () {
-                    if ($('.ckDelete:checked').length == response.length) {
-                        $('#ckCheckAllDelete').prop('checked', true);
-                    } else {
-                        $('#ckCheckAllDelete').prop('checked', false);
-                    }
-                });
-                if (callback != undefined) {
-                    callback();
-                }
-                cms.stopLoading();
-            },
-            error: function (status) {
-                console.log(status);
+                $.notifyError(response);
             }
         });
-    }
+    });
+}
 
-    function fillPermission(roleId) {
-        var strUrl = "/Admin/Role/ListAllFunction";
-        return $.ajax({
-            type: "POST",
-            url: strUrl,
-            data: {
-                roleId: roleId
-            },
-            dataType: "json",
-            beforeSend: function () {
-                cms.stopLoading();
-            },
-            success: function (response) {
-                var litsPermission = response;
-                $.each($('#tblFunction tbody tr'), function (i, item) {
-                    $.each(litsPermission, function (j, jitem) {
-                        if (jitem.FunctionId == $(item).data('id')) {
-                            $(item).find('.ckView').first().prop('checked', jitem.CanRead);
-                            $(item).find('.ckAdd').first().prop('checked', jitem.CanCreate);
-                            $(item).find('.ckEdit').first().prop('checked', jitem.CanUpdate);
-                            $(item).find('.ckDelete').first().prop('checked', jitem.CanDelete);
-                        }
-                    });
-                });
+window.reloadPage = function () {
+    reloadListUsers();
+}
 
-                if ($('.ckView:checked').length == $('#tblFunction tbody tr .ckView').length) {
-                    $('#ckCheckAllView').prop('checked', true);
-                } else {
-                    $('#ckCheckAllView').prop('checked', false);
-                }
-                if ($('.ckAdd:checked').length == $('#tblFunction tbody tr .ckAdd').length) {
-                    $('#ckCheckAllCreate').prop('checked', true);
-                } else {
-                    $('#ckCheckAllCreate').prop('checked', false);
-                }
-                if ($('.ckEdit:checked').length == $('#tblFunction tbody tr .ckEdit').length) {
-                    $('#ckCheckAllEdit').prop('checked', true);
-                } else {
-                    $('#ckCheckAllEdit').prop('checked', false);
-                }
-                if ($('.ckDelete:checked').length == $('#tblFunction tbody tr .ckDelete').length) {
-                    $('#ckCheckAllDelete').prop('checked', true);
-                } else {
-                    $('#ckCheckAllDelete').prop('checked', false);
-                }
-                cms.stopLoading();
-            },
-            error: function (status) {
-                console.log(status);
+window.loadMainModalEvent = function () {
+    $("#list-functions").jstree({
+        "core": {
+            "themes": {
+                "icons": false
             }
-        });
-    }
+        },
+        "checkbox": {
+            "keep_selected_style": false
+        },
+        "plugins": ["checkbox"]
+    });
+}
 
-    function resetFormMaintainance() {
-        $('#hidId').val('');
-        $('#txtName').val('');
-        $('#txtDescription').val('');
-    }
-
-    function loadData(isPageChanged) {
-        $.ajax({
-            type: "GET",
-            url: "/admin/role/GetAllPaging",
-            data: {
-                keyword: $('#txtKeyword').val(),
-                page: cms.configs.pageIndex,
-                pageSize: cms.configs.pageSize
-            },
-            dataType: "json",
-            beforeSend: function () {
-                cms.startLoading();
-            },
-            success: function (response) {
-                var template = $('#table-template').html();
-                var render = "";
-                if (response.RowCount > 0) {
-                    $.each(response.Results, function (i, item) {
-                        render += Mustache.render(template, {
-                            Name: item.Name,
-                            Id: item.Id,
-                            Description: item.Description
-                        });
-                    });
-                }
-                else {
-                    render = "<td colspan='2'>Không có dữ liệu</td>";
-                }
-                
-                $('#tblContent').html(render);
-                $('#listContent').find('tbody tr:first').addClass('selected');
-                $("#lblTotalRecords").text(response.RowCount);
-                wrapPaging(response.RowCount, function () {
-                    loadData();
-                }, isPageChanged);
-                cms.stopLoading();
-            },
-            error: function (status) {
-                console.log(status);
-            }
-        });
-    };
-
-    function wrapPaging(recordCount, callBack, changePageSize) {
-        var totalsize = Math.ceil(recordCount / cms.configs.pageSize);
-        var countPage = (totalsize + 4) < 7 ? (totalsize + 4) : 7;
-        if ($('#paginationUL a').length === 0 || changePageSize === true) {
-            $('#paginationUL').empty();
-            $('#paginationUL').removeData("twbs-pagination");
-            $('#paginationUL').unbind("page");
+function reloadListUsers() {
+    var id = $("#listContent table tr.selected").attr("item-id");
+    $.callAjax("/Admin/Role/GetListUsers", { id: id }, enumMethod.Post, function (response) {
+        if (response.Success) {
+            $("#listUsers").html(response.Data);
+            loadTableUserEvent(id);
+            //$.loadActiveControl();
+        } else {
+            $.notifyError(response);
         }
-        //Bind Pagination Event
-        $('#paginationUL').twbsPagination({
-            totalPages: totalsize,
-            visiblePages: countPage,
-            first: 'Đầu',
-            prev: 'Trước',
-            next: 'Tiếp',
-            last: 'Cuối',
-            onPageClick: function (event, p) {
-                cms.configs.pageIndex = p;
-                setTimeout(callBack(), 200);
+    });
+}
+
+function loadTableUserEvent(roleId) {
+    
+    $(".btn-assign-user").on('click', function () {
+        if (roleId == undefined || roleId == null || roleId == "") {
+            $.notifyWarning({
+                title: 'Chú ý!',
+                text: "Không có vai trò nào được chọn.",
+                type: 'warning',
+                styling: 'bootstrap3'
+            });
+        } else {
+            var urlGetContent = $(this).attr('url-content') + "?roleId=" + roleId;
+            $.appendSpin();
+            $.callAjax(urlGetContent, null, enumMethod.Get, function (response) {
+                $.removeSpin();
+                if (response.Success) {
+                    $("#myModal").openModal(response.Data);
+                    loadSaveEvent();
+                } else {
+                    $.notifyError(response);
+                }
+            });
+        }
+    });
+
+    $(".btn-remove-user").on('click', function () {
+        if ($(this).hasClass('disabled')) {
+            return false;
+        }
+        var urlRemove = $(this).attr('url-content');
+        var table = $(this).parent().parent().find('table');
+        if ($(table).find("tr.selected").length <= 0) {
+            $.notifyWarning();
+        } else if ($(table).find("tr.selected").length === 1 && $(table).find("tr.selected").attr('item-id') != "") {
+            $.confirm({
+                title: "Xác nhận xóa",
+                content: 'Bạn có muốn xóa dòng này?',
+                buttons: {
+                    confirm: {
+                        text: "Đồng ý",
+                        btnClass: 'btn-blue',
+                        action: function () {
+                            var itemId = $(table).find("tr.selected").attr("item-id");
+                            $.callAjax(urlRemove, { userId: itemId, roleId: roleId }, enumMethod.Post, function (response) {
+                                if (response.Success) {
+                                    $.notifySuccess(response);
+                                    $("#listUsers").html(response.Data);
+                                    loadTableUserEvent(roleId);
+                                    $.loadActiveControl();
+                                } else {
+                                    $.notifyError(response);
+                                }
+                            });
+                        }
+                    },
+                    cancel: {
+                        text: "Hủy",
+                        action: function () {
+                            //$.alert('Canceled!');
+                        }
+                    }
+                }
+            });
+        } else {
+            console.log("error");
+        }
+    });
+}
+
+function loadSaveEvent() {
+    $(".btn-assign").on('click', function () {
+        var lstUsers = [];
+        $(".user-item-check").each(function () {
+            if ($(this).is(":checked")) {
+                lstUsers.push($(this).parents('.user-item').attr('user-id'));
             }
         });
-    }
+        console.log(lstUsers);
+        if (lstUsers.length > 0) {
+            var $form = $('.modal form');
+            var url = $($form).attr('action');
+            var roleId = $("table.bulk_action tr.selected").attr("item-id");
+            var data = {
+                listUsers: lstUsers,
+                roleId: roleId
+            }
+            $.appendSpin();
+            $.postStringify(url, data, function (response) {
+                $.removeSpin();
+                if (response.Success) {
+                    $.notifySuccess(response);
+                    $("#myModal").hideModal();
+                    $("#listUsers").html(response.Data);
+                    loadTableUserEvent(roleId);
+                } else {
+                    $.notifyError(response);
+                }
+            });
+        } else {
+            $.notifyWarning();
+        }
+    });
 
-    this.initialize = function () {
-        loadData();
-        registerEvents();
-    }
+    $(".btn-save-role-action").on('click', function () {
+        var listFunctionAction = [];
+        var lstActions = $("#list-functions").jstree("get_selected", true);
+        lstActions.map(function (item) {
+            if (item.li_attr["fnc-id"] != undefined && item.li_attr["act-id"] != undefined) {
+                listFunctionAction.push({
+                    FunctionID: item.li_attr["fnc-id"],
+                    ActionID: item.li_attr["act-id"]
+                });
+            }
+        });
+        var url = "/RoleManagement/SaveRoleAction";
+        var data = {
+            RoleID: $("#RoleID").val(),
+            ListAction: listFunctionAction
+        }
+        if (listFunctionAction.length > 0) {
+            $.appendSpin();
+            $.postStringify(url, data, function (response) {
+                $.removeSpin();
+                if (response.Success) {
+                    $.notifySuccess(response);
+                    $("#myModal").hideModal();
+                } else {
+                    $.notifyError(response);
+                }
+            });
+        } else {
+            $.notifyWarning({
+                title: 'Chú ý!',
+                text: "Không có vai trò nào được chọn.",
+                type: 'warning',
+                styling: 'bootstrap3'
+            });
+        }
+    });
 }

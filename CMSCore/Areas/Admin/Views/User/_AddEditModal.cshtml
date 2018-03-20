@@ -1,5 +1,5 @@
 ﻿@using CMSCore.Data.Enums
-@model CMSCore.Application.ViewModels.System.AppUserViewModel
+@model CMSCore.Application.ViewModels.AppUserViewModel
 @{
     var isEdit = Model.IsEdit;
     var isView = Model.IsView;
@@ -33,7 +33,7 @@
                                         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "error" })
                                     </div>
                                 </div>
-                                @if (!isView || isEdit)
+                                @if (!isView && !isEdit)
                                 {
                                     <div class="form-group">
                                         @Html.LabelFor(m => m.Password, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
@@ -50,11 +50,15 @@
                                         </div>
                                     </div>
                                 }
+                                else
+                                {
+                                    @Html.HiddenFor(m => m.Password)
+                                }
                                 <div class="form-group">
-                                    @Html.LabelFor(m => m.ListRoles, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    @Html.LabelFor(m => m.ListStringRoles, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                         @*@Html.DropDownListFor(m => m.ListRoles,Model.ListAppRoleViewModels, new { @class = "form-control" })*@
-                                        <select id="ListRoles" multiple="multiple" name="ListRoles" class = "form-control">
+                                        <select id="ListRoles" multiple="multiple" name="ListStringRoles" class = "form-control">
                                                 @foreach (var item in Model.ListItemRoles)
                                                 {
                                                     if (item.Selected)
@@ -67,7 +71,7 @@
                                                     }
                                                 }
                                         </select>
-                                        @Html.ValidationMessageFor(m => m.ListRoles, "", new { @class = "error" })
+                                        @Html.ValidationMessageFor(m => m.ListStringRoles, "", new { @class = "error" })
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -75,7 +79,7 @@
                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" class="flat" id="Status" name="Status" checked="@(Model.Status == Status.Active)" />
+                                                <input type="checkbox" class="flat" id="Status" name="Status" checked="@(Model.Status == Status.Active)" value="@Model.Status" />
                                                 <span class="text">Kích hoạt</span>
                                             </label>
                                         </div>

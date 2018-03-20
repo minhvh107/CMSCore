@@ -195,8 +195,9 @@ var enumMethod = {
             if ($('#Content').length) {
                 obj['Content'] = CKEDITOR.instances['Content'].getData();
             }
-            obj['HomeFlag'] = $('#HomeFlag').is(':checked');
-            obj['HotFlag'] = $('#HotFlag').is(':checked');
+           
+            obj['HomeFlag'] = $('#HomeFlag').is(':checked') ? 1 : 0;
+            obj['HotFlag'] = $('#HotFlag').is(':checked') ? 1 : 0;
             obj['Status'] = $('#Status').is(':checked') ? 1 : 0;
 
             $.postStringify(url, obj, function (response) {

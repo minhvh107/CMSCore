@@ -1,7 +1,7 @@
 ﻿using CMSCore.Utilities.Dtos;
 using System.Collections.Generic;
 
-namespace CMSCore.Application.ViewModels.Product
+namespace CMSCore.Application.ViewModels
 {
     public class PageProductViewModel
     {

@@ -1,4 +1,4 @@
-﻿using CMSCore.Application.ViewModels.System;
+﻿using CMSCore.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace CMSCore.Application.Interfaces
     {
         void Add(FunctionViewModel function);
 
-        Task<List<FunctionViewModel>> GetAll(string filter);
+        Task<List<FunctionViewModel>> GetAllAsync(string filter);
 
         IEnumerable<FunctionViewModel> GetAllWithParentId(string parentId);
 

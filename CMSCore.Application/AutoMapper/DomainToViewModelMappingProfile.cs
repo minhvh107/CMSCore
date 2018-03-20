@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using CMSCore.Application.ViewModels.System;
-using CMSCore.Application.ViewModels.Product;
+using CMSCore.Application.ViewModels;
 using CMSCore.Data.Entities;
 
 namespace CMSCore.Application.AutoMapper

@@ -1,5 +1,5 @@
 ﻿using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels;
 using CMSCore.Extensions;
 using CMSCore.Utilities.Constants;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +26,7 @@ namespace CMSCore.Areas.Admin.Components
             List<FunctionViewModel> functions;
             if (roles.Split(";").Contains(CommonConstants.AppRole.AdminRole))
             {
-                functions = await _functionService.GetAll(string.Empty);
+                functions = await _functionService.GetAllAsync(string.Empty);
             }
             else
             {

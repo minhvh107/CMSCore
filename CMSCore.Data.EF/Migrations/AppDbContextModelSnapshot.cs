@@ -21,6 +21,22 @@ namespace CMSCore.Data.EF.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CMSCore.Data.Entities.Action", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SEC_Actions");
+                });
+
             modelBuilder.Entity("CMSCore.Data.Entities.Advertistment", b =>
                 {
                     b.Property<int>("Id")
@@ -53,7 +69,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.ToTable("Advertistments");
+                    b.ToTable("ADV_Advertistments");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.AdvertistmentPage", b =>
@@ -67,7 +83,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdvertistmentPages");
+                    b.ToTable("ADV_AdvertistmentPages");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.AdvertistmentPosition", b =>
@@ -87,7 +103,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("PageId");
 
-                    b.ToTable("AdvertistmentPositions");
+                    b.ToTable("ADV_AdvertistmentPositions");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Announcement", b =>
@@ -116,7 +132,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Announcements");
+                    b.ToTable("ANN_Announcements");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.AnnouncementUser", b =>
@@ -136,7 +152,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("AnnouncementId");
 
-                    b.ToTable("AnnouncementUsers");
+                    b.ToTable("ANN_AnnouncementUsers");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.AppRole", b =>
@@ -155,7 +171,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRoles");
+                    b.ToTable("SEC_AppRoles");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.AppUser", b =>
@@ -207,7 +223,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUsers");
+                    b.ToTable("SEC_AppUsers");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Bill", b =>
@@ -247,7 +263,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Bills");
+                    b.ToTable("PRD_Bills");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.BillDetail", b =>
@@ -277,7 +293,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("BillDetails");
+                    b.ToTable("PRD_BillDetails");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Blog", b =>
@@ -325,7 +341,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("BLO_Blogs");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.BlogTag", b =>
@@ -346,7 +362,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("BlogTags");
+                    b.ToTable("BLO_BlogTags");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Color", b =>
@@ -362,7 +378,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("PRD_Colors");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Contact", b =>
@@ -397,7 +413,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactDetails");
+                    b.ToTable("SYS_ContactDetails");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Feedback", b =>
@@ -423,7 +439,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Feedbacks");
+                    b.ToTable("MAN_Feedbacks");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Footer", b =>
@@ -438,7 +454,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Footers");
+                    b.ToTable("SYS_Footers");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Function", b =>
@@ -467,7 +483,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Functions");
+                    b.ToTable("SEC_Functions");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Language", b =>
@@ -487,7 +503,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages");
+                    b.ToTable("SYS_Languages");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Page", b =>
@@ -510,7 +526,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pages");
+                    b.ToTable("SYS_Pages");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Permission", b =>
@@ -518,13 +534,9 @@ namespace CMSCore.Data.EF.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("CanCreate");
-
-                    b.Property<bool>("CanDelete");
-
-                    b.Property<bool>("CanRead");
-
-                    b.Property<bool>("CanUpdate");
+                    b.Property<string>("ActionId")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("FunctionId")
                         .IsRequired()
@@ -534,11 +546,13 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ActionId");
+
                     b.HasIndex("FunctionId");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Permissions");
+                    b.ToTable("SEC_Permissions");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Product", b =>
@@ -604,7 +618,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("PRD_Products");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.ProductCategory", b =>
@@ -646,7 +660,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("PRD_ProductCategories");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.ProductImage", b =>
@@ -666,7 +680,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages");
+                    b.ToTable("PRD_ProductImages");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.ProductQuantity", b =>
@@ -690,7 +704,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("ProductQuantities");
+                    b.ToTable("PRD_ProductQuantities");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.ProductTag", b =>
@@ -711,7 +725,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("ProductTags");
+                    b.ToTable("PRD_ProductTags");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Size", b =>
@@ -724,7 +738,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sizes");
+                    b.ToTable("PRD_Sizes");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Slide", b =>
@@ -758,7 +772,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Slides");
+                    b.ToTable("MAN_Slides");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.SystemConfig", b =>
@@ -785,7 +799,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SystemConfigs");
+                    b.ToTable("SYS_SystemConfigs");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Tag", b =>
@@ -805,7 +819,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("MAN_Tags");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.WholePrice", b =>
@@ -825,7 +839,7 @@ namespace CMSCore.Data.EF.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("WholePrices");
+                    b.ToTable("PRD_WholePrices");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -979,6 +993,11 @@ namespace CMSCore.Data.EF.Migrations
 
             modelBuilder.Entity("CMSCore.Data.Entities.Permission", b =>
                 {
+                    b.HasOne("CMSCore.Data.Entities.Action", "Action")
+                        .WithMany()
+                        .HasForeignKey("ActionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("CMSCore.Data.Entities.Function", "Function")
                         .WithMany()
                         .HasForeignKey("FunctionId")

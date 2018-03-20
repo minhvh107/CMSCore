@@ -1,6 +1,5 @@
 ﻿using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.Default;
-using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels;
 using CMSCore.Authorization;
 using CMSCore.Services;
 using CMSCore.Utilities.Constants;
@@ -8,6 +7,7 @@ using CMSCore.Utilities.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +17,7 @@ namespace CMSCore.Areas.Admin.Controllers
     public class UserController : BaseController
     {
         #region Default
+
         private readonly IUserService _userService;
         private readonly IAuthorizationService _authorizationService;
         private readonly IRoleService _roleService;
@@ -32,7 +33,8 @@ namespace CMSCore.Areas.Admin.Controllers
             _roleService = roleService;
             _viewRenderService = viewRenderService;
         }
-        #endregion
+
+        #endregion Default
 
         #region Index
 
@@ -48,25 +50,18 @@ namespace CMSCore.Areas.Admin.Controllers
             const string keyword = "";
             const int currentPage = 1;
             const int pageSize = 10;
-            var lstObj = _userService.GetAllPagingAsync(keyword, currentPage, pageSize);
+            var lstObj = await _userService.GetAllPagingAsync(keyword, currentPage, pageSize);
 
-            var idFirst = lstObj.Results.First();
-            var lstRoles = _userService.GetById(idFirst.Id.ToString());
+            // Lấy ra user đầu tiên
+            var idUserFirst = lstObj.Results.First();
 
-            var allRoles = _roleService.GetAllAsync();
-            var lstRolesVm = new List<AppRoleViewModel>();
-            foreach(var item in allRoles.Result)
-            {
-                if(lstRoles.Result.ListRoles.FirstOrDefault(m=>m.Contains(item.Name)) != null)
-                {
-                    lstRolesVm.Add(item);
-                }
-            }
+            // Thông tin user đầu tiên
+            var infoUserFirst = await _userService.GetById(idUserFirst.Id.ToString());
 
             var model = new PageAppUserViewModel
             {
                 ListAppUserVm = lstObj.Results,
-                ListAppRoleVm = lstRolesVm,
+                ListAppRoleVm = infoUserFirst.ListViewModelRoles,
                 PagedResult = lstObj
             };
 
@@ -83,19 +78,21 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <param name="filter">Dữ liệu lọc</param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Filter(FilterDefault filter)
+        public async Task<IActionResult> Filter(FilterDefault filter)
         {
-            var data = _userService.GetAllPagingAsync(filter.Keyword, filter.CurrentPage,
+            var data = await _userService.GetAllPagingAsync(filter.Keyword, filter.CurrentPage,
                 filter.PageSize);
-            var listContent = _viewRenderService.RenderToStringAsync("User/_ListUser", data.Results);
-            var pagination = _viewRenderService.RenderToStringAsync("Common/_CommonPagination", data);
+
+            var listContent = await _viewRenderService.RenderToStringAsync("User/_ListUser", data.Results);
+
+            var pagination = await _viewRenderService.RenderToStringAsync("Common/_CommonPagination", data);
             return Json(new JsonResponse()
             {
                 Success = true,
                 StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
                 Message = Constants.GetDataSuccess,
-                Data = listContent.Result,
-                Pagination = pagination.Result
+                Data = listContent,
+                Pagination = pagination
             });
         }
 
@@ -108,7 +105,7 @@ namespace CMSCore.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Add()
+        public async Task<IActionResult> Add()
         {
             var model = new AppUserViewModel
             {
@@ -118,14 +115,14 @@ namespace CMSCore.Areas.Admin.Controllers
 
             #region Danh sách quyền
 
-            var lstRoles = _roleService.GetAllAsync();
+            var lstRoles = await _roleService.GetAllAsync();
             var lstSelect = new List<SelectListItem>{
                 new SelectListItem{
                     Value = "",
                     Text = "—Chọn quyền—"
                 }
             };
-            lstSelect.AddRange(lstRoles.Result.Select(m => new SelectListItem
+            lstSelect.AddRange(lstRoles.Select(m => new SelectListItem
             {
                 Value = m.Name,
                 Text = m.Description
@@ -134,13 +131,13 @@ namespace CMSCore.Areas.Admin.Controllers
 
             #endregion Danh sách quyền
 
-            var content = _viewRenderService.RenderToStringAsync("User/_AddEditModal", model);
+            var content = await _viewRenderService.RenderToStringAsync("User/_AddEditModal", model);
             return Json(new JsonResponse
             {
                 Success = true,
                 Message = Constants.GetDataSuccess,
                 StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
-                Data = content.Result,
+                Data = content,
             });
         }
 
@@ -154,37 +151,37 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <param name="id">Mã sản phẩm</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Edit(string id)
+        public async Task<IActionResult> Edit(string id)
         {
-            var obj = _userService.GetById(id);
-            obj.Result.IsEdit = true;
+            var obj = await _userService.GetById(id);
+            obj.IsEdit = true;
 
             #region Danh sách quyền
 
-            var lstRoles = _roleService.GetAllAsync();
+            var lstRoles = await _roleService.GetAllAsync();
             var lstSelect = new List<SelectListItem>{
                 new SelectListItem{
                     Value = "",
                     Text = "—Chọn quyền—"
                 }
             };
-            lstSelect.AddRange(lstRoles.Result.Select(m => new SelectListItem
+            lstSelect.AddRange(lstRoles.Select(m => new SelectListItem
             {
                 Value = m.Name,
                 Text = m.Description,
-                Selected = obj.Result.ListRoles.FirstOrDefault(t=>t.Contains(m.Name)) != null
+                Selected = obj.ListStringRoles.FirstOrDefault(t => t.Contains(m.Name)) != null
             }));
-            obj.Result.ListItemRoles = lstSelect;
+            obj.ListItemRoles = lstSelect;
 
             #endregion Danh sách quyền
 
-            var content = _viewRenderService.RenderToStringAsync("User/_AddEditModal", obj.Result);
+            var content = await _viewRenderService.RenderToStringAsync("User/_AddEditModal", obj);
             return Json(new JsonResponse
             {
                 Success = true,
                 Message = Constants.GetDataSuccess,
                 StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
-                Data = content.Result,
+                Data = content,
             });
         }
 
@@ -230,10 +227,10 @@ namespace CMSCore.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewItem(string id)
         {
-            var obj = _userService.GetById(id);
+            var obj = await _userService.GetById(id);
 
-            obj.Result.IsEdit = false;
-            obj.Result.IsView = true;
+            obj.IsEdit = false;
+            obj.IsView = true;
 
             #region Danh sách quyền
 
@@ -248,19 +245,19 @@ namespace CMSCore.Areas.Admin.Controllers
             {
                 Value = m.Name,
                 Text = m.Description,
-                Selected = obj.Result.ListRoles.FirstOrDefault(t => t.Contains(m.Name)) != null
+                Selected = obj.ListStringRoles.FirstOrDefault(t => t.Contains(m.Name)) != null
             }));
-            obj.Result.ListItemRoles = lstSelect;
+            obj.ListItemRoles = lstSelect;
 
             #endregion Danh sách quyền
 
-            var content = _viewRenderService.RenderToStringAsync("User/_AddEditModal", obj.Result);
+            var content = await _viewRenderService.RenderToStringAsync("User/_AddEditModal", obj);
             return Json(new JsonResponse
             {
                 Success = true,
                 Message = Constants.GetDataSuccess,
                 StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
-                Data = content.Result
+                Data = content
             });
         }
 
@@ -307,35 +304,156 @@ namespace CMSCore.Areas.Admin.Controllers
         #endregion Lưu tài khoản
 
         #region List quyền
+
         /// <summary>
         /// Lấy danh sách quyền theo user
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult GetListRoles(string id)
+        public async Task<IActionResult> GetListRoles(string id)
         {
-            var lstRoles = _userService.GetById(id);
+            var lstRoles = await _userService.GetById(id); // Danh sách quyền theo tên tài khoản
 
-            var allRoles = _roleService.GetAllAsync();
-            var lstRolesVm = new List<AppRoleViewModel>();
-            foreach (var item in allRoles.Result)
-            {
-                if (lstRoles.Result.ListRoles.FirstOrDefault(m => m.Contains(item.Name)) != null)
-                {
-                    lstRolesVm.Add(item);
-                }
-            }
-            var content = _viewRenderService.RenderToStringAsync("User/_ListRoles", lstRolesVm);
+            var content = await _viewRenderService.RenderToStringAsync("User/_ListRoles", lstRoles.ListViewModelRoles);
 
             return Json(new JsonResponse
             {
                 Success = true,
                 Message = Constants.GetDataSuccess,
                 StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
-                Data = content.Result,
+                Data = content,
             });
         }
-        #endregion
+
+        #endregion List quyền
+
+        #region Gán quyền
+
+        /// <summary>
+        /// Gán quyền
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> AssignRole(string userId)
+        {
+            try
+            {
+                var infoUser = await _userService.GetById(userId);
+                var currentRoles = infoUser.ListViewModelRoles;
+
+                var allRoles = await _roleService.GetAllAsync();
+                var lstRoleNotAssign = allRoles.Where(m => !currentRoles.Any(p => p.Id == m.Id)).ToList();
+
+                var content = await _viewRenderService.RenderToStringAsync("User/_AssignRoles", lstRoleNotAssign);
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                    Message = Constants.GetDataSuccess,
+                    Data = content
+                });
+            }
+            catch (Exception e)
+            {
+                return Json(new JsonResponse()
+                {
+                    Success = false,
+                    StatusCode = Utilities.Constants.StatusCode.GetDataFailed,
+                    Message = e.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Gán quyền
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="listRoles"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(string userId, List<string> listRoles)
+        {
+            try
+            {
+                if (listRoles.Count > 0)
+                {
+                    var infoUser = await _userService.GetById(userId);
+                    infoUser.ListStringRoles = listRoles;
+                    await _userService.UpdateAsync(infoUser);
+
+                    var infoUserAfter = await _userService.GetById(userId);
+
+                    var content = await _viewRenderService.RenderToStringAsync("User/_ListRoles", infoUserAfter.ListViewModelRoles);
+                    return Json(new JsonResponse()
+                    {
+                        Success = true,
+                        StatusCode = Utilities.Constants.StatusCode.SaveDataSuccess,
+                        Message = Constants.SaveDataSuccess,
+                        Data = content
+                    });
+                }
+                else
+                {
+                    return Json(new JsonResponse()
+                    {
+                        Success = false,
+                        StatusCode = Utilities.Constants.StatusCode.SaveDataFailed,
+                        Message = "Không có dữ liệu được chọn"
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new JsonResponse()
+                {
+                    Success = false,
+                    StatusCode = Utilities.Constants.StatusCode.SaveDataFailed,
+                    Message = e.Message
+                });
+            }
+        }
+
+        #endregion Gán quyền
+
+        /// <summary>
+        /// Xoá quyền
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> RemoveRole(string id, string userId)
+        {
+            try
+            {
+                var infoUser = await _userService.GetById(userId);
+                var lstNewRoles = infoUser.ListStringRoles.Where(m => m != id).ToList();
+                infoUser.ListStringRoles = lstNewRoles;
+
+                await _userService.UpdateAsync(infoUser);
+
+                var infoUserAfter = await _userService.GetById(userId);
+
+                var listContent = await _viewRenderService.RenderToStringAsync("User/_ListRoles", infoUserAfter.ListViewModelRoles);
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    StatusCode = Utilities.Constants.StatusCode.DeleteItemSuccess,
+                    Message = Constants.SaveDataSuccess,
+                    Data = listContent
+                });
+            }
+            catch (Exception e)
+            {
+                return Json(new JsonResponse()
+                {
+                    Success = false,
+                    StatusCode = Utilities.Constants.StatusCode.DeleteItemFailed,
+                    Message = e.Message
+                });
+            }
+        }
     }
 }

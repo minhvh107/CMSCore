@@ -1,11 +1,22 @@
 ﻿@using CMSCore.Data.Enums
-@model IList<CMSCore.Application.ViewModels.System.AppRoleViewModel>
+@model IList<CMSCore.Application.ViewModels.AppRoleViewModel>
 <div class="table-header-action">
     <a href="javascript:void(0);" class="margin-right-20 btn-add-item" url-content="/Admin/Role/Add"><i class="fa fa-plus fa-lg"></i> Thêm</a>
-    <a href="javascript:void(0);" class="margin-right-20 btn-update-item" url-content="/Admin/Role/Edit"><i class="fa fa-edit fa-lg"></i> Sửa</a>
-    <a href="javascript:void(0);" class="margin-right-20 btn-remove-item" url-content="/Admin/Role/Delete"><i class="fa fa-remove fa-lg"></i> Xóa</a>
+    @if (Model == null || Model.Count == 0)
+    {
+        <a href="javascript:void(0);" class="margin-right-20 disabled"><i class="fa fa-edit fa-lg"></i> Sửa</a>
+        <a href="javascript:void(0);" class="margin-right-20 disabled"><i class="fa fa-remove fa-lg"></i> Xóa</a>
+        <a href="javascript:void(0);" class="margin-right-20 disabled"><i class="fa fa-key fa-lg"></i> Phân Quyền</a>
+    }
+    else
+    {
+
+        <a href="javascript:void(0);" class="margin-right-20 btn-update-item" url-content="/Admin/Role/Edit"><i class="fa fa-edit fa-lg"></i> Sửa</a>
+        <a href="javascript:void(0);" class="margin-right-20 btn-remove-item" url-content="/Admin/Role/Delete"><i class="fa fa-remove fa-lg"></i> Xóa</a>
+        <a href="javascript:void(0);" class="margin-right-20 btn-assign-role" url-content="/Admin/Role/ManageRoleAction"><i class="fa fa-key fa-lg"></i> Phân Quyền</a>
+    }
     @*<a href="javascript:void(0);" class="margin-right-20 btn-export-item" url-content="/Admin/Role/ExportExcel"><i class="fa fa-download fa-lg"></i> Xuất Excel</a>
-    <a href="javascript:void(0);" class="margin-right-20 btn-import-item" url-content="/Admin/Role/ImportExcel"><i class="fa fa-upload fa-lg"></i> Nhập Excel</a>*@
+        <a href="javascript:void(0);" class="margin-right-20 btn-import-item" url-content="/Admin/Role/ImportExcel"><i class="fa fa-upload fa-lg"></i> Nhập Excel</a>*@
     <input type="hidden" value="/Admin/Role/ViewItem" id="url-view" />
 </div>
 <div class="table-responsive table-fixed">

@@ -12,5 +12,14 @@
         public const string DeleteDataFailed = "Xóa dữ liệu thất bại!";
 
         public const string DuplicateKeyData = "Trùng thông tin dữ liệu!";
+
+        #region DataAnnotations
+        public const string FieldRequired = "Dữ liệu không được để trống!";
+        public const string InputDataExpression = "Ký tự nhập vào không hợp lệ";
+        public const string InputDataRegex = @"^([a-zA-Z0-9_ \-\.\+\,]+)$";
+        public const string MaxLength = "Dữ liệu không được vượt quá";
+        public const string MustBeNumber = "Dữ liệu phải là số từ 0-9";
+        public const string EmptyValue = "0.0000";
+        #endregion
     }
 }

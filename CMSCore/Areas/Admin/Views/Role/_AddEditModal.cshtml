@@ -1,5 +1,5 @@
 ﻿@using CMSCore.Data.Enums
-@model CMSCore.Application.ViewModels.System.AppRoleViewModel
+@model CMSCore.Application.ViewModels.AppRoleViewModel
 @{
     var isEdit = Model.IsEdit;
     var isView = Model.IsView;
@@ -7,7 +7,7 @@
     var title = isEdit ? "Sửa quyền" : "Thêm quyền";
     title = isView ? "Thông tin quyền" : title;
 }
-<div class="modal-dialog  modal-lg">
+<div class="modal-dialog  modal-sm notfix">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>

@@ -149,30 +149,6 @@ function loadSaveEvent() {
     });
 }
 
-window.savefnc = function () {
-    var $form = $('.modal form');
-    var url = $($form).attr('action');
-    var data = $($form).serializeObject();
-    data["IsActive"] = $("#IsActive").is(":checked");;
-    $.appendSpin();
-    $.postStringify(url, data, function (response) {
-        $.removeSpin();
-        if (response.Success) {
-            $.notifySuccess(response);
-            $("#myModal").hideModal();
-            $.reloadData();
-        } else {
-            $('label.error').hide();
-            $('input').removeClass('error');
-            if (response.Errors != null && response.Errors != undefined) {
-                validator.showErrors(response.Errors);
-            } else {
-                $.notifyError(response);
-            }
-        }
-    });
-}
-
 window.disabledCheckbox = function () {
     setTimeout(function () {
         $(".isactive ").prop('disabled', 'true');

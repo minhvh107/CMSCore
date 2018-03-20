@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using CMSCore.Application.ViewModels.Product;
-using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels;
 using CMSCore.Data.Entities;
 using System;
 
@@ -25,7 +24,7 @@ namespace CMSCore.Application.AutoMapper
             c.Email, c.PhoneNumber, c.Avatar, c.Status));
 
             CreateMap<PermissionViewModel, Permission>()
-                .ConstructUsing(c => new Permission(c.RoleId, c.FunctionId, c.CanCreate, c.CanRead, c.CanUpdate, c.CanDelete));
+                .ConstructUsing(c => new Permission(c.RoleId, c.FunctionId, c.ActionId));
         }
     }
 }

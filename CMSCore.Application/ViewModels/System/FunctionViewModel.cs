@@ -1,10 +1,15 @@
 ﻿using CMSCore.Data.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CMSCore.Application.ViewModels.System
+namespace CMSCore.Application.ViewModels
 {
     public class FunctionViewModel
     {
+        public FunctionViewModel()
+        {
+            Children = new List<FunctionViewModel>();
+        }
         public string Id { get; set; }
 
         [Required]
@@ -21,5 +26,7 @@ namespace CMSCore.Application.ViewModels.System
         public string IconCss { get; set; }
         public int SortOrder { set; get; }
         public Status Status { set; get; }
+
+        public List<FunctionViewModel> Children { get; set; }
     }
 }

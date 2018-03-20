@@ -92,6 +92,19 @@ namespace CMSCore.Data.EF
                 });
             }
 
+            if (_context.Actions.Count() == 0)
+            {
+                _context.Actions.AddRange(new List<Entities.Action>()
+                {
+                    new Entities.Action() {Id = "Create", Name = "Thêm"  },
+                    new Entities.Action() {Id = "Read", Name = "Đọc"  },
+                    new Entities.Action() {Id = "Update", Name = "Sửa"  },
+                    new Entities.Action() {Id = "Delete", Name = "Xoá"  },
+                    new Entities.Action() {Id = "Export", Name = "Xuất dữ liệu"  },
+                    new Entities.Action() {Id = "Import", Name = "Nhập dữ liệu"  }
+                });
+            }
+
             if (_context.Footers.Count(x => x.Id == CommonConstants.DefaultFooterId) == 0)
             {
                 string content = "Footer";

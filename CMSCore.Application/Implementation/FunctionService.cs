@@ -1,6 +1,6 @@
 ﻿using AutoMapper.QueryableExtensions;
 using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels;
 using CMSCore.Data.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -52,12 +52,15 @@ namespace CMSCore.Application.Implementation
             return Mapper.Map<Function, FunctionViewModel>(function);
         }
 
-        public Task<List<FunctionViewModel>> GetAll(string filter)
+        public async Task<List<FunctionViewModel>> GetAllAsync(string filter)
         {
             var query = _functionRepository.FindAll(x => x.Status == Status.Active);
             if (!string.IsNullOrEmpty(filter))
                 query = query.Where(x => x.Name.Contains(filter));
-            return query.OrderBy(x => x.ParentId).ProjectTo<FunctionViewModel>().ToListAsync();
+            var funsVm = await query.OrderBy(x => x.ParentId).ProjectTo<FunctionViewModel>().ToListAsync();
+            var listChild = funsVm;
+            funsVm.ForEach(m => m.Children.AddRange(listChild.Where(x => x.ParentId == m.Id)));
+            return funsVm;
         }
 
         public IEnumerable<FunctionViewModel> GetAllWithParentId(string parentId)

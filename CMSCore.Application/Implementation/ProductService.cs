@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.Product;
+using CMSCore.Application.ViewModels;
 using CMSCore.Data.Entities;
 using CMSCore.Data.Enums;
 using CMSCore.Data.IRepositories;

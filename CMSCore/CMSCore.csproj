@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-CMSCore-1AC460EB-40BB-46A2-9F1B-B9EC735C80A5</UserSecretsId>
+	<MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -66,6 +67,8 @@
     <None Include="wwwroot\lib\font-awesome\scss\_screen-reader.scss" />
     <None Include="wwwroot\lib\font-awesome\scss\_stacked.scss" />
     <None Include="wwwroot\lib\font-awesome\scss\_variables.scss" />
+    <None Include="wwwroot\js\jstree\jstree.js" />
+    <None Include="wwwroot\js\jstree\jstree.min.js" />
     <None Include="wwwroot\lib\moment\CHANGELOG.md" />
     <None Include="wwwroot\lib\moment\LICENSE" />
     <None Include="wwwroot\lib\moment\locale\af.js" />

@@ -737,7 +737,8 @@ ul.select2-results__options {
     overflow: hidden;
 }
 
-#myModal .modal-lg .modal-body, #modal-grantpermission .modal-lg .modal-body {
+#myModal .modal-lg:not(.notfix) .modal-body,
+#modal-grantpermission .modal-lg .modal-body {
     height: 450px;
     overflow-y: auto;
     overflow-x: hidden;

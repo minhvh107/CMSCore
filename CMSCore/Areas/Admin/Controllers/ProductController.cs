@@ -1,5 +1,5 @@
 ﻿using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.Product;
+using CMSCore.Application.ViewModels;
 using CMSCore.Services;
 using CMSCore.Utilities.Constants;
 using CMSCore.Utilities.Helpers;

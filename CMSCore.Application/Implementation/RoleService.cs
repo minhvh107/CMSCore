@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using CMSCore.Application.Interfaces;
-using CMSCore.Application.ViewModels.System;
+using CMSCore.Application.ViewModels;
 using CMSCore.Data.Entities;
 using CMSCore.Data.IRepositories;
 using CMSCore.Infrastructure.Interfaces;
@@ -18,17 +18,23 @@ namespace CMSCore.Application.Implementation
     public class RoleService : IRoleService
     {
         private readonly RoleManager<AppRole> _roleManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IFunctionRepository _functionRepository;
         private readonly IPermissionRepository _permissionRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public RoleService(RoleManager<AppRole> roleManager, IUnitOfWork unitOfWork,
-         IFunctionRepository functionRepository, IPermissionRepository permissionRepository)
+        public RoleService(
+            RoleManager<AppRole> roleManager, 
+            UserManager<AppUser> userManager,
+            IUnitOfWork unitOfWork,
+            IFunctionRepository functionRepository, 
+            IPermissionRepository permissionRepository)
         {
-            _unitOfWork = unitOfWork;
             _roleManager = roleManager;
+            _userManager = userManager;
             _functionRepository = functionRepository;
             _permissionRepository = permissionRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<bool> AddAsync(AppRoleViewModel roleVm)
@@ -50,10 +56,6 @@ namespace CMSCore.Application.Implementation
                         join p in permissions on f.Id equals p.FunctionId
                         join r in _roleManager.Roles on p.RoleId equals r.Id
                         where roles.Contains(r.Name) && f.Id == functionId
-                        && ((p.CanCreate && action == "Create")
-                        || (p.CanUpdate && action == "Update")
-                        || (p.CanDelete && action == "Delete")
-                        || (p.CanRead && action == "Read"))
                         select p;
             return query.AnyAsync();
         }
@@ -69,7 +71,7 @@ namespace CMSCore.Application.Implementation
             return await _roleManager.Roles.ProjectTo<AppRoleViewModel>().ToListAsync();
         }
 
-        public PagedResult<AppRoleViewModel> GetAllPagingAsync(string keyword, int page, int pageSize)
+        public async Task<PagedResult<AppRoleViewModel>> GetAllPagingAsync(string keyword, int page, int pageSize)
         {
             var query = _roleManager.Roles;
             if (!string.IsNullOrEmpty(keyword))
@@ -77,10 +79,11 @@ namespace CMSCore.Application.Implementation
                 || x.Description.Contains(keyword));
 
             int totalRow = query.Count();
-            query = query.Skip((page - 1) * pageSize)
+            query =  query.Skip((page - 1) * pageSize)
                .Take(pageSize);
 
-            var data = query.ProjectTo<AppRoleViewModel>().ToList();
+            var data = await query.ProjectTo<AppRoleViewModel>().ToListAsync();
+
             var paginationSet = new PagedResult<AppRoleViewModel>()
             {
                 Results = data,
@@ -92,10 +95,20 @@ namespace CMSCore.Application.Implementation
             return paginationSet;
         }
 
-        public async Task<AppRoleViewModel> GetById(Guid id)
+        public async Task<AppRoleViewModel> GetById(string id)
         {
             var role = await _roleManager.FindByIdAsync(id.ToString());
-            return Mapper.Map<AppRole, AppRoleViewModel>(role);
+            var roleVm = Mapper.Map<AppRole, AppRoleViewModel>(role);
+
+            // Tất cả người dùng
+            //var allUsers = await _userManager.Users.ProjectTo<AppUserViewModel>().ToListAsync();
+
+            // Danh sách người dùng (có quyền trùng với quyền ban đầu)
+            var lstUserInRole = await _userManager.GetUsersInRoleAsync(roleVm.Name);
+
+            roleVm.ListViewModelUsers = Mapper.Map<List<AppUser>, List<AppUserViewModel>>(lstUserInRole.ToList());
+
+            return roleVm;
         }
 
         public List<PermissionViewModel> GetListFunctionWithRole(Guid roleId)
@@ -110,11 +123,7 @@ namespace CMSCore.Application.Implementation
                         select new PermissionViewModel()
                         {
                             RoleId = roleId,
-                            FunctionId = f.Id,
-                            CanCreate = p != null ? p.CanCreate : false,
-                            CanDelete = p != null ? p.CanDelete : false,
-                            CanRead = p != null ? p.CanRead : false,
-                            CanUpdate = p != null ? p.CanUpdate : false
+                            FunctionId = f.Id
                         };
             return query.ToList();
         }

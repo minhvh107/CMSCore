@@ -1,4 +1,4 @@
-﻿using CMSCore.Application.ViewModels.Product;
+﻿using CMSCore.Application.ViewModels;
 using System.Collections.Generic;
 using CMSCore.Utilities.Dtos;
 
