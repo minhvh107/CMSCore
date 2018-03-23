@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CMSCore.Application.Interfaces;
 using CMSCore.Application.ViewModels;
-using CMSCore.Application.ViewModels.Common;
 using CMSCore.Data.Enums;
 using CMSCore.Services;
 using CMSCore.Utilities.Constants;
