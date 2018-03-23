@@ -835,6 +835,7 @@ $(document).ready(function () {
     $.loadEventPaging();
     $.initSelect2();
     $.isDisable();
+    $.initDatepicker();
     // Button Tìm kiếm
     $('.btn-search').on('click', function (e) {
         e.preventDefault();

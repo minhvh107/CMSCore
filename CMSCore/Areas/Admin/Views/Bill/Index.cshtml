@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@using CMSCore.Application.ViewModels
+@model PageBillViewModel
+<div class="page-title">
+    <div class="title_left">
+        <h3>Danh sách hoá đơn</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <form action="/Admin/Bill/Filter" id="frmFilter" class="form-inline">
+            @Html.Hidden("CurrentPage", Model.PagedResult.CurrentPage)
+            @Html.Hidden("PageSize", Model.PagedResult.PageSize)
+            <div class="row form-inline">
+                <label class="col-md-2 col-sm-3 col-xs-12  margin-bottom-10" for="Keyword">
+                    Từ:
+                </label>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <input type="text" id="StartDate" name="StartDate" class="form-control datepicker width-per-100" autocomplete="off" />
+                </div>
+                <label class="col-md-2 col-sm-3 col-xs-12  margin-bottom-10" for="Keyword">
+                    Đến:
+                </label>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <input type="text" id="EndDate" name="EndDate" class="form-control datepicker width-per-100" autocomplete="off"/>
+                </div>
+                
+            </div>
+            <div class="row form-inline">
+                <label class="col-md-2 col-sm-3 col-xs-12  margin-bottom-10" for="Keyword">
+                    Tên khách hàng:
+                </label>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <input type="text" id="Keyword" name="Keyword" class="form-control  width-per-100" autocomplete="off" />
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-4">
+                    <button type="submit" class="btn btn-primary pull-left btn-search btn-small"><i class="fa fa-search"></i> Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div id="listContent">
+            @{Html.RenderPartial("_ListBill", Model.ListBillViewModels);}
+        </div>
+    </div>
+    <div class="x_paging">
+        @{Html.RenderPartial("~/Areas/Admin/Views/Shared/_CommonPagination.cshtml", Model.PagedResult);}
+    </div>
+</div>

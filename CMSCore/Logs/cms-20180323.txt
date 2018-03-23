@@ -1,0 +1,1255 @@
+2018-03-23T14:33:50.5955755+07:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:33:52.8512965+07:00  [INF] Executed DbCommand ("702"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SEC_AppRoles] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:33:52.9777323+07:00  [INF] Executed DbCommand ("41"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SEC_AppUsers] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:33:53.1669127+07:00  [INF] Executed DbCommand ("136"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SEC_Functions] AS [s]" (0723d8ff)
+2018-03-23T14:33:53.2174523+07:00  [INF] Executed DbCommand ("38"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SEC_Actions] AS [s]" (0723d8ff)
+2018-03-23T14:33:53.3707311+07:00  [INF] Executed DbCommand ("109"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SYS_Footers] AS [x]
+WHERE [x].[Id] = 'DefaultFooterId'" (0723d8ff)
+2018-03-23T14:33:53.4301615+07:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Colors] AS [p]" (0723d8ff)
+2018-03-23T14:33:53.4596947+07:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ADV_AdvertistmentPages] AS [a]" (0723d8ff)
+2018-03-23T14:33:53.4683277+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [MAN_Slides] AS [m]" (0723d8ff)
+2018-03-23T14:33:53.4965474+07:00  [INF] Executed DbCommand ("17"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Sizes] AS [p]" (0723d8ff)
+2018-03-23T14:33:53.5257615+07:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_ProductCategories] AS [p]" (0723d8ff)
+2018-03-23T14:33:53.5705649+07:00  [INF] Executed DbCommand ("26"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeTitle')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:33:53.5902814+07:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaKeyword')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:33:53.6125330+07:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaDescription')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:33:57.3633819+07:00 0HLCGI1N3EI6Q:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/   (ca22a1cb)
+2018-03-23T14:33:57.9798343+07:00 0HLCGI1N3EI6Q:00000001 [INF] Executing action method "CMSCore.Controllers.HomeController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:34:03.7237113+07:00 0HLCGI1N3EI6Q:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2018-03-23T14:34:04.7093254+07:00 0HLCGI1N3EI6R:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2018-03-23T14:34:04.7789674+07:00 0HLCGI1N3EI6O:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/site.css   (ca22a1cb)
+2018-03-23T14:34:04.8372599+07:00 0HLCGI1N3EI6Q:00000001 [INF] Executed action "CMSCore.Controllers.HomeController.Index (CMSCore)" in 6665.0746ms (afa2e885)
+2018-03-23T14:34:04.8763780+07:00 0HLCGI1N3EI6R:00000001 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2018-03-23T14:34:04.9295149+07:00 0HLCGI1N3EI6P:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery/dist/jquery.js   (ca22a1cb)
+2018-03-23T14:34:04.9573819+07:00 0HLCGI1N3EI6P:00000001 [INF] The file "/lib/jquery/dist/jquery.js" was not modified (f1f8d725)
+2018-03-23T14:34:04.9989758+07:00 0HLCGI1N3EI6O:00000001 [INF] The file "/css/site.css" was not modified (f1f8d725)
+2018-03-23T14:34:05.1538722+07:00 0HLCGI1N3EI6P:00000001 [INF] Request finished in 277.1755ms 304 application/javascript (791a596a)
+2018-03-23T14:34:05.1983924+07:00 0HLCGI1N3EI6O:00000001 [INF] Request finished in 389.909ms 304 text/css (791a596a)
+2018-03-23T14:34:05.2540462+07:00 0HLCGI1N3EI6Q:00000001 [INF] Request finished in 7655.1801ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:34:05.2703577+07:00 0HLCGI1N3EI6R:00000001 [INF] Request finished in 371.6114ms 200 text/css (791a596a)
+2018-03-23T14:34:05.3771466+07:00 0HLCGI1N3EI6P:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/site.js?v=ji3-IxbEzYWjzzLCGkF1KDjrT2jLbbrSYXw-AhMPNIA   (ca22a1cb)
+2018-03-23T14:34:05.3991070+07:00 0HLCGI1N3EI6O:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2018-03-23T14:34:05.4277775+07:00 0HLCGI1N3EI6R:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/images/banner1.svg   (ca22a1cb)
+2018-03-23T14:34:05.5426424+07:00 0HLCGI1N3EI6R:00000002 [INF] The file "/images/banner1.svg" was not modified (f1f8d725)
+2018-03-23T14:34:05.5867295+07:00 0HLCGI1N3EI6Q:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/images/banner2.svg   (ca22a1cb)
+2018-03-23T14:34:05.5985331+07:00 0HLCGI1N3EI6O:00000002 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2018-03-23T14:34:05.6093001+07:00 0HLCGI1N3EI6Q:00000002 [INF] The file "/images/banner2.svg" was not modified (f1f8d725)
+2018-03-23T14:34:05.6218362+07:00 0HLCGI1N3EI6Q:00000002 [INF] Request finished in 220.7532ms 304 image/svg+xml (791a596a)
+2018-03-23T14:34:05.6325821+07:00 0HLCGI1N3EI6P:00000002 [INF] The file "/js/site.js" was not modified (f1f8d725)
+2018-03-23T14:34:05.6808637+07:00 0HLCGI1N3EI6P:00000002 [INF] Request finished in 275.5137ms 304 application/javascript (791a596a)
+2018-03-23T14:34:05.6941916+07:00 0HLCGI1N3EI6R:00000002 [INF] Request finished in 231.2511ms 304 image/svg+xml (791a596a)
+2018-03-23T14:34:05.8589904+07:00 0HLCGI1N3EI6P:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/images/banner4.svg   (ca22a1cb)
+2018-03-23T14:34:05.9097822+07:00 0HLCGI1N3EI6P:00000003 [INF] The file "/images/banner4.svg" was not modified (f1f8d725)
+2018-03-23T14:34:06.0706361+07:00 0HLCGI1N3EI6O:00000002 [INF] Request finished in 605.0536ms 200 application/javascript (791a596a)
+2018-03-23T14:34:06.0955896+07:00 0HLCGI1N3EI6M:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2   (ca22a1cb)
+2018-03-23T14:34:06.2571031+07:00 0HLCGI1N3EI6P:00000003 [INF] Request finished in 177.1204ms 304 image/svg+xml (791a596a)
+2018-03-23T14:34:06.2758436+07:00 0HLCGI1N3EI6N:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/images/banner3.svg   (ca22a1cb)
+2018-03-23T14:34:06.3256412+07:00 0HLCGI1N3EI6N:00000001 [INF] The file "/images/banner3.svg" was not modified (f1f8d725)
+2018-03-23T14:34:06.3791961+07:00 0HLCGI1N3EI6N:00000001 [INF] Request finished in 566.779ms 304 image/svg+xml (791a596a)
+2018-03-23T14:34:06.4254327+07:00 0HLCGI1N3EI6M:00000001 [INF] Sending file. Request path: '"/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2"' (27b0a520)
+2018-03-23T14:34:06.5023769+07:00 0HLCGI1N3EI6M:00000001 [INF] Request finished in 652.7896ms 200 font/woff2 (791a596a)
+2018-03-23T14:34:10.8820931+07:00 0HLCGI1N3EI6M:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin   (ca22a1cb)
+2018-03-23T14:34:10.9481270+07:00 0HLCGI1N3EI6M:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.LoginController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:34:11.3721263+07:00 0HLCGI1N3EI6M:00000002 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Login/Index.cshtml". (9707eebe)
+2018-03-23T14:34:11.5974886+07:00 0HLCGI1N3EI6M:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.LoginController.Index (CMSCore)" in 564.0778ms (afa2e885)
+2018-03-23T14:34:11.6183356+07:00 0HLCGI1N3EI6M:00000002 [INF] Request finished in 734.5747ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:34:11.6646939+07:00 0HLCGI1N3EI6M:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin   (ca22a1cb)
+2018-03-23T14:34:11.6804495+07:00 0HLCGI1N3EI6M:00000003 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.LoginController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:34:11.6903387+07:00 0HLCGI1N3EI6M:00000003 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Login/Index.cshtml". (9707eebe)
+2018-03-23T14:34:11.7628075+07:00 0HLCGI1N3EI6M:00000003 [INF] Executed action "CMSCore.Areas.Admin.Controllers.LoginController.Index (CMSCore)" in 27.8341ms (afa2e885)
+2018-03-23T14:34:11.8442157+07:00 0HLCGI1N3EI6N:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/css/font-awesome.css   (ca22a1cb)
+2018-03-23T14:34:11.8947454+07:00 0HLCGI1N3EI6M:00000003 [INF] Request finished in 134.2997ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:34:11.9279189+07:00 0HLCGI1N3EI6N:00000002 [INF] Sending file. Request path: '"/lib/font-awesome/css/font-awesome.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\css\font-awesome.css"' (27b0a520)
+2018-03-23T14:34:11.9483423+07:00 0HLCGI1N3EI6Q:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/notifyjs/dist/styles/metro/notify-metro.css   (ca22a1cb)
+2018-03-23T14:34:11.9753430+07:00 0HLCGI1N3EI6O:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/animate.css/animate.css   (ca22a1cb)
+2018-03-23T14:34:11.9922027+07:00 0HLCGI1N3EI6P:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/nprogress/nprogress.css   (ca22a1cb)
+2018-03-23T14:34:12.0231901+07:00 0HLCGI1N3EI6P:00000004 [INF] Sending file. Request path: '"/lib/nprogress/nprogress.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.css"' (27b0a520)
+2018-03-23T14:34:12.1323294+07:00 0HLCGI1N3EI6Q:00000003 [INF] Sending file. Request path: '"/lib/notifyjs/dist/styles/metro/notify-metro.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.css"' (27b0a520)
+2018-03-23T14:34:12.1771584+07:00 0HLCGI1N3EI6O:00000003 [INF] Sending file. Request path: '"/lib/animate.css/animate.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\animate.css\animate.css"' (27b0a520)
+2018-03-23T14:34:12.1864838+07:00 0HLCGI1N3EI6R:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/custom.css   (ca22a1cb)
+2018-03-23T14:34:12.2103262+07:00 0HLCGI1N3EI6M:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/style.css   (ca22a1cb)
+2018-03-23T14:34:12.2309175+07:00 0HLCGI1N3EI6R:00000003 [INF] Sending file. Request path: '"/admin-side/css/custom.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\custom.css"' (27b0a520)
+2018-03-23T14:34:12.2542535+07:00 0HLCGI1N3EI6N:00000002 [INF] Request finished in 377.1766ms 200 text/css (791a596a)
+2018-03-23T14:34:12.2942250+07:00 0HLCGI1N3EI6N:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/notifyjs/dist/notify.js   (ca22a1cb)
+2018-03-23T14:34:12.3515463+07:00 0HLCGI1N3EI6M:00000004 [INF] Sending file. Request path: '"/admin-side/css/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\style.css"' (27b0a520)
+2018-03-23T14:34:12.3607030+07:00 0HLCGI1N3EI6P:00000004 [INF] Request finished in 395.726ms 200 text/css (791a596a)
+2018-03-23T14:34:12.4096737+07:00 0HLCGI1N3EI6P:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/notifyjs/dist/styles/metro/notify-metro.js   (ca22a1cb)
+2018-03-23T14:34:12.4316311+07:00 0HLCGI1N3EI6Q:00000003 [INF] Request finished in 569.8911ms 200 text/css (791a596a)
+2018-03-23T14:34:12.4749052+07:00 0HLCGI1N3EI6N:00000003 [INF] Sending file. Request path: '"/lib/notifyjs/dist/notify.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\notify.js"' (27b0a520)
+2018-03-23T14:34:12.5118130+07:00 0HLCGI1N3EI6Q:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2018-03-23T14:34:12.5433953+07:00 0HLCGI1N3EI6R:00000003 [INF] Request finished in 448.0779ms 200 text/css (791a596a)
+2018-03-23T14:34:12.5762683+07:00 0HLCGI1N3EI6N:00000003 [INF] Request finished in 266.3748ms 200 application/javascript (791a596a)
+2018-03-23T14:34:12.5992051+07:00 0HLCGI1N3EI6P:00000005 [INF] Sending file. Request path: '"/lib/notifyjs/dist/styles/metro/notify-metro.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.js"' (27b0a520)
+2018-03-23T14:34:12.6041424+07:00 0HLCGI1N3EI6N:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2018-03-23T14:34:12.6124832+07:00 0HLCGI1N3EI6Q:00000004 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2018-03-23T14:34:12.6279289+07:00 0HLCGI1N3EI6P:00000005 [INF] Request finished in 242.5139ms 200 application/javascript (791a596a)
+2018-03-23T14:34:12.6927270+07:00 0HLCGI1N3EI6R:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/additional-methods.js   (ca22a1cb)
+2018-03-23T14:34:12.7438212+07:00 0HLCGI1N3EI6N:00000004 [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2018-03-23T14:34:12.7835551+07:00 0HLCGI1N3EI6P:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/app/shared/cms.js   (ca22a1cb)
+2018-03-23T14:34:12.8978869+07:00 0HLCGI1N3EI6P:00000006 [INF] Sending file. Request path: '"/app/shared/cms.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\app\shared\cms.js"' (27b0a520)
+2018-03-23T14:34:12.9414812+07:00 0HLCGI1N3EI6O:00000003 [INF] Request finished in 934.8295ms 200 text/css (791a596a)
+2018-03-23T14:34:12.9510121+07:00 0HLCGI1N3EI6R:00000004 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/additional-methods.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\additional-methods.js"' (27b0a520)
+2018-03-23T14:34:12.9820379+07:00 0HLCGI1N3EI6M:00000004 [INF] Request finished in 831.6031ms 200 text/css (791a596a)
+2018-03-23T14:34:13.0256806+07:00 0HLCGI1N3EI6R:00000004 [INF] Request finished in 356.3201ms 200 application/javascript (791a596a)
+2018-03-23T14:34:13.0766003+07:00 0HLCGI1N3EI6Q:00000004 [INF] Request finished in 491.2357ms 200 application/javascript (791a596a)
+2018-03-23T14:34:13.1544122+07:00 0HLCGI1N3EI6O:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/app/controllers/login/index.js   (ca22a1cb)
+2018-03-23T14:34:13.1945637+07:00 0HLCGI1N3EI6O:00000004 [INF] Sending file. Request path: '"/app/controllers/login/index.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\app\controllers\login\index.js"' (27b0a520)
+2018-03-23T14:34:13.2014809+07:00 0HLCGI1N3EI6N:00000004 [INF] Request finished in 550.4634ms 200 application/javascript (791a596a)
+2018-03-23T14:34:13.2489327+07:00 0HLCGI1N3EI6P:00000006 [INF] Request finished in 415.1699ms 200 application/javascript (791a596a)
+2018-03-23T14:34:13.2669406+07:00 0HLCGI1N3EI6O:00000004 [INF] Request finished in 249.7276ms 200 application/javascript (791a596a)
+2018-03-23T14:34:18.2264296+07:00 0HLCGI1N3EI6O:00000005 [INF] Request starting HTTP/1.1 POST http://localhost:4061/admin/login/authen application/x-www-form-urlencoded; charset=UTF-8 33 (ca22a1cb)
+2018-03-23T14:34:18.4501853+07:00 0HLCGI1N3EI6O:00000005 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.LoginController.Authen (CMSCore)" with arguments (["CMSCore.Models.AccountViewModels.LoginViewModel"]) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:34:18.5146177+07:00 0HLCGI1N3EI6O:00000005 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:34:19.1650474+07:00 0HLCGI1N3EI6O:00000005 [INF] Executed DbCommand ("460"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Avatar], [u].[Balance], [u].[BirthDay], [u].[ConcurrencyStamp], [u].[DateCreated], [u].[DateModified], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[Status], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [SEC_AppUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-03-23T14:34:19.5463356+07:00 0HLCGI1N3EI6O:00000005 [INF] Executed DbCommand ("100"ms) [Parameters=["@__user_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AppUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-03-23T14:34:19.7070217+07:00 0HLCGI1N3EI6O:00000005 [INF] Executed DbCommand ("77"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AppUserRoles] AS [userRole]
+INNER JOIN [SEC_AppRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-03-23T14:34:19.7916591+07:00 0HLCGI1N3EI6O:00000005 [INF] Executed DbCommand ("33"ms) [Parameters=["@__normalizedName_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [SEC_AppRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-03-23T14:34:19.8355842+07:00 0HLCGI1N3EI6O:00000005 [INF] Executed DbCommand ("5"ms) [Parameters=["@__role_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AppRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2018-03-23T14:34:19.8470268+07:00 0HLCGI1N3EI6O:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AppUserRoles] AS [userRole]
+INNER JOIN [SEC_AppRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-03-23T14:34:19.8766288+07:00 0HLCGI1N3EI6O:00000005 [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2018-03-23T14:34:19.8843620+07:00 0HLCGI1N3EI6O:00000005 [INF] User logged in. (fdce0db4)
+2018-03-23T14:34:19.9179788+07:00 0HLCGI1N3EI6O:00000005 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2018-03-23T14:34:19.9942761+07:00 0HLCGI1N3EI6O:00000005 [INF] Executed action "CMSCore.Areas.Admin.Controllers.LoginController.Authen (CMSCore)" in 1664.6378ms (afa2e885)
+2018-03-23T14:34:20.0107427+07:00 0HLCGI1N3EI6O:00000005 [INF] Request finished in 1777.3403ms 200 application/json; charset=utf-8 (791a596a)
+2018-03-23T14:34:20.0578810+07:00 0HLCGI1N3EI6O:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/Admin/Admin/Index   (ca22a1cb)
+2018-03-23T14:34:20.0868528+07:00 0HLCGI1N3EI6O:00000006 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:34:20.1084670+07:00 0HLCGI1N3EI6O:00000006 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:34:20.1131943+07:00 0HLCGI1N3EI6O:00000006 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.AdminController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:34:20.3567727+07:00 0HLCGI1N3EI6O:00000006 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Admin/Index.cshtml". (9707eebe)
+2018-03-23T14:34:20.7525969+07:00 0HLCGI1N3EI6O:00000006 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:34:20.9410859+07:00 0HLCGI1N3EI6O:00000006 [INF] Executed DbCommand ("100"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [SEC_Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-03-23T14:34:21.7837722+07:00 0HLCGI1N3EI6O:00000006 [INF] Executed action "CMSCore.Areas.Admin.Controllers.AdminController.Index (CMSCore)" in 1584.7968ms (afa2e885)
+2018-03-23T14:34:21.8691009+07:00 0HLCGI1N3EI6Q:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/jquery-confirm.min.css   (ca22a1cb)
+2018-03-23T14:34:21.8981784+07:00 0HLCGI1N3EI6M:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/css/select2.min.css   (ca22a1cb)
+2018-03-23T14:34:21.9368755+07:00 0HLCGI1N3EI6N:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.css   (ca22a1cb)
+2018-03-23T14:34:21.9968749+07:00 0HLCGI1N3EI6Q:00000005 [INF] Sending file. Request path: '"/css/jquery-confirm.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\jquery-confirm.min.css"' (27b0a520)
+2018-03-23T14:34:22.0236280+07:00 0HLCGI1N3EI6R:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/bootstrap-datetimepicker.min.css   (ca22a1cb)
+2018-03-23T14:34:22.0417836+07:00 0HLCGI1N3EI6M:00000005 [INF] Sending file. Request path: '"/lib/select2/dist/css/select2.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\css\select2.min.css"' (27b0a520)
+2018-03-23T14:34:22.0929156+07:00 0HLCGI1N3EI6P:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/skins/flat/green.css   (ca22a1cb)
+2018-03-23T14:34:22.1093230+07:00 0HLCGI1N3EI6O:00000006 [INF] Request finished in 1747.4967ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:34:22.1170381+07:00 0HLCGI1N3EI6N:00000005 [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.css"' (27b0a520)
+2018-03-23T14:34:22.1412361+07:00 0HLCGI1N3EI6Q:00000005 [INF] Request finished in 295.2842ms 200 text/css (791a596a)
+2018-03-23T14:34:22.2583133+07:00 0HLCGI1N3EI6M:00000005 [INF] Request finished in 408.1023ms 200 text/css (791a596a)
+2018-03-23T14:34:22.4265246+07:00 0HLCGI1N3EI6R:00000005 [INF] Sending file. Request path: '"/css/bootstrap-datetimepicker.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\bootstrap-datetimepicker.min.css"' (27b0a520)
+2018-03-23T14:34:22.4935101+07:00 0HLCGI1N3EI6N:00000005 [INF] Request finished in 454.6301ms 200 text/css (791a596a)
+2018-03-23T14:34:22.5118122+07:00 0HLCGI1N3EI6Q:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-1.12.4.js   (ca22a1cb)
+2018-03-23T14:34:22.5933783+07:00 0HLCGI1N3EI6P:00000007 [INF] Sending file. Request path: '"/lib/icheck/skins/flat/green.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\skins\flat\green.css"' (27b0a520)
+2018-03-23T14:34:22.6318364+07:00 0HLCGI1N3EI6Q:00000006 [INF] Sending file. Request path: '"/js/jquery-1.12.4.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-1.12.4.js"' (27b0a520)
+2018-03-23T14:34:22.6824911+07:00 0HLCGI1N3EI6M:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/icheck.js   (ca22a1cb)
+2018-03-23T14:34:22.7013573+07:00 0HLCGI1N3EI6R:00000005 [INF] Request finished in 765.6251ms 200 text/css (791a596a)
+2018-03-23T14:34:22.8129728+07:00 0HLCGI1N3EI6O:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/themes/default/style.css   (ca22a1cb)
+2018-03-23T14:34:22.8581364+07:00 0HLCGI1N3EI6N:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/fastclick/lib/fastclick.js   (ca22a1cb)
+2018-03-23T14:34:22.8869137+07:00 0HLCGI1N3EI6P:00000007 [INF] Request finished in 931.8229ms 200 text/css (791a596a)
+2018-03-23T14:34:22.9246392+07:00 0HLCGI1N3EI6R:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0   (ca22a1cb)
+2018-03-23T14:34:22.9676188+07:00 0HLCGI1N3EI6M:00000006 [INF] Sending file. Request path: '"/lib/icheck/icheck.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\icheck.js"' (27b0a520)
+2018-03-23T14:34:22.9932286+07:00 0HLCGI1N3EI6Q:00000006 [INF] Request finished in 443.5205ms 200 application/javascript (791a596a)
+2018-03-23T14:34:23.0904790+07:00 0HLCGI1N3EI6N:00000006 [INF] Sending file. Request path: '"/lib/fastclick/lib/fastclick.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\fastclick\lib\fastclick.js"' (27b0a520)
+2018-03-23T14:34:23.1023536+07:00 0HLCGI1N3EI6R:00000006 [INF] Sending file. Request path: '"/lib/font-awesome/fonts/fontawesome-webfont.woff2"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2"' (27b0a520)
+2018-03-23T14:34:23.1339001+07:00 0HLCGI1N3EI6O:00000007 [INF] Sending file. Request path: '"/js/jstree/themes/default/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\themes\default\style.css"' (27b0a520)
+2018-03-23T14:34:23.1485921+07:00 0HLCGI1N3EI6Q:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-sparkline/dist/jquery.sparkline.js   (ca22a1cb)
+2018-03-23T14:34:23.3364714+07:00 0HLCGI1N3EI6O:00000007 [INF] Request finished in 802.7964ms 200 text/css (791a596a)
+2018-03-23T14:34:23.3878480+07:00 0HLCGI1N3EI6M:00000006 [INF] Request finished in 593.3199ms 200 application/javascript (791a596a)
+2018-03-23T14:34:23.5230977+07:00 0HLCGI1N3EI6P:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/nprogress/nprogress.js   (ca22a1cb)
+2018-03-23T14:34:23.6370327+07:00 0HLCGI1N3EI6Q:00000007 [INF] Sending file. Request path: '"/lib/jquery-sparkline/dist/jquery.sparkline.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-sparkline\dist\jquery.sparkline.js"' (27b0a520)
+2018-03-23T14:34:23.7260903+07:00 0HLCGI1N3EI6N:00000006 [INF] Request finished in 648.6748ms 200 application/javascript (791a596a)
+2018-03-23T14:34:23.8171651+07:00 0HLCGI1N3EI6R:00000006 [INF] Request finished in 647.1822ms 200 font/woff2 (791a596a)
+2018-03-23T14:34:23.9767208+07:00 0HLCGI1N3EI6O:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/spin.min.js   (ca22a1cb)
+2018-03-23T14:34:24.3289993+07:00 0HLCGI1N3EI6N:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/ckeditor/ckeditor.js   (ca22a1cb)
+2018-03-23T14:34:24.3738318+07:00 0HLCGI1N3EI6O:00000008 [INF] Sending file. Request path: '"/js/spin.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\spin.min.js"' (27b0a520)
+2018-03-23T14:34:24.5177999+07:00 0HLCGI1N3EI6M:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/mustache/mustache.js   (ca22a1cb)
+2018-03-23T14:34:24.5465149+07:00 0HLCGI1N3EI6R:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/js/select2.min.js   (ca22a1cb)
+2018-03-23T14:34:24.5946473+07:00 0HLCGI1N3EI6P:00000008 [INF] Sending file. Request path: '"/lib/nprogress/nprogress.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.js"' (27b0a520)
+2018-03-23T14:34:24.6650092+07:00 0HLCGI1N3EI6Q:00000007 [INF] Request finished in 1082.9212ms 200 application/javascript (791a596a)
+2018-03-23T14:34:24.8185828+07:00 0HLCGI1N3EI6N:00000007 [INF] Sending file. Request path: '"/lib/ckeditor/ckeditor.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\ckeditor\ckeditor.js"' (27b0a520)
+2018-03-23T14:34:24.9012372+07:00 0HLCGI1N3EI6R:00000007 [INF] Sending file. Request path: '"/lib/select2/dist/js/select2.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\js\select2.min.js"' (27b0a520)
+2018-03-23T14:34:24.9308595+07:00 0HLCGI1N3EI6O:00000008 [INF] Request finished in 1037.7527ms 200 application/javascript (791a596a)
+2018-03-23T14:34:25.1871159+07:00 0HLCGI1N3EI6M:00000007 [INF] Sending file. Request path: '"/lib/mustache/mustache.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\mustache\mustache.js"' (27b0a520)
+2018-03-23T14:34:25.2201750+07:00 0HLCGI1N3EI6Q:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap-daterangepicker/daterangepicker.js   (ca22a1cb)
+2018-03-23T14:34:25.2723377+07:00 0HLCGI1N3EI6R:00000007 [INF] Request finished in 1073.3574ms 200 application/javascript (791a596a)
+2018-03-23T14:34:25.3375388+07:00 0HLCGI1N3EI6Q:00000008 [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.js"' (27b0a520)
+2018-03-23T14:34:25.3768671+07:00 0HLCGI1N3EI6O:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment.min.js   (ca22a1cb)
+2018-03-23T14:34:25.4328065+07:00 0HLCGI1N3EI6P:00000008 [INF] Request finished in 2192.8761ms 200 application/javascript (791a596a)
+2018-03-23T14:34:25.5570675+07:00 0HLCGI1N3EI6O:00000009 [INF] Sending file. Request path: '"/js/moment.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment.min.js"' (27b0a520)
+2018-03-23T14:34:25.6364262+07:00 0HLCGI1N3EI6R:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/bootstrap-datetimepicker.min.js   (ca22a1cb)
+2018-03-23T14:34:25.6674811+07:00 0HLCGI1N3EI6M:00000007 [INF] Request finished in 1472.2631ms 200 application/javascript (791a596a)
+2018-03-23T14:34:25.7424000+07:00 0HLCGI1N3EI6R:00000008 [INF] Sending file. Request path: '"/js/bootstrap-datetimepicker.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\bootstrap-datetimepicker.min.js"' (27b0a520)
+2018-03-23T14:34:25.7535450+07:00 0HLCGI1N3EI6M:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery.number.js   (ca22a1cb)
+2018-03-23T14:34:25.7690024+07:00 0HLCGI1N3EI6N:00000007 [INF] Request finished in 1604.5435ms 200 application/javascript (791a596a)
+2018-03-23T14:34:25.7846119+07:00 0HLCGI1N3EI6P:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment-with-locales.js   (ca22a1cb)
+2018-03-23T14:34:25.8028151+07:00 0HLCGI1N3EI6P:00000009 [INF] Sending file. Request path: '"/js/moment-with-locales.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment-with-locales.js"' (27b0a520)
+2018-03-23T14:34:25.8789568+07:00 0HLCGI1N3EI6M:00000008 [INF] Sending file. Request path: '"/js/jquery.number.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery.number.js"' (27b0a520)
+2018-03-23T14:34:25.9122667+07:00 0HLCGI1N3EI6O:00000009 [INF] Request finished in 470.8588ms 200 application/javascript (791a596a)
+2018-03-23T14:34:25.9619389+07:00 0HLCGI1N3EI6O:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.js   (ca22a1cb)
+2018-03-23T14:34:25.9891572+07:00 0HLCGI1N3EI6Q:00000008 [INF] Request finished in 850.25ms 200 application/javascript (791a596a)
+2018-03-23T14:34:26.0419856+07:00 0HLCGI1N3EI6Q:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-confirm.min.js   (ca22a1cb)
+2018-03-23T14:34:26.0680421+07:00 0HLCGI1N3EI6R:00000008 [INF] Request finished in 505.3603ms 200 application/javascript (791a596a)
+2018-03-23T14:34:26.0924108+07:00 0HLCGI1N3EI6O:0000000A [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.js"' (27b0a520)
+2018-03-23T14:34:26.1224881+07:00 0HLCGI1N3EI6Q:00000009 [INF] Sending file. Request path: '"/js/jquery-confirm.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-confirm.min.js"' (27b0a520)
+2018-03-23T14:34:26.1688972+07:00 0HLCGI1N3EI6M:00000008 [INF] Request finished in 243.5085ms 200 application/javascript (791a596a)
+2018-03-23T14:34:26.2208618+07:00 0HLCGI1N3EI6Q:00000009 [INF] Request finished in 168.5334ms 200 application/javascript (791a596a)
+2018-03-23T14:34:26.2370521+07:00 0HLCGI1N3EI6R:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/jstree.js   (ca22a1cb)
+2018-03-23T14:34:26.2599067+07:00 0HLCGI1N3EI6R:00000009 [INF] Sending file. Request path: '"/js/jstree/jstree.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\jstree.js"' (27b0a520)
+2018-03-23T14:34:26.3191026+07:00 0HLCGI1N3EI6O:0000000A [INF] Request finished in 196.9977ms 200 application/javascript (791a596a)
+2018-03-23T14:34:26.4865324+07:00 0HLCGI1N3EI6R:00000009 [INF] Request finished in 268.7233ms 200 application/javascript (791a596a)
+2018-03-23T14:34:26.5637212+07:00 0HLCGI1N3EI6P:00000009 [INF] Request finished in 568.2482ms 200 application/javascript (791a596a)
+2018-03-23T14:34:26.5905959+07:00 0HLCGI1N3EI6M:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/custom.js   (ca22a1cb)
+2018-03-23T14:34:26.6221431+07:00 0HLCGI1N3EI6O:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/mainJs.js   (ca22a1cb)
+2018-03-23T14:34:26.6439413+07:00 0HLCGI1N3EI6O:0000000B [INF] Sending file. Request path: '"/admin-side/js/mainJs.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\mainJs.js"' (27b0a520)
+2018-03-23T14:34:26.6509636+07:00 0HLCGI1N3EI6M:00000009 [INF] Sending file. Request path: '"/admin-side/js/custom.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\custom.js"' (27b0a520)
+2018-03-23T14:34:26.7605763+07:00 0HLCGI1N3EI6M:00000009 [INF] Request finished in 413.2514ms 200 application/javascript (791a596a)
+2018-03-23T14:34:26.7924672+07:00 0HLCGI1N3EI6O:0000000B [INF] Request finished in 373.4721ms 200 application/javascript (791a596a)
+2018-03-23T14:34:28.5833766+07:00 0HLCGI1N3EI6O:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:34:28.5934686+07:00 0HLCGI1N3EI6O:0000000C [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:34:28.6114154+07:00 0HLCGI1N3EI6O:0000000C [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:34:28.6633289+07:00 0HLCGI1N3EI6O:0000000C [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 57.6709ms (afa2e885)
+2018-03-23T14:34:28.9662532+07:00 0HLCGI1N3EI6O:0000000C [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: Unable to resolve service for type 'CMSCore.Application.Interfaces.IBillService' while attempting to activate 'CMSCore.Areas.Admin.Controllers.BillController'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2018-03-23T14:34:29.1216638+07:00 0HLCGI1N3EI6O:0000000C [INF] Request finished in 542.5958ms 500 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:36:01.8031036+07:00 0HLCGI1N3EI6O:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:36:01.8093748+07:00 0HLCGI1N3EI6O:0000000D [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:36:01.8148267+07:00 0HLCGI1N3EI6O:0000000D [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:36:01.8281534+07:00 0HLCGI1N3EI6O:0000000D [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 7.3405ms (afa2e885)
+2018-03-23T14:36:01.8978061+07:00 0HLCGI1N3EI6O:0000000D [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: Unable to resolve service for type 'CMSCore.Application.Interfaces.IBillService' while attempting to activate 'CMSCore.Areas.Admin.Controllers.BillController'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2018-03-23T14:36:02.0476350+07:00 0HLCGI1N3EI6O:0000000D [INF] Request finished in 241.1724ms 500 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:36:02.0757674+07:00 0HLCGI1N3EI6O:0000000E [INF] Request starting HTTP/1.1 GET http://localhost:4061/favicon.ico   (ca22a1cb)
+2018-03-23T14:36:02.0794643+07:00 0HLCGI1N3EI6O:0000000E [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-03-23T14:36:02.1110277+07:00 0HLCGI1N3EI6O:0000000E [INF] Request finished in 34.3137ms 200 image/x-icon (791a596a)
+2018-03-23T14:39:24.3180359+07:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:39:24.5657111+07:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SEC_AppRoles] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:39:24.6045234+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SEC_AppUsers] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:39:24.6577562+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SEC_Functions] AS [s]" (0723d8ff)
+2018-03-23T14:39:24.6842405+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SEC_Actions] AS [s]" (0723d8ff)
+2018-03-23T14:39:24.7136438+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SYS_Footers] AS [x]
+WHERE [x].[Id] = 'DefaultFooterId'" (0723d8ff)
+2018-03-23T14:39:24.7202148+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Colors] AS [p]" (0723d8ff)
+2018-03-23T14:39:24.7484526+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ADV_AdvertistmentPages] AS [a]" (0723d8ff)
+2018-03-23T14:39:24.7726770+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [MAN_Slides] AS [m]" (0723d8ff)
+2018-03-23T14:39:24.8069749+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Sizes] AS [p]" (0723d8ff)
+2018-03-23T14:39:24.8441258+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_ProductCategories] AS [p]" (0723d8ff)
+2018-03-23T14:39:24.8525994+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeTitle')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:39:24.8685130+07:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaKeyword')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:39:24.8775274+07:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaDescription')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:39:25.6695726+07:00 0HLCGI4PO8P34:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/   (ca22a1cb)
+2018-03-23T14:39:25.7735828+07:00 0HLCGI4PO8P34:00000001 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:39:26.0094902+07:00 0HLCGI4PO8P34:00000001 [INF] Executing action method "CMSCore.Controllers.HomeController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:39:29.5362269+07:00 0HLCGI4PO8P34:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2018-03-23T14:39:30.3554587+07:00 0HLCGI4PO8P34:00000001 [INF] Executed action "CMSCore.Controllers.HomeController.Index (CMSCore)" in 4409.6051ms (afa2e885)
+2018-03-23T14:39:30.3655602+07:00 0HLCGI4PO8P34:00000001 [INF] Request finished in 4721.9281ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:39:56.9313628+07:00 0HLCGI4PO8P34:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:39:56.9461141+07:00 0HLCGI4PO8P34:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:39:56.9807281+07:00 0HLCGI4PO8P34:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:39:56.9992057+07:00 0HLCGI4PO8P34:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 39.274ms (afa2e885)
+2018-03-23T14:39:57.1359311+07:00 0HLCGI4PO8P34:00000002 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: Unable to resolve service for type 'CMSCore.Data.IRepositories.IBillRepository' while attempting to activate 'CMSCore.Application.Implementation.BillService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, ISet`1 callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(Type serviceType, ServiceProvider serviceProvider)
+   at System.Collections.Concurrent.ConcurrentDictionaryExtensions.GetOrAdd[TKey,TValue,TArg](ConcurrentDictionary`2 dictionary, TKey key, Func`3 valueFactory, TArg arg)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2018-03-23T14:39:57.3302684+07:00 0HLCGI4PO8P34:00000002 [INF] Request finished in 401.9077ms 500 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:39:57.3585054+07:00 0HLCGI4PO8P34:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/favicon.ico   (ca22a1cb)
+2018-03-23T14:39:57.3657183+07:00 0HLCGI4PO8P34:00000003 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-03-23T14:39:57.3823002+07:00 0HLCGI4PO8P34:00000003 [INF] Request finished in 25.5463ms 200 image/x-icon (791a596a)
+2018-03-23T14:45:07.0289074+07:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:45:07.2295726+07:00  [INF] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SEC_AppRoles] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:45:07.2608189+07:00  [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SEC_AppUsers] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:45:07.2963232+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SEC_Functions] AS [s]" (0723d8ff)
+2018-03-23T14:45:07.3050177+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SEC_Actions] AS [s]" (0723d8ff)
+2018-03-23T14:45:07.3329889+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SYS_Footers] AS [x]
+WHERE [x].[Id] = 'DefaultFooterId'" (0723d8ff)
+2018-03-23T14:45:07.3430458+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Colors] AS [p]" (0723d8ff)
+2018-03-23T14:45:07.3591231+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ADV_AdvertistmentPages] AS [a]" (0723d8ff)
+2018-03-23T14:45:07.3784984+07:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [MAN_Slides] AS [m]" (0723d8ff)
+2018-03-23T14:45:07.4075791+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Sizes] AS [p]" (0723d8ff)
+2018-03-23T14:45:07.4137161+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_ProductCategories] AS [p]" (0723d8ff)
+2018-03-23T14:45:07.4218888+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeTitle')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:45:07.4494684+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaKeyword')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:45:07.4617258+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaDescription')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:45:08.0942617+07:00 0HLCGI7VPCGHI:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/   (ca22a1cb)
+2018-03-23T14:45:08.1684819+07:00 0HLCGI7VPCGHI:00000001 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:45:08.3240935+07:00 0HLCGI7VPCGHI:00000001 [INF] Executing action method "CMSCore.Controllers.HomeController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:45:12.1440827+07:00 0HLCGI7VPCGHI:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2018-03-23T14:45:12.9839810+07:00 0HLCGI7VPCGHI:00000001 [INF] Executed action "CMSCore.Controllers.HomeController.Index (CMSCore)" in 4669.6218ms (afa2e885)
+2018-03-23T14:45:13.0160073+07:00 0HLCGI7VPCGHI:00000001 [INF] Request finished in 4978.317ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:45:26.0523922+07:00 0HLCGI7VPCGHI:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:45:26.0655599+07:00 0HLCGI7VPCGHI:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:45:26.0854025+07:00 0HLCGI7VPCGHI:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:45:26.0932218+07:00 0HLCGI7VPCGHI:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 18.1098ms (afa2e885)
+2018-03-23T14:45:26.2417952+07:00 0HLCGI7VPCGHI:00000002 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: Unable to resolve service for type 'CMSCore.Data.IRepositories.IColorRepository' while attempting to activate 'CMSCore.Application.Implementation.BillService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, ISet`1 callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(Type serviceType, ServiceProvider serviceProvider)
+   at System.Collections.Concurrent.ConcurrentDictionaryExtensions.GetOrAdd[TKey,TValue,TArg](ConcurrentDictionary`2 dictionary, TKey key, Func`3 valueFactory, TArg arg)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2018-03-23T14:45:26.4307582+07:00 0HLCGI7VPCGHI:00000002 [INF] Request finished in 376.9999ms 500 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:45:26.4812772+07:00 0HLCGI7VPCGHI:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/favicon.ico   (ca22a1cb)
+2018-03-23T14:45:26.5022722+07:00 0HLCGI7VPCGHI:00000003 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-03-23T14:45:26.5514800+07:00 0HLCGI7VPCGHI:00000003 [INF] Request finished in 45.6393ms 200 image/x-icon (791a596a)
+2018-03-23T14:46:39.6083173+07:00  [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:46:39.8699637+07:00  [INF] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SEC_AppRoles] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:46:39.8935824+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SEC_AppUsers] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:46:39.9147972+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SEC_Functions] AS [s]" (0723d8ff)
+2018-03-23T14:46:39.9247884+07:00  [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SEC_Actions] AS [s]" (0723d8ff)
+2018-03-23T14:46:39.9691666+07:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [SYS_Footers] AS [x]
+WHERE [x].[Id] = 'DefaultFooterId'" (0723d8ff)
+2018-03-23T14:46:39.9914137+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Colors] AS [p]" (0723d8ff)
+2018-03-23T14:46:40.0190971+07:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ADV_AdvertistmentPages] AS [a]" (0723d8ff)
+2018-03-23T14:46:40.0419690+07:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [MAN_Slides] AS [m]" (0723d8ff)
+2018-03-23T14:46:40.0566946+07:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Sizes] AS [p]" (0723d8ff)
+2018-03-23T14:46:40.0844041+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_ProductCategories] AS [p]" (0723d8ff)
+2018-03-23T14:46:40.1284497+07:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeTitle')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:46:40.1514587+07:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaKeyword')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:46:40.1651838+07:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [SYS_SystemConfigs] AS [x]
+        WHERE [x].[Id] = N'HomeMetaDescription')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-03-23T14:46:41.6772198+07:00 0HLCGI8RGJR8I:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/   (ca22a1cb)
+2018-03-23T14:46:41.8276569+07:00 0HLCGI8RGJR8I:00000001 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:46:42.0869592+07:00 0HLCGI8RGJR8I:00000001 [INF] Executing action method "CMSCore.Controllers.HomeController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:46:45.8696880+07:00 0HLCGI8RGJR8I:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2018-03-23T14:46:46.6412668+07:00 0HLCGI8RGJR8I:00000001 [INF] Executed action "CMSCore.Controllers.HomeController.Index (CMSCore)" in 4573.4853ms (afa2e885)
+2018-03-23T14:46:46.6566956+07:00 0HLCGI8RGJR8I:00000001 [INF] Request finished in 5139.2758ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:47:53.1026795+07:00 0HLCGI8RGJR8I:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:47:53.1265161+07:00 0HLCGI8RGJR8I:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:47:53.1495773+07:00 0HLCGI8RGJR8I:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:47:53.1561049+07:00 0HLCGI8RGJR8I:00000002 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:47:58.3858105+07:00 0HLCGI8RGJR8I:00000002 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:47:58.5344829+07:00 0HLCGI8RGJR8I:00000002 [INF] Executed DbCommand ("121"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Bills] AS [p]" (0723d8ff)
+2018-03-23T14:47:58.9987387+07:00 0HLCGI8RGJR8I:00000002 [INF] Executed DbCommand ("193"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[Id], [m].[CustomerName], [m].[CustomerAddress], [m].[CustomerMobile], [m].[CustomerMessage], [m].[PaymentMethod], [m].[BillStatus], [m].[DateCreated], [m].[DateModified], [m].[Status], [m].[CustomerId] AS [Id0], CASE
+    WHEN [m].[CustomerId] IS NOT NULL
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END, [m.User].[FullName], CONVERT(VARCHAR(100), [m.User].[BirthDay]) AS [BirthDay], [m.User].[Email], [m.User].[UserName], [m.User].[PhoneNumber], [m.User].[Avatar], [m.User].[Status] AS [Status0], [m.User].[DateCreated] AS [DateCreated0]
+FROM [PRD_Bills] AS [m]
+INNER JOIN [SEC_AppUsers] AS [m.User] ON [m].[CustomerId] = [m.User].[Id]
+ORDER BY [m].[DateCreated] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-03-23T14:47:59.3901675+07:00 0HLCGI8RGJR8I:00000002 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Bill/Index.cshtml". (9707eebe)
+2018-03-23T14:48:00.7928829+07:00 0HLCGI8RGJR8I:00000002 [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [SEC_Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-03-23T14:48:01.3033737+07:00 0HLCGI8RGJR8I:00000002 [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 8166.9619ms (afa2e885)
+2018-03-23T14:48:01.4428256+07:00 0HLCGI8RGJR8I:00000002 [INF] Request finished in 8266.7021ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:48:01.8353139+07:00 0HLCGI8RGJR8I:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/favicon.ico   (ca22a1cb)
+2018-03-23T14:48:01.8471269+07:00 0HLCGI8RGJR8I:00000003 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-03-23T14:48:01.8636199+07:00 0HLCGI8RGJR8I:00000003 [INF] Request finished in 27.1019ms 200 image/x-icon (791a596a)
+2018-03-23T14:50:23.6096682+07:00 0HLCGI8RGJR8I:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:50:23.6134705+07:00 0HLCGI8RGJR8I:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:50:23.6403761+07:00 0HLCGI8RGJR8I:00000004 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:50:23.6656424+07:00 0HLCGI8RGJR8I:00000004 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:50:23.6988679+07:00 0HLCGI8RGJR8I:00000004 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:50:23.7158598+07:00 0HLCGI8RGJR8I:00000004 [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Bills] AS [p]" (0723d8ff)
+2018-03-23T14:50:23.7396530+07:00 0HLCGI8RGJR8I:00000004 [INF] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[Id], [m].[CustomerName], [m].[CustomerAddress], [m].[CustomerMobile], [m].[CustomerMessage], [m].[PaymentMethod], [m].[BillStatus], [m].[DateCreated], [m].[DateModified], [m].[Status], [m].[CustomerId] AS [Id0], CASE
+    WHEN [m].[CustomerId] IS NOT NULL
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END, [m.User].[FullName], CONVERT(VARCHAR(100), [m.User].[BirthDay]) AS [BirthDay], [m.User].[Email], [m.User].[UserName], [m.User].[PhoneNumber], [m.User].[Avatar], [m.User].[Status] AS [Status0], [m.User].[DateCreated] AS [DateCreated0]
+FROM [PRD_Bills] AS [m]
+INNER JOIN [SEC_AppUsers] AS [m.User] ON [m].[CustomerId] = [m.User].[Id]
+ORDER BY [m].[DateCreated] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-03-23T14:50:23.9657211+07:00 0HLCGI8RGJR8I:00000004 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Bill/Index.cshtml". (9707eebe)
+2018-03-23T14:50:24.0031133+07:00 0HLCGI8RGJR8I:00000004 [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [SEC_Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-03-23T14:50:24.1433343+07:00 0HLCGI8RGJR8I:00000004 [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 388.2064ms (afa2e885)
+2018-03-23T14:50:24.1691049+07:00 0HLCGI8RGJR90:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.css   (ca22a1cb)
+2018-03-23T14:50:24.2428287+07:00 0HLCGI8RGJR8I:00000004 [INF] Request finished in 548.2565ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:50:24.2819049+07:00 0HLCGI8RGJR8V:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/css/font-awesome.css   (ca22a1cb)
+2018-03-23T14:50:24.3067524+07:00 0HLCGI8RGJR90:00000001 [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.css"' (27b0a520)
+2018-03-23T14:50:24.4152478+07:00 0HLCGI8RGJR8S:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2018-03-23T14:50:24.4817055+07:00 0HLCGI8RGJR8I:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/jquery-confirm.min.css   (ca22a1cb)
+2018-03-23T14:50:24.5409988+07:00 0HLCGI8RGJR8V:00000001 [INF] Sending file. Request path: '"/lib/font-awesome/css/font-awesome.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\css\font-awesome.css"' (27b0a520)
+2018-03-23T14:50:24.9892516+07:00 0HLCGI8RGJR90:00000001 [INF] Request finished in 280.3256ms 200 text/css (791a596a)
+2018-03-23T14:50:25.0217877+07:00 0HLCGI8RGJR8T:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/skins/flat/green.css   (ca22a1cb)
+2018-03-23T14:50:25.0957660+07:00 0HLCGI8RGJR8I:00000005 [INF] Sending file. Request path: '"/css/jquery-confirm.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\jquery-confirm.min.css"' (27b0a520)
+2018-03-23T14:50:25.1189593+07:00 0HLCGI8RGJR8U:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/bootstrap-datetimepicker.min.css   (ca22a1cb)
+2018-03-23T14:50:25.1504747+07:00 0HLCGI8RGJR8V:00000001 [INF] Request finished in 471.099ms 200 text/css (791a596a)
+2018-03-23T14:50:25.2923401+07:00 0HLCGI8RGJR8T:00000001 [INF] Sending file. Request path: '"/lib/icheck/skins/flat/green.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\skins\flat\green.css"' (27b0a520)
+2018-03-23T14:50:25.3137644+07:00 0HLCGI8RGJR8U:00000001 [INF] Sending file. Request path: '"/css/bootstrap-datetimepicker.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\bootstrap-datetimepicker.min.css"' (27b0a520)
+2018-03-23T14:50:25.3205665+07:00 0HLCGI8RGJR8I:00000005 [INF] Request finished in 883.2792ms 200 text/css (791a596a)
+2018-03-23T14:50:25.3475786+07:00 0HLCGI8RGJR8T:00000001 [INF] Request finished in 902.8983ms 200 text/css (791a596a)
+2018-03-23T14:50:25.3987464+07:00 0HLCGI8RGJR8S:00000001 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2018-03-23T14:50:25.4418133+07:00 0HLCGI8RGJR90:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/css/select2.min.css   (ca22a1cb)
+2018-03-23T14:50:25.4958213+07:00 0HLCGI8RGJR8I:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/custom.css   (ca22a1cb)
+2018-03-23T14:50:25.5106164+07:00 0HLCGI8RGJR8V:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/themes/default/style.css   (ca22a1cb)
+2018-03-23T14:50:25.5411279+07:00 0HLCGI8RGJR8U:00000001 [INF] Request finished in 867.6039ms 200 text/css (791a596a)
+2018-03-23T14:50:25.6311704+07:00 0HLCGI8RGJR8T:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/style.css   (ca22a1cb)
+2018-03-23T14:50:25.7129551+07:00 0HLCGI8RGJR8I:00000006 [INF] Sending file. Request path: '"/admin-side/css/custom.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\custom.css"' (27b0a520)
+2018-03-23T14:50:25.7332682+07:00 0HLCGI8RGJR8S:00000001 [INF] Request finished in 1496.2028ms 200 text/css (791a596a)
+2018-03-23T14:50:25.7479092+07:00 0HLCGI8RGJR90:00000002 [INF] Sending file. Request path: '"/lib/select2/dist/css/select2.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\css\select2.min.css"' (27b0a520)
+2018-03-23T14:50:25.7923237+07:00 0HLCGI8RGJR8V:00000002 [INF] Sending file. Request path: '"/js/jstree/themes/default/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\themes\default\style.css"' (27b0a520)
+2018-03-23T14:50:25.8489321+07:00 0HLCGI8RGJR8T:00000002 [INF] Sending file. Request path: '"/admin-side/css/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\style.css"' (27b0a520)
+2018-03-23T14:50:25.8679281+07:00 0HLCGI8RGJR8U:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-1.12.4.js   (ca22a1cb)
+2018-03-23T14:50:25.9689113+07:00 0HLCGI8RGJR8S:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2018-03-23T14:50:26.0532666+07:00 0HLCGI8RGJR8V:00000002 [INF] Request finished in 537.99ms 200 text/css (791a596a)
+2018-03-23T14:50:26.1074105+07:00 0HLCGI8RGJR8I:00000006 [INF] Request finished in 397.3311ms 200 text/css (791a596a)
+2018-03-23T14:50:26.1181927+07:00 0HLCGI8RGJR8U:00000002 [INF] Sending file. Request path: '"/js/jquery-1.12.4.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-1.12.4.js"' (27b0a520)
+2018-03-23T14:50:26.1477324+07:00 0HLCGI8RGJR90:00000002 [INF] Request finished in 628.6339ms 200 text/css (791a596a)
+2018-03-23T14:50:26.1629688+07:00 0HLCGI8RGJR8T:00000002 [INF] Request finished in 514.6465ms 200 text/css (791a596a)
+2018-03-23T14:50:26.1785977+07:00 0HLCGI8RGJR8S:00000002 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2018-03-23T14:50:26.2371084+07:00 0HLCGI8RGJR8V:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/nprogress/nprogress.js   (ca22a1cb)
+2018-03-23T14:50:26.3158162+07:00 0HLCGI8RGJR8I:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/fastclick/lib/fastclick.js   (ca22a1cb)
+2018-03-23T14:50:26.4683983+07:00 0HLCGI8RGJR8V:00000003 [INF] Sending file. Request path: '"/lib/nprogress/nprogress.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.js"' (27b0a520)
+2018-03-23T14:50:26.4847589+07:00 0HLCGI8RGJR8T:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-sparkline/dist/jquery.sparkline.js   (ca22a1cb)
+2018-03-23T14:50:26.5239669+07:00 0HLCGI8RGJR8S:00000002 [INF] Request finished in 463.4198ms 200 application/javascript (791a596a)
+2018-03-23T14:50:26.6262377+07:00 0HLCGI8RGJR8U:00000002 [INF] Request finished in 588.7867ms 200 application/javascript (791a596a)
+2018-03-23T14:50:26.6959534+07:00 0HLCGI8RGJR90:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/icheck.js   (ca22a1cb)
+2018-03-23T14:50:26.7116347+07:00 0HLCGI8RGJR8I:00000007 [INF] Sending file. Request path: '"/lib/fastclick/lib/fastclick.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\fastclick\lib\fastclick.js"' (27b0a520)
+2018-03-23T14:50:26.7472953+07:00 0HLCGI8RGJR8T:00000003 [INF] Sending file. Request path: '"/lib/jquery-sparkline/dist/jquery.sparkline.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-sparkline\dist\jquery.sparkline.js"' (27b0a520)
+2018-03-23T14:50:26.7591917+07:00 0HLCGI8RGJR8V:00000003 [INF] Request finished in 334.2524ms 200 application/javascript (791a596a)
+2018-03-23T14:50:26.8219170+07:00 0HLCGI8RGJR8S:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0   (ca22a1cb)
+2018-03-23T14:50:26.9131547+07:00 0HLCGI8RGJR8I:00000007 [INF] Request finished in 635.251ms 200 application/javascript (791a596a)
+2018-03-23T14:50:26.9697695+07:00 0HLCGI8RGJR8V:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/spin.min.js   (ca22a1cb)
+2018-03-23T14:50:26.9940986+07:00 0HLCGI8RGJR8S:00000003 [INF] Sending file. Request path: '"/lib/font-awesome/fonts/fontawesome-webfont.woff2"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2"' (27b0a520)
+2018-03-23T14:50:27.0414038+07:00 0HLCGI8RGJR90:00000003 [INF] Sending file. Request path: '"/lib/icheck/icheck.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\icheck.js"' (27b0a520)
+2018-03-23T14:50:27.1022472+07:00 0HLCGI8RGJR8T:00000003 [INF] Request finished in 616.0216ms 200 application/javascript (791a596a)
+2018-03-23T14:50:27.1312260+07:00 0HLCGI8RGJR8U:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/mustache/mustache.js   (ca22a1cb)
+2018-03-23T14:50:27.1791331+07:00 0HLCGI8RGJR8V:00000004 [INF] Sending file. Request path: '"/js/spin.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\spin.min.js"' (27b0a520)
+2018-03-23T14:50:27.2470783+07:00 0HLCGI8RGJR8S:00000003 [INF] Request finished in 537.8141ms 200 font/woff2 (791a596a)
+2018-03-23T14:50:27.2754286+07:00 0HLCGI8RGJR8I:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/ckeditor/ckeditor.js   (ca22a1cb)
+2018-03-23T14:50:27.3404994+07:00 0HLCGI8RGJR8T:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/js/select2.min.js   (ca22a1cb)
+2018-03-23T14:50:27.3588785+07:00 0HLCGI8RGJR90:00000003 [INF] Request finished in 795.4577ms 200 application/javascript (791a596a)
+2018-03-23T14:50:27.3878812+07:00 0HLCGI8RGJR8U:00000003 [INF] Sending file. Request path: '"/lib/mustache/mustache.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\mustache\mustache.js"' (27b0a520)
+2018-03-23T14:50:27.3936748+07:00 0HLCGI8RGJR8V:00000004 [INF] Request finished in 357.4068ms 200 application/javascript (791a596a)
+2018-03-23T14:50:27.5667676+07:00 0HLCGI8RGJR8I:00000008 [INF] Sending file. Request path: '"/lib/ckeditor/ckeditor.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\ckeditor\ckeditor.js"' (27b0a520)
+2018-03-23T14:50:27.5778431+07:00 0HLCGI8RGJR8S:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment.min.js   (ca22a1cb)
+2018-03-23T14:50:27.6293406+07:00 0HLCGI8RGJR8T:00000004 [INF] Sending file. Request path: '"/lib/select2/dist/js/select2.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\js\select2.min.js"' (27b0a520)
+2018-03-23T14:50:27.6990480+07:00 0HLCGI8RGJR8U:00000003 [INF] Request finished in 721.811ms 200 application/javascript (791a596a)
+2018-03-23T14:50:27.7249406+07:00 0HLCGI8RGJR8V:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment-with-locales.js   (ca22a1cb)
+2018-03-23T14:50:27.7548110+07:00 0HLCGI8RGJR8S:00000004 [INF] Sending file. Request path: '"/js/moment.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment.min.js"' (27b0a520)
+2018-03-23T14:50:27.8087428+07:00 0HLCGI8RGJR90:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap-daterangepicker/daterangepicker.js   (ca22a1cb)
+2018-03-23T14:50:27.8625306+07:00 0HLCGI8RGJR8V:00000005 [INF] Sending file. Request path: '"/js/moment-with-locales.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment-with-locales.js"' (27b0a520)
+2018-03-23T14:50:27.8794870+07:00 0HLCGI8RGJR8T:00000004 [INF] Request finished in 485.31ms 200 application/javascript (791a596a)
+2018-03-23T14:50:27.8985333+07:00 0HLCGI8RGJR8S:00000004 [INF] Request finished in 435.4705ms 200 application/javascript (791a596a)
+2018-03-23T14:50:27.9070859+07:00 0HLCGI8RGJR8U:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/bootstrap-datetimepicker.min.js   (ca22a1cb)
+2018-03-23T14:50:27.9576669+07:00 0HLCGI8RGJR8U:00000004 [INF] Sending file. Request path: '"/js/bootstrap-datetimepicker.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\bootstrap-datetimepicker.min.js"' (27b0a520)
+2018-03-23T14:50:28.0459015+07:00 0HLCGI8RGJR8U:00000004 [INF] Request finished in 244.3422ms 200 application/javascript (791a596a)
+2018-03-23T14:50:28.1370484+07:00 0HLCGI8RGJR8T:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery.number.js   (ca22a1cb)
+2018-03-23T14:50:28.1502513+07:00 0HLCGI8RGJR90:00000004 [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.js"' (27b0a520)
+2018-03-23T14:50:28.1811672+07:00 0HLCGI8RGJR8S:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.js   (ca22a1cb)
+2018-03-23T14:50:28.1950236+07:00 0HLCGI8RGJR8I:00000008 [INF] Request finished in 901.5583ms 200 application/javascript (791a596a)
+2018-03-23T14:50:28.3578032+07:00 0HLCGI8RGJR8U:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/additional-methods.js   (ca22a1cb)
+2018-03-23T14:50:28.3828485+07:00 0HLCGI8RGJR8S:00000005 [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.js"' (27b0a520)
+2018-03-23T14:50:28.4062308+07:00 0HLCGI8RGJR8T:00000005 [INF] Sending file. Request path: '"/js/jquery.number.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery.number.js"' (27b0a520)
+2018-03-23T14:50:28.4319381+07:00 0HLCGI8RGJR90:00000004 [INF] Request finished in 729.7134ms 200 application/javascript (791a596a)
+2018-03-23T14:50:28.6081750+07:00 0HLCGI8RGJR8U:00000005 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/additional-methods.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\additional-methods.js"' (27b0a520)
+2018-03-23T14:50:28.6903524+07:00 0HLCGI8RGJR8I:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2018-03-23T14:50:28.7313693+07:00 0HLCGI8RGJR8T:00000005 [INF] Request finished in 479.0346ms 200 application/javascript (791a596a)
+2018-03-23T14:50:28.7485137+07:00 0HLCGI8RGJR8S:00000005 [INF] Request finished in 496.0824ms 200 application/javascript (791a596a)
+2018-03-23T14:50:28.8070549+07:00 0HLCGI8RGJR8V:00000005 [INF] Request finished in 597.6229ms 200 application/javascript (791a596a)
+2018-03-23T14:50:28.8236394+07:00 0HLCGI8RGJR90:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-confirm.min.js   (ca22a1cb)
+2018-03-23T14:50:28.8673240+07:00 0HLCGI8RGJR8U:00000005 [INF] Request finished in 587.1356ms 200 application/javascript (791a596a)
+2018-03-23T14:50:28.9133900+07:00 0HLCGI8RGJR8I:00000009 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2018-03-23T14:50:29.0358130+07:00 0HLCGI8RGJR8S:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/jstree.js   (ca22a1cb)
+2018-03-23T14:50:29.0657906+07:00 0HLCGI8RGJR90:00000005 [INF] Sending file. Request path: '"/js/jquery-confirm.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-confirm.min.js"' (27b0a520)
+2018-03-23T14:50:29.0870113+07:00 0HLCGI8RGJR8T:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/custom.js   (ca22a1cb)
+2018-03-23T14:50:29.1165400+07:00 0HLCGI8RGJR8S:00000006 [INF] Sending file. Request path: '"/js/jstree/jstree.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\jstree.js"' (27b0a520)
+2018-03-23T14:50:29.1348912+07:00 0HLCGI8RGJR8U:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/mainJs.js   (ca22a1cb)
+2018-03-23T14:50:29.2464165+07:00 0HLCGI8RGJR8T:00000006 [INF] Sending file. Request path: '"/admin-side/js/custom.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\custom.js"' (27b0a520)
+2018-03-23T14:50:29.2598477+07:00 0HLCGI8RGJR90:00000005 [INF] Request finished in 555.7813ms 200 application/javascript (791a596a)
+2018-03-23T14:50:29.2945866+07:00 0HLCGI8RGJR8I:00000009 [INF] Request finished in 727.326ms 200 application/javascript (791a596a)
+2018-03-23T14:50:29.3254407+07:00 0HLCGI8RGJR8U:00000006 [INF] Sending file. Request path: '"/admin-side/js/mainJs.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\mainJs.js"' (27b0a520)
+2018-03-23T14:50:29.3906371+07:00 0HLCGI8RGJR8V:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2018-03-23T14:50:29.4104643+07:00 0HLCGI8RGJR8S:00000006 [INF] Request finished in 413.1596ms 200 application/javascript (791a596a)
+2018-03-23T14:50:29.4407633+07:00 0HLCGI8RGJR8U:00000006 [INF] Request finished in 411.3688ms 200 application/javascript (791a596a)
+2018-03-23T14:50:29.4659932+07:00 0HLCGI8RGJR8T:00000006 [INF] Request finished in 348.363ms 200 application/javascript (791a596a)
+2018-03-23T14:50:29.4762811+07:00 0HLCGI8RGJR8V:00000006 [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2018-03-23T14:50:29.5276529+07:00 0HLCGI8RGJR8V:00000006 [INF] Request finished in 412.3931ms 200 application/javascript (791a596a)
+2018-03-23T14:50:29.5745253+07:00 0HLCGI8RGJR8V:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/favicon.ico   (ca22a1cb)
+2018-03-23T14:50:29.5804843+07:00 0HLCGI8RGJR8V:00000007 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-03-23T14:50:29.5861680+07:00 0HLCGI8RGJR8V:00000007 [INF] Request finished in 16.7271ms 200 image/x-icon (791a596a)
+2018-03-23T14:51:00.8494908+07:00 0HLCGI8RGJR8V:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:51:00.8540766+07:00 0HLCGI8RGJR8V:00000008 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:51:00.8603112+07:00 0HLCGI8RGJR8V:00000008 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:51:00.8655170+07:00 0HLCGI8RGJR8V:00000008 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:51:00.8727525+07:00 0HLCGI8RGJR8V:00000008 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:51:00.8790365+07:00 0HLCGI8RGJR8V:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Bills] AS [p]" (0723d8ff)
+2018-03-23T14:51:00.8866848+07:00 0HLCGI8RGJR8V:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[Id], [m].[CustomerName], [m].[CustomerAddress], [m].[CustomerMobile], [m].[CustomerMessage], [m].[PaymentMethod], [m].[BillStatus], [m].[DateCreated], [m].[DateModified], [m].[Status], [m].[CustomerId] AS [Id0], CASE
+    WHEN [m].[CustomerId] IS NOT NULL
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END, [m.User].[FullName], CONVERT(VARCHAR(100), [m.User].[BirthDay]) AS [BirthDay], [m.User].[Email], [m.User].[UserName], [m.User].[PhoneNumber], [m.User].[Avatar], [m.User].[Status] AS [Status0], [m.User].[DateCreated] AS [DateCreated0]
+FROM [PRD_Bills] AS [m]
+INNER JOIN [SEC_AppUsers] AS [m.User] ON [m].[CustomerId] = [m.User].[Id]
+ORDER BY [m].[DateCreated] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-03-23T14:51:01.1484747+07:00 0HLCGI8RGJR8V:00000008 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Bill/Index.cshtml". (9707eebe)
+2018-03-23T14:51:01.2466128+07:00 0HLCGI8RGJR8V:00000008 [INF] Executed DbCommand ("83"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [SEC_Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-03-23T14:51:01.4034273+07:00 0HLCGI8RGJR8V:00000008 [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 393.3196ms (afa2e885)
+2018-03-23T14:51:01.4549018+07:00 0HLCGI8RGJR8S:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/css/font-awesome.css   (ca22a1cb)
+2018-03-23T14:51:01.4752338+07:00 0HLCGI8RGJR8T:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/skins/flat/green.css   (ca22a1cb)
+2018-03-23T14:51:01.5008537+07:00 0HLCGI8RGJR8T:00000007 [INF] Sending file. Request path: '"/lib/icheck/skins/flat/green.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\skins\flat\green.css"' (27b0a520)
+2018-03-23T14:51:01.5054485+07:00 0HLCGI8RGJR8U:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2018-03-23T14:51:01.5847223+07:00 0HLCGI8RGJR8T:00000007 [INF] Request finished in 218.4349ms 200 text/css (791a596a)
+2018-03-23T14:51:01.6490734+07:00 0HLCGI8RGJR8S:00000007 [INF] Sending file. Request path: '"/lib/font-awesome/css/font-awesome.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\css\font-awesome.css"' (27b0a520)
+2018-03-23T14:51:01.6572525+07:00 0HLCGI8RGJR8V:00000008 [INF] Request finished in 583.0309ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:51:01.6818061+07:00 0HLCGI8RGJR8U:00000007 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2018-03-23T14:51:01.6858596+07:00 0HLCGI8RGJR8V:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/jquery-confirm.min.css   (ca22a1cb)
+2018-03-23T14:51:01.7311469+07:00 0HLCGI8RGJR8V:00000009 [INF] Sending file. Request path: '"/css/jquery-confirm.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\jquery-confirm.min.css"' (27b0a520)
+2018-03-23T14:51:01.7824979+07:00 0HLCGI8RGJR8T:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/css/select2.min.css   (ca22a1cb)
+2018-03-23T14:51:01.8296860+07:00 0HLCGI8RGJR8S:00000007 [INF] Request finished in 347.8234ms 200 text/css (791a596a)
+2018-03-23T14:51:01.8487501+07:00 0HLCGI8RGJR90:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.css   (ca22a1cb)
+2018-03-23T14:51:01.8665020+07:00 0HLCGI8RGJR90:00000006 [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.css"' (27b0a520)
+2018-03-23T14:51:01.8770950+07:00 0HLCGI8RGJR8T:00000008 [INF] Sending file. Request path: '"/lib/select2/dist/css/select2.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\css\select2.min.css"' (27b0a520)
+2018-03-23T14:51:01.9360853+07:00 0HLCGI8RGJR8V:00000009 [INF] Request finished in 90.5351ms 200 text/css (791a596a)
+2018-03-23T14:51:01.9678579+07:00 0HLCGI8RGJR8T:00000008 [INF] Request finished in 212.2127ms 200 text/css (791a596a)
+2018-03-23T14:51:01.9773242+07:00 0HLCGI8RGJR8S:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/themes/default/style.css   (ca22a1cb)
+2018-03-23T14:51:02.0061951+07:00 0HLCGI8RGJR90:00000006 [INF] Request finished in 180.5824ms 200 text/css (791a596a)
+2018-03-23T14:51:02.0900154+07:00 0HLCGI8RGJR8S:00000008 [INF] Sending file. Request path: '"/js/jstree/themes/default/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\themes\default\style.css"' (27b0a520)
+2018-03-23T14:51:02.1334145+07:00 0HLCGI8RGJR8S:00000008 [INF] Request finished in 212.9445ms 200 text/css (791a596a)
+2018-03-23T14:51:02.1491856+07:00 0HLCGI8RGJR90:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/style.css   (ca22a1cb)
+2018-03-23T14:51:02.2742521+07:00 0HLCGI8RGJR8T:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-1.12.4.js   (ca22a1cb)
+2018-03-23T14:51:02.2942510+07:00 0HLCGI8RGJR8U:00000007 [INF] Request finished in 828.4998ms 200 text/css (791a596a)
+2018-03-23T14:51:02.3261985+07:00 0HLCGI8RGJR90:00000007 [INF] Sending file. Request path: '"/admin-side/css/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\style.css"' (27b0a520)
+2018-03-23T14:51:02.3308005+07:00 0HLCGI8RGJR8V:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/custom.css   (ca22a1cb)
+2018-03-23T14:51:02.3370520+07:00 0HLCGI8RGJR8I:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/bootstrap-datetimepicker.min.css   (ca22a1cb)
+2018-03-23T14:51:02.4627879+07:00 0HLCGI8RGJR8T:00000009 [INF] Sending file. Request path: '"/js/jquery-1.12.4.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-1.12.4.js"' (27b0a520)
+2018-03-23T14:51:02.5084438+07:00 0HLCGI8RGJR8S:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2018-03-23T14:51:02.5386506+07:00 0HLCGI8RGJR90:00000007 [INF] Request finished in 394.446ms 200 text/css (791a596a)
+2018-03-23T14:51:02.6637994+07:00 0HLCGI8RGJR8U:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/icheck.js   (ca22a1cb)
+2018-03-23T14:51:02.6986813+07:00 0HLCGI8RGJR8I:0000000A [INF] Sending file. Request path: '"/css/bootstrap-datetimepicker.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\bootstrap-datetimepicker.min.css"' (27b0a520)
+2018-03-23T14:51:02.8136472+07:00 0HLCGI8RGJR8U:00000008 [INF] Sending file. Request path: '"/lib/icheck/icheck.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\icheck.js"' (27b0a520)
+2018-03-23T14:51:02.8301274+07:00 0HLCGI8RGJR90:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/fastclick/lib/fastclick.js   (ca22a1cb)
+2018-03-23T14:51:02.8589455+07:00 0HLCGI8RGJR8S:00000009 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2018-03-23T14:51:02.8676528+07:00 0HLCGI8RGJR8T:00000009 [INF] Request finished in 557.1809ms 200 application/javascript (791a596a)
+2018-03-23T14:51:02.8914450+07:00 0HLCGI8RGJR8V:0000000A [INF] Sending file. Request path: '"/admin-side/css/custom.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\custom.css"' (27b0a520)
+2018-03-23T14:51:02.9523140+07:00 0HLCGI8RGJR90:00000008 [INF] Sending file. Request path: '"/lib/fastclick/lib/fastclick.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\fastclick\lib\fastclick.js"' (27b0a520)
+2018-03-23T14:51:03.0274627+07:00 0HLCGI8RGJR8I:0000000A [INF] Request finished in 629.1946ms 200 text/css (791a596a)
+2018-03-23T14:51:03.0458906+07:00 0HLCGI8RGJR8U:00000008 [INF] Request finished in 398.2097ms 200 application/javascript (791a596a)
+2018-03-23T14:51:03.1235249+07:00 0HLCGI8RGJR8S:00000009 [INF] Request finished in 603.7034ms 200 application/javascript (791a596a)
+2018-03-23T14:51:03.1809112+07:00 0HLCGI8RGJR90:00000008 [INF] Request finished in 334.1471ms 200 application/javascript (791a596a)
+2018-03-23T14:51:03.2122760+07:00 0HLCGI8RGJR8T:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/nprogress/nprogress.js   (ca22a1cb)
+2018-03-23T14:51:03.2235083+07:00 0HLCGI8RGJR8V:0000000A [INF] Request finished in 869.015ms 200 text/css (791a596a)
+2018-03-23T14:51:03.2411579+07:00 0HLCGI8RGJR8U:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/mustache/mustache.js   (ca22a1cb)
+2018-03-23T14:51:03.3126101+07:00 0HLCGI8RGJR8T:0000000A [INF] Sending file. Request path: '"/lib/nprogress/nprogress.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.js"' (27b0a520)
+2018-03-23T14:51:03.3758224+07:00 0HLCGI8RGJR90:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/js/select2.min.js   (ca22a1cb)
+2018-03-23T14:51:03.4027208+07:00 0HLCGI8RGJR8I:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-sparkline/dist/jquery.sparkline.js   (ca22a1cb)
+2018-03-23T14:51:03.4344856+07:00 0HLCGI8RGJR8T:0000000A [INF] Request finished in 338.2197ms 200 application/javascript (791a596a)
+2018-03-23T14:51:03.4592712+07:00 0HLCGI8RGJR8S:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/spin.min.js   (ca22a1cb)
+2018-03-23T14:51:03.5041643+07:00 0HLCGI8RGJR8U:00000009 [INF] Sending file. Request path: '"/lib/mustache/mustache.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\mustache\mustache.js"' (27b0a520)
+2018-03-23T14:51:03.5406639+07:00 0HLCGI8RGJR90:00000009 [INF] Sending file. Request path: '"/lib/select2/dist/js/select2.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\js\select2.min.js"' (27b0a520)
+2018-03-23T14:51:03.6612035+07:00 0HLCGI8RGJR90:00000009 [INF] Request finished in 309.0954ms 200 application/javascript (791a596a)
+2018-03-23T14:51:03.6953617+07:00 0HLCGI8RGJR8I:0000000B [INF] Sending file. Request path: '"/lib/jquery-sparkline/dist/jquery.sparkline.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-sparkline\dist\jquery.sparkline.js"' (27b0a520)
+2018-03-23T14:51:03.7097932+07:00 0HLCGI8RGJR8S:0000000A [INF] Sending file. Request path: '"/js/spin.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\spin.min.js"' (27b0a520)
+2018-03-23T14:51:03.7274640+07:00 0HLCGI8RGJR8T:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0   (ca22a1cb)
+2018-03-23T14:51:03.7488430+07:00 0HLCGI8RGJR8U:00000009 [INF] Request finished in 419.412ms 200 application/javascript (791a596a)
+2018-03-23T14:51:03.8914734+07:00 0HLCGI8RGJR90:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment.min.js   (ca22a1cb)
+2018-03-23T14:51:03.9032262+07:00 0HLCGI8RGJR8I:0000000B [INF] Request finished in 579.8192ms 200 application/javascript (791a596a)
+2018-03-23T14:51:03.9116988+07:00 0HLCGI8RGJR8T:0000000B [INF] Sending file. Request path: '"/lib/font-awesome/fonts/fontawesome-webfont.woff2"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2"' (27b0a520)
+2018-03-23T14:51:03.9200542+07:00 0HLCGI8RGJR8V:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/ckeditor/ckeditor.js   (ca22a1cb)
+2018-03-23T14:51:03.9456671+07:00 0HLCGI8RGJR8S:0000000A [INF] Request finished in 515.4443ms 200 application/javascript (791a596a)
+2018-03-23T14:51:04.0625879+07:00 0HLCGI8RGJR90:0000000A [INF] Sending file. Request path: '"/js/moment.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment.min.js"' (27b0a520)
+2018-03-23T14:51:04.0932063+07:00 0HLCGI8RGJR8T:0000000B [INF] Request finished in 394.6612ms 200 font/woff2 (791a596a)
+2018-03-23T14:51:04.1654866+07:00 0HLCGI8RGJR8U:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap-daterangepicker/daterangepicker.js   (ca22a1cb)
+2018-03-23T14:51:04.2796851+07:00 0HLCGI8RGJR90:0000000A [INF] Request finished in 380.0892ms 200 application/javascript (791a596a)
+2018-03-23T14:51:04.3297772+07:00 0HLCGI8RGJR8T:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery.number.js   (ca22a1cb)
+2018-03-23T14:51:04.3470565+07:00 0HLCGI8RGJR8I:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment-with-locales.js   (ca22a1cb)
+2018-03-23T14:51:04.3622012+07:00 0HLCGI8RGJR8U:0000000A [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.js"' (27b0a520)
+2018-03-23T14:51:04.4005501+07:00 0HLCGI8RGJR8S:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/bootstrap-datetimepicker.min.js   (ca22a1cb)
+2018-03-23T14:51:04.5293871+07:00 0HLCGI8RGJR8V:0000000B [INF] Sending file. Request path: '"/lib/ckeditor/ckeditor.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\ckeditor\ckeditor.js"' (27b0a520)
+2018-03-23T14:51:04.5705558+07:00 0HLCGI8RGJR8T:0000000C [INF] Sending file. Request path: '"/js/jquery.number.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery.number.js"' (27b0a520)
+2018-03-23T14:51:04.7133006+07:00 0HLCGI8RGJR8I:0000000C [INF] Sending file. Request path: '"/js/moment-with-locales.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment-with-locales.js"' (27b0a520)
+2018-03-23T14:51:04.7361061+07:00 0HLCGI8RGJR8S:0000000B [INF] Sending file. Request path: '"/js/bootstrap-datetimepicker.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\bootstrap-datetimepicker.min.js"' (27b0a520)
+2018-03-23T14:51:04.8127270+07:00 0HLCGI8RGJR8U:0000000A [INF] Request finished in 603.9141ms 200 application/javascript (791a596a)
+2018-03-23T14:51:04.8775489+07:00 0HLCGI8RGJR90:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.js   (ca22a1cb)
+2018-03-23T14:51:04.9416523+07:00 0HLCGI8RGJR8V:0000000B [INF] Request finished in 1292.6759ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.0186957+07:00 0HLCGI8RGJR8S:0000000B [INF] Request finished in 616.9399ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.0668184+07:00 0HLCGI8RGJR8I:0000000C [INF] Request finished in 691.1386ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.1077488+07:00 0HLCGI8RGJR90:0000000B [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.js"' (27b0a520)
+2018-03-23T14:51:05.1851653+07:00 0HLCGI8RGJR8U:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2018-03-23T14:51:05.1998702+07:00 0HLCGI8RGJR8V:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2018-03-23T14:51:05.3324909+07:00 0HLCGI8RGJR8T:0000000C [INF] Request finished in 414.9339ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.3419689+07:00 0HLCGI8RGJR90:0000000B [INF] Request finished in 792.3095ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.3537510+07:00 0HLCGI8RGJR8I:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/jstree.js   (ca22a1cb)
+2018-03-23T14:51:05.3755868+07:00 0HLCGI8RGJR8S:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-confirm.min.js   (ca22a1cb)
+2018-03-23T14:51:05.3955068+07:00 0HLCGI8RGJR8U:0000000B [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2018-03-23T14:51:05.4186620+07:00 0HLCGI8RGJR8V:0000000C [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2018-03-23T14:51:05.5334574+07:00 0HLCGI8RGJR8I:0000000D [INF] Sending file. Request path: '"/js/jstree/jstree.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\jstree.js"' (27b0a520)
+2018-03-23T14:51:05.5812289+07:00 0HLCGI8RGJR8S:0000000C [INF] Sending file. Request path: '"/js/jquery-confirm.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-confirm.min.js"' (27b0a520)
+2018-03-23T14:51:05.6083154+07:00 0HLCGI8RGJR90:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/custom.js   (ca22a1cb)
+2018-03-23T14:51:05.6443680+07:00 0HLCGI8RGJR8U:0000000B [INF] Request finished in 478.1877ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.6557278+07:00 0HLCGI8RGJR8V:0000000C [INF] Request finished in 432.0775ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.7025293+07:00 0HLCGI8RGJR90:0000000C [INF] Sending file. Request path: '"/admin-side/js/custom.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\custom.js"' (27b0a520)
+2018-03-23T14:51:05.7997182+07:00 0HLCGI8RGJR8S:0000000C [INF] Request finished in 431.3348ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.8182642+07:00 0HLCGI8RGJR8I:0000000D [INF] Request finished in 459.0557ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.8277747+07:00 0HLCGI8RGJR90:0000000C [INF] Request finished in 322.0249ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.8407083+07:00 0HLCGI8RGJR8T:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/additional-methods.js   (ca22a1cb)
+2018-03-23T14:51:05.8445744+07:00 0HLCGI8RGJR8T:0000000D [INF] Sending file. Request path: '"/lib/jquery-validation/dist/additional-methods.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\additional-methods.js"' (27b0a520)
+2018-03-23T14:51:05.8757124+07:00 0HLCGI8RGJR8T:0000000D [INF] Request finished in 219.6665ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.8861585+07:00 0HLCGI8RGJR8U:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/mainJs.js   (ca22a1cb)
+2018-03-23T14:51:05.8915658+07:00 0HLCGI8RGJR8U:0000000C [INF] Sending file. Request path: '"/admin-side/js/mainJs.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\mainJs.js"' (27b0a520)
+2018-03-23T14:51:05.9120488+07:00 0HLCGI8RGJR8U:0000000C [INF] Request finished in 101.3433ms 200 application/javascript (791a596a)
+2018-03-23T14:51:05.9521142+07:00 0HLCGI8RGJR8U:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:4061/favicon.ico   (ca22a1cb)
+2018-03-23T14:51:05.9612358+07:00 0HLCGI8RGJR8U:0000000D [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-03-23T14:51:05.9751474+07:00 0HLCGI8RGJR8U:0000000D [INF] Request finished in 25.7887ms 200 image/x-icon (791a596a)
+2018-03-23T14:51:50.1382113+07:00 0HLCGI8RGJR8U:0000000E [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:51:50.1658551+07:00 0HLCGI8RGJR8U:0000000E [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:51:50.2054232+07:00 0HLCGI8RGJR8U:0000000E [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:51:50.2203944+07:00 0HLCGI8RGJR8U:0000000E [INF] Executing action method "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:51:50.2621322+07:00 0HLCGI8RGJR8U:0000000E [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:51:50.3271757+07:00 0HLCGI8RGJR8U:0000000E [INF] Executed DbCommand ("49"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Bills] AS [p]" (0723d8ff)
+2018-03-23T14:51:50.5246485+07:00 0HLCGI8RGJR8U:0000000E [INF] Executed DbCommand ("190"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[Id], [m].[CustomerName], [m].[CustomerAddress], [m].[CustomerMobile], [m].[CustomerMessage], [m].[PaymentMethod], [m].[BillStatus], [m].[DateCreated], [m].[DateModified], [m].[Status], [m].[CustomerId] AS [Id0], CASE
+    WHEN [m].[CustomerId] IS NOT NULL
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END, [m.User].[FullName], CONVERT(VARCHAR(100), [m.User].[BirthDay]) AS [BirthDay], [m.User].[Email], [m.User].[UserName], [m.User].[PhoneNumber], [m.User].[Avatar], [m.User].[Status] AS [Status0], [m.User].[DateCreated] AS [DateCreated0]
+FROM [PRD_Bills] AS [m]
+INNER JOIN [SEC_AppUsers] AS [m.User] ON [m].[CustomerId] = [m.User].[Id]
+ORDER BY [m].[DateCreated] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-03-23T14:51:50.8008596+07:00 0HLCGI8RGJR8U:0000000E [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Bill/Index.cshtml". (9707eebe)
+2018-03-23T14:51:50.9440563+07:00 0HLCGI8RGJR8U:0000000E [INF] Executed DbCommand ("123"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [SEC_Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-03-23T14:51:51.1804776+07:00 0HLCGI8RGJR8U:0000000E [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 779.1202ms (afa2e885)
+2018-03-23T14:51:51.5112911+07:00 0HLCGI8RGJR90:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/css/font-awesome.css   (ca22a1cb)
+2018-03-23T14:51:51.5644749+07:00 0HLCGI8RGJR8I:0000000E [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/skins/flat/green.css   (ca22a1cb)
+2018-03-23T14:51:51.6358682+07:00 0HLCGI8RGJR8T:0000000E [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2018-03-23T14:51:51.6870156+07:00 0HLCGI8RGJR8V:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/bootstrap-datetimepicker.min.css   (ca22a1cb)
+2018-03-23T14:51:51.8018202+07:00 0HLCGI8RGJR8U:0000000E [INF] Request finished in 1058.7674ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:51:52.0443097+07:00 0HLCGI8RGJR90:0000000D [INF] Sending file. Request path: '"/lib/font-awesome/css/font-awesome.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\css\font-awesome.css"' (27b0a520)
+2018-03-23T14:51:52.2386300+07:00 0HLCGI8RGJR8I:0000000E [INF] Sending file. Request path: '"/lib/icheck/skins/flat/green.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\skins\flat\green.css"' (27b0a520)
+2018-03-23T14:51:52.2506892+07:00 0HLCGI8RGJR8T:0000000E [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2018-03-23T14:51:52.3347378+07:00 0HLCGI8RGJR8V:0000000D [INF] Sending file. Request path: '"/css/bootstrap-datetimepicker.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\bootstrap-datetimepicker.min.css"' (27b0a520)
+2018-03-23T14:51:52.4720730+07:00 0HLCGI8RGJR8S:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.css   (ca22a1cb)
+2018-03-23T14:51:52.5233722+07:00 0HLCGI8RGJR90:0000000D [INF] Request finished in 1034.2129ms 200 text/css (791a596a)
+2018-03-23T14:51:52.5821143+07:00 0HLCGI8RGJR8U:0000000F [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/jquery-confirm.min.css   (ca22a1cb)
+2018-03-23T14:51:52.6488358+07:00 0HLCGI8RGJR8S:0000000D [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.css"' (27b0a520)
+2018-03-23T14:51:52.7177296+07:00 0HLCGI8RGJR8V:0000000D [INF] Request finished in 1193.558ms 200 text/css (791a596a)
+2018-03-23T14:51:52.7871017+07:00 0HLCGI8RGJR8I:0000000E [INF] Request finished in 1470.0652ms 200 text/css (791a596a)
+2018-03-23T14:51:52.8602545+07:00 0HLCGI8RGJR90:0000000E [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/css/select2.min.css   (ca22a1cb)
+2018-03-23T14:51:52.9417096+07:00 0HLCGI8RGJR8T:0000000E [INF] Request finished in 1369.7299ms 200 text/css (791a596a)
+2018-03-23T14:51:53.0244640+07:00 0HLCGI8RGJR8U:0000000F [INF] Sending file. Request path: '"/css/jquery-confirm.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\jquery-confirm.min.css"' (27b0a520)
+2018-03-23T14:51:53.0483498+07:00 0HLCGI8RGJR8S:0000000D [INF] Request finished in 1303.8576ms 200 text/css (791a596a)
+2018-03-23T14:51:53.1111316+07:00 0HLCGI8RGJR90:0000000E [INF] Sending file. Request path: '"/lib/select2/dist/css/select2.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\css\select2.min.css"' (27b0a520)
+2018-03-23T14:51:53.2274683+07:00 0HLCGI8RGJR8I:0000000F [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/custom.css   (ca22a1cb)
+2018-03-23T14:51:53.2510600+07:00 0HLCGI8RGJR8V:0000000E [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/themes/default/style.css   (ca22a1cb)
+2018-03-23T14:51:53.3535909+07:00 0HLCGI8RGJR8T:0000000F [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/style.css   (ca22a1cb)
+2018-03-23T14:51:53.3760105+07:00 0HLCGI8RGJR90:0000000E [INF] Request finished in 556.194ms 200 text/css (791a596a)
+2018-03-23T14:51:53.4126255+07:00 0HLCGI8RGJR8S:0000000E [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-1.12.4.js   (ca22a1cb)
+2018-03-23T14:51:53.4326532+07:00 0HLCGI8RGJR8U:0000000F [INF] Request finished in 968.5343ms 200 text/css (791a596a)
+2018-03-23T14:51:53.4533986+07:00 0HLCGI8RGJR8I:0000000F [INF] Sending file. Request path: '"/admin-side/css/custom.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\custom.css"' (27b0a520)
+2018-03-23T14:51:53.5437589+07:00 0HLCGI8RGJR8V:0000000E [INF] Sending file. Request path: '"/js/jstree/themes/default/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\themes\default\style.css"' (27b0a520)
+2018-03-23T14:51:53.5866763+07:00 0HLCGI8RGJR8T:0000000F [INF] Sending file. Request path: '"/admin-side/css/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\style.css"' (27b0a520)
+2018-03-23T14:51:53.6089116+07:00 0HLCGI8RGJR8S:0000000E [INF] Sending file. Request path: '"/js/jquery-1.12.4.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-1.12.4.js"' (27b0a520)
+2018-03-23T14:51:53.7238430+07:00 0HLCGI8RGJR90:0000000F [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/icheck.js   (ca22a1cb)
+2018-03-23T14:51:53.7920382+07:00 0HLCGI8RGJR8U:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2018-03-23T14:51:53.8977457+07:00 0HLCGI8RGJR8I:0000000F [INF] Request finished in 670.7429ms 200 text/css (791a596a)
+2018-03-23T14:51:53.9191213+07:00 0HLCGI8RGJR90:0000000F [INF] Sending file. Request path: '"/lib/icheck/icheck.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\icheck.js"' (27b0a520)
+2018-03-23T14:51:54.0174772+07:00 0HLCGI8RGJR8U:00000010 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2018-03-23T14:51:54.0762155+07:00 0HLCGI8RGJR8V:0000000E [INF] Request finished in 779.5963ms 200 text/css (791a596a)
+2018-03-23T14:51:54.0943258+07:00 0HLCGI8RGJR8T:0000000F [INF] Request finished in 709.2659ms 200 text/css (791a596a)
+2018-03-23T14:51:54.1244889+07:00 0HLCGI8RGJR90:0000000F [INF] Request finished in 458.5101ms 200 application/javascript (791a596a)
+2018-03-23T14:51:54.2019691+07:00 0HLCGI8RGJR8S:0000000E [INF] Request finished in 758.5753ms 200 application/javascript (791a596a)
+2018-03-23T14:51:54.2964663+07:00 0HLCGI8RGJR8U:00000010 [INF] Request finished in 565.2261ms 200 application/javascript (791a596a)
+2018-03-23T14:51:54.3199911+07:00 0HLCGI8RGJR8I:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/fastclick/lib/fastclick.js   (ca22a1cb)
+2018-03-23T14:51:54.4849133+07:00 0HLCGI8RGJR8T:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-sparkline/dist/jquery.sparkline.js   (ca22a1cb)
+2018-03-23T14:51:54.4981668+07:00 0HLCGI8RGJR90:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0   (ca22a1cb)
+2018-03-23T14:51:54.5550150+07:00 0HLCGI8RGJR8S:0000000F [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/mustache/mustache.js   (ca22a1cb)
+2018-03-23T14:51:54.6704164+07:00 0HLCGI8RGJR8I:00000010 [INF] Sending file. Request path: '"/lib/fastclick/lib/fastclick.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\fastclick\lib\fastclick.js"' (27b0a520)
+2018-03-23T14:51:54.7030414+07:00 0HLCGI8RGJR8U:00000011 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/spin.min.js   (ca22a1cb)
+2018-03-23T14:51:54.7633292+07:00 0HLCGI8RGJR8V:0000000F [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/nprogress/nprogress.js   (ca22a1cb)
+2018-03-23T14:51:54.7817136+07:00 0HLCGI8RGJR8S:0000000F [INF] Sending file. Request path: '"/lib/mustache/mustache.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\mustache\mustache.js"' (27b0a520)
+2018-03-23T14:51:54.8593703+07:00 0HLCGI8RGJR8T:00000010 [INF] Sending file. Request path: '"/lib/jquery-sparkline/dist/jquery.sparkline.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-sparkline\dist\jquery.sparkline.js"' (27b0a520)
+2018-03-23T14:51:54.8755757+07:00 0HLCGI8RGJR90:00000010 [INF] Sending file. Request path: '"/lib/font-awesome/fonts/fontawesome-webfont.woff2"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2"' (27b0a520)
+2018-03-23T14:51:54.9696351+07:00 0HLCGI8RGJR8U:00000011 [INF] Sending file. Request path: '"/js/spin.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\spin.min.js"' (27b0a520)
+2018-03-23T14:51:55.0487073+07:00 0HLCGI8RGJR8S:0000000F [INF] Request finished in 482.1946ms 200 application/javascript (791a596a)
+2018-03-23T14:51:55.0815009+07:00 0HLCGI8RGJR8I:00000010 [INF] Request finished in 777.4116ms 200 application/javascript (791a596a)
+2018-03-23T14:51:55.0903839+07:00 0HLCGI8RGJR8V:0000000F [INF] Sending file. Request path: '"/lib/nprogress/nprogress.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.js"' (27b0a520)
+2018-03-23T14:51:55.1569892+07:00 0HLCGI8RGJR8T:00000010 [INF] Request finished in 672.5084ms 200 application/javascript (791a596a)
+2018-03-23T14:51:55.2058941+07:00 0HLCGI8RGJR8U:00000011 [INF] Request finished in 552.3238ms 200 application/javascript (791a596a)
+2018-03-23T14:51:55.2540595+07:00 0HLCGI8RGJR90:00000010 [INF] Request finished in 652.3992ms 200 font/woff2 (791a596a)
+2018-03-23T14:51:55.2796485+07:00 0HLCGI8RGJR8S:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/js/select2.min.js   (ca22a1cb)
+2018-03-23T14:51:55.4688130+07:00 0HLCGI8RGJR8V:0000000F [INF] Request finished in 931.8134ms 200 application/javascript (791a596a)
+2018-03-23T14:51:55.4892136+07:00 0HLCGI8RGJR8I:00000011 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/ckeditor/ckeditor.js   (ca22a1cb)
+2018-03-23T14:51:55.5154548+07:00 0HLCGI8RGJR8S:00000010 [INF] Sending file. Request path: '"/lib/select2/dist/js/select2.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\js\select2.min.js"' (27b0a520)
+2018-03-23T14:51:55.5321702+07:00 0HLCGI8RGJR8U:00000012 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment-with-locales.js   (ca22a1cb)
+2018-03-23T14:51:55.5602195+07:00 0HLCGI8RGJR8T:00000011 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment.min.js   (ca22a1cb)
+2018-03-23T14:51:55.7342378+07:00 0HLCGI8RGJR90:00000011 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap-daterangepicker/daterangepicker.js   (ca22a1cb)
+2018-03-23T14:51:55.7622392+07:00 0HLCGI8RGJR8T:00000011 [INF] Sending file. Request path: '"/js/moment.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment.min.js"' (27b0a520)
+2018-03-23T14:51:55.7951797+07:00 0HLCGI8RGJR8I:00000011 [INF] Sending file. Request path: '"/lib/ckeditor/ckeditor.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\ckeditor\ckeditor.js"' (27b0a520)
+2018-03-23T14:51:55.8271725+07:00 0HLCGI8RGJR8U:00000012 [INF] Sending file. Request path: '"/js/moment-with-locales.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment-with-locales.js"' (27b0a520)
+2018-03-23T14:51:55.9123429+07:00 0HLCGI8RGJR90:00000011 [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.js"' (27b0a520)
+2018-03-23T14:51:56.0136452+07:00 0HLCGI8RGJR8T:00000011 [INF] Request finished in 521.7367ms 200 application/javascript (791a596a)
+2018-03-23T14:51:56.0264640+07:00 0HLCGI8RGJR8V:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/bootstrap-datetimepicker.min.js   (ca22a1cb)
+2018-03-23T14:51:56.1760189+07:00 0HLCGI8RGJR8U:00000012 [INF] Request finished in 566.8138ms 200 application/javascript (791a596a)
+2018-03-23T14:51:56.1929077+07:00 0HLCGI8RGJR8I:00000011 [INF] Request finished in 663.0897ms 200 application/javascript (791a596a)
+2018-03-23T14:51:56.2082831+07:00 0HLCGI8RGJR90:00000011 [INF] Request finished in 562.893ms 200 application/javascript (791a596a)
+2018-03-23T14:51:56.2416960+07:00 0HLCGI8RGJR8V:00000010 [INF] Sending file. Request path: '"/js/bootstrap-datetimepicker.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\bootstrap-datetimepicker.min.js"' (27b0a520)
+2018-03-23T14:51:56.2863151+07:00 0HLCGI8RGJR8S:00000010 [INF] Request finished in 494.6355ms 200 application/javascript (791a596a)
+2018-03-23T14:51:56.3960584+07:00 0HLCGI8RGJR8T:00000012 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.js   (ca22a1cb)
+2018-03-23T14:51:56.5419156+07:00 0HLCGI8RGJR8U:00000013 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2018-03-23T14:51:56.6562976+07:00 0HLCGI8RGJR8I:00000012 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/additional-methods.js   (ca22a1cb)
+2018-03-23T14:51:56.7262428+07:00 0HLCGI8RGJR90:00000012 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2018-03-23T14:51:56.7875299+07:00 0HLCGI8RGJR8V:00000010 [INF] Request finished in 780.1872ms 200 application/javascript (791a596a)
+2018-03-23T14:51:56.8220125+07:00 0HLCGI8RGJR8U:00000013 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2018-03-23T14:51:56.8553592+07:00 0HLCGI8RGJR8T:00000012 [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.js"' (27b0a520)
+2018-03-23T14:51:56.8951091+07:00 0HLCGI8RGJR8I:00000012 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/additional-methods.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\additional-methods.js"' (27b0a520)
+2018-03-23T14:51:56.9317415+07:00 0HLCGI8RGJR90:00000012 [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2018-03-23T14:51:56.9636131+07:00 0HLCGI8RGJR8V:00000011 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-confirm.min.js   (ca22a1cb)
+2018-03-23T14:51:57.0945595+07:00 0HLCGI8RGJR8U:00000013 [INF] Request finished in 600.0054ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.1364771+07:00 0HLCGI8RGJR8I:00000012 [INF] Request finished in 584.6567ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.1482194+07:00 0HLCGI8RGJR8V:00000011 [INF] Sending file. Request path: '"/js/jquery-confirm.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-confirm.min.js"' (27b0a520)
+2018-03-23T14:51:57.1650539+07:00 0HLCGI8RGJR8T:00000012 [INF] Request finished in 767.5032ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.2455934+07:00 0HLCGI8RGJR90:00000012 [INF] Request finished in 592.1026ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.2896253+07:00 0HLCGI8RGJR8S:00000011 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery.number.js   (ca22a1cb)
+2018-03-23T14:51:57.3845498+07:00 0HLCGI8RGJR8V:00000011 [INF] Request finished in 392.3693ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.4322027+07:00 0HLCGI8RGJR8U:00000014 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/jstree.js   (ca22a1cb)
+2018-03-23T14:51:57.4511698+07:00 0HLCGI8RGJR8I:00000013 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/mainJs.js   (ca22a1cb)
+2018-03-23T14:51:57.4826679+07:00 0HLCGI8RGJR8T:00000013 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/custom.js   (ca22a1cb)
+2018-03-23T14:51:57.5597144+07:00 0HLCGI8RGJR8I:00000013 [INF] Sending file. Request path: '"/admin-side/js/mainJs.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\mainJs.js"' (27b0a520)
+2018-03-23T14:51:57.5701008+07:00 0HLCGI8RGJR8U:00000014 [INF] Sending file. Request path: '"/js/jstree/jstree.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\jstree.js"' (27b0a520)
+2018-03-23T14:51:57.5762833+07:00 0HLCGI8RGJR8T:00000013 [INF] Sending file. Request path: '"/admin-side/js/custom.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\custom.js"' (27b0a520)
+2018-03-23T14:51:57.6214968+07:00 0HLCGI8RGJR8I:00000013 [INF] Request finished in 342.8292ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.6591781+07:00 0HLCGI8RGJR8T:00000013 [INF] Request finished in 325.1395ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.6862771+07:00 0HLCGI8RGJR8S:00000011 [INF] Sending file. Request path: '"/js/jquery.number.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery.number.js"' (27b0a520)
+2018-03-23T14:51:57.7603015+07:00 0HLCGI8RGJR8S:00000011 [INF] Request finished in 903.4197ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.7737384+07:00 0HLCGI8RGJR8U:00000014 [INF] Request finished in 406.4092ms 200 application/javascript (791a596a)
+2018-03-23T14:51:57.8540112+07:00 0HLCGI8RGJR8S:00000012 [INF] Request starting HTTP/1.1 GET http://localhost:4061/favicon.ico   (ca22a1cb)
+2018-03-23T14:51:57.9089311+07:00 0HLCGI8RGJR8S:00000012 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-03-23T14:51:57.9466884+07:00 0HLCGI8RGJR8S:00000012 [INF] Request finished in 143.2759ms 200 image/x-icon (791a596a)
+2018-03-23T14:52:59.7934073+07:00 0HLCGI8RGJR8S:00000013 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin/bill/index   (ca22a1cb)
+2018-03-23T14:52:59.8070459+07:00 0HLCGI8RGJR8S:00000013 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2018-03-23T14:52:59.8453325+07:00 0HLCGI8RGJR8S:00000013 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2018-03-23T14:52:59.8657677+07:00 0HLCGI8RGJR8S:00000013 [INF] Executing action method "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2018-03-23T14:52:59.8777003+07:00 0HLCGI8RGJR8S:00000013 [INF] Entity Framework Core "2.0.1-rtm-125" initialized '"AppDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=CMSCore.Data.EF " (9958f5bb)
+2018-03-23T14:52:59.9105774+07:00 0HLCGI8RGJR8S:00000013 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [PRD_Bills] AS [p]" (0723d8ff)
+2018-03-23T14:52:59.9336415+07:00 0HLCGI8RGJR8S:00000013 [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[Id], [m].[CustomerName], [m].[CustomerAddress], [m].[CustomerMobile], [m].[CustomerMessage], [m].[PaymentMethod], [m].[BillStatus], [m].[DateCreated], [m].[DateModified], [m].[Status], [m].[CustomerId] AS [Id0], CASE
+    WHEN [m].[CustomerId] IS NOT NULL
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END, [m.User].[FullName], CONVERT(VARCHAR(100), [m.User].[BirthDay]) AS [BirthDay], [m.User].[Email], [m.User].[UserName], [m.User].[PhoneNumber], [m.User].[Avatar], [m.User].[Status] AS [Status0], [m.User].[DateCreated] AS [DateCreated0]
+FROM [PRD_Bills] AS [m]
+INNER JOIN [SEC_AppUsers] AS [m.User] ON [m].[CustomerId] = [m.User].[Id]
+ORDER BY [m].[DateCreated] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2018-03-23T14:52:59.9410485+07:00 0HLCGI8RGJR8S:00000013 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Bill/Index.cshtml". (9707eebe)
+2018-03-23T14:52:59.9504944+07:00 0HLCGI8RGJR8S:00000013 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[URL], [x].[ParentId], [x].[IconCss], [x].[SortOrder], [x].[Status]
+FROM [SEC_Functions] AS [x]
+WHERE [x].[Status] = 1
+ORDER BY [x].[ParentId]" (0723d8ff)
+2018-03-23T14:52:59.9944795+07:00 0HLCGI8RGJR8S:00000013 [INF] Executed action "CMSCore.Areas.Admin.Controllers.BillController.Index (CMSCore)" in 144.5699ms (afa2e885)
+2018-03-23T14:53:00.1647922+07:00 0HLCGI8RGJR8S:00000013 [INF] Request finished in 237.457ms 200 text/html; charset=utf-8 (791a596a)
+2018-03-23T14:53:00.3686367+07:00 0HLCGI8RGJR90:00000013 [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/bootstrap-datetimepicker.min.css   (ca22a1cb)
+2018-03-23T14:53:00.4289790+07:00 0HLCGI8RGJR8U:00000015 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2018-03-23T14:53:00.4836308+07:00 0HLCGI8RGJR8I:00000014 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/skins/flat/green.css   (ca22a1cb)
+2018-03-23T14:53:00.5412805+07:00 0HLCGI8RGJR8V:00000012 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.css   (ca22a1cb)
+2018-03-23T14:53:00.7787338+07:00 0HLCGI8RGJR8S:00000014 [INF] Request starting HTTP/1.1 GET http://localhost:4061/css/jquery-confirm.min.css   (ca22a1cb)
+2018-03-23T14:53:00.7916055+07:00 0HLCGI8RGJR90:00000013 [INF] Sending file. Request path: '"/css/bootstrap-datetimepicker.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\bootstrap-datetimepicker.min.css"' (27b0a520)
+2018-03-23T14:53:00.7983944+07:00 0HLCGI8RGJR8U:00000015 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2018-03-23T14:53:00.8176306+07:00 0HLCGI8RGJR8I:00000014 [INF] Sending file. Request path: '"/lib/icheck/skins/flat/green.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\skins\flat\green.css"' (27b0a520)
+2018-03-23T14:53:00.8251135+07:00 0HLCGI8RGJR8V:00000012 [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.css"' (27b0a520)
+2018-03-23T14:53:00.9277192+07:00 0HLCGI8RGJR8S:00000014 [INF] Sending file. Request path: '"/css/jquery-confirm.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\css\jquery-confirm.min.css"' (27b0a520)
+2018-03-23T14:53:00.9405131+07:00 0HLCGI8RGJR8T:00000014 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/css/font-awesome.css   (ca22a1cb)
+2018-03-23T14:53:01.0614676+07:00 0HLCGI8RGJR8I:00000014 [INF] Request finished in 837.6312ms 200 text/css (791a596a)
+2018-03-23T14:53:01.1183434+07:00 0HLCGI8RGJR90:00000013 [INF] Request finished in 838.0039ms 200 text/css (791a596a)
+2018-03-23T14:53:01.2380432+07:00 0HLCGI8RGJR8V:00000012 [INF] Request finished in 975.8461ms 200 text/css (791a596a)
+2018-03-23T14:53:01.2849697+07:00 0HLCGI8RGJR8T:00000014 [INF] Sending file. Request path: '"/lib/font-awesome/css/font-awesome.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\css\font-awesome.css"' (27b0a520)
+2018-03-23T14:53:01.3232024+07:00 0HLCGI8RGJR8U:00000015 [INF] Request finished in 818.7594ms 200 text/css (791a596a)
+2018-03-23T14:53:01.3401841+07:00 0HLCGI8RGJR8S:00000014 [INF] Request finished in 620.8792ms 200 text/css (791a596a)
+2018-03-23T14:53:01.4252349+07:00 0HLCGI8RGJR90:00000014 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/css/select2.min.css   (ca22a1cb)
+2018-03-23T14:53:01.4630013+07:00 0HLCGI8RGJR8I:00000015 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/themes/default/style.css   (ca22a1cb)
+2018-03-23T14:53:01.6060613+07:00 0HLCGI8RGJR8V:00000013 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/custom.css   (ca22a1cb)
+2018-03-23T14:53:01.6805338+07:00 0HLCGI8RGJR8T:00000014 [INF] Request finished in 1208.7235ms 200 text/css (791a596a)
+2018-03-23T14:53:01.7067586+07:00 0HLCGI8RGJR90:00000014 [INF] Sending file. Request path: '"/lib/select2/dist/css/select2.min.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\css\select2.min.css"' (27b0a520)
+2018-03-23T14:53:01.7311643+07:00 0HLCGI8RGJR8S:00000015 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-1.12.4.js   (ca22a1cb)
+2018-03-23T14:53:01.7787220+07:00 0HLCGI8RGJR8I:00000015 [INF] Sending file. Request path: '"/js/jstree/themes/default/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\themes\default\style.css"' (27b0a520)
+2018-03-23T14:53:01.8916274+07:00 0HLCGI8RGJR8U:00000016 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/css/style.css   (ca22a1cb)
+2018-03-23T14:53:01.9808009+07:00 0HLCGI8RGJR8V:00000013 [INF] Sending file. Request path: '"/admin-side/css/custom.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\custom.css"' (27b0a520)
+2018-03-23T14:53:02.0294330+07:00 0HLCGI8RGJR8U:00000016 [INF] Sending file. Request path: '"/admin-side/css/style.css"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\css\style.css"' (27b0a520)
+2018-03-23T14:53:02.0348814+07:00 0HLCGI8RGJR8I:00000015 [INF] Request finished in 633.5697ms 200 text/css (791a596a)
+2018-03-23T14:53:02.0623818+07:00 0HLCGI8RGJR8S:00000015 [INF] Sending file. Request path: '"/js/jquery-1.12.4.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-1.12.4.js"' (27b0a520)
+2018-03-23T14:53:02.0781111+07:00 0HLCGI8RGJR8T:00000015 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2018-03-23T14:53:02.1538390+07:00 0HLCGI8RGJR90:00000014 [INF] Request finished in 472.055ms 200 text/css (791a596a)
+2018-03-23T14:53:02.4282880+07:00 0HLCGI8RGJR8V:00000013 [INF] Request finished in 664.4331ms 200 text/css (791a596a)
+2018-03-23T14:53:02.5387058+07:00 0HLCGI8RGJR8T:00000015 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2018-03-23T14:53:02.7483457+07:00 0HLCGI8RGJR8U:00000016 [INF] Request finished in 669.5157ms 200 text/css (791a596a)
+2018-03-23T14:53:02.8180837+07:00 0HLCGI8RGJR8I:00000016 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/fastclick/lib/fastclick.js   (ca22a1cb)
+2018-03-23T14:53:02.8430856+07:00 0HLCGI8RGJR90:00000015 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/icheck/icheck.js   (ca22a1cb)
+2018-03-23T14:53:02.8757478+07:00 0HLCGI8RGJR8S:00000015 [INF] Request finished in 989.7392ms 200 application/javascript (791a596a)
+2018-03-23T14:53:02.9489652+07:00 0HLCGI8RGJR8T:00000015 [INF] Request finished in 903.4322ms 200 application/javascript (791a596a)
+2018-03-23T14:53:03.0266408+07:00 0HLCGI8RGJR8V:00000014 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/nprogress/nprogress.js   (ca22a1cb)
+2018-03-23T14:53:03.0353920+07:00 0HLCGI8RGJR8I:00000016 [INF] Sending file. Request path: '"/lib/fastclick/lib/fastclick.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\fastclick\lib\fastclick.js"' (27b0a520)
+2018-03-23T14:53:03.0453748+07:00 0HLCGI8RGJR90:00000015 [INF] Sending file. Request path: '"/lib/icheck/icheck.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\icheck\icheck.js"' (27b0a520)
+2018-03-23T14:53:03.2515674+07:00 0HLCGI8RGJR8S:00000016 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0   (ca22a1cb)
+2018-03-23T14:53:03.2671627+07:00 0HLCGI8RGJR8U:00000017 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-sparkline/dist/jquery.sparkline.js   (ca22a1cb)
+2018-03-23T14:53:03.2908252+07:00 0HLCGI8RGJR8V:00000014 [INF] Sending file. Request path: '"/lib/nprogress/nprogress.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\nprogress\nprogress.js"' (27b0a520)
+2018-03-23T14:53:03.3374394+07:00 0HLCGI8RGJR8T:00000016 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/mustache/mustache.js   (ca22a1cb)
+2018-03-23T14:53:03.3595786+07:00 0HLCGI8RGJR8I:00000016 [INF] Request finished in 839.7234ms 200 application/javascript (791a596a)
+2018-03-23T14:53:03.4200805+07:00 0HLCGI8RGJR90:00000015 [INF] Request finished in 888.3131ms 200 application/javascript (791a596a)
+2018-03-23T14:53:03.4629941+07:00 0HLCGI8RGJR8S:00000016 [INF] Sending file. Request path: '"/lib/font-awesome/fonts/fontawesome-webfont.woff2"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\font-awesome\fonts\fontawesome-webfont.woff2"' (27b0a520)
+2018-03-23T14:53:03.5564664+07:00 0HLCGI8RGJR8U:00000017 [INF] Sending file. Request path: '"/lib/jquery-sparkline/dist/jquery.sparkline.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-sparkline\dist\jquery.sparkline.js"' (27b0a520)
+2018-03-23T14:53:03.7153700+07:00 0HLCGI8RGJR8T:00000016 [INF] Sending file. Request path: '"/lib/mustache/mustache.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\mustache\mustache.js"' (27b0a520)
+2018-03-23T14:53:03.8296116+07:00 0HLCGI8RGJR8V:00000014 [INF] Request finished in 727.1436ms 200 application/javascript (791a596a)
+2018-03-23T14:53:03.9553524+07:00 0HLCGI8RGJR8I:00000017 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/spin.min.js   (ca22a1cb)
+2018-03-23T14:53:03.9836717+07:00 0HLCGI8RGJR8U:00000017 [INF] Request finished in 574.655ms 200 application/javascript (791a596a)
+2018-03-23T14:53:04.0247849+07:00 0HLCGI8RGJR90:00000016 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/ckeditor/ckeditor.js   (ca22a1cb)
+2018-03-23T14:53:04.0862868+07:00 0HLCGI8RGJR8T:00000016 [INF] Request finished in 678.6766ms 200 application/javascript (791a596a)
+2018-03-23T14:53:04.2898647+07:00 0HLCGI8RGJR8I:00000017 [INF] Sending file. Request path: '"/js/spin.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\spin.min.js"' (27b0a520)
+2018-03-23T14:53:04.3340684+07:00 0HLCGI8RGJR90:00000016 [INF] Sending file. Request path: '"/lib/ckeditor/ckeditor.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\ckeditor\ckeditor.js"' (27b0a520)
+2018-03-23T14:53:04.3389724+07:00 0HLCGI8RGJR8V:00000015 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/select2/dist/js/select2.min.js   (ca22a1cb)
+2018-03-23T14:53:04.4109884+07:00 0HLCGI8RGJR8S:00000016 [INF] Request finished in 595.1259ms 200 font/woff2 (791a596a)
+2018-03-23T14:53:04.5300694+07:00 0HLCGI8RGJR8U:00000018 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap-daterangepicker/daterangepicker.js   (ca22a1cb)
+2018-03-23T14:53:04.5850224+07:00 0HLCGI8RGJR8T:00000017 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment-with-locales.js   (ca22a1cb)
+2018-03-23T14:53:04.6866894+07:00 0HLCGI8RGJR8I:00000017 [INF] Request finished in 893.6559ms 200 application/javascript (791a596a)
+2018-03-23T14:53:04.8354603+07:00 0HLCGI8RGJR8V:00000015 [INF] Sending file. Request path: '"/lib/select2/dist/js/select2.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\select2\dist\js\select2.min.js"' (27b0a520)
+2018-03-23T14:53:04.9980511+07:00 0HLCGI8RGJR8U:00000018 [INF] Sending file. Request path: '"/lib/bootstrap-daterangepicker/daterangepicker.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap-daterangepicker\daterangepicker.js"' (27b0a520)
+2018-03-23T14:53:05.0546368+07:00 0HLCGI8RGJR8T:00000017 [INF] Sending file. Request path: '"/js/moment-with-locales.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment-with-locales.js"' (27b0a520)
+2018-03-23T14:53:05.0705304+07:00 0HLCGI8RGJR8S:00000017 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/moment.min.js   (ca22a1cb)
+2018-03-23T14:53:05.1686836+07:00 0HLCGI8RGJR90:00000016 [INF] Request finished in 1222.2126ms 200 application/javascript (791a596a)
+2018-03-23T14:53:05.2701515+07:00 0HLCGI8RGJR8S:00000017 [INF] Sending file. Request path: '"/js/moment.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\moment.min.js"' (27b0a520)
+2018-03-23T14:53:05.2773218+07:00 0HLCGI8RGJR8I:00000018 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/bootstrap-datetimepicker.min.js   (ca22a1cb)
+2018-03-23T14:53:05.2959702+07:00 0HLCGI8RGJR8V:00000015 [INF] Request finished in 946.6512ms 200 application/javascript (791a596a)
+2018-03-23T14:53:05.4536772+07:00 0HLCGI8RGJR8U:00000018 [INF] Request finished in 1090.5419ms 200 application/javascript (791a596a)
+2018-03-23T14:53:05.6060718+07:00 0HLCGI8RGJR8I:00000018 [INF] Sending file. Request path: '"/js/bootstrap-datetimepicker.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\bootstrap-datetimepicker.min.js"' (27b0a520)
+2018-03-23T14:53:05.6430325+07:00 0HLCGI8RGJR8V:00000016 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/pnotify/dist/pnotify.js   (ca22a1cb)
+2018-03-23T14:53:05.6627127+07:00 0HLCGI8RGJR8S:00000017 [INF] Request finished in 707.6529ms 200 application/javascript (791a596a)
+2018-03-23T14:53:05.7294202+07:00 0HLCGI8RGJR90:00000017 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery.number.js   (ca22a1cb)
+2018-03-23T14:53:05.9167708+07:00 0HLCGI8RGJR8U:00000019 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2018-03-23T14:53:05.9376367+07:00 0HLCGI8RGJR8V:00000016 [INF] Sending file. Request path: '"/lib/pnotify/dist/pnotify.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\pnotify\dist\pnotify.js"' (27b0a520)
+2018-03-23T14:53:06.0093925+07:00 0HLCGI8RGJR8I:00000018 [INF] Request finished in 776.6765ms 200 application/javascript (791a596a)
+2018-03-23T14:53:06.0636097+07:00 0HLCGI8RGJR8S:00000018 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation/dist/additional-methods.js   (ca22a1cb)
+2018-03-23T14:53:06.1122901+07:00 0HLCGI8RGJR90:00000017 [INF] Sending file. Request path: '"/js/jquery.number.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery.number.js"' (27b0a520)
+2018-03-23T14:53:06.1237462+07:00 0HLCGI8RGJR8T:00000017 [INF] Request finished in 1602.7953ms 200 application/javascript (791a596a)
+2018-03-23T14:53:06.1618482+07:00 0HLCGI8RGJR8U:00000019 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2018-03-23T14:53:06.1804762+07:00 0HLCGI8RGJR8V:00000016 [INF] Request finished in 589.4777ms 200 application/javascript (791a596a)
+2018-03-23T14:53:06.2577964+07:00 0HLCGI8RGJR8S:00000018 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/additional-methods.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation\dist\additional-methods.js"' (27b0a520)
+2018-03-23T14:53:06.5430464+07:00 0HLCGI8RGJR8I:00000019 [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2018-03-23T14:53:06.6102611+07:00 0HLCGI8RGJR8U:00000019 [INF] Request finished in 623.156ms 200 application/javascript (791a596a)
+2018-03-23T14:53:06.6705478+07:00 0HLCGI8RGJR8V:00000017 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jstree/jstree.js   (ca22a1cb)
+2018-03-23T14:53:06.7644533+07:00 0HLCGI8RGJR8T:00000018 [INF] Request starting HTTP/1.1 GET http://localhost:4061/js/jquery-confirm.min.js   (ca22a1cb)
+2018-03-23T14:53:06.8076307+07:00 0HLCGI8RGJR8S:00000018 [INF] Request finished in 623.1775ms 200 application/javascript (791a596a)
+2018-03-23T14:53:06.8220578+07:00 0HLCGI8RGJR90:00000017 [INF] Request finished in 854.2625ms 200 application/javascript (791a596a)
+2018-03-23T14:53:06.9090236+07:00 0HLCGI8RGJR8I:00000019 [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2018-03-23T14:53:06.9312367+07:00 0HLCGI8RGJR8V:00000017 [INF] Sending file. Request path: '"/js/jstree/jstree.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jstree\jstree.js"' (27b0a520)
+2018-03-23T14:53:06.9541245+07:00 0HLCGI8RGJR8T:00000018 [INF] Sending file. Request path: '"/js/jquery-confirm.min.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\js\jquery-confirm.min.js"' (27b0a520)
+2018-03-23T14:53:06.9592939+07:00 0HLCGI8RGJR8U:0000001A [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/mainJs.js   (ca22a1cb)
+2018-03-23T14:53:07.0786472+07:00 0HLCGI8RGJR8T:00000018 [INF] Request finished in 686.8127ms 200 application/javascript (791a596a)
+2018-03-23T14:53:07.2854462+07:00 0HLCGI8RGJR8U:0000001A [INF] Sending file. Request path: '"/admin-side/js/mainJs.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\mainJs.js"' (27b0a520)
+2018-03-23T14:53:07.2939218+07:00 0HLCGI8RGJR8V:00000017 [INF] Request finished in 781.6371ms 200 application/javascript (791a596a)
+2018-03-23T14:53:07.2946445+07:00 0HLCGI8RGJR8I:00000019 [INF] Request finished in 820.1606ms 200 application/javascript (791a596a)
+2018-03-23T14:53:07.3039367+07:00 0HLCGI8RGJR8U:0000001A [INF] Request finished in 499.7936ms 200 application/javascript (791a596a)
+2018-03-23T14:53:07.3305075+07:00 0HLCGI8RGJR90:00000018 [INF] Request starting HTTP/1.1 GET http://localhost:4061/admin-side/js/custom.js   (ca22a1cb)
+2018-03-23T14:53:07.3391533+07:00 0HLCGI8RGJR90:00000018 [INF] Sending file. Request path: '"/admin-side/js/custom.js"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\admin-side\js\custom.js"' (27b0a520)
+2018-03-23T14:53:07.4195662+07:00 0HLCGI8RGJR90:00000018 [INF] Request finished in 371.3392ms 200 application/javascript (791a596a)
+2018-03-23T14:53:07.4321386+07:00 0HLCGI8RGJR90:00000019 [INF] Request starting HTTP/1.1 GET http://localhost:4061/favicon.ico   (ca22a1cb)
+2018-03-23T14:53:07.4399960+07:00 0HLCGI8RGJR90:00000019 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\favicon.ico"' (27b0a520)
+2018-03-23T14:53:07.4555928+07:00 0HLCGI8RGJR90:00000019 [INF] Request finished in 15.2365ms 200 image/x-icon (791a596a)
+2018-03-23T14:53:08.8570806+07:00 0HLCGI8RGJR90:0000001A [INF] Request starting HTTP/1.1 GET http://localhost:4061/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2   (ca22a1cb)
+2018-03-23T14:53:08.8624011+07:00 0HLCGI8RGJR90:0000001A [INF] Sending file. Request path: '"/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2"'. Physical path: '"D:\Minhvh\CMSCore\CMSCore\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2"' (27b0a520)
+2018-03-23T14:53:09.0683064+07:00 0HLCGI8RGJR90:0000001A [INF] Request finished in 279.0196ms 200 font/woff2 (791a596a)

@@ -95,6 +95,10 @@ namespace CMSCore
             services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IProductTagRepository, ProductTagRepository>();
             services.AddTransient<IPermissionRepository, PermissionRepository>();
+            services.AddTransient<IBillRepository, BillRepository>();
+            services.AddTransient<IBillDetailRepository, BillDetailRepository>();
+            services.AddTransient<IColorRepository, ColorRepository>();
+            services.AddTransient<ISizeRepository, SizeRepository>();
 
             // Service
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
@@ -103,6 +107,7 @@ namespace CMSCore
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
+            services.AddTransient<IBillService, BillService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

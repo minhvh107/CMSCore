@@ -1,0 +1,132 @@
+﻿@using CMSCore.Data.Enums
+@model CMSCore.Application.ViewModels.BillViewModel
+@{
+    var isEdit = Model.IsEdit;
+    var isView = Model.IsView;
+
+    var title = isEdit ? "Sửa hoá đơn" : "Thêm hoá đơn";
+    title = isView ? "Thông tin hoá đơn" : title;
+}
+<div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">@title</h4>
+        </div>
+        <div class="modal-body">
+            <form action="/Admin/Product/SaveItem" method="post" id="frmSave" class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel">
+                        <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4 class="panel-title">Thông tin chung</h4>
+                        </a>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                @Html.HiddenFor(m => m.Id)
+                                @Html.HiddenFor(m => m.DateCreated)
+                                @Html.HiddenFor(m => m.IsEdit)
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CustomerName, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "error" })
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CustomerAddress, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextAreaFor(m => m.CustomerAddress, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.CustomerAddress, "", new { @class = "error" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CustomerMobile, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.CustomerMobile, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.CustomerMobile, "", new { @class = "error" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CustomerMessage, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @Html.TextAreaFor(m => m.CustomerMessage, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.CustomerMessage, "", new { @class = "error" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4 class="panel-title">Hoá đơn</h4>
+                        </a>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.PaymentMethod, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @{
+                                            @Html.DropDownListFor(m => m.PaymentMethod, Model.ListPaymentMethods, new { @class = "form-control select-custom", @size = "1", onfocus = @"this.size=5;", onblur = "this.size=1;", onchange = "this.size=1; this.blur();" });
+                                        }
+                                        <label class="error" style="display: none;"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.BillStatus, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        @{
+                                            @Html.DropDownListFor(m => m.BillStatus, Model.ListBillStatus, new { @class = "form-control select-custom", @size = "1", onfocus = @"this.size=5;", onblur = "this.size=1;", onchange = "this.size=1; this.blur();" });
+                                        }
+                                        <label class="error" style="display: none;"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <h4 class="panel-title">Chi tiết hoá đơn</h4>
+                        </a>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <div class="x_content">
+                                    <div class="table-header-action">
+                                        @if ((isUse || isView))
+                                        {
+                                            <a href="javascript:void(0);" class="margin-right-20 disabled"><i class="fa fa-plus fa-lg"></i> Thêm</a>
+                                            <a href="javascript:void(0);" class="margin-right-20 disabled"><i class="fa fa-edit fa-lg"></i> Sửa</a>
+                                            <a href="javascript:void(0);" class="margin-right-20 disabled"><i class="fa fa-remove fa-lg"></i> Xóa</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="javascript:void(0);" class="margin-right-20 btn-add-subitem" url-content="/Admin/Bill/AddIPItemDetail"><i class="fa fa-plus fa-lg"></i> Thêm</a>
+                                            <a href="javascript:void(0);" class="margin-right-20 btn-update-subitem" url-content="/InsuranceProgram/EditIPItemDetail"><i class="fa fa-edit fa-lg"></i> Sửa</a>
+                                            <a href="javascript:void(0);" class="margin-right-20 btn-remove-subitem"><i class="fa fa-remove fa-lg"></i> Xóa</a>
+                                        }
+                                        <input type="hidden" id="sub-url-view" value="/InsuranceProgram/ViewItemDetail" />
+                                    </div>
+                                    @{ Html.RenderPartial("_ListIPItemDetails", Model?.BillDetails);}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            @if (!isView)
+            {
+                <button type="button" class="btn btn-primary btn-save"><i class="fa fa-save fa-lg"></i> Cập nhật</button>
+            }
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Quay lại</button>
+        </div>
+    </div>
+</div>
