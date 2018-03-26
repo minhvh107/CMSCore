@@ -8,6 +8,10 @@ namespace CMSCore.Application.ViewModels
 {
     public class BillViewModel
     {
+        public BillViewModel()
+        {
+            BillDetails =  new List<BillDetailViewModel>();
+        }
         public int Id { set; get; }
 
         [Required]
@@ -46,5 +50,7 @@ namespace CMSCore.Application.ViewModels
 
         public bool IsView { set; get; }
         public bool IsEdit { set; get; }
+
+        public string JsonListBillDetails { set; get; }
     }
 }

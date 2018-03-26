@@ -1,4 +1,7 @@
-﻿namespace CMSCore.Application.ViewModels
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace CMSCore.Application.ViewModels
 {
     public class BillDetailViewModel
     {
@@ -23,5 +26,16 @@
         public ColorViewModel Color { set; get; }
 
         public SizeViewModel Size { set; get; }
+
+        public List<SelectListItem> ListProducts { set; get; }
+
+        public List<SelectListItem> ListSizes { set; get; }
+
+        public List<SelectListItem> ListColors { set; get; }
+
+        public bool IsEdit { set; get; }
+
+        public bool IsView { set; get; }
+
     }
 }

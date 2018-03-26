@@ -22,7 +22,7 @@
             {
                 foreach (var item in Model)
                 {
-                    Html.RenderPartial("_ListBillDetailTable", item);
+                    Html.RenderPartial("~/Areas/Admin/Views/Bill/_ListBillDetailTable.cshtml", item);
                 }
             }
             else

@@ -26,6 +26,7 @@
                                 @Html.HiddenFor(m => m.Id)
                                 @Html.HiddenFor(m => m.DateCreated)
                                 @Html.HiddenFor(m => m.IsEdit)
+                                @Html.HiddenFor(m=>m.JsonListBillDetails)
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.CustomerName, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -33,8 +34,6 @@
                                         @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "error" })
                                     </div>
                                 </div>
-
-                                
 
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.CustomerAddress, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
@@ -98,7 +97,7 @@
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="panel-body">
                                 <div class="x_content">
-                                    @{ Html.RenderPartial("_ListBillDetail", Model?.BillDetails);}
+                                    @{ Html.RenderPartial("~/Areas/Admin/Views/Bill/_ListBillDetail.cshtml", Model.BillDetails);}
                                 </div>
                             </div>
                         </div>
