@@ -1,4 +1,6 @@
 ﻿@using CMSCore.Data.Enums
+@using CMSCore.Utilities.Constants
+@using CMSCore.Utilities.Extensions
 @model IList<CMSCore.Application.ViewModels.BillViewModel>
 <div class="table-header-action">
     <a href="javascript:void(0);" class="margin-right-20 btn-add-item" url-content="/Admin/Bill/Add"><i class="fa fa-plus fa-lg"></i> Thêm</a>
@@ -12,7 +14,7 @@
         <thead>
         <tr class="">
             <th class="column-title">Tên khách hàng</th>
-            <th class="column-title">Tổng tiền hoá đơn</th>
+            <th class="column-title">Hình thức thanh toán</th>
             <th class="column-title">Ngày đặt hàng</th>
             <th class="column-title">Trạng thái</th>
         </tr>
@@ -25,25 +27,15 @@
                 foreach (var item in Model)
                 {
                     <tr class="" item-id="@item.Id">
-                        <td class="column-50" title="@item.CustomerName">@item.CustomerName</td>
-                        <td class="column-50" title="@item.PaymentMethod">@item.PaymentMethod</td>
-                        <td class="column-50" title="@item.DateCreated">@item.DateCreated</td>
-                        <td class="text-center">
-                            @if (item.Status == Status.Active)
-                            {
-                                <input type="checkbox" class="flat" checked="checked" readonly="readonly" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" class="flat" readonly="readonly" />
-                            }
-                        </td>
+                        <td class="column-40" title="@item.CustomerName">@item.CustomerName</td>
+                        <td class="column-20" title="@item.PaymentMethod">@item.PaymentMethod</td>
+                        <td class="column-20" title="@item.DateCreated.ToString(Constants.DateFormat)">@item.DateCreated.ToString(Constants.DateFormat)</td>
+                        <td class="column-20" title="@item.BillStatus.GetDescription()">@item.BillStatus.GetDescription()</td>
                     </tr>
                 }
             }
             else
             {
-
                 {
                     <tr>
                         <td colspan="4">Không có dữ liệu</td>

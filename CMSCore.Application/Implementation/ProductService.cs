@@ -19,6 +19,8 @@ namespace CMSCore.Application.Implementation
 {
     public class ProductService : IProductService, IDisposable
     {
+        #region Default
+
         private readonly IProductRepository _productRepository;
         private readonly ITagRepository _tagRepository;
         private readonly IProductTagRepository _productTagRepository;
@@ -35,42 +37,13 @@ namespace CMSCore.Application.Implementation
             _unitOfWork = unitOfWork;
         }
 
-        public List<ProductViewModel> GetAll()
-        {
-            return _productRepository.FindAll(m => m.ProductCategory).ProjectTo<ProductViewModel>().ToList();
-        }
+        #endregion Default
 
-        public PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
-        {
-            var query = _productRepository.FindAll(m => m.IsDelete == false);
-            if (!string.IsNullOrEmpty(keyword))
-                query = query.Where(m => m.Name == keyword);
-            if (categoryId.HasValue && categoryId != 0)
-                query = query.Where(m => m.CategoryId == categoryId.Value);
-
-            var totalRow = query.Count();
-
-            query = query.OrderByDescending(m => m.DateCreated)
-                .Skip((page - 1) * pageSize).Take(pageSize);
-
-            var data = query.ProjectTo<ProductViewModel>().ToList();
-
-            var paginationSet = new PagedResult<ProductViewModel>()
-            {
-                Results = data,
-                CurrentPage = page,
-                RowCount = totalRow,
-                PageSize = pageSize
-            };
-
-            return paginationSet;
-        }
-
-        public ProductViewModel Add(ProductViewModel productVm)
+        public ProductViewModel Create(ProductViewModel productVm)
         {
             List<ProductTag> productTags = new List<ProductTag>();
-            
-            if (!string.IsNullOrEmpty(productVm.Tags)) 
+
+            if (!string.IsNullOrEmpty(productVm.Tags))
             {
                 string[] tags = productVm.Tags.Split(',');
                 foreach (string t in tags)
@@ -148,6 +121,37 @@ namespace CMSCore.Application.Implementation
         public ProductViewModel GetById(int id)
         {
             return Mapper.Map<Product, ProductViewModel>(_productRepository.FindById(id));
+        }
+
+        public List<ProductViewModel> GetAll()
+        {
+            return _productRepository.FindAll(m => m.ProductCategory).ProjectTo<ProductViewModel>().ToList();
+        }
+
+        public PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
+        {
+            var query = _productRepository.FindAll(m => m.IsDelete == false);
+            if (!string.IsNullOrEmpty(keyword))
+                query = query.Where(m => m.Name == keyword);
+            if (categoryId.HasValue && categoryId != 0)
+                query = query.Where(m => m.CategoryId == categoryId.Value);
+
+            var totalRow = query.Count();
+
+            query = query.OrderByDescending(m => m.DateCreated)
+                .Skip((page - 1) * pageSize).Take(pageSize);
+
+            var data = query.ProjectTo<ProductViewModel>().ToList();
+
+            var paginationSet = new PagedResult<ProductViewModel>()
+            {
+                Results = data,
+                CurrentPage = page,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+
+            return paginationSet;
         }
 
         public void ImportExcel(string filePath, int categoryId)

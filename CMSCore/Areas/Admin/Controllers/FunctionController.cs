@@ -65,7 +65,7 @@ namespace CMSCore.Areas.Admin.Controllers
             {
                 if (string.IsNullOrWhiteSpace(functionVm.Id))
                 {
-                    _functionService.Add(functionVm);
+                    _functionService.Create(functionVm);
                 }
                 else
                 {

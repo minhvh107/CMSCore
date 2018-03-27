@@ -6,7 +6,7 @@ namespace CMSCore.Application.Interfaces
 {
     public interface IProductCategoryService
     {
-        ProductCategoryViewModel Add(ProductCategoryViewModel productCategoryVm);
+        ProductCategoryViewModel Create(ProductCategoryViewModel productCategoryVm);
 
         void Update(ProductCategoryViewModel productCategoryVm);
 

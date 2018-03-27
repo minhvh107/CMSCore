@@ -247,7 +247,7 @@ namespace CMSCore.Areas.Admin.Controllers
                 productCategoryVm.SeoAlias = TextHelper.ToUnsignString(productCategoryVm.Name);
                 if (productCategoryVm.IsEdit == false)
                 {
-                    _productCategoryService.Add(productCategoryVm);
+                    _productCategoryService.Create(productCategoryVm);
                 }
                 else
                 {

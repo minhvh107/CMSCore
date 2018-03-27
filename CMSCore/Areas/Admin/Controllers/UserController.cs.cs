@@ -278,7 +278,7 @@ namespace CMSCore.Areas.Admin.Controllers
                 var errors = new Dictionary<string, string>();
                 if (appUserViewModel.IsEdit == false)
                 {
-                    await _userService.AddAsync(appUserViewModel);
+                    await _userService.CreateAsync(appUserViewModel);
                 }
                 else
                 {

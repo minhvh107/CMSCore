@@ -8,7 +8,9 @@ namespace CMSCore.Application.Interfaces
 {
     public interface IRoleService
     {
-        Task<bool> AddAsync(AppRoleViewModel userVm);
+        Task<bool> CreateAsync(AppRoleViewModel userVm);
+
+        Task UpdateAsync(AppRoleViewModel userVm);
 
         Task DeleteAsync(Guid id);
 
@@ -17,8 +19,6 @@ namespace CMSCore.Application.Interfaces
         Task<PagedResult<AppRoleViewModel>> GetAllPagingAsync(string keyword, int page, int pageSize);
 
         Task<AppRoleViewModel> GetById(string id);
-
-        Task UpdateAsync(AppRoleViewModel userVm);
 
         List<PermissionViewModel> GetListFunctionWithRole(Guid roleId);
 

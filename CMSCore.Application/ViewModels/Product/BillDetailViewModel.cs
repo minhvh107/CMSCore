@@ -5,6 +5,8 @@ namespace CMSCore.Application.ViewModels
 {
     public class BillDetailViewModel
     {
+        public string Guid { set; get; }
+
         public int Id { set; get; }
 
         public int BillId { set; get; }

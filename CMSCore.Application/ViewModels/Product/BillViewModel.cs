@@ -1,7 +1,9 @@
 ﻿using CMSCore.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using CMSCore.Utilities.Constants;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CMSCore.Application.ViewModels
@@ -14,24 +16,27 @@ namespace CMSCore.Application.ViewModels
         }
         public int Id { set; get; }
 
-        [Required]
-        [MaxLength(256)]
+        [Required(ErrorMessage = Constants.FieldRequired)]
+        [MaxLength(256, ErrorMessage = Constants.MaxLength + " 256 ký tự")]
+        [DisplayName("Tên khách hàng")]
         public string CustomerName { set; get; }
 
-        [Required]
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = Constants.MaxLength + " 256 ký tự")]
+        [DisplayName("Địa chỉ")]
         public string CustomerAddress { set; get; }
 
-        [Required]
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = Constants.MaxLength + " 50 ký tự")]
+        [DisplayName("Số điện thoại")]
         public string CustomerMobile { set; get; }
 
-        [Required]
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = Constants.MaxLength + " 256 ký tự")]
+        [DisplayName("Tin nhắn")]
         public string CustomerMessage { set; get; }
 
+        [DisplayName("Tin nhắn")]
         public PaymentMethod PaymentMethod { set; get; }
 
+        [DisplayName("Trạng thái đơn hàng")]
         public BillStatus BillStatus { set; get; }
 
         public DateTime DateCreated { set; get; }
@@ -39,9 +44,9 @@ namespace CMSCore.Application.ViewModels
 
         public Status Status { set; get; } = Status.Active;
 
-        public Guid CustomerId { set; get; }
+        public Guid? CustomerId { set; get; }
 
-        public AppUserViewModel User { set; get; }
+        //public AppUserViewModel User { set; get; }
 
         public List<BillDetailViewModel> BillDetails { set; get; }
 

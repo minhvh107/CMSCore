@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-CMSCore-1AC460EB-40BB-46A2-9F1B-B9EC735C80A5</UserSecretsId>
-	<MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+	<MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -13,6 +13,10 @@
   <ItemGroup>
     <Compile Remove="Areas\Admin\Components\PaginationViewComponent.cs" />
     <Compile Remove="Helpers\AdminAuthorize.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Admin\Views\Bill\_ListBillDetailTable.cshtml" />
   </ItemGroup>
 
 

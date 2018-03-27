@@ -11,7 +11,10 @@ namespace CMSCore.Application.AutoMapper
             #region Product
             CreateMap<ProductCategory, ProductCategoryViewModel>();
             CreateMap<Product, ProductViewModel>();
-
+            CreateMap<Color, ColorViewModel>();
+            CreateMap<Size, SizeViewModel>();
+            CreateMap<Bill, BillViewModel>();
+            CreateMap<BillDetail, BillDetailViewModel>();
             #endregion
 
             #region System

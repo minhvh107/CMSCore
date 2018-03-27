@@ -97,7 +97,47 @@
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="panel-body">
                                 <div class="x_content">
-                                    @{ Html.RenderPartial("~/Areas/Admin/Views/Bill/_ListBillDetail.cshtml", Model.BillDetails);}
+                                    <div class="table-header-action">
+                                        <a href="javascript:void(0);" class="margin-right-20 btn-add-subitem" url-content="/Admin/Bill/AddDetail"><i class="fa fa-plus fa-lg"></i> Thêm</a>
+                                        <a href="javascript:void(0);" class="margin-right-20 btn-update-subitem" url-content="/Admin/Bill/EditDetail"><i class="fa fa-edit fa-lg"></i> Sửa</a>
+                                        <a href="javascript:void(0);" class="margin-right-20 btn-remove-subitem" url-content="/Admin/Bill/DeleteDetail"><i class="fa fa-remove fa-lg"></i> Xóa</a>
+                                        <input type="hidden" value="/Admin/Bill/ViewDetailItem" id="sub-url-view" />
+                                    </div>
+                                    <div class="table-responsive table-fixed">
+                                        <table class="table table-striped table-bordered jambo_table bulk_action fixed_headers">
+                                            <thead>
+                                            <tr class="headings">
+                                                <th class="hidden" col-name="Id Bill Detail"></th>
+                                                <th class="column-title">Tên sản phẩm</th>
+                                                <th class="column-title">Màu sắc</th>
+                                                <th class="column-title">Size</th>
+                                                <th class="column-title">Số lượng</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody id="list-bill-details">
+                                            @{
+                                                if (Model.BillDetails.Count > 0)
+                                                {
+                                                    foreach (var item in Model.BillDetails)
+                                                    {
+                                                        Html.RenderPartial("~/Areas/Admin/Views/Bill/_ListBillDetail.cshtml", item);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    {
+                                                        <tr class="no-data">
+                                                            <td colspan="4">Không có dữ liệu</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>

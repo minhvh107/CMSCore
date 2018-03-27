@@ -17,6 +17,8 @@ namespace CMSCore.Application.Implementation
 {
     public class RoleService : IRoleService
     {
+        #region Default
+
         private readonly RoleManager<AppRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly IFunctionRepository _functionRepository;
@@ -24,10 +26,10 @@ namespace CMSCore.Application.Implementation
         private readonly IUnitOfWork _unitOfWork;
 
         public RoleService(
-            RoleManager<AppRole> roleManager, 
+            RoleManager<AppRole> roleManager,
             UserManager<AppUser> userManager,
             IUnitOfWork unitOfWork,
-            IFunctionRepository functionRepository, 
+            IFunctionRepository functionRepository,
             IPermissionRepository permissionRepository)
         {
             _roleManager = roleManager;
@@ -37,7 +39,9 @@ namespace CMSCore.Application.Implementation
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> AddAsync(AppRoleViewModel roleVm)
+        #endregion Default
+
+        public async Task<bool> CreateAsync(AppRoleViewModel roleVm)
         {
             var role = new AppRole()
             {
@@ -48,16 +52,12 @@ namespace CMSCore.Application.Implementation
             return result.Succeeded;
         }
 
-        public Task<bool> CheckPermission(string functionId, string action, string[] roles)
+        public async Task UpdateAsync(AppRoleViewModel roleVm)
         {
-            var functions = _functionRepository.FindAll();
-            var permissions = _permissionRepository.FindAll();
-            var query = from f in functions
-                        join p in permissions on f.Id equals p.FunctionId
-                        join r in _roleManager.Roles on p.RoleId equals r.Id
-                        where roles.Contains(r.Name) && f.Id == functionId
-                        select p;
-            return query.AnyAsync();
+            var role = await _roleManager.FindByIdAsync(roleVm.Id.ToString());
+            role.Description = roleVm.Description;
+            role.Name = roleVm.Name;
+            await _roleManager.UpdateAsync(role);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -79,7 +79,7 @@ namespace CMSCore.Application.Implementation
                 || x.Description.Contains(keyword));
 
             int totalRow = query.Count();
-            query =  query.Skip((page - 1) * pageSize)
+            query = query.Skip((page - 1) * pageSize)
                .Take(pageSize);
 
             var data = await query.ProjectTo<AppRoleViewModel>().ToListAsync();
@@ -143,12 +143,16 @@ namespace CMSCore.Application.Implementation
             _unitOfWork.Commit();
         }
 
-        public async Task UpdateAsync(AppRoleViewModel roleVm)
+        public Task<bool> CheckPermission(string functionId, string action, string[] roles)
         {
-            var role = await _roleManager.FindByIdAsync(roleVm.Id.ToString());
-            role.Description = roleVm.Description;
-            role.Name = roleVm.Name;
-            await _roleManager.UpdateAsync(role);
+            var functions = _functionRepository.FindAll();
+            var permissions = _permissionRepository.FindAll();
+            var query = from f in functions
+                        join p in permissions on f.Id equals p.FunctionId
+                        join r in _roleManager.Roles on p.RoleId equals r.Id
+                        where roles.Contains(r.Name) && f.Id == functionId
+                        select p;
+            return query.AnyAsync();
         }
     }
 }

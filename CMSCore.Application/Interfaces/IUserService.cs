@@ -7,7 +7,9 @@ namespace CMSCore.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<bool> AddAsync(AppUserViewModel userVm);
+        Task<bool> CreateAsync(AppUserViewModel userVm);
+
+        Task UpdateAsync(AppUserViewModel userVm);
 
         Task DeleteAsync(string id);
 
@@ -16,8 +18,6 @@ namespace CMSCore.Application.Interfaces
         Task<PagedResult<AppUserViewModel>> GetAllPagingAsync(string keyword, int page, int pageSize);
 
         Task<AppUserViewModel> GetById(string id);
-
-        Task UpdateAsync(AppUserViewModel userVm);
 
         Task RemoveRoleInUser(string userId, string role);
     }

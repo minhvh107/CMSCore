@@ -23,7 +23,7 @@ namespace CMSCore.Application.Implementation
             _unitOfWork = unitOfWork;
         }
 
-        public ProductCategoryViewModel Add(ProductCategoryViewModel productCategoryVm)
+        public ProductCategoryViewModel Create(ProductCategoryViewModel productCategoryVm)
         {
             var productCategory = Mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryVm);
             _productCategoryRepository.Add(productCategory);

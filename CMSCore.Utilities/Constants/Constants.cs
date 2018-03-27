@@ -21,5 +21,19 @@
         public const string MustBeNumber = "Dữ liệu phải là số từ 0-9";
         public const string EmptyValue = "0.0000";
         #endregion
+
+        #region Datetime
+        public const string DateFormat = "dd/MM/yyyy";
+        public const string DateFormatHhMmSs = "ddMMyyyyHHmmss";
+        public const string DateFormatHhMmSsPa = "dd/MM/yyyy HH:mm:ss";
+
+        #endregion
+
+        #region Email
+        public const string RegexValidateEmail =
+            @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+
+
+        #endregion
     }
 }

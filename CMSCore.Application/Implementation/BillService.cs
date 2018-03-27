@@ -16,6 +16,8 @@ namespace CMSCore.Application.Implementation
 {
     public class BillService : IBillService, IDisposable
     {
+        #region Default
+
         private readonly IBillRepository _billRepository;
         private readonly IBillDetailRepository _billDetailRepository;
         private readonly IColorRepository _colorRepository;
@@ -42,6 +44,10 @@ namespace CMSCore.Application.Implementation
             _mapper = mapper;
         }
 
+        #endregion Default
+
+        #region Bill
+
         public void Create(BillViewModel billVm)
         {
             var bill = _mapper.Map<Bill>(billVm);
@@ -50,90 +56,11 @@ namespace CMSCore.Application.Implementation
             {
                 var product = _productRepository.FindById(detail.ProductId);
                 detail.Price = product.Price;
+                //_billDetailRepository.Add(detail);
             }
             bill.BillDetails = billDetails;
 
             _billRepository.Add(bill);
-        }
-
-        public BillDetailViewModel CreateDetail(BillDetailViewModel billDetailVm)
-        {
-            var billDetail = _mapper.Map<BillDetailViewModel, BillDetail>(billDetailVm);
-            _billDetailRepository.Add(billDetail);
-            return billDetailVm;
-        }
-
-        public void DeleteDetail(int productId, int billId, int colorId, int sizeId)
-        {
-            var billDetail = _billDetailRepository.FindSingle(x => x.ProductId == productId && x.BillId == billId && x.ColorId == colorId && x.SizeId == sizeId);
-            _billDetailRepository.Remove(billDetail);
-        }
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
-
-        public PagedResult<BillViewModel> GetAllPaging(string startDate, string endDate, string keyword, int pageIndex, int pageSize)
-        {
-            var query = _billRepository.FindAll();
-            if (!string.IsNullOrEmpty(startDate))
-            {
-                var starDateTime = DateTime.ParseExact(startDate, "dd/mm/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
-                query = query.Where(m => m.DateCreated >= starDateTime);
-            }
-
-            if (!string.IsNullOrEmpty(endDate))
-            {
-                var endDateTime = DateTime.ParseExact(endDate, "dd/mm/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
-                query = query.Where(m => m.DateCreated <= endDateTime);
-            }
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                query = query.Where(m => m.CustomerName.Contains(keyword) || m.CustomerMobile.Contains(keyword));
-            }
-            var totalRow = query.Count();
-            var data = query.OrderByDescending(m => m.DateCreated).Skip((pageIndex - 1) * pageSize).Take(pageSize)
-                .ProjectTo<BillViewModel>().ToList();
-            return new PagedResult<BillViewModel>()
-            {
-                CurrentPage = pageIndex,
-                PageSize = pageSize,
-                Results = data,
-                RowCount = totalRow
-            };
-        }
-
-        public List<BillDetailViewModel> GetBillDetails(int billId)
-        {
-            return _billDetailRepository
-                .FindAll(m => m.BillId == billId, c => c.Bill, c => c.Color, c => c.Size, c => c.Product)
-                .ProjectTo<BillDetailViewModel>().ToList();
-        }
-
-        public List<ColorViewModel> GetColors()
-        {
-            return _colorRepository.FindAll().ProjectTo<ColorViewModel>().ToList();
-        }
-
-        public BillViewModel GetDetail(int billId)
-        {
-            var bill = _billRepository.FindById(billId);
-            var billVm = _mapper.Map<Bill, BillViewModel>(bill);
-            var billDetailVm = _billDetailRepository.FindAll(m => m.BillId == billId).ProjectTo<BillDetailViewModel>()
-                .ToList();
-            billVm.BillDetails = billDetailVm;
-            return billVm;
-        }
-
-        public List<SizeViewModel> GetSizes()
-        {
-            return _sizeRepository.FindAll().ProjectTo<SizeViewModel>().ToList();
-        }
-
-        public void Save()
-        {
-            _unitOfWork.Commit();
         }
 
         public void Update(BillViewModel billVm)
@@ -178,11 +105,108 @@ namespace CMSCore.Application.Implementation
             _billRepository.Update(bill);
         }
 
+        public void Delete(int billId)
+        {
+            var lstDetail = _billRepository.FindById(billId);
+           _billDetailRepository.RemoveMultiple(lstDetail.BillDetails.ToList());
+            _billRepository.Remove(lstDetail);
+        }
+
+        public PagedResult<BillViewModel> GetAllPaging(string startDate, string endDate, string keyword, int pageIndex, int pageSize)
+        {
+            var query = _billRepository.FindAll();
+            if (!string.IsNullOrEmpty(startDate))
+            {
+                var starDateTime = DateTime.ParseExact(startDate, "dd/mm/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
+                query = query.Where(m => m.DateCreated >= starDateTime);
+            }
+
+            if (!string.IsNullOrEmpty(endDate))
+            {
+                var endDateTime = DateTime.ParseExact(endDate, "dd/mm/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
+                query = query.Where(m => m.DateCreated <= endDateTime);
+            }
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(m => m.CustomerName.Contains(keyword) || m.CustomerMobile.Contains(keyword));
+            }
+            var totalRow = query.Count();
+            var data = query.OrderByDescending(m => m.DateCreated).Skip((pageIndex - 1) * pageSize).Take(pageSize)
+                .ProjectTo<BillViewModel>().ToList();
+            return new PagedResult<BillViewModel>()
+            {
+                CurrentPage = pageIndex,
+                PageSize = pageSize,
+                Results = data,
+                RowCount = totalRow
+            };
+        }
+
+        public BillViewModel GetById(int billId)
+        {
+            var bill = _billRepository.FindById(billId);
+            var billVm = _mapper.Map<Bill, BillViewModel>(bill);
+            var billDetailVm = _billDetailRepository.FindAll(m => m.BillId == billId).ProjectTo<BillDetailViewModel>()
+                .ToList();
+            billVm.BillDetails = billDetailVm;
+            return billVm;
+        }
+
         public void UpdateStatus(int billId, BillStatus status)
         {
             var bill = _billRepository.FindById(billId);
             bill.BillStatus = status;
             _billRepository.Update(bill);
         }
+
+        #endregion Bill
+
+        #region Bill Detail
+
+        public BillDetailViewModel CreateBillDetail(BillDetailViewModel billDetailVm)
+        {
+            var billDetail = _mapper.Map<BillDetailViewModel, BillDetail>(billDetailVm);
+            _billDetailRepository.Add(billDetail);
+            return billDetailVm;
+        }
+
+        public void DeleteBillDetail(int productId, int billId, int colorId, int sizeId)
+        {
+            var billDetail = _billDetailRepository.FindSingle(x => x.ProductId == productId && x.BillId == billId && x.ColorId == colorId && x.SizeId == sizeId);
+            _billDetailRepository.Remove(billDetail);
+        }
+
+        public List<BillDetailViewModel> GetBillDetails(int billId)
+        {
+            return _billDetailRepository
+                .FindAll(m => m.BillId == billId, c => c.Bill, c => c.Color, c => c.Size, c => c.Product)
+                .ProjectTo<BillDetailViewModel>().ToList();
+        }
+
+        #endregion Bill Detail
+
+        #region General
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
+
+        public List<ColorViewModel> GetColors()
+        {
+            return _colorRepository.FindAll().ProjectTo<ColorViewModel>().ToList();
+        }
+
+        public List<SizeViewModel> GetSizes()
+        {
+            return _sizeRepository.FindAll().ProjectTo<SizeViewModel>().ToList();
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
+        }
+
+        #endregion General
     }
 }

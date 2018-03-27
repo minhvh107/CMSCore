@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace CMSCore.Areas.Admin.Controllers
 {
@@ -112,6 +114,135 @@ namespace CMSCore.Areas.Admin.Controllers
 
         #endregion Thêm
 
+        #region Sửa
+
+        /// <summary>
+        /// Sửa thông tin
+        /// </summary>
+        /// <param name="id">Mã</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var obj = _billService.GetById(id);
+            obj.IsEdit = true;
+            obj.ListPaymentMethods = ListPaymentMethod();
+            obj.ListBillStatus = ListBillStatus();
+            obj.JsonListBillDetails = JsonConvert.SerializeObject(obj.BillDetails);
+            var content = _viewRenderService.RenderToStringAsync("Bill/_AddEditModal", obj);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content.Result,
+            });
+        }
+
+        #endregion Sửa
+
+        #region Xóa
+
+        /// <summary>
+        /// Xóa sản phẩm theo ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new JsonResponse
+                {
+                    Success = false,
+                    Message = Constants.DeleteDataFailed,
+                    StatusCode = Utilities.Constants.StatusCode.SaveDataError
+                });
+            }
+            _billService.Delete(id);
+            _billService.Save();
+
+            return Json(new JsonResponse()
+            {
+                Success = true,
+                Message = Constants.DeleteDataSuccess
+            });
+        }
+
+        #endregion Xóa
+
+        #region Xem thông tin
+
+        /// <summary>
+        /// Xem thông tin sản phẩm
+        /// </summary>
+        /// <param name="id">Mã sản phẩm</param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> ViewItem(int id)
+        {
+            var obj = _billService.GetById(id);
+
+            obj.IsEdit = false;
+            obj.IsView = true;
+            obj.ListPaymentMethods = ListPaymentMethod();
+            obj.ListBillStatus = ListBillStatus();
+
+            var content = await _viewRenderService.RenderToStringAsync("ProductCategory/_AddEditModal", obj);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content
+            });
+        }
+
+        #endregion Xem thông tin
+
+        #region Lưu
+
+        /// <summary>
+        /// Save and Edit
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult SaveItem(BillViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.BillDetails = JsonConvert.DeserializeObject<List<BillDetailViewModel>>(model.JsonListBillDetails);
+                if (model.IsEdit == false)
+                {
+                    _billService.Create(model);
+                }
+                else
+                {
+                    _billService.Update(model);
+                }
+                _billService.Create(model);
+                _billService.Save();
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    Message = Constants.SaveDataSuccess
+                });
+            }
+            return Json(new JsonResponse
+            {
+                Success = false,
+                Message = Constants.SaveDataFailed,
+                Errors = ModelState.Where(modelState => modelState.Value.Errors.Count > 0).ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).FirstOrDefault()
+                )
+            });
+        }
+
+        #endregion Lưu sản phẩm
+
         #endregion Bill
 
         #region Bill Detail
@@ -142,6 +273,91 @@ namespace CMSCore.Areas.Admin.Controllers
         }
 
         #endregion Thêm Bill Detail
+
+        #region Sửa
+
+        /// <summary>
+        /// Sửa thông tin
+        /// </summary>
+        /// <param name="obj">Mã</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EditDetail(BillDetailViewModel obj)
+        {
+            obj.IsEdit = true;
+            obj.ListProducts = ListProducts();
+            obj.ListColors = ListColors();
+            obj.ListSizes = ListSizes();
+            var content = _viewRenderService.RenderToStringAsync("Bill/_AddEditDetailModal", obj);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content.Result,
+            });
+        }
+
+        #endregion Sửa
+
+        #region Xem thông tin
+
+        /// <summary>
+        /// Xem thông tin
+        /// </summary>
+        /// <param name="obj">Mã </param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> ViewItemDetail(BillDetailViewModel obj)
+        {
+            obj.IsEdit = false;
+            obj.IsView = true;
+            var content = await _viewRenderService.RenderToStringAsync("Bill/_AddEditDetailModal", obj);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content
+            });
+        }
+
+        #endregion Xem thông tin
+
+        #region Lưu
+
+        /// <summary>
+        /// Save and Edit
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> SaveItemDetail(BillDetailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Product = _productService.GetById(model.ProductId);
+                model.Size = _billService.GetSizes().FirstOrDefault(m => m.Id == model.SizeId);
+                model.Color = _billService.GetColors().FirstOrDefault(m => m.Id == model.ColorId);
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    Message = Constants.SaveDataSuccess,
+                    Data = await _viewRenderService.RenderToStringAsync("Bill/_ListBillDetail", model)
+                });
+            }
+            return Json(new JsonResponse
+            {
+                Success = false,
+                Message = Constants.SaveDataFailed,
+                Errors = ModelState.Where(modelState => modelState.Value.Errors.Count > 0).ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).FirstOrDefault()
+                )
+            });
+        }
+
+        #endregion Lưu sản phẩm
 
         #endregion Bill Detail
 

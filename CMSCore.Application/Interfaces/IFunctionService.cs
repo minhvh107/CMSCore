@@ -7,7 +7,7 @@ namespace CMSCore.Application.Interfaces
 {
     public interface IFunctionService : IDisposable
     {
-        void Add(FunctionViewModel function);
+        void Create(FunctionViewModel function);
 
         Task<List<FunctionViewModel>> GetAllAsync(string filter);
 

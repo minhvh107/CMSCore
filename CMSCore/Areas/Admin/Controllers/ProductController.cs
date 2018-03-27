@@ -269,7 +269,7 @@ namespace CMSCore.Areas.Admin.Controllers
                 productVm.SeoAlias = TextHelper.ToUnsignString(productVm.Name);
                 if (productVm.IsEdit == false)
                 {
-                    _productService.Add(productVm);
+                    _productService.Create(productVm);
                 }
                 else
                 {

@@ -1,21 +1,23 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CMSCore.Application.Interfaces;
 using CMSCore.Application.ViewModels;
+using CMSCore.Data.Entities;
+using CMSCore.Data.Enums;
 using CMSCore.Data.IRepositories;
+using CMSCore.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using CMSCore.Data.Entities;
-using CMSCore.Data.Enums;
-using CMSCore.Infrastructure.Interfaces;
 
 namespace CMSCore.Application.Implementation
 {
     public class FunctionService : IFunctionService
     {
+        #region Default
+
         private readonly IFunctionRepository _functionRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -29,13 +31,9 @@ namespace CMSCore.Application.Implementation
             _mapper = mapper;
         }
 
+        #endregion Default
 
-        public bool CheckExistedId(string id)
-        {
-            return _functionRepository.FindById(id) != null;
-        }
-
-        public void Add(FunctionViewModel functionVm)
+        public void Create(FunctionViewModel functionVm)
         {
             var function = _mapper.Map<Function>(functionVm);
             _functionRepository.Add(function);
@@ -44,6 +42,12 @@ namespace CMSCore.Application.Implementation
         public void Delete(string id)
         {
             _functionRepository.Remove(id);
+        }
+
+        public void Update(FunctionViewModel functionVm)
+        {
+            var function = _mapper.Map<Function>(functionVm);
+            _functionRepository.Update(function);
         }
 
         public FunctionViewModel GetById(string id)
@@ -67,21 +71,19 @@ namespace CMSCore.Application.Implementation
         {
             return _functionRepository.FindAll(x => x.ParentId == parentId).ProjectTo<FunctionViewModel>();
         }
+
         public void Save()
         {
             _unitOfWork.Commit();
         }
 
-        public void Update(FunctionViewModel functionVm)
+        public bool CheckExistedId(string id)
         {
-
-            var functionDb = _functionRepository.FindById(functionVm.Id);
-            var function = _mapper.Map<Function>(functionVm);
+            return _functionRepository.FindById(id) != null;
         }
 
         public void ReOrder(string sourceId, string targetId)
         {
-
             var source = _functionRepository.FindById(sourceId);
             var target = _functionRepository.FindById(targetId);
             int tempOrder = source.SortOrder;
@@ -91,7 +93,6 @@ namespace CMSCore.Application.Implementation
 
             _functionRepository.Update(source);
             _functionRepository.Update(target);
-
         }
 
         public void UpdateParentId(string sourceId, string targetId, Dictionary<string, int> items)

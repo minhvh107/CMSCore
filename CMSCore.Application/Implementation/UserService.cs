@@ -19,13 +19,13 @@ namespace CMSCore.Application.Implementation
         private readonly RoleManager<AppRole> _roleManager;
 
         public UserService(UserManager<AppUser> userManager,
-            RoleManager<AppRole>roleManager)
+            RoleManager<AppRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
         }
 
-        public async Task<bool> AddAsync(AppUserViewModel userVm)
+        public async Task<bool> CreateAsync(AppUserViewModel userVm)
         {
             var user = new AppUser()
             {
@@ -44,6 +44,32 @@ namespace CMSCore.Application.Implementation
                     await _userManager.AddToRolesAsync(appUser, userVm.ListStringRoles);
             }
             return true;
+        }
+
+        public async Task UpdateAsync(AppUserViewModel userVm)
+        {
+            var user = await _userManager.FindByIdAsync(userVm.Id.ToString());
+            //Remove current roles in db
+            var currentRoles = await _userManager.GetRolesAsync(user);
+
+            var result = await _userManager.AddToRolesAsync(user,
+                userVm.ListStringRoles.Except(currentRoles).ToArray());
+
+            if (result.Succeeded)
+            {
+                string[] needRemoveRoles = currentRoles.Except(userVm.ListStringRoles).ToArray();
+                IdentityResult result1 = await _userManager.RemoveFromRolesAsync(user, needRemoveRoles);
+                if (!result1.Succeeded)
+                {
+                    var error = result1.Errors;
+                }
+                //Update user detail
+                user.FullName = userVm.FullName;
+                user.Status = userVm.Status;
+                user.Email = userVm.Email;
+                user.PhoneNumber = userVm.PhoneNumber;
+                await _userManager.UpdateAsync(user);
+            }
         }
 
         public async Task DeleteAsync(string id)
@@ -90,7 +116,7 @@ namespace CMSCore.Application.Implementation
                 PageSize = pageSize
             };
 
-            return  paginationSet;
+            return paginationSet;
         }
 
         public async Task<AppUserViewModel> GetById(string id)
@@ -100,14 +126,15 @@ namespace CMSCore.Application.Implementation
             var userVm = Mapper.Map<AppUser, AppUserViewModel>(user);
             // Danh sách quyền (string)
             userVm.ListStringRoles = roles.ToList();
-            // Danh sách quyền 
+            // Danh sách quyền
             userVm.ListViewModelRoles = new List<AppRoleViewModel>();
             // Tất cả quyền
             var allRoles = await _roleManager.Roles.ProjectTo<AppRoleViewModel>().ToListAsync();
 
             foreach (var item in allRoles)
             {
-                if (roles.ToList().FirstOrDefault(m => m.Equals(item.Name)) != null){
+                if (roles.ToList().FirstOrDefault(m => m.Equals(item.Name)) != null)
+                {
                     userVm.ListViewModelRoles.Add(item);
                 }
             }
@@ -117,36 +144,10 @@ namespace CMSCore.Application.Implementation
         public async Task RemoveRoleInUser(string userId, string role)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            var result =  await _userManager.RemoveFromRoleAsync(user, role);
+            var result = await _userManager.RemoveFromRoleAsync(user, role);
             if (!result.Succeeded)
             {
                 var error = result.Errors;
-            }
-        }
-
-        public async Task UpdateAsync(AppUserViewModel userVm)
-        {
-            var user = await _userManager.FindByIdAsync(userVm.Id.ToString());
-            //Remove current roles in db
-            var currentRoles = await _userManager.GetRolesAsync(user);
-
-            var result = await _userManager.AddToRolesAsync(user,
-                userVm.ListStringRoles.Except(currentRoles).ToArray());
-
-            if (result.Succeeded)
-            {
-                string[] needRemoveRoles = currentRoles.Except(userVm.ListStringRoles).ToArray();
-                IdentityResult result1 = await _userManager.RemoveFromRolesAsync(user, needRemoveRoles);
-                if (!result1.Succeeded)
-                {
-                    var error = result1.Errors;
-                }
-                //Update user detail
-                user.FullName = userVm.FullName;
-                user.Status = userVm.Status;
-                user.Email = userVm.Email;
-                user.PhoneNumber = userVm.PhoneNumber;
-                await _userManager.UpdateAsync(user);
             }
         }
     }

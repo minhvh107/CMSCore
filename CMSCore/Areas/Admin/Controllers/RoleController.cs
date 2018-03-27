@@ -216,7 +216,7 @@ namespace CMSCore.Areas.Admin.Controllers
                 var errors = new Dictionary<string, string>();
                 if (appRoleViewModel.IsEdit == false)
                 {
-                    await _roleService.AddAsync(appRoleViewModel);
+                    await _roleService.CreateAsync(appRoleViewModel);
                 }
                 else
                 {
