@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@model CMSCore.Models.AccountViewModels.LoginViewModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,18 +43,21 @@
                     </div>
                     <div class="">
                         <br>
-                        <form id="frmLogin" class="form-horizontal">
-                            @Html.AntiForgeryToken()
+                        <form action="/Admin/Account/Login" id="frmLogin" method="post" class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(m => m.RedirecUrl)
                             <div class="form-group">
-                                <label class="col-md-3 col-sm-3 col-xs-12 required">Tên đăng nhập</label>
+                                @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 col-sm-3 col-xs-12 required" })
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" class="form-control" name="userName" placeholder="UserName" id="txtUserName" required="" />
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @autocomplete = "off",@maxlength="255" })
+                                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "error" })
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 col-sm-3 col-xs-12 required">Mật khẩu</label>
+                                @Html.LabelFor(m => m.Password, new { @class = "col-md-3 col-sm-3 col-xs-12 required" })
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="password" class="form-control" name="password" id="txtPassword" placeholder="Password" required="" />
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @autocomplete = "off", @maxlength = "255" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
                                 </div>
                             </div>
                             @*<div class="form-group">
@@ -64,10 +68,7 @@
                                 </div>*@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3">
-                                    <button type="button" class="btn btn-success" id="btnLogin">Đăng nhập</button>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <a class="reset_pass" href="#">Forgot password?</a>
+                                    <button type="submit" class="btn btn-success">Đăng nhập</button>
                                 </div>
                             </div>
                         </form>
@@ -86,10 +87,5 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
     <script src="~/app/shared/cms.js"></script>
-    <script src="~/app/controllers/login/index.js"></script>
-    <script>
-        var login = new loginController();
-        login.initialize();
-    </script>
 </body>
 </html>

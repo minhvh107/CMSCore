@@ -128,7 +128,6 @@ namespace CMSCore.Areas.Admin.Controllers
             obj.IsEdit = true;
             obj.ListPaymentMethods = ListPaymentMethod();
             obj.ListBillStatus = ListBillStatus();
-            obj.JsonListBillDetails = JsonConvert.SerializeObject(obj.BillDetails);
             var content = _viewRenderService.RenderToStringAsync("Bill/_AddEditModal", obj);
             return Json(new JsonResponse
             {
@@ -222,7 +221,6 @@ namespace CMSCore.Areas.Admin.Controllers
                 {
                     _billService.Update(model);
                 }
-                _billService.Create(model);
                 _billService.Save();
                 return Json(new JsonResponse()
                 {

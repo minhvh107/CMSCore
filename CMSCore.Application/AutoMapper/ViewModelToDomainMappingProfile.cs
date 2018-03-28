@@ -21,10 +21,10 @@ namespace CMSCore.Application.AutoMapper
                     c.SeoPageTitle, c.SeoAlias, c.SeoKeywords, c.SeoDescription));
 
             CreateMap<BillViewModel,Bill>()
-                .ConstructUsing(c => new Bill(c.Id,c.CustomerName,c.CustomerAddress,c.CustomerMobile,c.CustomerMessage,c.BillStatus,c.PaymentMethod,c.Status,c.CustomerId));
+                .ConstructUsing(c => new Bill(c.CustomerName,c.CustomerAddress,c.CustomerMobile,c.CustomerMessage,c.BillStatus,c.PaymentMethod,c.Status,c.CustomerId));
 
             CreateMap<BillDetailViewModel, BillDetail>()
-                .ConstructUsing(c => new BillDetail(c.Id,c.BillId, c.ProductId, c.Quantity, c.Price, c.ColorId, c.SizeId));
+                .ConstructUsing(c => new BillDetail(c.BillId, c.ProductId, c.Quantity, c.Price, c.ColorId, c.SizeId));
             #endregion
 
             #region System

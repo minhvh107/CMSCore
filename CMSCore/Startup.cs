@@ -65,6 +65,8 @@ namespace CMSCore
             {
                 options.ViewLocationExpanders.Add(new ViewLocationExpander());
             });
+            
+
             //services.AddMemoryCache();
             //services.AddSession();
             services.AddMvc();
@@ -133,7 +135,7 @@ namespace CMSCore
             {
                 routes.MapRoute(
                     name: "areaRoute",
-                    template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
+                    template: "{area:exists}/{controller=Account}/{action=Login}/{id?}");
 
                 routes.MapRoute(
                     name: "default",

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace CMSCore.Application.Implementation
 {
@@ -56,7 +57,7 @@ namespace CMSCore.Application.Implementation
             {
                 var product = _productRepository.FindById(detail.ProductId);
                 detail.Price = product.Price;
-                //_billDetailRepository.Add(detail);
+
             }
             bill.BillDetails = billDetails;
 
@@ -86,9 +87,12 @@ namespace CMSCore.Application.Implementation
             // update bill detail
             foreach (var detail in updateBillDetail)
             {
-                var product = _productRepository.FindById(detail.ProductId);
-                detail.Price = product.Price;
-                _billDetailRepository.Update(detail);
+                var productUpdate = _productRepository.FindById(detail.ProductId);
+                detail.Price = productUpdate.Price;
+                //var detailUpdate = new BillDetail(detail.Id, detail.BillId, detail.ProductId, detail.Quantity,
+                //    detail.Price, detail.ColorId, detail.SizeId);
+                //_billDetailRepository.Update(detailUpdate);
+                bill.BillDetails.Add(detail);
             }
 
             // add bill detail
@@ -96,19 +100,26 @@ namespace CMSCore.Application.Implementation
             {
                 var product = _productRepository.FindById(detail.ProductId);
                 detail.Price = product.Price;
+                //var detailAdd = new BillDetail(detail.BillId, detail.ProductId, detail.Quantity,
+                //    detail.Price, detail.ColorId, detail.SizeId);
                 _billDetailRepository.Add(detail);
             }
 
             // xoá các dữ liệu bill detail
             _billDetailRepository.RemoveMultiple(existedBillDetail.Except(updateBillDetail).ToList());
 
+            //var billUp = new Bill(bill.CustomerName,bill.CustomerAddress,bill.CustomerMobile,bill.CustomerMessage,bill.BillStatus,bill.PaymentMethod,bill.Status,bill.CustomerId);
+            
             _billRepository.Update(bill);
         }
 
         public void Delete(int billId)
         {
             var lstDetail = _billRepository.FindById(billId);
-           _billDetailRepository.RemoveMultiple(lstDetail.BillDetails.ToList());
+            if (lstDetail.BillDetails != null && lstDetail.BillDetails.Count > 0)
+            {
+                _billDetailRepository.RemoveMultiple(lstDetail.BillDetails.ToList());
+            }
             _billRepository.Remove(lstDetail);
         }
 
@@ -148,7 +159,13 @@ namespace CMSCore.Application.Implementation
             var billVm = _mapper.Map<Bill, BillViewModel>(bill);
             var billDetailVm = _billDetailRepository.FindAll(m => m.BillId == billId).ProjectTo<BillDetailViewModel>()
                 .ToList();
-            billVm.BillDetails = billDetailVm;
+            foreach (var billDetail in billDetailVm)
+            {
+                billDetail.Guid = Guid.NewGuid().ToString();
+                billVm.BillDetails.Add(billDetail);
+            }
+            billVm.JsonListBillDetails = billVm.BillDetails.Count > 0 ? JsonConvert.SerializeObject(billVm.BillDetails) : "";
+
             return billVm;
         }
 

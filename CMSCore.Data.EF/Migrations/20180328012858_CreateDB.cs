@@ -497,7 +497,7 @@ namespace CMSCore.Data.EF.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BillStatus = table.Column<int>(nullable: false),
                     CustomerAddress = table.Column<string>(maxLength: 256, nullable: false),
-                    CustomerId = table.Column<Guid>(nullable: false),
+                    CustomerId = table.Column<Guid>(nullable: true),
                     CustomerMessage = table.Column<string>(maxLength: 256, nullable: false),
                     CustomerMobile = table.Column<string>(maxLength: 50, nullable: false),
                     CustomerName = table.Column<string>(maxLength: 256, nullable: false),
@@ -514,7 +514,7 @@ namespace CMSCore.Data.EF.Migrations
                         column: x => x.CustomerId,
                         principalTable: "SEC_AppUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

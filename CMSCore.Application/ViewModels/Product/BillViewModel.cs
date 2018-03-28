@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using CMSCore.Data.Entities;
 using CMSCore.Utilities.Constants;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -14,6 +15,7 @@ namespace CMSCore.Application.ViewModels
         {
             BillDetails =  new List<BillDetailViewModel>();
         }
+
         public int Id { set; get; }
 
         [Required(ErrorMessage = Constants.FieldRequired)]
@@ -56,6 +58,7 @@ namespace CMSCore.Application.ViewModels
         public bool IsView { set; get; }
         public bool IsEdit { set; get; }
 
+        [Required(ErrorMessage = Constants.FieldRequired)]
         public string JsonListBillDetails { set; get; }
     }
 }

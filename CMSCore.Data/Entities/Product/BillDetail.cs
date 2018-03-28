@@ -9,10 +9,8 @@ namespace CMSCore.Data.Entities
         public BillDetail()
         {
         }
-
-        public BillDetail(int id, int billId, int productId, int quantity, decimal price, int colorId, int sizeId)
+        public BillDetail(int billId, int productId, int quantity, decimal price, int colorId, int sizeId)
         {
-            Id = id;
             BillId = billId;
             ProductId = productId;
             Quantity = quantity;
@@ -21,8 +19,9 @@ namespace CMSCore.Data.Entities
             SizeId = sizeId;
         }
 
-        public BillDetail(int billId, int productId, int quantity, decimal price, int colorId, int sizeId)
+        public BillDetail(int id, int billId, int productId, int quantity, decimal price, int colorId, int sizeId)
         {
+            Id = id;
             BillId = billId;
             ProductId = productId;
             Quantity = quantity;

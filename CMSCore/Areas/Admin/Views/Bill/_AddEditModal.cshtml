@@ -26,7 +26,6 @@
                                 @Html.HiddenFor(m => m.Id)
                                 @Html.HiddenFor(m => m.DateCreated)
                                 @Html.HiddenFor(m => m.IsEdit)
-                                @Html.HiddenFor(m=>m.JsonListBillDetails)
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.CustomerName, new { @class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold" })
                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -136,7 +135,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-
+                                    @Html.HiddenFor(m=>m.JsonListBillDetails)
+                                    @Html.ValidationMessageFor(m => m.JsonListBillDetails, "", new { @class = "error" })
                                     <div class="clearfix"></div>
                                 </div>
                             </div>

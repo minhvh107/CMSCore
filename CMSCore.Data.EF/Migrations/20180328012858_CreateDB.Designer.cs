@@ -12,8 +12,8 @@ using System;
 namespace CMSCore.Data.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180327095011_updateBill")]
-    partial class updateBill
+    [Migration("20180328012858_CreateDB")]
+    partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
