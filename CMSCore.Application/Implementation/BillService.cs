@@ -89,10 +89,10 @@ namespace CMSCore.Application.Implementation
             {
                 var productUpdate = _productRepository.FindById(detail.ProductId);
                 detail.Price = productUpdate.Price;
-                //var detailUpdate = new BillDetail(detail.Id, detail.BillId, detail.ProductId, detail.Quantity,
-                //    detail.Price, detail.ColorId, detail.SizeId);
-                //_billDetailRepository.Update(detailUpdate);
-                bill.BillDetails.Add(detail);
+                var detailUpdate = new BillDetail(detail.Id, detail.BillId, detail.ProductId, detail.Quantity,
+                    detail.Price, detail.ColorId, detail.SizeId);
+                _billDetailRepository.Update(detailUpdate);
+                //bill.BillDetails.Add(detailUpdate);
             }
 
             // add bill detail
@@ -100,17 +100,19 @@ namespace CMSCore.Application.Implementation
             {
                 var product = _productRepository.FindById(detail.ProductId);
                 detail.Price = product.Price;
-                //var detailAdd = new BillDetail(detail.BillId, detail.ProductId, detail.Quantity,
-                //    detail.Price, detail.ColorId, detail.SizeId);
-                _billDetailRepository.Add(detail);
+                var detailAdd = new BillDetail(billVm.Id, detail.ProductId, detail.Quantity,
+                    detail.Price, detail.ColorId, detail.SizeId);
+                _billDetailRepository.Add(detailAdd);
+                //bill.BillDetails.Add(detailAdd);
             }
 
             // xoá các dữ liệu bill detail
-            _billDetailRepository.RemoveMultiple(existedBillDetail.Except(updateBillDetail).ToList());
+            var lstDelete = existedBillDetail.Where(m=> updateBillDetail.Any(n=> n.Id == m.Id)).ToList();
+            _billDetailRepository.RemoveMultiple(lstDelete);
 
-            //var billUp = new Bill(bill.CustomerName,bill.CustomerAddress,bill.CustomerMobile,bill.CustomerMessage,bill.BillStatus,bill.PaymentMethod,bill.Status,bill.CustomerId);
+            var billUp = new Bill(bill.Id, bill.CustomerName,bill.CustomerAddress,bill.CustomerMobile,bill.CustomerMessage,bill.BillStatus,bill.PaymentMethod,bill.Status,bill.CustomerId);
             
-            _billRepository.Update(bill);
+            _billRepository.Update(billUp);
         }
 
         public void Delete(int billId)
