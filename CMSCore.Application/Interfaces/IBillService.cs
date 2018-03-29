@@ -36,10 +36,6 @@ namespace CMSCore.Application.Interfaces
 
         #region General
 
-        List<ColorViewModel> GetColors();
-
-        List<SizeViewModel> GetSizes();
-
         void Save();
 
         #endregion General

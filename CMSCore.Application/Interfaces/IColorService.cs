@@ -1,34 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CMSCore.Application.ViewModels;
-using CMSCore.Data.Enums;
+﻿using CMSCore.Application.ViewModels;
 using CMSCore.Utilities.Dtos;
+using System.Collections.Generic;
 
 namespace CMSCore.Application.Interfaces
 {
     public interface IColorService
     {
-        void Create(ColorViewModel billVm);
+        void Create(ColorViewModel colorVm);
 
-        void Update(BillViewModel billVm);
+        void Update(ColorViewModel colorVm);
 
-        PagedResult<BillViewModel> GetAllPaging(string startDate, string endDate, string keyword,
-            int pageIndex, int pageSize);
+        void Delete(int id);
 
-        BillViewModel GetDetail(int billId);
+        PagedResult<ColorViewModel> GetAllPaging(string keyword, int pageIndex, int pageSize);
 
-        BillDetailViewModel CreateDetail(BillDetailViewModel billDetailVm);
-
-        void DeleteDetail(int productId, int billId, int colorId, int sizeId);
-
-        void UpdateStatus(int billId, BillStatus status);
-
-        List<BillDetailViewModel> GetBillDetails(int billId);
-
-        List<ColorViewModel> GetColors();
-
-        List<SizeViewModel> GetSizes();
+        List<ColorViewModel> GetAll();
 
         void Save();
     }

@@ -1,6 +1,6 @@
 ﻿@model CMSCore.Utilities.Dtos.PagedResultBase
 @{
-    var totalPage = Math.Ceiling(Model.RowCount * 1f / Model.PageSize) + 1;
+    var totalPage = Math.Ceiling(Model.RowCount * 1f / Model.PageSize);
     var activePage = Model.CurrentPage;
     var from = (activePage - 1) * Model.PageSize + 1;
     var to = Model.PageSize * activePage;

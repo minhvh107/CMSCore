@@ -20,6 +20,10 @@
     <Content Remove="Areas\Admin\Views\Bill\_ListBillDetailTable.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Product\_ViewQuantity.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />

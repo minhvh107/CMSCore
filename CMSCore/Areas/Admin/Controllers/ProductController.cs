@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace CMSCore.Areas.Admin.Controllers
 {
@@ -25,14 +26,20 @@ namespace CMSCore.Areas.Admin.Controllers
         private readonly IProductCategoryService _productCategoryService;
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IViewRenderService _viewRenderService;
+        private readonly IColorService _colorService;
+        private readonly ISizeService _sizeService;
 
         public ProductController(IProductService productService,
             IProductCategoryService productCategoryService,
+            IColorService colorService,
+            ISizeService sizeService,
             IHostingEnvironment hostingEnvironment,
             IViewRenderService viewRenderService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
+            _colorService = colorService;
+            _sizeService = sizeService;
             _hostingEnvironment = hostingEnvironment;
             _viewRenderService = viewRenderService;
         }
@@ -218,10 +225,10 @@ namespace CMSCore.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ViewItem(int id)
         {
-            var obj = _productService.GetById(id);
+            var model = _productService.GetById(id);
 
-            obj.IsEdit = false;
-            obj.IsView = true;
+            model.IsEdit = false;
+            model.IsView = true;
 
             #region Danh sách nhóm sản phẩm
 
@@ -237,11 +244,11 @@ namespace CMSCore.Areas.Admin.Controllers
                 Value = m.Id.ToString(),
                 Text = m.Name
             }));
-            obj.ListProductCate = lstSelect;
+            model.ListProductCate = lstSelect;
 
             #endregion Danh sách nhóm sản phẩm
 
-            var content = _viewRenderService.RenderToStringAsync("Product/_AddEditModal", obj);
+            var content = _viewRenderService.RenderToStringAsync("Product/_AddEditModal", model);
             return Json(new JsonResponse
             {
                 Success = true,
@@ -342,6 +349,7 @@ namespace CMSCore.Areas.Admin.Controllers
         #endregion Export sản phẩm
 
         #region Thêm nhiều sản phẩm
+
         [HttpGet]
         public ActionResult ImportExcel()
         {
@@ -414,5 +422,197 @@ namespace CMSCore.Areas.Admin.Controllers
         }
 
         #endregion Thêm nhiều sản phẩm
+
+        #region Quản lý số lượng
+
+        #region Danh sách
+
+        [HttpGet]
+        public ActionResult ViewQuantities(int id)
+        {
+            var data = _productService.GetQuantities(id);
+            var model = new ProductViewModel()
+            {
+                ListProductQuantityVm = data
+            };
+            var content = _viewRenderService.RenderToStringAsync("Product/_ViewQuantity", model);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content.Result
+            });
+        }
+
+        #endregion Danh sách
+
+        #region Thêm Quantity
+
+        public IActionResult AddQuantity()
+        {
+            var lstColors = ListColors();
+            var lstSizes = ListSizes();
+            var model = new ProductQuantityViewModel()
+            {
+                IsEdit = false,
+                ListColors = lstColors,
+                ListSizes = lstSizes
+            };
+
+            var content = _viewRenderService.RenderToStringAsync("Product/_AddEditQuantityModal", model);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content.Result,
+            });
+        }
+
+        #endregion Thêm Bill Detail
+
+        #region Sửa Quantity
+
+        /// <summary>
+        /// Sửa thông tin
+        /// </summary>
+        /// <param name="obj">Mã</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EditQuantity(ProductQuantityViewModel obj)
+        {
+            obj.IsEdit = true;
+            obj.ListColors = ListColors();
+            obj.ListSizes = ListSizes();
+            var content = _viewRenderService.RenderToStringAsync("Product/_AddEditQuantityModal", obj);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content.Result,
+            });
+        }
+
+        #endregion Sửa
+
+        #region Xem thông tin Quantity
+
+        /// <summary>
+        /// Xem thông tin
+        /// </summary>
+        /// <param name="obj">Mã </param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> ViewItemQuantity(ProductQuantityViewModel obj)
+        {
+            obj.IsEdit = false;
+            obj.IsView = true;
+            obj.ListColors = ListColors();
+            obj.ListSizes = ListSizes();
+            var content = await _viewRenderService.RenderToStringAsync("Product/_AddEditQuantityModal", obj);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content
+            });
+        }
+
+        #endregion Xem thông tin
+
+        #region Lưu Quantity
+
+        /// <summary>
+        /// Save and Edit
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> SaveItemQuantity(ProductQuantityViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Product = _productService.GetById(model.ProductId);
+                model.Size = _sizeService.GetAll().FirstOrDefault(m => m.Id == model.SizeId);
+                model.Color = _colorService.GetAll().FirstOrDefault(m => m.Id == model.ColorId);
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    Message = Constants.SaveDataSuccess,
+                    Data = await _viewRenderService.RenderToStringAsync("Product/_ViewQuantity", model)
+                });
+            }
+            return Json(new JsonResponse
+            {
+                Success = false,
+                Message = Constants.SaveDataFailed,
+                Errors = ModelState.Where(modelState => modelState.Value.Errors.Count > 0).ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).FirstOrDefault()
+                )
+            });
+        }
+
+        #endregion Lưu
+
+        #endregion Quản lý số lượng
+
+        #region Init List
+
+        #region Danh sách color
+
+        /// <summary>
+        /// Danh sách trạng thái
+        /// </summary>
+        /// <returns></returns>
+        public List<SelectListItem> ListColors()
+        {
+            var lstColor = _colorService.GetAll();
+            var result = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Value = "",
+                    Text = "—Chọn màu sắc—"
+                }
+            };
+            result.AddRange(lstColor.Select(m => new SelectListItem()
+            {
+                Value = m.Id.ToString(),
+                Text = m.Name
+            }).ToList());
+
+            return result;
+        }
+
+        #endregion Danh sách color
+
+        #region Danh sách size
+
+        public List<SelectListItem> ListSizes()
+        {
+            var lstSize = _sizeService.GetAll();
+            var result = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Value = "",
+                    Text = "—Chọn Size—"
+                }
+            };
+            result.AddRange(lstSize.Select(m => new SelectListItem()
+            {
+                Value = m.Id.ToString(),
+                Text = m.Name
+            }));
+            return result;
+        }
+
+        #endregion Danh sách size
+
+        #endregion Init List
     }
 }

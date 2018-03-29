@@ -24,16 +24,19 @@ namespace CMSCore.Application.Implementation
         private readonly IProductRepository _productRepository;
         private readonly ITagRepository _tagRepository;
         private readonly IProductTagRepository _productTagRepository;
+        private readonly IProductQuantityRepository _productQuantityRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductService(IProductRepository productRepository,
             ITagRepository tagRepository,
             IProductTagRepository productTagRepository,
+            IProductQuantityRepository productQuantityRepository,
             IUnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
             _tagRepository = tagRepository;
             _productTagRepository = productTagRepository;
+            _productQuantityRepository = productQuantityRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -193,6 +196,27 @@ namespace CMSCore.Application.Implementation
 
                     _productRepository.Add(product);
                 }
+            }
+        }
+
+        public List<ProductQuantityViewModel> GetQuantities(int productId)
+        {
+            return _productQuantityRepository.FindAll(x => x.ProductId == productId)
+                .ProjectTo<ProductQuantityViewModel>().ToList();
+        }
+
+        public void CreateQuantities(int productId, List<ProductQuantityViewModel> quantities)
+        {
+            _productQuantityRepository.RemoveMultiple(_productQuantityRepository.FindAll(m=>m.ProductId == productId).ToList());
+            foreach (var quantity in quantities)
+            {
+                _productQuantityRepository.Add(new ProductQuantity()
+                {
+                    ProductId = productId,
+                    ColorId = quantity.ColorId,
+                    SizeId = quantity.SizeId,
+                    Quantity = quantity.Quantity
+                });
             }
         }
 

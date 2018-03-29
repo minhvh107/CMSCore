@@ -7,11 +7,11 @@ using CMSCore.Data.Enums;
 using CMSCore.Data.IRepositories;
 using CMSCore.Infrastructure.Interfaces;
 using CMSCore.Utilities.Dtos;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace CMSCore.Application.Implementation
 {
@@ -57,7 +57,6 @@ namespace CMSCore.Application.Implementation
             {
                 var product = _productRepository.FindById(detail.ProductId);
                 detail.Price = product.Price;
-
             }
             bill.BillDetails = billDetails;
 
@@ -70,7 +69,7 @@ namespace CMSCore.Application.Implementation
             var bill = _mapper.Map<BillViewModel, Bill>(billVm);
 
             // get bill detail
-            var billDetail = bill.BillDetails;
+            var billDetail = billVm.BillDetails;
 
             // new detail add
             var addBillDetail = billDetail.Where(m => m.Id == 0).ToList();
@@ -82,7 +81,7 @@ namespace CMSCore.Application.Implementation
             var existedBillDetail = _billDetailRepository.FindAll(m => m.BillId == billVm.Id);
 
             // clear db
-            bill.BillDetails.Clear();
+            billVm.BillDetails.Clear();
 
             // update bill detail
             foreach (var detail in updateBillDetail)
@@ -92,7 +91,6 @@ namespace CMSCore.Application.Implementation
                 var detailUpdate = new BillDetail(detail.Id, detail.BillId, detail.ProductId, detail.Quantity,
                     detail.Price, detail.ColorId, detail.SizeId);
                 _billDetailRepository.Update(detailUpdate);
-                //bill.BillDetails.Add(detailUpdate);
             }
 
             // add bill detail
@@ -100,18 +98,19 @@ namespace CMSCore.Application.Implementation
             {
                 var product = _productRepository.FindById(detail.ProductId);
                 detail.Price = product.Price;
-                var detailAdd = new BillDetail(billVm.Id, detail.ProductId, detail.Quantity,
+                var detailAdd = new BillDetail(bill.Id, detail.ProductId, detail.Quantity,
                     detail.Price, detail.ColorId, detail.SizeId);
                 _billDetailRepository.Add(detailAdd);
-                //bill.BillDetails.Add(detailAdd);
             }
 
             // xoá các dữ liệu bill detail
-            var lstDelete = existedBillDetail.Where(m=> updateBillDetail.Any(n=> n.Id == m.Id)).ToList();
+            var lstDelete = (from exist in existedBillDetail
+                             where !updateBillDetail.Select(m => m.Id).Contains(exist.Id)
+                             select exist).ToList();
             _billDetailRepository.RemoveMultiple(lstDelete);
 
-            var billUp = new Bill(bill.Id, bill.CustomerName,bill.CustomerAddress,bill.CustomerMobile,bill.CustomerMessage,bill.BillStatus,bill.PaymentMethod,bill.Status,bill.CustomerId);
-            
+            var billUp = new Bill(bill.Id, bill.CustomerName, bill.CustomerAddress, bill.CustomerMobile, bill.CustomerMessage, bill.BillStatus, bill.PaymentMethod, bill.Status, bill.CustomerId, bill.DateCreated);
+
             _billRepository.Update(billUp);
         }
 
@@ -130,13 +129,13 @@ namespace CMSCore.Application.Implementation
             var query = _billRepository.FindAll();
             if (!string.IsNullOrEmpty(startDate))
             {
-                var starDateTime = DateTime.ParseExact(startDate, "dd/mm/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
+                var starDateTime = DateTime.ParseExact(startDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 query = query.Where(m => m.DateCreated >= starDateTime);
             }
 
             if (!string.IsNullOrEmpty(endDate))
             {
-                var endDateTime = DateTime.ParseExact(endDate, "dd/mm/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
+                var endDateTime = DateTime.ParseExact(endDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 query = query.Where(m => m.DateCreated <= endDateTime);
             }
             if (!string.IsNullOrEmpty(keyword))
@@ -209,16 +208,6 @@ namespace CMSCore.Application.Implementation
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-        }
-
-        public List<ColorViewModel> GetColors()
-        {
-            return _colorRepository.FindAll().ProjectTo<ColorViewModel>().ToList();
-        }
-
-        public List<SizeViewModel> GetSizes()
-        {
-            return _sizeRepository.FindAll().ProjectTo<SizeViewModel>().ToList();
         }
 
         public void Save()

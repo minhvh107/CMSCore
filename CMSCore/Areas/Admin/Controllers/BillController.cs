@@ -10,9 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using OfficeOpenXml;
 
 namespace CMSCore.Areas.Admin.Controllers
 {
@@ -24,18 +26,24 @@ namespace CMSCore.Areas.Admin.Controllers
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IViewRenderService _viewRenderService;
         private readonly IProductService _productService;
+        private readonly IColorService _colorService;
+        private readonly ISizeService _sizeService;
 
         public BillController(
             IBillService billService,
             IHostingEnvironment hostingEnvironment,
             IViewRenderService viewRenderService,
-            IProductService productService
+            IProductService productService,
+            IColorService colorService,
+            ISizeService sizeService
         )
         {
             _billService = billService;
             _hostingEnvironment = hostingEnvironment;
             _viewRenderService = viewRenderService;
             _productService = productService;
+            _colorService = colorService;
+            _sizeService = sizeService;
         }
 
         #endregion Default
@@ -188,7 +196,7 @@ namespace CMSCore.Areas.Admin.Controllers
             obj.ListPaymentMethods = ListPaymentMethod();
             obj.ListBillStatus = ListBillStatus();
 
-            var content = await _viewRenderService.RenderToStringAsync("ProductCategory/_AddEditModal", obj);
+            var content = await _viewRenderService.RenderToStringAsync("Bill/_AddEditModal", obj);
             return Json(new JsonResponse
             {
                 Success = true,
@@ -240,6 +248,79 @@ namespace CMSCore.Areas.Admin.Controllers
         }
 
         #endregion Lưu sản phẩm
+
+        #region Print Excel
+
+        public ActionResult PrintExcel(int id)
+        {
+            string sWebRootFolder = _hostingEnvironment.WebRootPath;
+            string sFileName = $"Bill_{id}.xlsx";
+            // Template File
+            string templateDocument = Path.Combine(sWebRootFolder, "templates", "BillTemplate.xlsx");
+
+            string url = $"{Request.Scheme}://{Request.Host}/{"export-files"}/{sFileName}";
+            FileInfo file = new FileInfo(Path.Combine(sWebRootFolder, "export-files", sFileName));
+            if (file.Exists)
+            {
+                file.Delete();
+                file = new FileInfo(Path.Combine(sWebRootFolder, "export-files", sFileName));
+            }
+            using (FileStream templateDocumentStream = System.IO.File.OpenRead(templateDocument))
+            {
+                using (ExcelPackage package = new ExcelPackage(templateDocumentStream))
+                {
+                    // add a new worksheet to the empty workbook
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets["TEDUOrder"];
+                    // Data Acces, load order header data.
+                    var billDetail = _billService.GetById(id);
+
+                    // Insert customer data into template
+                    worksheet.Cells[4, 1].Value = "Customer Name: " + billDetail.CustomerName;
+                    worksheet.Cells[5, 1].Value = "Address: " + billDetail.CustomerAddress;
+                    worksheet.Cells[6, 1].Value = "Phone: " + billDetail.CustomerMobile;
+                    // Start Row for Detail Rows
+                    int rowIndex = 9;
+
+                    // load order details
+                    var orderDetails = _billService.GetBillDetails(id);
+                    int count = 1;
+                    foreach (var orderDetail in orderDetails)
+                    {
+                        // Cell 1, Carton Count
+                        worksheet.Cells[rowIndex, 1].Value = count.ToString();
+                        // Cell 2, Order Number (Outline around columns 2-7 make it look like 1 column)
+                        worksheet.Cells[rowIndex, 2].Value = orderDetail.Product.Name;
+                        // Cell 8, Weight in LBS (convert KG to LBS, and rounding to whole number)
+                        worksheet.Cells[rowIndex, 3].Value = orderDetail.Quantity.ToString();
+
+                        worksheet.Cells[rowIndex, 4].Value = orderDetail.Price.ToString("N0");
+                        worksheet.Cells[rowIndex, 5].Value = (orderDetail.Price * orderDetail.Quantity).ToString("N0");
+                        // Increment Row Counter
+                        rowIndex++;
+                        count++;
+                    }
+                    decimal total = (decimal)(orderDetails.Sum(x => x.Quantity * x.Price));
+                    worksheet.Cells[24, 5].Value = total.ToString("N0");
+
+                    var numberWord = "Total amount (by word): " + TextHelper.ToString(total);
+                    worksheet.Cells[26, 1].Value = numberWord;
+                    var billDate = billDetail.DateCreated;
+                    worksheet.Cells[28, 3].Value = billDate.Day + ", " + billDate.Month + ", " + billDate.Year;
+
+
+                    package.SaveAs(file); //Save the workbook.
+                }
+            }
+            return Json(new JsonResponse()
+            {
+                Success = true,
+                Message = Constants.SaveDataSuccess,
+                Data = url
+            });
+        }
+        
+
+        #endregion
 
         #endregion Bill
 
@@ -310,6 +391,9 @@ namespace CMSCore.Areas.Admin.Controllers
         {
             obj.IsEdit = false;
             obj.IsView = true;
+            obj.ListProducts = ListProducts();
+            obj.ListColors = ListColors();
+            obj.ListSizes = ListSizes();
             var content = await _viewRenderService.RenderToStringAsync("Bill/_AddEditDetailModal", obj);
             return Json(new JsonResponse
             {
@@ -335,8 +419,8 @@ namespace CMSCore.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 model.Product = _productService.GetById(model.ProductId);
-                model.Size = _billService.GetSizes().FirstOrDefault(m => m.Id == model.SizeId);
-                model.Color = _billService.GetColors().FirstOrDefault(m => m.Id == model.ColorId);
+                model.Size = _sizeService.GetAll().FirstOrDefault(m => m.Id == model.SizeId);
+                model.Color = _colorService.GetAll().FirstOrDefault(m => m.Id == model.ColorId);
                 return Json(new JsonResponse()
                 {
                     Success = true,
@@ -407,7 +491,7 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <returns></returns>
         public List<SelectListItem> ListColors()
         {
-            var lstColor = _billService.GetColors();
+            var lstColor = _colorService.GetAll();
             var result = new List<SelectListItem>()
             {
                 new SelectListItem()
@@ -431,7 +515,7 @@ namespace CMSCore.Areas.Admin.Controllers
 
         public List<SelectListItem> ListSizes()
         {
-            var lstSize = _billService.GetSizes();
+            var lstSize = _sizeService.GetAll();
             var result = new List<SelectListItem>()
             {
                 new SelectListItem()

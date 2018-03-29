@@ -119,10 +119,10 @@ namespace CMSCore.Data.EF
             {
                 List<Color> listColor = new List<Color>()
                 {
-                    new Color() {Name="Black", Code="#000000" },
-                    new Color() {Name="White", Code="#FFFFFF"},
-                    new Color() {Name="Red", Code="#ff0000" },
-                    new Color() {Name="Blue", Code="#1000ff" },
+                    new Color() {Name="Black", Code="#000000",Status = Status.Active, DateCreated = DateTime.Now},
+                    new Color() {Name="White", Code="#FFFFFF",Status = Status.Active, DateCreated = DateTime.Now},
+                    new Color() {Name="Red", Code="#ff0000",Status = Status.Active, DateCreated = DateTime.Now },
+                    new Color() {Name="Blue", Code="#1000ff",Status = Status.Active, DateCreated = DateTime.Now },
                 };
                 _context.Colors.AddRange(listColor);
             }
@@ -172,12 +172,12 @@ namespace CMSCore.Data.EF
             {
                 List<Size> listSize = new List<Size>()
                 {
-                    new Size() { Name="XXL" },
-                    new Size() { Name="XL"},
-                    new Size() { Name="L" },
-                    new Size() { Name="M" },
-                    new Size() { Name="S" },
-                    new Size() { Name="XS" }
+                    new Size() { Name="XXL",Status = Status.Active, DateCreated = DateTime.Now },
+                    new Size() { Name="XL",Status = Status.Active, DateCreated = DateTime.Now},
+                    new Size() { Name="L",Status = Status.Active, DateCreated = DateTime.Now },
+                    new Size() { Name="M" ,Status = Status.Active, DateCreated = DateTime.Now},
+                    new Size() { Name="S",Status = Status.Active, DateCreated = DateTime.Now },
+                    new Size() { Name="XS",Status = Status.Active, DateCreated = DateTime.Now }
                 };
                 _context.Sizes.AddRange(listSize);
             }

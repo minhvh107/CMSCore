@@ -92,6 +92,10 @@ namespace CMSCore.Application.ViewModels
 
         public List<SelectListItem> ListProductCate { set; get; }
 
+        public List<ProductQuantityViewModel> ListProductQuantityVm { set; get; }
+
+        public string JsonListQuantity { set; get; }
+
         public bool IsEdit { set; get; }
 
         public bool IsView { set; get; }

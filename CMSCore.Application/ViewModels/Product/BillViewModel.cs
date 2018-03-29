@@ -41,14 +41,19 @@ namespace CMSCore.Application.ViewModels
         [DisplayName("Trạng thái đơn hàng")]
         public BillStatus BillStatus { set; get; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateCreated { set; get; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateModified { set; get; }
 
         public Status Status { set; get; } = Status.Active;
 
         public Guid? CustomerId { set; get; }
 
-        //public AppUserViewModel User { set; get; }
+        public AppUserViewModel User { set; get; }
 
         public List<BillDetailViewModel> BillDetails { set; get; }
 

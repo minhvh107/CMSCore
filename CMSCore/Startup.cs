@@ -65,7 +65,6 @@ namespace CMSCore
             {
                 options.ViewLocationExpanders.Add(new ViewLocationExpander());
             });
-            
 
             //services.AddMemoryCache();
             //services.AddSession();
@@ -90,7 +89,9 @@ namespace CMSCore
 
             services.AddTransient(typeof(IUnitOfWork), typeof(EFUnitOfWork));
             services.AddTransient(typeof(IRepository<,>), typeof(EFRepository<,>));
-            // Repository
+
+            #region Repository
+
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddTransient<IFunctionRepository, FunctionRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
@@ -101,8 +102,12 @@ namespace CMSCore
             services.AddTransient<IBillDetailRepository, BillDetailRepository>();
             services.AddTransient<IColorRepository, ColorRepository>();
             services.AddTransient<ISizeRepository, SizeRepository>();
+            services.AddTransient<IProductQuantityRepository, ProductQuantityRepository>();
 
-            // Service
+            #endregion Repository
+
+            #region Service
+
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddTransient<IFunctionService, FunctionService>();
             services.AddTransient<IProductService, ProductService>();
@@ -110,6 +115,10 @@ namespace CMSCore
             services.AddTransient<IRoleService, RoleService>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
             services.AddTransient<IBillService, BillService>();
+            services.AddTransient<IColorService, ColorService>();
+            services.AddTransient<ISizeService, SizeService>();
+
+            #endregion Service
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

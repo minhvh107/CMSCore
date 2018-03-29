@@ -1,0 +1,70 @@
+﻿@using CMSCore.Data.Enums
+@model CMSCore.Application.ViewModels.ProductQuantityViewModel
+@{
+    var isEdit = Model.IsEdit;
+    var isView = Model.IsView;
+
+    var title = isEdit ? "Sửa số lượng sản phẩm: " : "Thêm số lượng sản phẩm: ";
+    title = isView ? "Thông tin số lượng sản phẩm: " : title;
+}
+<div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">@title @Model.Product.Name</h4>
+        </div>
+        <div class="modal-body">
+            <form action="/Admin/Product/SaveItemQuantity" method="post" id="frmSave" class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="accordion">
+                    <div class="panel">
+                        <a class="panel-heading">
+                            <h4 class="panel-title">Thông tin chung</h4>
+                        </a>
+                        <div class="panel-body">
+                            @Html.HiddenFor(m => m.ProductId)
+                            @Html.HiddenFor(m => m.IsEdit)
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SizeId, new {@class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold"})
+                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                    @{
+                                        @Html.DropDownListFor(m => m.SizeId, Model.ListSizes, new {@class = "form-control select-custom", @size = "1", onfocus = @"this.size=5;", onblur = "this.size=1;", onchange = "this.size=1; this.blur();"})
+                                        ;
+                                    }
+                                    <label class="error" style="display: none;"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ColorId, new {@class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold"})
+                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                    @{
+                                        @Html.DropDownListFor(m => m.ColorId, Model.ListColors, new {@class = "form-control select-custom", @size = "1", onfocus = @"this.size=5;", onblur = "this.size=1;", onchange = "this.size=1; this.blur();"})
+                                        ;
+                                    }
+                                    <label class="error" style="display: none;"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Quantity, new {@class = "col-lg-3 col-md-3 col-sm-12 col-xs-12 required text-bold"})
+                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.Quantity, new {@class = "form-control"})
+                                    @Html.ValidationMessageFor(m => m.Quantity, "", new {@class = "error"})
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            @if (!isView)
+            {
+                <button type="button" class="btn btn-primary btn-save-sub"><i class="fa fa-save fa-lg"></i> Cập nhật</button>
+            }
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Quay lại</button>
+        </div>
+    </div>
+</div>

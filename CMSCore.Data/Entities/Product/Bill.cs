@@ -15,7 +15,7 @@ namespace CMSCore.Data.Entities
         public Bill() { }
 
         public Bill(string customerName, string customerAddress, string customerMobile, string customerMessage,
-            BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid? customerId)
+            BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid? customerId, DateTime dateCreated)
         {
             CustomerName = customerName;
             CustomerAddress = customerAddress;
@@ -25,10 +25,11 @@ namespace CMSCore.Data.Entities
             PaymentMethod = paymentMethod;
             Status = status;
             CustomerId = customerId;
+            DateCreated = dateCreated;
         }
 
         public Bill(int id, string customerName, string customerAddress, string customerMobile, string customerMessage,
-           BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid? customerId)
+           BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid? customerId, DateTime dateCreated)
         {
             Id = id;
             CustomerName = customerName;
@@ -39,6 +40,7 @@ namespace CMSCore.Data.Entities
             PaymentMethod = paymentMethod;
             Status = status;
             CustomerId = customerId;
+            DateCreated = dateCreated;
         }
         [Required]
         [MaxLength(256)]

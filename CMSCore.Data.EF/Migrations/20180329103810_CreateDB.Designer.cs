@@ -12,7 +12,7 @@ using System;
 namespace CMSCore.Data.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180328012858_CreateDB")]
+    [Migration("20180329103810_CreateDB")]
     partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -374,8 +374,26 @@ namespace CMSCore.Data.EF.Migrations
                     b.Property<string>("Code")
                         .HasMaxLength(250);
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<bool>("IsDelete");
+
                     b.Property<string>("Name")
                         .HasMaxLength(250);
+
+                    b.Property<string>("SeoAlias");
+
+                    b.Property<string>("SeoDescription");
+
+                    b.Property<string>("SeoKeywords");
+
+                    b.Property<string>("SeoPageTitle");
+
+                    b.Property<int>("SortOrder");
+
+                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 
@@ -734,8 +752,26 @@ namespace CMSCore.Data.EF.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<bool>("IsDelete");
+
                     b.Property<string>("Name")
                         .HasMaxLength(250);
+
+                    b.Property<string>("SeoAlias");
+
+                    b.Property<string>("SeoDescription");
+
+                    b.Property<string>("SeoKeywords");
+
+                    b.Property<string>("SeoPageTitle");
+
+                    b.Property<int>("SortOrder");
+
+                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 
@@ -828,11 +864,29 @@ namespace CMSCore.Data.EF.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<int>("FromQuantity");
+
+                    b.Property<bool>("IsDelete");
 
                     b.Property<decimal>("Price");
 
                     b.Property<int>("ProductId");
+
+                    b.Property<string>("SeoAlias");
+
+                    b.Property<string>("SeoDescription");
+
+                    b.Property<string>("SeoKeywords");
+
+                    b.Property<string>("SeoPageTitle");
+
+                    b.Property<int>("SortOrder");
+
+                    b.Property<int>("Status");
 
                     b.Property<int>("ToQuantity");
 

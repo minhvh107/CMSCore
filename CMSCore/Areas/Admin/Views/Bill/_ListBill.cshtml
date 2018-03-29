@@ -1,4 +1,5 @@
-﻿@using CMSCore.Data.Enums
+﻿@using System.Globalization
+@using CMSCore.Data.Enums
 @using CMSCore.Utilities.Constants
 @using CMSCore.Utilities.Extensions
 @model IList<CMSCore.Application.ViewModels.BillViewModel>
@@ -7,6 +8,8 @@
     <a href="javascript:void(0);" class="margin-right-20 btn-update-item" url-content="/Admin/Bill/Edit"><i class="fa fa-edit fa-lg"></i> Sửa</a>
     <a href="javascript:void(0);" class="margin-right-20 btn-remove-item" url-content="/Admin/Bill/Delete"><i class="fa fa-remove fa-lg"></i> Xóa</a>
     <a href="javascript:void(0);" class="margin-right-20 btn-export-item" url-content="/Admin/Bill/ExportExcel"><i class="fa fa-download fa-lg"></i> Xuất Excel</a>
+    
+    <a href="javascript:void(0);" class="margin-right-20 btn-print-excel" url-content="/Admin/Bill/PrintExcel"><i class="fa fa-print fa-lg"></i> In hoá đơn</a>
     <input type="hidden" value="/Admin/Bill/ViewItem" id="url-view" />
 </div>
 <div class="table-responsive table-fixed">
@@ -28,8 +31,8 @@
                 {
                     <tr class="" item-id="@item.Id">
                         <td class="column-40" title="@item.CustomerName">@item.CustomerName</td>
-                        <td class="column-20" title="@item.PaymentMethod">@item.PaymentMethod</td>
-                        <td class="column-20" title="@item.DateCreated.ToString(Constants.DateFormat)">@item.DateCreated.ToString(Constants.DateFormat)</td>
+                        <td class="column-20" title="@item.PaymentMethod.GetDescription()">@item.PaymentMethod.GetDescription()</td>
+                        <td class="column-20" title="@item.DateCreated.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)">@item.DateCreated.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</td>
                         <td class="column-20" title="@item.BillStatus.GetDescription()">@item.BillStatus.GetDescription()</td>
                     </tr>
                 }

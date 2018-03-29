@@ -100,8 +100,13 @@ var enumMethod = {
                     $.loadEventRowClick();
                     $.loadActiveSubControl();
                     //Todo : Bill detail
-                    if ($("#JsonListBillDetails").val() != "") {
+                    if ($('#JsonListBillDetails').length > 0 && $("#JsonListBillDetails").val() != "") {
                         var obj = JSON.parse($("#JsonListBillDetails").val());
+                        listBillDetails = obj;
+                    }
+                    //Todo : Bill detail
+                    if ($('#JsonListQuantityProduct').length > 0 && $("#JsonListQuantityProduct").val() != "") {
+                        var obj = JSON.parse($("#JsonListQuantityProduct").val());
                         listBillDetails = obj;
                     }
                 }
@@ -484,6 +489,45 @@ var enumMethod = {
                     $.notifyError(response);
                 }
             });
+        });
+
+        $('.btn-print-excel').on('click', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('url-content');
+            var table = $(this).parent().parent().find('table.bulk_action');
+            if ($(table).find("tr.selected").length <= 0) {
+                $.notifyWarning();
+            } else if ($(table).find("tr.selected").length === 1 && $(table).find("tr.selected").attr('item-id') != "") {
+                $.confirm({
+                    title: "Xác nhận xóa",
+                    content: 'Bạn có muốn in hoá đơn này ?',
+                    buttons: {
+                        confirm: {
+                            text: "Đồng ý",
+                            btnClass: 'btn-blue',
+                            action: function () {
+                                var itemId = $(table).find("tr.selected").attr("item-id");
+                                $.postStringify(url, { id: itemId }, function (response) {
+                                    if (response.Success) {
+                                        window.location.href = response.Data;
+                                    } else {
+                                        $.notifyError(response);
+                                    }
+                                });
+                            }
+
+                        },
+                        cancel: {
+                            text: "Hủy",
+                            action: function () {
+
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.log("error");
+            }
         });
 
         $('.btn-import-item').on('click', function (e) {

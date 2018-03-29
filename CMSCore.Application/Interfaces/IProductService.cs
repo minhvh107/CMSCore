@@ -20,6 +20,10 @@ namespace CMSCore.Application.Interfaces
 
         void ImportExcel(string filePath, int categoryId);
 
+        List<ProductQuantityViewModel> GetQuantities(int productId);
+
+        void CreateQuantities(int productId, List<ProductQuantityViewModel> quantity);
+
         void Save();
     }
 }
