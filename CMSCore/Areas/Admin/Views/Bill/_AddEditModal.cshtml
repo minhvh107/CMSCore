@@ -124,7 +124,7 @@
                                             </tr>
                                             </thead>
 
-                                            <tbody id="list-bill-details">
+                                            <tbody id="tableMyModal">
                                             @{
                                                 if (Model.BillDetails.Count > 0)
                                                 {
@@ -145,8 +145,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    @Html.HiddenFor(m=>m.JsonListBillDetails)
-                                    @Html.ValidationMessageFor(m => m.JsonListBillDetails, "", new { @class = "error" })
+                                    @Html.HiddenFor(m=>m.JsonTableMyModal)
+                                    @Html.ValidationMessageFor(m => m.JsonTableMyModal, "", new { @class = "error" })
                                     <div class="clearfix"></div>
                                 </div>
                             </div>

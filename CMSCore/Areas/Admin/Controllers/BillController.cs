@@ -220,7 +220,7 @@ namespace CMSCore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.BillDetails = JsonConvert.DeserializeObject<List<BillDetailViewModel>>(model.JsonListBillDetails);
+                model.BillDetails = JsonConvert.DeserializeObject<List<BillDetailViewModel>>(model.JsonTableMyModal);
                 if (model.IsEdit == false)
                 {
                     _billService.Create(model);

@@ -94,7 +94,7 @@ namespace CMSCore.Application.ViewModels
 
         public List<ProductQuantityViewModel> ListProductQuantityVm { set; get; }
 
-        public string JsonListQuantity { set; get; }
+        public string JsonTableMyModal { set; get; }
 
         public bool IsEdit { set; get; }
 

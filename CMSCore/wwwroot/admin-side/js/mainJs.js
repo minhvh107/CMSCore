@@ -1,7 +1,7 @@
 ﻿//var spinner = new Spinner().spin();
 var validator;
 var subValidator = null;
-var listBillDetails = [];
+var dataTableMyModal = [];
 var spinner = new Spinner().spin();
 var formStringify = "";
 var enumMethod = {
@@ -99,15 +99,10 @@ var enumMethod = {
                 if (this.find('table.bulk_action').length > 0) {
                     $.loadEventRowClick();
                     $.loadActiveSubControl();
-                    //Todo : Bill detail
-                    if ($('#JsonListBillDetails').length > 0 && $("#JsonListBillDetails").val() != "") {
-                        var obj = JSON.parse($("#JsonListBillDetails").val());
-                        listBillDetails = obj;
-                    }
-                    //Todo : Bill detail
-                    if ($('#JsonListQuantityProduct').length > 0 && $("#JsonListQuantityProduct").val() != "") {
-                        var obj = JSON.parse($("#JsonListQuantityProduct").val());
-                        listBillDetails = obj;
+                    //Todo : Table Modal
+                    if ($('#JsonTableMyModal').length > 0 && $("#JsonTableMyModal").val() != "") {
+                        var obj = JSON.parse($("#JsonTableMyModal").val());
+                        dataTableMyModal = obj;
                     }
                 }
             }
@@ -182,24 +177,24 @@ var enumMethod = {
                 $.postStringify(url, obj, function (response) {
                     if (response.Success) {
                         $.notifySuccess(response);
-                        //Todo Bill Detail
+                        //Todo Table Modal
                         var index = -1;
-                        listBillDetails.map(function (item, idx) {
+                        dataTableMyModal.map(function (item, idx) {
                             if (item.Guid == obj["Guid"]) {
                                 index = idx;
                             }
                         });
                         if (index > -1) {
-                            listBillDetails.splice(index, 1);
+                            dataTableMyModal.splice(index, 1);
                         }
-                        listBillDetails.push(obj);
-                        $("#JsonListBillDetails").val(JSON.stringify(listBillDetails));
-                        $("#list-bill-details tr").each(function (i, v) {
+                        dataTableMyModal.push(obj);
+                        $("#JsonTableMyModal").val(JSON.stringify(dataTableMyModal));
+                        $("#tableMyModal tr").each(function (i, v) {
                             if ($(this).hasClass('no-data') || $(this).attr('guid') == obj["Guid"]) {
                                 $(this).remove();
                             }
                         });
-                        $("#list-bill-details").append(response.Data);
+                        $("#tableMyModal").append(response.Data);
                         $.loadSubformEvent();
                         $.loadActiveSubControl();
                         $modal.hideModal();
@@ -249,7 +244,7 @@ var enumMethod = {
             var guid = $(this).parent().attr("guid");
             if (guid != undefined && guid.length > 0) {
                 var item = null;
-                listBillDetails.map(function (item1, idx) {
+                dataTableMyModal.map(function (item1, idx) {
                     if (item1.Guid == guid) {
                         item = item1;
                     }
@@ -258,10 +253,8 @@ var enumMethod = {
                     $.postStringify(urlGetContent, item, function (response) {
                         if (response.Success) {
                             $("#subModal").openSubModal(response.Data);
-                            if (!response.CanEdit) {
-                                $('#subModal input').prop('disabled', 'true');
-                                $('#subModal select').prop('disabled', 'true');
-                            }
+                            $('#subModal input').prop('disabled', 'true');
+                            $('#subModal select').prop('disabled', 'true');
                         } else {
                             $.notifyError(response);
                         }
@@ -283,7 +276,7 @@ var enumMethod = {
                 var guid = $(table).find("tr.selected").attr("guid");
                 if (guid != undefined && guid.length > 0) {
                     var item = null;
-                    listBillDetails.map(function (item1, idx) {
+                    dataTableMyModal.map(function (item1, idx) {
                         if (item1.Guid == guid) {
                             item = item1;
                         }
@@ -301,15 +294,15 @@ var enumMethod = {
             if ($(this).hasClass('disabled')) {
                 return;
             }
-            if ($("#list-bill-details tr.selected").length <= 0) {
+            if ($("#tableMyModal tr.selected").length <= 0) {
                 $.notifyWarning();
-            } else if ($("#list-bill-details tr.selected").length === 1) {
-                var guid = $("#list-bill-details tr.selected").attr("guid");
+            } else if ($("#tableMyModal tr.selected").length === 1) {
+                var guid = $("#tableMyModal tr.selected").attr("guid");
                 if (guid == undefined || guid.length <= 0) {
                     return;
                 }
                 var index = -1;
-                listBillDetails.map(function (item, idx) {
+                dataTableMyModal.map(function (item, idx) {
                     if (item.Guid == guid) {
                         index = idx;
                     }
@@ -323,13 +316,13 @@ var enumMethod = {
                                 text: "Đồng ý",
                                 btnClass: 'btn-blue',
                                 action: function () {
-                                    listBillDetails.splice(index, 1);
+                                    dataTableMyModal.splice(index, 1);
                                     $.notifySuccess({ Message: "Xóa thành công" });
-                                    $("#JsonListBillDetails").val(JSON.stringify(listBillDetails));
-                                    $("#list-bill-details tr.selected").remove();
+                                    $("#JsonTableMyModal").val(JSON.stringify(dataTableMyModal));
+                                    $("#tableMyModal tr.selected").remove();
                                     if (listBillDetails.length == 0) {
-                                        $("#list-bill-details").append('<tr class="no-data"><td colspan="4">Không có dữ liệu</td></tr>');
-                                        $("#JsonListBillDetails").val("");
+                                        $("#tableMyModal").append('<tr class="no-data"><td colspan="4">Không có dữ liệu</td></tr>');
+                                        $("#JsonTableMyModal").val("");
                                     }
                                     $.loadEventRowClick();
                                     $.loadActiveSubControl();

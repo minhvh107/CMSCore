@@ -14,7 +14,7 @@
             <h4 class="modal-title">@title</h4>
         </div>
         <div class="modal-body">
-            <form action="/Admin/Bill/SaveItem" method="post" id="frmSave" class="form-horizontal">
+            <form action="/Admin/Product/SaveQuantity" method="post" id="frmSave" class="form-horizontal">
                 @Html.ValidationSummary(true)
                 <div class="accordion">
                     <div class="panel">
@@ -24,6 +24,7 @@
                         <div class="panel-collapse">
                             <div class="panel-body">
                                 <div class="x_content">
+                                    @Html.HiddenFor(m=>m.Id)
                                     <div class="table-header-action">
                                         @if (isView)
                                         {
@@ -38,23 +39,21 @@
                                             <a href="javascript:void(0);" class="margin-right-20 btn-remove-subitem" url-content="/Admin/Product/ViewItemQuantity"><i class="fa fa-remove fa-lg"></i> Xóa</a>
                                         }
 
-                                        <input type="hidden" value="/Admin/Bill/ViewItemDetail" id="sub-url-view" />
+                                        <input type="hidden" value="/Admin/Product/ViewItemQuantity" id="sub-url-view"/>
                                     </div>
                                     <div class="table-responsive table-fixed">
                                         <table class="table table-striped table-bordered jambo_table bulk_action fixed_headers">
                                             <thead>
-                                                <tr class="headings">
-                                                    <th class="hidden" col-name="Id Bill Detail"></th>
-                                                    <th class="column-title">Tên sản phẩm</th>
-                                                    <th class="column-title">Màu sắc</th>
-                                                    <th class="column-title">Size</th>
-                                                    <th class="column-title">Số lượng</th>
-                                                </tr>
+                                            <tr class="headings">
+                                                <th class="column-title">Màu sắc</th>
+                                                <th class="column-title">Size</th>
+                                                <th class="column-title">Số lượng</th>
+                                            </tr>
                                             </thead>
 
-                                            <tbody id="list-bill-details">
-                                                @{
-                                                if (Model.ListProductQuantityVm.Count > 0)
+                                            <tbody id="tableMyModal">
+                                            @{
+                                                if (Model.ListProductQuantityVm != null && Model.ListProductQuantityVm.Count > 0)
                                                 {
                                                     foreach (var item in Model.ListProductQuantityVm)
                                                     {
@@ -64,17 +63,17 @@
                                                 else
                                                 {
                                                     {
-                                                    <tr class="no-data">
-                                                        <td colspan="4">Không có dữ liệu</td>
-                                                    </tr>
+                                                        <tr class="no-data">
+                                                            <td colspan="4">Không có dữ liệu</td>
+                                                        </tr>
                                                     }
                                                 }
-                                                }
+                                            }
                                             </tbody>
                                         </table>
                                     </div>
-                                    @Html.HiddenFor(m=>m.JsonListQuantity)
-                                    @Html.ValidationMessageFor(m => m.JsonListQuantity, "", new { @class = "error" })
+                                    @Html.HiddenFor(m => m.JsonTableMyModal)
+                                    @Html.ValidationMessageFor(m => m.JsonTableMyModal, "", new {@class = "error"})
                                     <div class="clearfix"></div>
                                 </div>
                             </div>

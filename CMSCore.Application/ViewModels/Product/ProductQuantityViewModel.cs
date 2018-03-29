@@ -23,6 +23,8 @@ namespace CMSCore.Application.ViewModels
 
         public bool IsView { set; get; }
 
+        public string Guid { set; get; }
+
         public List<SelectListItem> ListSizes { set; get; }
 
         public List<SelectListItem> ListColors { set; get; }

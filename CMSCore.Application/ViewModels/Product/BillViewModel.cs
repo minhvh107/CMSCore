@@ -64,6 +64,6 @@ namespace CMSCore.Application.ViewModels
         public bool IsEdit { set; get; }
 
         [Required(ErrorMessage = Constants.FieldRequired)]
-        public string JsonListBillDetails { set; get; }
+        public string JsonTableMyModal { set; get; }
     }
 }

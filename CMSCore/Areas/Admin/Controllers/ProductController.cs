@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Table;
 using System;
@@ -431,10 +432,21 @@ namespace CMSCore.Areas.Admin.Controllers
         public ActionResult ViewQuantities(int id)
         {
             var data = _productService.GetQuantities(id);
-            var model = new ProductViewModel()
+            var model = new ProductViewModel();
+            model.Id = id;
+            foreach (var billDetail in data)
             {
-                ListProductQuantityVm = data
-            };
+                billDetail.Guid = Guid.NewGuid().ToString();
+                model.ListProductQuantityVm.Add(billDetail);
+            }
+            if (model.ListProductQuantityVm != null && model.ListProductQuantityVm.Count > 0)
+            {
+                model.JsonTableMyModal = JsonConvert.SerializeObject(model.ListProductQuantityVm);
+            }
+            else
+            {
+                model.JsonTableMyModal = "";
+            }
             var content = _viewRenderService.RenderToStringAsync("Product/_ViewQuantity", model);
             return Json(new JsonResponse
             {
@@ -470,7 +482,7 @@ namespace CMSCore.Areas.Admin.Controllers
             });
         }
 
-        #endregion Thêm Bill Detail
+        #endregion Thêm Quantity
 
         #region Sửa Quantity
 
@@ -495,7 +507,7 @@ namespace CMSCore.Areas.Admin.Controllers
             });
         }
 
-        #endregion Sửa
+        #endregion Sửa Quantity
 
         #region Xem thông tin Quantity
 
@@ -521,9 +533,9 @@ namespace CMSCore.Areas.Admin.Controllers
             });
         }
 
-        #endregion Xem thông tin
+        #endregion Xem thông tin Quantity
 
-        #region Lưu Quantity
+        #region Lưu Quantity Nháp
 
         /// <summary>
         /// Save and Edit
@@ -535,14 +547,13 @@ namespace CMSCore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Product = _productService.GetById(model.ProductId);
                 model.Size = _sizeService.GetAll().FirstOrDefault(m => m.Id == model.SizeId);
                 model.Color = _colorService.GetAll().FirstOrDefault(m => m.Id == model.ColorId);
                 return Json(new JsonResponse()
                 {
                     Success = true,
                     Message = Constants.SaveDataSuccess,
-                    Data = await _viewRenderService.RenderToStringAsync("Product/_ViewQuantity", model)
+                    Data = await _viewRenderService.RenderToStringAsync("Product/_TableQuantity", model)
                 });
             }
             return Json(new JsonResponse
@@ -556,7 +567,40 @@ namespace CMSCore.Areas.Admin.Controllers
             });
         }
 
-        #endregion Lưu
+        #endregion Lưu Quantity Nháp
+
+        #region Lưu Quantity Nháp
+
+        /// <summary>
+        /// Save and Edit
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult SaveQuantity(ProductViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var lstQuantity = JsonConvert.DeserializeObject<List<ProductQuantityViewModel>>(model.JsonTableMyModal);
+               _productService.CreateQuantities(model.Id, lstQuantity);
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    Message = Constants.SaveDataSuccess
+                });
+            }
+            return Json(new JsonResponse
+            {
+                Success = false,
+                Message = Constants.SaveDataFailed,
+                Errors = ModelState.Where(modelState => modelState.Value.Errors.Count > 0).ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).FirstOrDefault()
+                )
+            });
+        }
+
+        #endregion Lưu Quantity Nháp
 
         #endregion Quản lý số lượng
 
@@ -565,7 +609,7 @@ namespace CMSCore.Areas.Admin.Controllers
         #region Danh sách color
 
         /// <summary>
-        /// Danh sách trạng thái
+        /// Danh sách màu sắc
         /// </summary>
         /// <returns></returns>
         public List<SelectListItem> ListColors()
@@ -591,7 +635,10 @@ namespace CMSCore.Areas.Admin.Controllers
         #endregion Danh sách color
 
         #region Danh sách size
-
+        /// <summary>
+        /// Danh sách size
+        /// </summary>
+        /// <returns></returns>
         public List<SelectListItem> ListSizes()
         {
             var lstSize = _sizeService.GetAll();

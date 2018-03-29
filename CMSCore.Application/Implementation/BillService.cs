@@ -165,7 +165,7 @@ namespace CMSCore.Application.Implementation
                 billDetail.Guid = Guid.NewGuid().ToString();
                 billVm.BillDetails.Add(billDetail);
             }
-            billVm.JsonListBillDetails = billVm.BillDetails.Count > 0 ? JsonConvert.SerializeObject(billVm.BillDetails) : "";
+            billVm.JsonTableMyModal = billVm.BillDetails.Count > 0 ? JsonConvert.SerializeObject(billVm.BillDetails) : "";
 
             return billVm;
         }
