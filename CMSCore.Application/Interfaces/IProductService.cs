@@ -24,6 +24,10 @@ namespace CMSCore.Application.Interfaces
 
         void CreateQuantities(int productId, List<ProductQuantityViewModel> quantity);
 
+        List<ProductImageViewModel> GetImages(int productId);
+
+        void CreateImages(int productId,string [] images);
+
         void Save();
     }
 }

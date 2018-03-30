@@ -1,4 +1,5 @@
 ﻿using CMSCore.Data.Enums;
+using CMSCore.Utilities.Constants;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -11,33 +12,33 @@ namespace CMSCore.Application.ViewModels
     {
         public int Id { get; set; }
 
-        [StringLength(255)]
         [DisplayName("Tên sản phẩm")]
-        [Required]
+        [Required(ErrorMessage = Constants.FieldRequired)]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string Name { get; set; }
 
-        [Required]
         [DisplayName("Nhóm sản phẩm")]
+        [Required(ErrorMessage = Constants.FieldRequired)]
         public int CategoryId { get; set; }
 
-        [StringLength(255)]
         [DisplayName("Hình ảnh")]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string Image { get; set; }
 
-        [Required]
-        [DefaultValue(0)]
         [DisplayName("Giá")]
+        [Required(ErrorMessage = Constants.FieldRequired)]
+        [DefaultValue(0)]
         public decimal Price { get; set; }
 
         [DisplayName("Giá ưu đãi")]
         public decimal? PromotionPrice { get; set; }
 
-        [Required]
         [DisplayName("Giá gốc")]
+        [Required(ErrorMessage = Constants.FieldRequired)]
         public decimal OriginalPrice { get; set; }
 
-        [StringLength(255)]
         [DisplayName("Mô tả")]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string Description { get; set; }
 
         [DisplayName("Nội dung")]
@@ -52,11 +53,11 @@ namespace CMSCore.Application.ViewModels
         [DisplayName("Số lượng xem")]
         public int? ViewCount { get; set; }
 
-        [StringLength(255)]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string Tags { get; set; }
 
-        [StringLength(255)]
         [DisplayName("Đơn vị")]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string Unit { get; set; }
 
         public ProductCategoryViewModel ProductCategory { set; get; }
@@ -64,16 +65,16 @@ namespace CMSCore.Application.ViewModels
         [DisplayName("SEO Tiêu đề")]
         public string SeoPageTitle { set; get; }
 
-        [StringLength(255)]
         [DisplayName("SEO Link")]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string SeoAlias { set; get; }
 
-        [StringLength(255)]
         [DisplayName("SEO Từ khóa")]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string SeoKeywords { set; get; }
 
-        [StringLength(255)]
         [DisplayName("SEO Mô tả")]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string SeoDescription { set; get; }
 
         public DateTime DateCreated { set; get; }
@@ -86,15 +87,11 @@ namespace CMSCore.Application.ViewModels
         [DisplayName("Thứ tự")]
         public int SortOrder { get; set; }
 
-        [StringLength(255)]
         [DisplayName("Nhập file Excel")]
+        [MaxLength(255, ErrorMessage = Constants.MaxLength + " 255 ký tự")]
         public string FileExcel { get; set; }
 
         public List<SelectListItem> ListProductCate { set; get; }
-
-        public List<ProductQuantityViewModel> ListProductQuantityVm { set; get; }
-
-        public string JsonTableMyModal { set; get; }
 
         public bool IsEdit { set; get; }
 

@@ -320,7 +320,7 @@ var enumMethod = {
                                     $.notifySuccess({ Message: "Xóa thành công" });
                                     $("#JsonTableMyModal").val(JSON.stringify(dataTableMyModal));
                                     $("#tableMyModal tr.selected").remove();
-                                    if (listBillDetails.length == 0) {
+                                    if (dataTableMyModal.length == 0) {
                                         $("#tableMyModal").append('<tr class="no-data"><td colspan="4">Không có dữ liệu</td></tr>');
                                         $("#JsonTableMyModal").val("");
                                     }
@@ -584,8 +584,8 @@ var enumMethod = {
                 obj['Content'] = CKEDITOR.instances['Content'].getData();
             }
            
-            obj['HomeFlag'] = $('#HomeFlag').is(':checked') ? 1 : 0;
-            obj['HotFlag'] = $('#HotFlag').is(':checked') ? 1 : 0;
+            obj['HomeFlag'] = $('#HomeFlag').is(':checked');
+            obj['HotFlag'] = $('#HotFlag').is(':checked');
             obj['Status'] = $('#Status').is(':checked') ? 1 : 0;
 
             $.postStringify(url, obj, function (response) {

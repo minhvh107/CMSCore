@@ -5475,3 +5475,25 @@ label.margin-right-10 {
     background: #fff url("images/home_background.jpg") no-repeat fixed center;
     background-size: 100% 100%;
 }
+.boxImage {
+    display: block;
+    max-height: 100px;
+    position: relative;
+    border: 1px solid #2A3F54;
+}
+    .boxImage .delImage {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #f00;
+        color: #fff;
+        width: 16px;
+        text-align: center;
+    }
+    .boxImage .delImage:hover {
+        cursor: pointer;
+    }
+.boxImage .imgUpload {
+    height: 100px;
+    margin: 0 auto;
+}

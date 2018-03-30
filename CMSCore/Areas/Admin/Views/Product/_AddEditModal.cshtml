@@ -41,7 +41,8 @@
                                         @{
                                             @Html.DropDownListFor(m => m.CategoryId, Model.ListProductCate, new { @class = "form-control select-custom", @size = "1", onfocus = @"this.size=5;", onblur = "this.size=1;", onchange = "this.size=1; this.blur();" });
                                         }
-                                        <label class="error" style="display: none;"></label>
+                                        <label id="CategoryId-error" for="CategoryId" class="error" style="display: none;"></label>
+                                        <span class="field-validation-valid error" data-valmsg-for="CategoryId" data-valmsg-replace="true"></span>
                                     </div>
                                 </div>
 

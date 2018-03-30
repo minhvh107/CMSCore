@@ -40,7 +40,7 @@
         <div class="x_panel">
             <div class="x_title"></div>
             <div id="listUsers">
-                @{ Html.RenderPartial("_ListUsers", Model.ListAppUserVm ?? new List<AppUserViewModel>());}
+                @{ Html.RenderPartial("_ListUsers", Model.ListAppUserVm);}
             </div>
         </div>
     </div>
@@ -48,5 +48,5 @@
 </div>
 @section scripts
     {
-    <script src="~/app/controllers/role/index.js"></script>
+    <script src="~/js/admin/role/index.js"></script>
 }

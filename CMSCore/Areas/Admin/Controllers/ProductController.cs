@@ -431,13 +431,17 @@ namespace CMSCore.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ViewQuantities(int id)
         {
-            var data = _productService.GetQuantities(id);
-            var model = new ProductViewModel();
-            model.Id = id;
-            foreach (var billDetail in data)
+            var lstQuantities = _productService.GetQuantities(id);
+            var model = new PageProductQuantityViewModel
             {
-                billDetail.Guid = Guid.NewGuid().ToString();
-                model.ListProductQuantityVm.Add(billDetail);
+                ProductId = id,
+                Product = _productService.GetById(id)
+            };
+
+            foreach (var quantity in lstQuantities)
+            {
+                quantity.Guid = Guid.NewGuid().ToString();
+                model.ListProductQuantityVm.Add(quantity);
             }
             if (model.ListProductQuantityVm != null && model.ListProductQuantityVm.Count > 0)
             {
@@ -569,7 +573,7 @@ namespace CMSCore.Areas.Admin.Controllers
 
         #endregion Lưu Quantity Nháp
 
-        #region Lưu Quantity Nháp
+        #region Lưu Quantity
 
         /// <summary>
         /// Save and Edit
@@ -577,12 +581,17 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult SaveQuantity(ProductViewModel model)
+        public IActionResult SaveQuantity(PageProductQuantityViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var lstQuantity = JsonConvert.DeserializeObject<List<ProductQuantityViewModel>>(model.JsonTableMyModal);
-               _productService.CreateQuantities(model.Id, lstQuantity);
+                var lstQuantity = new List<ProductQuantityViewModel>();
+                if (model.JsonTableMyModal != null && model.JsonTableMyModal.Any())
+                {
+                    lstQuantity = JsonConvert.DeserializeObject<List<ProductQuantityViewModel>>(model.JsonTableMyModal);
+                }
+                _productService.CreateQuantities(model.ProductId, lstQuantity);
+                _productService.Save();
                 return Json(new JsonResponse()
                 {
                     Success = true,
@@ -600,9 +609,74 @@ namespace CMSCore.Areas.Admin.Controllers
             });
         }
 
-        #endregion Lưu Quantity Nháp
+        #endregion Lưu Quantity
 
         #endregion Quản lý số lượng
+
+        #region Quản lý Hình ảnh
+
+        #region Danh sách
+        [HttpGet]
+        public ActionResult ViewImages(int id)
+        {
+            var lstImages = _productService.GetImages(id);
+            var model = new PageProductImageViewModel()
+            {
+                ProductId = id,
+                Product = _productService.GetById(id)
+            };
+
+            foreach (var image in lstImages)
+            {
+                image.Guid = Guid.NewGuid().ToString();
+                model.ListProductImageVm.Add(image);
+            }
+            var content = _viewRenderService.RenderToStringAsync("Product/_ViewImage", model);
+            return Json(new JsonResponse
+            {
+                Success = true,
+                Message = Constants.GetDataSuccess,
+                StatusCode = Utilities.Constants.StatusCode.GetDataSuccess,
+                Data = content.Result
+            });
+        }
+
+        #endregion Danh sách
+
+        #region Lưu Image
+
+        /// <summary>
+        /// Save and Edit
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult SaveImage(PageProductImageViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _productService.CreateImages(model.ProductId, model.JsonListImage);
+                _productService.Save();
+                return Json(new JsonResponse()
+                {
+                    Success = true,
+                    Message = Constants.SaveDataSuccess
+                });
+            }
+            return Json(new JsonResponse
+            {
+                Success = false,
+                Message = Constants.SaveDataFailed,
+                Errors = ModelState.Where(modelState => modelState.Value.Errors.Count > 0).ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).FirstOrDefault()
+                )
+            });
+        }
+
+        #endregion Lưu Image
+
+        #endregion Quản lý Hình ảnh
 
         #region Init List
 
@@ -635,6 +709,7 @@ namespace CMSCore.Areas.Admin.Controllers
         #endregion Danh sách color
 
         #region Danh sách size
+
         /// <summary>
         /// Danh sách size
         /// </summary>

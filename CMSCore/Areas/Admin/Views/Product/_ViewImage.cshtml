@@ -1,0 +1,65 @@
+﻿@using CMSCore.Data.Enums
+@model CMSCore.Application.ViewModels.PageProductImageViewModel
+@{
+    var title = "Thông tin hình ảnh sản phẩm: ";
+}
+<div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">@title @Model.Product.Name</h4>
+        </div>
+        <div class="modal-body">
+            <form action="/Admin/Product/SaveImage" method="post" id="frmSave" class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="accordion">
+                    <div class="panel">
+                        <a class="panel-heading">
+                            <h4 class="panel-title">Quản lý hình ảnh</h4>
+                        </a>
+                        <div class="panel-collapse">
+                            <div class="panel-body">
+                                <div class="x_content">
+                                    @Html.HiddenFor(m => m.ProductId)
+                                    <div id="listImage" class="row">
+                                        @if (Model.ListProductImageVm.Count > 0)
+                                        {
+                                            foreach (var image in Model.ListProductImageVm)
+                                            {
+                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                    <div class="boxImage">
+                                                        <span class="delImage"><i class="fa fa-trash"></i></span>
+                                                        <img class="img-responsive imgUpload" data-path="@image.Path" src="@image.Path" />
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                    @Html.HiddenFor(m => m.JsonListImage)
+                                    @Html.ValidationMessageFor(m => m.JsonListImage, "", new { @class = "error" })
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <a class="panel-heading">
+                            <h4 class="panel-title">Thêm mới hình ảnh</h4>
+                        </a>
+                        <div class="panel-collapse">
+                            <div class="panel-body">
+                                <div class="x_content">
+                                    <input type="file" class="fileUploadImage" placeholder="Chọn ảnh" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-save"><i class="fa fa-save fa-lg"></i> Cập nhật</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-sign-out fa-lg"></i> Quay lại</button>
+        </div>
+    </div>
+</div>

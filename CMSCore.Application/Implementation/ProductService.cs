@@ -25,18 +25,21 @@ namespace CMSCore.Application.Implementation
         private readonly ITagRepository _tagRepository;
         private readonly IProductTagRepository _productTagRepository;
         private readonly IProductQuantityRepository _productQuantityRepository;
+        private readonly IProductImageRepository _productImageRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductService(IProductRepository productRepository,
             ITagRepository tagRepository,
             IProductTagRepository productTagRepository,
             IProductQuantityRepository productQuantityRepository,
+            IProductImageRepository productImageRepository,
             IUnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
             _tagRepository = tagRepository;
             _productTagRepository = productTagRepository;
             _productQuantityRepository = productQuantityRepository;
+            _productImageRepository = productImageRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -207,7 +210,7 @@ namespace CMSCore.Application.Implementation
 
         public void CreateQuantities(int productId, List<ProductQuantityViewModel> quantities)
         {
-            _productQuantityRepository.RemoveMultiple(_productQuantityRepository.FindAll(m=>m.ProductId == productId).ToList());
+            _productQuantityRepository.RemoveMultiple(_productQuantityRepository.FindAll(m => m.ProductId == productId).ToList());
             foreach (var quantity in quantities)
             {
                 _productQuantityRepository.Add(new ProductQuantity()
@@ -216,6 +219,26 @@ namespace CMSCore.Application.Implementation
                     ColorId = quantity.ColorId,
                     SizeId = quantity.SizeId,
                     Quantity = quantity.Quantity
+                });
+            }
+        }
+
+        public List<ProductImageViewModel> GetImages(int productId)
+        {
+            return _productImageRepository.FindAll(x => x.ProductId == productId)
+                .ProjectTo<ProductImageViewModel>().ToList();
+        }
+
+        public void CreateImages(int productId, string[] images)
+        {
+            _productImageRepository.RemoveMultiple(_productImageRepository.FindAll(m => m.ProductId == productId).ToList());
+            foreach (var image in images)
+            {
+                _productImageRepository.Add(new ProductImage()
+                {
+                    ProductId = productId,
+                    Path = image,
+                    Caption = string.Empty
                 });
             }
         }
