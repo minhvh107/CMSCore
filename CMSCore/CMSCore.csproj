@@ -37,6 +37,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\client-side\fonts\font-awesome\fontawesome-webfont.svg" />
+    <None Include="wwwroot\client-side\fonts\font-awesome\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\client-side\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\client-side\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\client-side\fonts\pe-icon-7-stroke\Pe-icon-7-stroke.svg" />
+    <None Include="wwwroot\client-side\fonts\revicons.svg" />
+    <None Include="wwwroot\client-side\fonts\revicons\index.php" />
+    <None Include="wwwroot\client-side\fonts\revicons\revicons.svg" />
+    <None Include="wwwroot\client-side\fonts\simple-line-icons\Simple-Line-Icons.dev.svg" />
+    <None Include="wwwroot\client-side\fonts\simple-line-icons\Simple-Line-Icons.svg" />
+    <None Include="wwwroot\client-side\fonts\simple-line-icons\Simple-Line-Icons.woff2" />
+    <None Include="wwwroot\client-side\js\bootstrap.min.js" />
+    <None Include="wwwroot\client-side\js\cloud-zoom.js" />
+    <None Include="wwwroot\client-side\js\countdown.js" />
+    <None Include="wwwroot\client-side\js\jquery-ui.js" />
+    <None Include="wwwroot\client-side\js\jquery.bxslider.js" />
+    <None Include="wwwroot\client-side\js\jquery.flexslider.js" />
+    <None Include="wwwroot\client-side\js\jquery.magnifying-zoom.js" />
+    <None Include="wwwroot\client-side\js\jquery.min.js" />
+    <None Include="wwwroot\client-side\js\main.js" />
+    <None Include="wwwroot\client-side\js\mobile-menu.js" />
+    <None Include="wwwroot\client-side\js\owl.carousel.min.js" />
+    <None Include="wwwroot\client-side\js\revolution-extension.js" />
+    <None Include="wwwroot\client-side\js\revolution-slider.js" />
     <None Include="wwwroot\lib\animate.css\gulpfile.js" />
     <None Include="wwwroot\lib\animate.css\LICENSE" />
     <None Include="wwwroot\lib\font-awesome\.gitignore" />
@@ -72,8 +96,8 @@
     <None Include="wwwroot\lib\font-awesome\scss\_screen-reader.scss" />
     <None Include="wwwroot\lib\font-awesome\scss\_stacked.scss" />
     <None Include="wwwroot\lib\font-awesome\scss\_variables.scss" />
-    <None Include="wwwroot\js\jstree\jstree.js" />
-    <None Include="wwwroot\js\jstree\jstree.min.js" />
+    <None Include="wwwroot\admin-side\js\plugin\jstree\jstree.js" />
+    <None Include="wwwroot\admin-side\js\plugin\jstree\jstree.min.js" />
     <None Include="wwwroot\lib\moment\CHANGELOG.md" />
     <None Include="wwwroot\lib\moment\LICENSE" />
     <None Include="wwwroot\lib\moment\locale\af.js" />
@@ -449,6 +473,12 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\lib\moment\moment.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>
