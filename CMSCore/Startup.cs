@@ -104,6 +104,12 @@ namespace CMSCore
             services.AddTransient<ISizeRepository, SizeRepository>();
             services.AddTransient<IProductQuantityRepository, ProductQuantityRepository>();
             services.AddTransient<IProductImageRepository, ProductImageRepository>();
+            services.AddTransient<IWholePriceRepository, WholePriceRepository>();
+            services.AddTransient<IBlogRepository, BlogRepository>();
+            services.AddTransient<IBlogTagRepository, BlogTagRepository>();
+            services.AddTransient<ISlideRepository, SlideRepository>();
+            services.AddTransient<IFooterRepository, FooterRepository>();
+            services.AddTransient<ISystemConfigRepository, SystemConfigRepository>();
 
             #endregion Repository
 
@@ -118,6 +124,8 @@ namespace CMSCore
             services.AddTransient<IBillService, BillService>();
             services.AddTransient<IColorService, ColorService>();
             services.AddTransient<ISizeService, SizeService>();
+            services.AddTransient<IBlogService, BlogService>();
+            services.AddTransient<ICommonService, CommonService>();
 
             #endregion Service
         }

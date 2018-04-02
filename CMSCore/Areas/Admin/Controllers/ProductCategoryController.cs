@@ -77,27 +77,10 @@ namespace CMSCore.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            #region Danh sách nhóm sản phẩm
-
-            var lstProductCate = _productCategoryService.GetAll();
-            var lstSelect = new List<SelectListItem>{
-                new SelectListItem{
-                    Value = "",
-                    Text = "—Chọn cấp cha—"
-                }
-            };
-            lstSelect.AddRange(lstProductCate.Select(m => new SelectListItem
-            {
-                Value = m.Id.ToString(),
-                Text = m.Name
-            }));
-
-            #endregion Danh sách nhóm sản phẩm
-
             var model = new ProductCategoryViewModel
             {
                 IsEdit = false,
-                ListProductCate = lstSelect
+                ListProductCate = ListCategoryProduct()
             };
 
             var content = _viewRenderService.RenderToStringAsync("ProductCategory/_AddEditModal", model);
@@ -123,25 +106,8 @@ namespace CMSCore.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             var obj = _productCategoryService.GetById(id);
-
             obj.IsEdit = true;
-            #region Danh sách nhóm sản phẩm
-
-            var lstProductCate = _productCategoryService.GetAll();
-            var lstSelect = new List<SelectListItem>{
-                new SelectListItem{
-                    Value = "",
-                    Text = "—Chọn cấp cha—"
-                }
-            };
-            lstSelect.AddRange(lstProductCate.Select(m => new SelectListItem
-            {
-                Value = m.Id.ToString(),
-                Text = m.Name
-            }));
-            obj.ListProductCate = lstSelect;
-
-            #endregion Danh sách nhóm sản phẩm
+            obj.ListProductCate = ListCategoryProduct();
 
             var content = _viewRenderService.RenderToStringAsync("ProductCategory/_AddEditModal", obj);
             return Json(new JsonResponse
@@ -200,24 +166,7 @@ namespace CMSCore.Areas.Admin.Controllers
 
             obj.IsEdit = false;
             obj.IsView = true;
-
-            #region Danh sách nhóm sản phẩm
-
-            var lstProductCate = _productCategoryService.GetAll();
-            var lstSelect = new List<SelectListItem>{
-                new SelectListItem{
-                    Value = "",
-                    Text = "—Chọn cấp cha—"
-                }
-            };
-            lstSelect.AddRange(lstProductCate.Select(m => new SelectListItem
-            {
-                Value = m.Id.ToString(),
-                Text = m.Name
-            }));
-            obj.ListProductCate = lstSelect;
-
-            #endregion Danh sách nhóm sản phẩm
+            obj.ListProductCate = ListCategoryProduct();
 
             var content = _viewRenderService.RenderToStringAsync("ProductCategory/_AddEditModal", obj);
             return Json(new JsonResponse
@@ -272,6 +221,27 @@ namespace CMSCore.Areas.Admin.Controllers
         }
 
         #endregion Lưu sản phẩm
+
+        #region InitCategory product
+
+        public List<SelectListItem> ListCategoryProduct()
+        {
+            var lstProductCate = _productCategoryService.GetAll();
+            var result = new List<SelectListItem>{
+                new SelectListItem{
+                    Value = "0",
+                    Text = "—Chọn cấp cha—"
+                }
+            };
+            result.AddRange(lstProductCate.Select(m => new SelectListItem
+            {
+                Value = m.Id.ToString(),
+                Text = m.Name
+            }));
+            return result;
+        }
+
+        #endregion InitCategory product
 
         /// <summary>
         /// Lấy tất cả nhóm sản phẩm

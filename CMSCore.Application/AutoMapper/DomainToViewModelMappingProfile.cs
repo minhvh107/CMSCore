@@ -9,6 +9,7 @@ namespace CMSCore.Application.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             #region Product
+
             CreateMap<ProductCategory, ProductCategoryViewModel>();
             CreateMap<Product, ProductViewModel>();
             CreateMap<Color, ColorViewModel>();
@@ -17,14 +18,31 @@ namespace CMSCore.Application.AutoMapper
             CreateMap<BillDetail, BillDetailViewModel>();
             CreateMap<ProductQuantity, ProductQuantityViewModel>();
             CreateMap<ProductImage, ProductImageViewModel>();
-            #endregion
+
+            #endregion Product
+
+            #region Blog
+
+            CreateMap<Blog, BlogViewModel>();
+            CreateMap<BlogTag, BlogTagViewModel>();
+
+            #endregion Blog
+
+            #region Common
+
+            CreateMap<Footer, FooterViewModel>();
+            CreateMap<SystemConfig, SystemConfigViewModel>();
+            CreateMap<Slide, SlideViewModel>();
+
+            #endregion Common
 
             #region System
+
             CreateMap<Function, FunctionViewModel>();
             CreateMap<AppUser, AppUserViewModel>();
             CreateMap<AppRole, AppRoleViewModel>();
 
-            #endregion
+            #endregion System
         }
     }
 }

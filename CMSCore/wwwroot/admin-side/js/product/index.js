@@ -23,7 +23,41 @@
         });
     });
     loadImageFc();
+
+    $(".btn-save-image").on('click', function (e) {
+        var imageList = [];
+        $.each($('#listImage').find('img'), function (i, item) {
+
+            imageList.push($(this).data('path'));
+        });
+        $("#JsonListImage").val(imageList);
+
+        var $form = $('.modal form');
+        var url = $($form).attr('action');
+        //var data = $($form).serializeObject();
+        var data = {
+            ProductId: $("#ProductId").val(),
+            JsonListImage: imageList
+        };
+        $.appendSpin();
+        $.postStringify(url, data, function (response) {
+            $.removeSpin();
+            if (response.Success) {
+                $.notifySuccess(response);
+                $("#myModal").hideModal();
+            } else {
+                $('label.error').hide();
+                $('input').removeClass('error');
+                if (response.Errors != null && response.Errors != undefined) {
+                    validator.showErrors(response.Errors);
+                } else {
+                    $.notifyError(response);
+                }
+            }
+        });
+    });
 }
+
 function loadImageFc() {
     $(".delImage").on("click", function () {
         var delImg = $(this);
@@ -47,6 +81,7 @@ function loadImageFc() {
         });
     });
 }
+
 function genBoxImage(path) {
     return '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">' +
             '<div class="boxImage">' +
@@ -55,41 +90,3 @@ function genBoxImage(path) {
             '<div>' +
         '</div>';
 }
-window.savefnc = function () {
-    var imageList = [];
-    $.each($('#listImage').find('img'), function (i, item) {
-        
-        imageList.push($(this).data('path'));
-    });
-    $("#JsonListImage").val(imageList);
-
-    var $form = $('.modal form');
-    var url = $($form).attr('action');
-     //var data = $($form).serializeObject();
-    var data = {
-        ProductId: $("#ProductId").val(),
-        JsonListImage: imageList
-    };
-    $.appendSpin();
-    $.postStringify(url, data, function (response) {
-        $.removeSpin();
-        if (response.Success) {
-            $.notifySuccess(response);
-            $("#myModal").hideModal();
-        } else {
-            $('label.error').hide();
-            $('input').removeClass('error');
-            if (response.Errors != null && response.Errors != undefined) {
-                validator.showErrors(response.Errors);
-            } else {
-                $.notifyError(response);
-            }
-        }
-    });
-}
-
-
-
-
-
-

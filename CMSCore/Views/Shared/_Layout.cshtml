@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="~/client-side/style.css">
 </head>
 
-<body class="cms-index-index cms-home-page">
+<body class="@ViewData["BodyClass"]">
 
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -42,14 +42,8 @@
                         <span class="mm-label">All Categories</span>
                     </div>
                     <div class="col-md-3 col-sm-3 mega-container hidden-xs">
-                        <div class="navleft-container">
-                            <div class="mega-menu-title">
-                                <h3><span>All Categories</span></h3>
-                            </div>
-
-                            <!-- Shop by category -->
-                            @await Component.InvokeAsync("CategoryMenu")
-                        </div>
+                        <!-- Shop by category -->
+                        @await Component.InvokeAsync("CategoryMenu")
                     </div>
                     <div class="col-md-9 col-sm-9 jtv-megamenu">
                         @await Component.InvokeAsync("MainMenu")
@@ -87,8 +81,7 @@
     <!-- countdown js -->
     <script type="text/javascript" src="~/client-side/js/countdown.js"></script>
 
-    <!-- Slider Js -->
-    <script type="text/javascript" src="~/client-side/js/revolution-slider.js"></script>
+    
     @RenderSection("Scripts", required: false)
 </body>
 </html>
