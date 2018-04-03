@@ -20,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using System;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace CMSCore
 {
@@ -70,6 +71,12 @@ namespace CMSCore
             //services.AddSession();
             services.AddMvc();
             // services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+
+            services.AddRecaptcha(new RecaptchaOptions()
+            {
+                SiteKey = Configuration["Recaptcha:SiteKey"],
+                SecretKey = Configuration["Recaptcha:SecretKey"]
+            });
 
             // Add application services.
             services.AddAutoMapper();
@@ -153,7 +160,7 @@ namespace CMSCore
             {
                 routes.MapRoute(
                     name: "areaRoute",
-                    template: "{area:exists}/{controller=Account}/{action=Login}/{id?}");
+                    template: "{area:exists}/{controller=Account}/{action=LoginAdmin}/{id?}");
 
                 routes.MapRoute(
                     name: "default",

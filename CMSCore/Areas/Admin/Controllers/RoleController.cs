@@ -41,7 +41,7 @@ namespace CMSCore.Areas.Admin.Controllers
         {
             var result = await _authorizationService.AuthorizeAsync(User, "ROLE", Operations.Read);
             if (result.Succeeded == false)
-                return new RedirectResult("/Admin/Login/Index");
+                return new RedirectResult("/Admin/Account/LoginAdmin");
             const string keyword = "";
             const int currentPage = 1;
             const int pageSize = 10;

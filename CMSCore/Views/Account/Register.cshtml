@@ -81,6 +81,12 @@
                                         <input type="text" name="address" asp-for="Address" class="form-control">
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <recaptcha />
+                                        <span class="text-danger" id="recaptchaErrorMessage"></span>
+                                    </div>
+                                </div>
                                 <div class="col-xs-12">
                                     <div class="submit-text">
                                         <button type="submit" class="button"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button>
@@ -98,4 +104,5 @@
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
+    <recaptcha-script validation-message-element-id="recaptchaErrorMessage" />
 }

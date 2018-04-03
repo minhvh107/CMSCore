@@ -7,7 +7,7 @@ namespace CMSCore.Models.AccountViewModels
     {
         [Required(ErrorMessage = Constants.FieldRequired)]
         [Display(Name = "Tên đăng nhập")]
-        public string UserName { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = Constants.FieldRequired)]
         [Display(Name = "Mật khẩu")]

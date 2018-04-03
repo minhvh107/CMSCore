@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CMSCore.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class AccountController : BaseController
     {
         private readonly SignInManager<AppUser> _signInManager;
@@ -29,13 +30,13 @@ namespace CMSCore.Areas.Admin.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return Redirect("/Admin/Account/Login");
+            return Redirect("/Admin/Account/LoginAdmin");
         }
 
         [AllowAnonymous]
-        public ActionResult Login(string redirect)
+        public ActionResult LoginAdmin(string redirect)
         {
-            if (User != null)
+            if (User.Identity.IsAuthenticated)
             {
                 return new RedirectResult("/Admin/Admin/Index");
             }
@@ -49,9 +50,9 @@ namespace CMSCore.Areas.Admin.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> LoginAdmin(LoginViewModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
             if (result.Succeeded)
             {
                 _logger.LogInformation("User logged in.");

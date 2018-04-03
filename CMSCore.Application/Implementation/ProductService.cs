@@ -138,7 +138,7 @@ namespace CMSCore.Application.Implementation
         {
             var query = _productRepository.FindAll(m => m.IsDelete == false);
             if (!string.IsNullOrEmpty(keyword))
-                query = query.Where(m => m.Name == keyword);
+                query = query.Where(m => m.Name.Contains(keyword));
             if (categoryId.HasValue && categoryId != 0)
                 query = query.Where(m => m.CategoryId == categoryId.Value);
 
