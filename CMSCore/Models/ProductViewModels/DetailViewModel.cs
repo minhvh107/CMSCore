@@ -1,5 +1,6 @@
 ﻿using CMSCore.Application.ViewModels;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CMSCore.Models
 {
@@ -18,5 +19,10 @@ namespace CMSCore.Models
         public List<ProductViewModel> LastestProducts { get; set; }
 
         public List<TagViewModel> Tags { set; get; }
+
+        public List<SelectListItem> ListColors { set; get; }
+        public List<SelectListItem> ListSizes { set; get; }
+
+        public bool Available { set; get; }
     }
 }

@@ -282,16 +282,24 @@ namespace CMSCore.Application.Implementation
             var productTags = _productTagRepository.FindAll();
 
             var query = from t in tags
-                join pt in productTags
-                    on t.Id equals pt.TagId
-                where pt.ProductId == productId
-                select new TagViewModel()
-                {
-                    Id = t.Id,
-                    Name = t.Name
-                };
+                        join pt in productTags
+                            on t.Id equals pt.TagId
+                        where pt.ProductId == productId
+                        select new TagViewModel()
+                        {
+                            Id = t.Id,
+                            Name = t.Name
+                        };
             return query.ToList();
+        }
 
+        public bool CheckAvailability(int productId, int size, int color)
+        {
+            var quantity = _productQuantityRepository.FindSingle(m =>
+                m.ColorId == color && m.SizeId == size && m.ProductId == productId);
+            if (quantity == null)
+                return false;
+            return quantity.Quantity > 0;
         }
 
         public void Save()

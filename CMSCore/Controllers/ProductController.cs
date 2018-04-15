@@ -1,6 +1,8 @@
-﻿using CMSCore.Application.Interfaces;
+﻿using System.Linq;
+using CMSCore.Application.Interfaces;
 using CMSCore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 
 namespace CMSCore.Controllers
@@ -9,14 +11,22 @@ namespace CMSCore.Controllers
     {
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
+        private readonly IColorService _colorService;
+        private readonly ISizeService _sizeService;
         private readonly IConfiguration _configuration;
 
-        public ProductController(IProductService productService, IConfiguration configuration,
-            IProductCategoryService productCategoryService)
+        public ProductController(
+            IProductService productService, 
+            IConfiguration configuration,
+            IProductCategoryService productCategoryService,
+            IColorService colorService,
+            ISizeService sizeService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
             _configuration = configuration;
+            _colorService = colorService;
+            _sizeService = sizeService;
         }
 
         [Route("products.html")]
@@ -52,6 +62,16 @@ namespace CMSCore.Controllers
                 UpsellProducts = _productService.GetUpsellProducts(6),
                 ProductImages = _productService.GetImages(id),
                 Tags = _productService.GetProductTags(id),
+                ListColors = _colorService.GetAll().Select(m=> new SelectListItem()
+                {
+                    Value = m.Id.ToString(),
+                    Text = m.Name
+                }).ToList(),
+                ListSizes = _sizeService.GetAll().Select(m=>new SelectListItem()
+                {
+                    Value = m.Id.ToString(),
+                    Text = m.Name
+                }).ToList()
             };
             model.Category = _productCategoryService.GetById(model.Product.CategoryId);
             return View(model);

@@ -62,6 +62,12 @@ namespace CMSCore
                 options.User.RequireUniqueEmail = true;
             });
 
+            services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromHours(2);
+                option.Cookie.HttpOnly = true;
+            });
+
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.ViewLocationExpanders.Add(new ViewLocationExpander());
@@ -155,6 +161,8 @@ namespace CMSCore
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
