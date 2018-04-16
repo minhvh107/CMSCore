@@ -16,6 +16,8 @@ namespace CMSCore.Application.Interfaces
 
         List<ColorViewModel> GetAll();
 
+        ColorViewModel GetById(int id);
+
         void Save();
     }
 }

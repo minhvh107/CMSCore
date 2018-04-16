@@ -16,6 +16,8 @@ namespace CMSCore.Application.Interfaces
 
         List<SizeViewModel> GetAll();
 
+        SizeViewModel GetById(int id);
+
         void Save();
     }
 }

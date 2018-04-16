@@ -7,7 +7,7 @@ namespace CMSCore.Models
         public ProductViewModel Product { set; get; }
         public int Quantity { set; get; }
         public decimal Price { set; get; }
-        public int ColorId { set; get; }
-        public int SizeId { set; get; }
+        public ColorViewModel Color { set; get; }
+        public SizeViewModel Size { set; get; }
     }
 }

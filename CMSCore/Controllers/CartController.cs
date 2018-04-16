@@ -11,9 +11,16 @@ namespace CMSCore.Controllers
     public class CartController : Controller
     {
         private readonly IProductService _productService;
-        public CartController(IProductService productService)
+        private readonly IColorService _colorService;
+        private ISizeService _sizeService;
+        public CartController(
+            IProductService productService,
+            IColorService colorService,
+            ISizeService sizeService)
         {
             _productService = productService;
+            _colorService = colorService;
+            _sizeService = sizeService;
         }
         [Route("cart.html", Name = "Cart")]
         public IActionResult Index()
@@ -55,8 +62,6 @@ namespace CMSCore.Controllers
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="quantity"></param>
-        /// <param name="color"></param>
-        /// <param name="size"></param>
         /// <returns></returns>
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity, int color, int size)
@@ -91,8 +96,8 @@ namespace CMSCore.Controllers
                     {
                         Product = product,
                         Quantity = quantity,
-                        ColorId = color,
-                        SizeId = size,
+                        Color = _colorService.GetById(color),
+                        Size = _sizeService.GetById(size),
                         Price = product.PromotionPrice ?? product.Price
                     });
                     hasChanged = true;
@@ -112,8 +117,8 @@ namespace CMSCore.Controllers
                 {
                     Product = product,
                     Quantity = quantity,
-                    ColorId = color,
-                    SizeId = size,
+                    Color = _colorService.GetById(color),
+                    Size = _sizeService.GetById(size),
                     Price = product.PromotionPrice ?? product.Price
                 });
                 HttpContext.Session.Set(CommonConstants.CartSession, cart);
@@ -156,7 +161,7 @@ namespace CMSCore.Controllers
         /// <param name="productId"></param>
         /// <param name="quantity"></param>
         /// <returns></returns>
-        public IActionResult UpdateCart(int productId, int quantity)
+        public IActionResult UpdateCart(int productId, int quantity, int color, int size)
         {
             var session = HttpContext.Session.Get<List<ShoppingCartViewModel>>(CommonConstants.CartSession);
             if (session != null)
@@ -168,6 +173,8 @@ namespace CMSCore.Controllers
                     {
                         var product = _productService.GetById(productId);
                         item.Product = product;
+                        item.Color = _colorService.GetById(color);
+                        item.Size = _sizeService.GetById(size);
                         item.Quantity = quantity;
                         item.Price = product.PromotionPrice ?? product.Price;
                         hasChanged = true;
@@ -180,6 +187,25 @@ namespace CMSCore.Controllers
                 return new OkObjectResult(productId);
             }
             return new EmptyResult();
+        }
+
+        public IActionResult LoadHeaderCart()
+        {
+            return ViewComponent("HeaderCart");
+        }
+
+        [HttpGet]
+        public IActionResult GetColors()
+        {
+            var colors = _colorService.GetAll();
+            return new OkObjectResult(colors);
+        }
+
+        [HttpGet]
+        public IActionResult GetSizes()
+        {
+            var sizes = _sizeService.GetAll();
+            return new OkObjectResult(sizes);
         }
         #endregion
     }

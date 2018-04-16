@@ -20,9 +20,13 @@
                     size: sizeId
                 },
                 success: function () {
-                    alert(1);
+                    $.notifySuccess('Thêm sản phẩm thành công');
+                    loadHeaderCart();
                 }
             });
         });
+    }
+    function loadHeaderCart() {
+        $("#headerCart").load("/Cart/LoadHeaderCart");
     }
 }

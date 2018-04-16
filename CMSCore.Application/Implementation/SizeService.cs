@@ -54,6 +54,11 @@ namespace CMSCore.Application.Implementation
             return _sizeRepository.FindAll().ProjectTo<SizeViewModel>().ToList();
         }
 
+        public SizeViewModel GetById(int id)
+        {
+            return Mapper.Map<Size, SizeViewModel>(_sizeRepository.FindById(id));
+        }
+
         public PagedResult<SizeViewModel> GetAllPaging(string keyword, int pageIndex, int pageSize)
         {
             var query = _sizeRepository.FindAll();

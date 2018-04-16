@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Admin\Components\PaginationViewComponent.cs" />
+    <Compile Remove="Areas\Admin\Controllers\Components\PaginationViewComponent.cs" />
     <Compile Remove="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Remove="Helpers\AdminAuthorize.cs" />
   </ItemGroup>

@@ -54,6 +54,11 @@ namespace CMSCore.Application.Implementation
             return _colorRepository.FindAll().ProjectTo<ColorViewModel>().ToList();
         }
 
+        public ColorViewModel GetById(int id)
+        {
+            return Mapper.Map<Color,ColorViewModel>(_colorRepository.FindById(id));
+        }
+
         public PagedResult<ColorViewModel> GetAllPaging(string keyword, int pageIndex, int pageSize)
         {
             var query = _colorRepository.FindAll();

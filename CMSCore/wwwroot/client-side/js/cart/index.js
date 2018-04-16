@@ -24,8 +24,8 @@
                     productId: id
                 },
                 success: function () {
-                    tedu.notify('Removing product is successful.', 'success');
-                    //loadHeaderCart();
+                    $.notifySuccess('Xóa sản phẩm thành công');
+                    loadHeaderCart();
                     loadData();
                 }
             });
@@ -43,15 +43,14 @@
                         quantity: q
                     },
                     success: function () {
-                        //tedu.notify('Update quantity is successful', 'success');
-                        //loadHeaderCart();
+                        $.notifySuccess('Cập nhật số lượng thành công');
+                        loadHeaderCart();
                         loadData();
                     }
                 });
             } else {
-               // tedu.notify('Your quantity is invalid', 'error');
+                $.notifyError('Cập nhật số lượng thất bại');
             }
-
         });
 
         $('body').on('change', '.ddlColorId', function (e) {
@@ -72,15 +71,14 @@
                         size: sizeId
                     },
                     success: function () {
-                        //tedu.notify('Update quantity is successful', 'success');
-                        //loadHeaderCart();
+                        $.notifySuccess('Cập nhật màu sắc thành công');
+                        loadHeaderCart();
                         loadData();
                     }
                 });
             } else {
-               // tedu.notify('Your quantity is invalid', 'error');
+                $.notifyError('Cập nhật màu sắc thất bại');
             }
-
         });
 
         $('body').on('change', '.ddlSizeId', function (e) {
@@ -100,15 +98,14 @@
                         size: sizeId
                     },
                     success: function () {
-                       // tedu.notify('Update quantity is successful', 'success');
-                        //loadHeaderCart();
+                        $.notifySuccess('Cập nhật kích cỡ thành công');
+                        loadHeaderCart();
                         loadData();
                     }
                 });
             } else {
-               // tedu.notify('Your quantity is invalid', 'error');
+                $.notifyError('Cập nhật kích cỡ thất bại');
             }
-
         });
         $('#btnClearAll').on('click', function (e) {
             e.preventDefault();
@@ -116,8 +113,8 @@
                 url: '/Cart/ClearCart',
                 type: 'post',
                 success: function () {
-                   // tedu.notify('Clear cart is successful', 'success');
-                    // loadHeaderCart();
+                    $.notifySuccess('Xóa giỏ hàng thành công');
+                    loadHeaderCart();
                     loadData();
                 }
             });
@@ -132,7 +129,7 @@
                 cachedObj.colors = response;
             },
             error: function () {
-                //tedu.notify('Has an error in progress', 'error');
+                $.notifyError('Lấy danh sách màu thất bại');
             }
         });
     }
@@ -146,7 +143,7 @@
                 cachedObj.sizes = response;
             },
             error: function () {
-               // tedu.notify('Has an error in progress', 'error');
+                $.notifyError('Lấy danh sách size thất bại');
             }
         });
     }
@@ -173,9 +170,9 @@
         sizes += "</select>";
         return sizes;
     }
-    //function loadHeaderCart() {
-    //    $("#headerCart").load("/AjaxContent/HeaderCart");
-    //}
+    function loadHeaderCart() {
+        $("#headerCart").load("/Cart/LoadHeaderCart");
+    }
     function loadData() {
         $.ajax({
             url: '/Cart/GetCart',
@@ -191,17 +188,16 @@
                             ProductId: item.Product.Id,
                             ProductName: item.Product.Name,
                             Image: item.Product.Image,
-                            //Price: tedu.formatNumber(item.Price, 0),
-                            Price:0,
+                            Price: item.Price,
                             Quantity: item.Quantity,
                             Colors: getColorOptions(item.Color == null ? 0 : item.Color.Id),
                             Sizes: getSizeOptions(item.Size == null ? "" : item.Size.Id),
-                            Amount: tedu.formatNumber(item.Price * item.Quantity, 0),
+                            Amount: item.Price * item.Quantity,
                             Url: '/' + item.Product.SeoAlias + "-p." + item.Product.Id + ".html"
                         });
                     totalAmount += item.Price * item.Quantity;
                 });
-               // $('#lblTotalAmount').text(tedu.formatNumber(totalAmount, 0));
+                $('#lblTotalAmount').text(totalAmount);
                 if (render !== "")
                     $('#table-cart-content').html(render);
                 else
