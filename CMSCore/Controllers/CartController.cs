@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CMSCore.Application.Interfaces;
+using CMSCore.Application.ViewModels;
+using CMSCore.Data.Enums;
 using CMSCore.Extensions;
 using CMSCore.Models;
+using CMSCore.Services;
 using CMSCore.Utilities.Constants;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace CMSCore.Controllers
 {
@@ -12,15 +18,27 @@ namespace CMSCore.Controllers
     {
         private readonly IProductService _productService;
         private readonly IColorService _colorService;
-        private ISizeService _sizeService;
+        private readonly ISizeService _sizeService;
+        private readonly IBillService _billService;
+        private readonly IViewRenderService _viewRenderService;
+        private readonly IConfiguration _configuration;
+        private readonly IEmailSender _emailSender;
         public CartController(
             IProductService productService,
             IColorService colorService,
-            ISizeService sizeService)
+            ISizeService sizeService,
+            IBillService billService,
+            IViewRenderService viewRenderService,
+            IConfiguration configuration,
+            IEmailSender emailSender)
         {
             _productService = productService;
             _colorService = colorService;
             _sizeService = sizeService;
+            _viewRenderService = viewRenderService;
+            _configuration = configuration;
+            _emailSender = emailSender;
+            _billService = billService;
         }
         [Route("cart.html", Name = "Cart")]
         public IActionResult Index()
@@ -29,9 +47,78 @@ namespace CMSCore.Controllers
         }
 
         [Route("checkout.html", Name = "Checkout")]
+        [HttpGet]
         public IActionResult Checkout()
         {
-            return View();
+            var model = new CheckoutViewModel();
+            var session = HttpContext.Session.Get<List<ShoppingCartViewModel>>(CommonConstants.CartSession);
+            if (session.Any(x => x.Color == null || x.Size == null))
+            {
+                return Redirect("/cart.html");
+            }
+
+            model.Carts = session;
+            return View(model);
+        }
+
+        [Route("checkout.html", Name = "Checkout")]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Checkout(CheckoutViewModel model)
+        {
+            var session = HttpContext.Session.Get<List<ShoppingCartViewModel>>(CommonConstants.CartSession);
+
+            if (ModelState.IsValid)
+            {
+                if (session != null)
+                {
+                    var details = new List<BillDetailViewModel>();
+                    foreach (var item in session)
+                    {
+                        details.Add(new BillDetailViewModel()
+                        {
+                            Product = item.Product,
+                            Price = item.Price,
+                            ColorId = item.Color.Id,
+                            SizeId = item.Size.Id,
+                            Quantity = item.Quantity,
+                            ProductId = item.Product.Id
+                        });
+                    }
+                    var billViewModel = new BillViewModel()
+                    {
+                        CustomerMobile = model.CustomerMobile,
+                        BillStatus = BillStatus.New,
+                        CustomerAddress = model.CustomerAddress,
+                        CustomerName = model.CustomerName,
+                        CustomerMessage = model.CustomerMessage,
+                        BillDetails = details
+                    };
+                    if (User.Identity.IsAuthenticated == true)
+                    {
+                        billViewModel.CustomerId = Guid.Parse(User.GetSpecificClaim("UserId"));
+                    }
+                    _billService.Create(billViewModel);
+                    try
+                    {
+
+                        _billService.Save();
+
+                        //var content = await _viewRenderService.RenderToStringAsync("Cart/_BillMail", billViewModel);
+                        //Send mail
+                        //await _emailSender.SendEmailAsync(_configuration["MailSettings:AdminMail"], "New bill from Panda Shop", content);
+                        ViewData["Success"] = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewData["Success"] = false;
+                        ModelState.AddModelError("", ex.Message);
+                    }
+
+                }
+            }
+            model.Carts = session;
+            return View(model);
         }
 
         #region AJAX Request
@@ -189,11 +276,19 @@ namespace CMSCore.Controllers
             return new EmptyResult();
         }
 
+        /// <summary>
+        /// Load header cart
+        /// </summary>
+        /// <returns></returns>
         public IActionResult LoadHeaderCart()
         {
             return ViewComponent("HeaderCart");
         }
 
+        /// <summary>
+        /// Lấy danh sách màu
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetColors()
         {
@@ -201,6 +296,10 @@ namespace CMSCore.Controllers
             return new OkObjectResult(colors);
         }
 
+        /// <summary>
+        /// Lấy danh sách kích thước
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetSizes()
         {
