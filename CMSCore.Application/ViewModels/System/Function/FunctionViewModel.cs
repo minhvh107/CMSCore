@@ -28,5 +28,7 @@ namespace CMSCore.Application.ViewModels
         public Status Status { set; get; }
 
         public List<FunctionViewModel> Children { get; set; }
+
+        public List<ActionViewModel> ListActions { set; get; }
     }
 }

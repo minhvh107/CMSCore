@@ -1,6 +1,7 @@
-﻿@model List<CMSCore.Application.ViewModels.FunctionViewModel>
+﻿@model PageFunctionViewModel
 @{
-    var roleName = ViewBag.RoleName;
+    var roleId = Model.AppRoleViewModel.Id;
+    var roleName = Model.AppRoleViewModel.Name;
 }
 <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
@@ -9,7 +10,7 @@
             <h4 class="modal-title">Phân quyền cho nhóm @roleName</h4>
         </div>
         <div class="modal-body form-manage-role">
-            <input type="hidden" value="@ViewBag.RoleID" id="RoleID" name="RoleID" />
+            <input type="hidden" value="@roleId" id="RoleID" name="RoleID" />
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Các chức năng trong hệ thống</h3>
@@ -18,10 +19,10 @@
                     <div class="row form-group margin-bottom-none">
                         <div class="col-md-12 radio-horizontal">
                             <div id="list-functions">
-                                @if (Model != null && Model.Count > 0)
+                                @if (Model != null && Model.ListFunctionViewModels.Count > 0)
                                 {
                                     <ul>
-                                        @foreach (var parent in Model)
+                                        @foreach (var parent in Model.ListFunctionViewModels)
                                         {
                                             if (parent.Children != null && parent.Children.Count > 0)
                                             {
@@ -30,35 +31,35 @@
                                                     <ul>
                                                         @foreach (var child in parent.Children)
                                                         {
-                                                            @*if (child.ListActions != null && child.ListActions.Count > 0)
+                                                            if (child.ListActions != null && child.ListActions.Count > 0)
                                                             {
                                                                 <li fnc-id="@child.Id" class="">
                                                                     <a class="text-bold" href="javascript:void(0);">@child.Name</a>
                                                                     <ul>
                                                                         @foreach (var act in child.ListActions)
                                                                         {
-                                                                            if (act.IsSelected)
-                                                                            {
-                                                                                <li act-id="@act.ActionID" fnc-id="@act.Id">
-                                                                                    <a class="jstree-clicked" href="javascript:void(0);">@act.ActionName</a>
-                                                                                </li>
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                <li act-id="@act.ActionID" fnc-id="@act.Id">@act.ActionName</li>
-                                                                            }
-
+                                                                            @*if (act.IsSelected)
+                                                                                {
+                                                                                    <li act-id="@act.Id" fnc-id="@act.Id">
+                                                                                        <a class="jstree-clicked" href="javascript:void(0);">@act.Name</a>
+                                                                                    </li>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <li act-id="@act.Id" fnc-id="@act.Id">@act.Name</li>
+                                                                                }*@
+                                                                            <li act-id="@act.Id" fnc-id="@act.Id">@act.Name</li>
                                                                         }
                                                                     </ul>
                                                                 </li>
                                                             }
                                                             else
                                                             {
-                                                                
-                                                            }*@
-                                                            <li fnc-id="@child.Id"><a class="text-bold" href="javascript:void(0);">@child.Name</a></li>
+                                                                <li fnc-id="@child.Id"><a class="text-bold" href="javascript:void(0);">@child.Name</a></li>
+                                                            }
+
                                                         }
-                                                        
+
                                                     </ul>
                                                 </li>
                                             }

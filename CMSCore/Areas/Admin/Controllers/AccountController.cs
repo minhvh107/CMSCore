@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using CMSCore.Application.Implementation;
+using CMSCore.Application.Interfaces;
+using CMSCore.Extensions;
 using CMSCore.Models.AccountViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
@@ -13,18 +16,30 @@ namespace CMSCore.Areas.Admin.Controllers
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger _logger;
+        private readonly IUserService _userService;
 
-        public AccountController(SignInManager<AppUser> signInManager,
-            ILogger<AccountController> logger)
+        public AccountController(
+            SignInManager<AppUser> signInManager,
+            ILogger<AccountController> logger,
+            IUserService userService)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userService = userService;
         }
 
         public IActionResult Index()
         {
             return View();
         }
+
+        public async Task<IActionResult> AccountInformation()
+        {
+            var userId = User.GetSpecificClaim("UserId");
+            var model = await _userService.GetById(userId);
+            return View(model);
+        }
+
 
         //[HttpPost]
         public async Task<IActionResult> Logout()

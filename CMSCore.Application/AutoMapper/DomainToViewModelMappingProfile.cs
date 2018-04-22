@@ -34,6 +34,8 @@ namespace CMSCore.Application.AutoMapper
             CreateMap<SystemConfig, SystemConfigViewModel>();
             CreateMap<Slide, SlideViewModel>();
 
+            CreateMap<Feedback, FeedbackViewModel>().MaxDepth(2);
+            CreateMap<Contact, ContactViewModel>().MaxDepth(2);
             #endregion Common
 
             #region System

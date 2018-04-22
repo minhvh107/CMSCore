@@ -12,8 +12,8 @@ using System;
 namespace CMSCore.Data.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180329103810_CreateDB")]
-    partial class CreateDB
+    [Migration("20180422132416_CreatDB")]
+    partial class CreatDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -503,6 +503,20 @@ namespace CMSCore.Data.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SEC_Functions");
+                });
+
+            modelBuilder.Entity("CMSCore.Data.Entities.FunctionAction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ActionId");
+
+                    b.Property<string>("FunctionId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SEC_FunctionActions");
                 });
 
             modelBuilder.Entity("CMSCore.Data.Entities.Language", b =>

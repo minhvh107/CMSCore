@@ -26,5 +26,7 @@ namespace CMSCore.Application.Interfaces
         void UpdateParentId(string sourceId, string targetId, Dictionary<string, int> items);
 
         void ReOrder(string sourceId, string targetId);
+
+        Task<List<FunctionActionViewModel>> GetAllFunctionAction();
     }
 }

@@ -23,6 +23,7 @@ namespace CMSCore.Helpers
             var roles = await _userManager.GetRolesAsync(user);
             ((ClaimsIdentity)principal.Identity).AddClaims(new[]
             {
+                new Claim("UserId",user.Id.ToString()), 
                 new Claim("Email",user.Email),
                 new Claim("FullName",user.FullName),
                 new Claim("Avatar",user.Avatar??string.Empty),

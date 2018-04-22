@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CMSCore.Data.EF.Migrations
 {
-    public partial class CreateDB : Migration
+    public partial class CreatDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -299,6 +299,20 @@ namespace CMSCore.Data.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SEC_AppUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SEC_FunctionActions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ActionId = table.Column<string>(nullable: true),
+                    FunctionId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SEC_FunctionActions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -927,6 +941,9 @@ namespace CMSCore.Data.EF.Migrations
 
             migrationBuilder.DropTable(
                 name: "PRD_WholePrices");
+
+            migrationBuilder.DropTable(
+                name: "SEC_FunctionActions");
 
             migrationBuilder.DropTable(
                 name: "SEC_Permissions");

@@ -6,6 +6,7 @@ using CMSCore.Data.EF;
 using CMSCore.Data.EF.Repositories;
 using CMSCore.Data.Entities;
 using CMSCore.Data.IRepositories;
+using CMSCore.Extensions;
 using CMSCore.Helpers;
 using CMSCore.Infrastructure.Interfaces;
 using CMSCore.Services;
@@ -19,8 +20,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
-using System;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
+using System;
 
 namespace CMSCore
 {
@@ -68,6 +69,16 @@ namespace CMSCore
                 option.Cookie.HttpOnly = true;
             });
 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            }).AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.ViewLocationExpanders.Add(new ViewLocationExpander());
@@ -83,6 +94,10 @@ namespace CMSCore
                 SiteKey = Configuration["Recaptcha:SiteKey"],
                 SecretKey = Configuration["Recaptcha:SecretKey"]
             });
+            // resize Image
+            services.AddImageResizer();
+
+            services.AddMinResponse();
 
             // Add application services.
             services.AddAutoMapper();
@@ -107,6 +122,7 @@ namespace CMSCore
 
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddTransient<IFunctionRepository, FunctionRepository>();
+            services.AddTransient<IFunctionActionRepository, FunctionActionRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IProductTagRepository, ProductTagRepository>();
@@ -123,6 +139,8 @@ namespace CMSCore
             services.AddTransient<ISlideRepository, SlideRepository>();
             services.AddTransient<IFooterRepository, FooterRepository>();
             services.AddTransient<ISystemConfigRepository, SystemConfigRepository>();
+            services.AddTransient<IContactRepository, ContactRepository>();
+            services.AddTransient<IFeedbackRepository, FeedbackRepository>();
 
             #endregion Repository
 
@@ -139,6 +157,8 @@ namespace CMSCore
             services.AddTransient<ISizeService, SizeService>();
             services.AddTransient<IBlogService, BlogService>();
             services.AddTransient<ICommonService, CommonService>();
+            services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<IFeedbackService, FeedbackService>();
 
             #endregion Service
         }
@@ -157,8 +177,11 @@ namespace CMSCore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseImageResizer();
 
             app.UseStaticFiles();
+
+            app.UseMinResponse();
 
             app.UseAuthentication();
 

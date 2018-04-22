@@ -24,22 +24,27 @@ namespace CMSCore.Data.EF
         /// Authenticate
         /// </summary>
         public DbSet<Entities.Action> Actions { get; set; }
+
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
 
         public DbSet<Function> Functions { get; set; }
+
+        public DbSet<FunctionAction> FunctionActions { set; get; }
         public DbSet<Permission> Permissions { get; set; }
 
         /// <summary>
         /// Announcements
         /// </summary>
         public DbSet<Announcement> Announcements { set; get; }
+
         public DbSet<AnnouncementUser> AnnouncementUsers { set; get; }
 
         /// <summary>
         /// Advertistment
         /// </summary>
         public DbSet<AdvertistmentPage> AdvertistmentPages { get; set; }
+
         public DbSet<Advertistment> Advertistments { get; set; }
         public DbSet<AdvertistmentPosition> AdvertistmentPositions { get; set; }
 
@@ -47,6 +52,7 @@ namespace CMSCore.Data.EF
         /// Product
         /// </summary>
         public DbSet<Blog> Bills { set; get; }
+
         public DbSet<BillDetail> BillDetails { set; get; }
         public DbSet<Color> Colors { set; get; }
 
@@ -64,12 +70,14 @@ namespace CMSCore.Data.EF
         /// Blog
         /// </summary>
         public DbSet<Blog> Blogs { set; get; }
+
         public DbSet<BlogTag> BlogTags { set; get; }
-       
+
         /// <summary>
         /// System
         /// </summary>
         public DbSet<Contact> Contacts { set; get; }
+
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Language> Languages { set; get; }
 
@@ -80,6 +88,7 @@ namespace CMSCore.Data.EF
         /// Manager
         /// </summary>
         public DbSet<Feedback> Feedbacks { set; get; }
+
         public DbSet<Slide> Slides { set; get; }
         public DbSet<Tag> Tags { set; get; }
 

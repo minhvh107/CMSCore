@@ -60,7 +60,22 @@ namespace CMSCore.Data.EF
                 var user = await _userManager.FindByNameAsync("admin");
                 await _userManager.AddToRoleAsync(user, "Admin");
             }
-            if (_context.Functions.Count() == 0)
+            if (!_context.Contacts.Any())
+            {
+                _context.Contacts.Add(new Contact()
+                {
+                    Id = CommonConstants.DefaultContactId,
+                    Address = "No 36 Lane 133 Nguyen Phong Sac Cau Giay",
+                    Email = "pandashop@gmail.com",
+                    Name = "Panda Shop",
+                    Phone = "0942 324 543",
+                    Status = Status.Active,
+                    Website = "http://pandashop.com",
+                    Lat = 21.0435009,
+                    Lng = 105.7894758
+                });
+            }
+            if (!_context.Functions.Any())
             {
                 _context.Functions.AddRange(new List<Function>()
                 {
@@ -102,6 +117,17 @@ namespace CMSCore.Data.EF
                     new Entities.Action() {Id = "Delete", Name = "Xoá"  },
                     new Entities.Action() {Id = "Export", Name = "Xuất dữ liệu"  },
                     new Entities.Action() {Id = "Import", Name = "Nhập dữ liệu"  }
+                });
+            }
+
+            if (!_context.FunctionActions.Any())
+            {
+                _context.FunctionActions.AddRange(new List<FunctionAction>()
+                {
+                    new FunctionAction(){FunctionId = "PRODUCT",ActionId = "Create"},
+                    new FunctionAction(){FunctionId = "PRODUCT",ActionId = "Read"},
+                    new FunctionAction(){FunctionId = "PRODUCT",ActionId = "Update"},
+                    new FunctionAction(){FunctionId = "PRODUCT",ActionId = "Delete"}
                 });
             }
 

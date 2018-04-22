@@ -1339,6 +1339,7 @@ table.jambo_table {
         background: rgba(38, 185, 154, 0.07);
         border-top: 1px solid rgba(38, 185, 154, 0.11);
         border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+        cursor: pointer;
     }
 
     table.jambo_table tbody tr.selected {

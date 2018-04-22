@@ -36,6 +36,15 @@ namespace CMSCore.Application.AutoMapper
                 .ConstructUsing(c => new Permission(c.RoleId, c.FunctionId, c.ActionId));
             #endregion
 
+            #region Common
+            CreateMap<ContactViewModel, Contact>()
+                .ConstructUsing(c => new Contact(c.Id, c.Name, c.Phone, c.Email, c.Website, c.Address, c.Other, c.Lng, c.Lat, c.Status));
+
+            CreateMap<FeedbackViewModel, Feedback>()
+                .ConstructUsing(c => new Feedback(c.Id, c.Name, c.Email, c.Message, c.Status));
+
+
+            #endregion
         }
     }
 }

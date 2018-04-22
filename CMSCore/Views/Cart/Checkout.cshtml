@@ -2,7 +2,11 @@
 @{
     ViewData["Title"] = "Checkout";
 }
+@section Scripts {
+    <recaptcha-script validation-message-element-id="recaptchaErrorMessage" />
 
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
 <!-- Breadcrumbs -->
 
 <div class="breadcrumbs">
@@ -168,7 +172,7 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                @*<recaptcha /><span class="text-danger" id="recaptchaErrorMessage"></span>*@
+                                <recaptcha /><span class="text-danger" id="recaptchaErrorMessage"></span>
                                 <button type="button" class="button" onclick="window.location.href='/cart.html'"><span>Back to cart</span></button>
 
                                 <button type="submit" class="button pull-right"><span>Place Order</span></button>
@@ -182,7 +186,3 @@
     </div>
 </section>
 <!-- Main Container End -->
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-    <recaptcha-script validation-message-element-id="recaptchaErrorMessage" />
-}

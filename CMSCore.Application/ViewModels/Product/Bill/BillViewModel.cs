@@ -1,11 +1,10 @@
 ﻿using CMSCore.Data.Enums;
+using CMSCore.Utilities.Constants;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using CMSCore.Data.Entities;
-using CMSCore.Utilities.Constants;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CMSCore.Application.ViewModels
 {
@@ -13,7 +12,7 @@ namespace CMSCore.Application.ViewModels
     {
         public BillViewModel()
         {
-            BillDetails =  new List<BillDetailViewModel>();
+            BillDetails = new List<BillDetailViewModel>();
         }
 
         public int Id { set; get; }
@@ -35,7 +34,7 @@ namespace CMSCore.Application.ViewModels
         [DisplayName("Tin nhắn")]
         public string CustomerMessage { set; get; }
 
-        [DisplayName("Tin nhắn")]
+        [DisplayName("Hình thức thanh toán")]
         public PaymentMethod PaymentMethod { set; get; }
 
         [DisplayName("Trạng thái đơn hàng")]
@@ -60,10 +59,9 @@ namespace CMSCore.Application.ViewModels
         public List<SelectListItem> ListPaymentMethods { set; get; }
         public List<SelectListItem> ListBillStatus { set; get; }
 
+       // [Required(ErrorMessage = Constants.FieldRequired)]
+        public string JsonTableMyModal { set; get; }
         public bool IsView { set; get; }
         public bool IsEdit { set; get; }
-
-        [Required(ErrorMessage = Constants.FieldRequired)]
-        public string JsonTableMyModal { set; get; }
     }
 }

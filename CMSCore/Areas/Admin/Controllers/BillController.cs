@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 
@@ -136,6 +137,8 @@ namespace CMSCore.Areas.Admin.Controllers
             obj.IsEdit = true;
             obj.ListPaymentMethods = ListPaymentMethod();
             obj.ListBillStatus = ListBillStatus();
+            var model = Mapper.Map<BillViewModel, BillModalViewModel>(obj);
+            model.JsonTableMyModal = model.BillDetails.Count > 0 ? JsonConvert.SerializeObject(model.BillDetails) : "";
             var content = _viewRenderService.RenderToStringAsync("Bill/_AddEditModal", obj);
             return Json(new JsonResponse
             {
@@ -196,7 +199,10 @@ namespace CMSCore.Areas.Admin.Controllers
             obj.ListPaymentMethods = ListPaymentMethod();
             obj.ListBillStatus = ListBillStatus();
 
-            var content = await _viewRenderService.RenderToStringAsync("Bill/_AddEditModal", obj);
+            var model = new BillModalViewModel();
+            
+            model.JsonTableMyModal = model.BillDetails.Count > 0 ? JsonConvert.SerializeObject(obj.BillDetails) : "";
+            var content = await _viewRenderService.RenderToStringAsync("Bill/_AddEditModal", model);
             return Json(new JsonResponse
             {
                 Success = true,
@@ -216,7 +222,7 @@ namespace CMSCore.Areas.Admin.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult SaveItem(BillViewModel model)
+        public IActionResult SaveItem(BillModalViewModel model)
         {
             if (ModelState.IsValid)
             {

@@ -19,14 +19,17 @@ namespace CMSCore.Application.Implementation
         #region Default
 
         private readonly IFunctionRepository _functionRepository;
+        private readonly IFunctionActionRepository _functionActionRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public FunctionService(IMapper mapper,
             IFunctionRepository functionRepository,
+            IFunctionActionRepository functionActionRepository,
             IUnitOfWork unitOfWork)
         {
             _functionRepository = functionRepository;
+            _functionActionRepository = functionActionRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -93,6 +96,11 @@ namespace CMSCore.Application.Implementation
 
             _functionRepository.Update(source);
             _functionRepository.Update(target);
+        }
+
+        public Task<List<FunctionActionViewModel>> GetAllFunctionAction()
+        {
+            return _functionActionRepository.FindAll().ProjectTo<FunctionActionViewModel>().ToListAsync();
         }
 
         public void UpdateParentId(string sourceId, string targetId, Dictionary<string, int> items)

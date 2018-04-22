@@ -277,11 +277,21 @@ namespace CMSCore.Areas.Admin.Controllers
         {
             try
             {
+                var lstFuncAction = await _functionService.GetAllFunctionAction();
                 var functions = await _functionService.GetAllAsync("");
-                //var role = RoleManager.FindById(roleId)?.Name;
-               // ViewBag.RoleName = role;
-               // ViewBag.RoleID = roleId;
-                var content = await _viewRenderService.RenderToStringAsync("Role/_ManageRoleAction", functions);
+                foreach (var function in functions)
+                {
+                    function.ListActions = lstFuncAction.Where(m => m.FunctionViewModel.Id == function.Id).Select(m=>m.ActionViewModel).ToList();
+                }
+                var role = await _roleService.GetById(roleId);
+
+                var model = new PageFunctionViewModel
+                {
+                    ListFunctionViewModels = functions,
+                    AppRoleViewModel = role
+                };
+
+                var content = await _viewRenderService.RenderToStringAsync("Role/_ManageRoleAction", model);
                 return Json(new JsonResponse()
                 {
                     Success = true,
@@ -300,7 +310,6 @@ namespace CMSCore.Areas.Admin.Controllers
                 });
             }
         }
-
 
         [HttpPost]
         public IActionResult ListAllFunction(Guid roleId)
